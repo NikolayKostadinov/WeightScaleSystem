@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CommandFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtentionsTests.cs" />
     <Compile Include="XorChecksumServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
