@@ -10,8 +10,8 @@ namespace WeightScale.ComunicationProtocolTests
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using WeightScale.ComunicationPropocol;
-    using WeightScale.ComunicationPropocol.Helpers;
+    using WeightScale.ComunicationProtocol;
+    using WeightScale.ComunicationProtocol.Helpers;
     using WeightScale.Contracts;
 
     /// <summary>

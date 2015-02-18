@@ -4,10 +4,11 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-namespace WeightScale.ComunicationPropocol
+namespace WeightScale.ComunicationProtocol
 {
     using System;
     using System.Collections.Generic;
+    using WeightScale.ComunicationProtocol;
     using WeightScale.Contracts;
 
     /// <summary>

@@ -7,8 +7,8 @@
     <ProjectGuid>{3924DB7D-CCDD-42DB-92D7-712402696BD0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WeightScale.ComunicationPropocol</RootNamespace>
-    <AssemblyName>WeightScale.ComunicationPropocol</AssemblyName>
+    <RootNamespace>WeightScale.ComunicationProtocol</RootNamespace>
+    <AssemblyName>WeightScale.ComunicationProtocol</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -43,7 +43,7 @@
     <Compile Include="CommandFactory.cs" />
     <Compile Include="CommunicationConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\StringExtention.cs" />
+    <Compile Include="Helpers\StringExtentions.cs" />
     <Compile Include="XorChecksumService.cs" />
   </ItemGroup>
   <ItemGroup>

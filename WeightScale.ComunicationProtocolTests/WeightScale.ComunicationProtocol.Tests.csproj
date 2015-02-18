@@ -61,9 +61,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WeightScale.ComunicationPropocol\WeightScale.ComunicationPropocol.csproj">
-      <Project>{3924DB7D-CCDD-42DB-92D7-712402696BD0}</Project>
-      <Name>WeightScale.ComunicationPropocol</Name>
+    <ProjectReference Include="..\WeightScale.ComunicationProtocol\WeightScale.ComunicationProtocol.csproj">
+      <Project>{3924db7d-ccdd-42db-92d7-712402696bd0}</Project>
+      <Name>WeightScale.ComunicationProtocol</Name>
     </ProjectReference>
     <ProjectReference Include="..\WeightScale.Contracts\WeightScale.Contracts.csproj">
       <Project>{cb70a28c-89e8-46de-a79c-3a171c42b17f}</Project>

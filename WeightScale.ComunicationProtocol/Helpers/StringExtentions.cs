@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-namespace WeightScale.ComunicationPropocol.Helpers
+namespace WeightScale.ComunicationProtocol.Helpers
 {
     using System;
     using System.Linq;
@@ -12,7 +12,7 @@ namespace WeightScale.ComunicationPropocol.Helpers
     /// <summary>
     /// Provides extension methods to string class
     /// </summary>
-    public static class StringExtention
+    public static class StringExtentions
     {
         public static byte[] ToByteArray(this string str)
         {

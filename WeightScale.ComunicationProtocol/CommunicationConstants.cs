@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-namespace WeightScale.ComunicationPropocol
+namespace WeightScale.ComunicationProtocol
 {
     using System;
     using System.Linq;
@@ -12,46 +12,46 @@ namespace WeightScale.ComunicationPropocol
     /// <summary>
     /// Provides named constants for Weight scale messages construction
     /// </summary>
-    public enum CommunicationConstants 
+    public enum CommunicationConstants :byte
     {
         /// <summary>
         /// Start of heading
         /// </summary>
-        Soh = '\x01',
+        Soh = 0x01,
 
         /// <summary>
         /// Start of text
         /// </summary>
-        Stx = '\x02',
+        Stx = 0x02,
 
         /// <summary>
         /// End of text
         /// </summary>
-        Etx = '\x03',
+        Etx = 0x03,
 
         /// <summary>
         /// End of transmit
         /// </summary>
-        Eot = '\x04',
+        Eot = 0x04,
 
         /// <summary>
         /// Enquiry
         /// </summary>
-        Enq = '\x05',
+        Enq = 0x05,
 
         /// <summary>
         /// Acknowledge
         /// </summary>
-        Ack = '\x06',
+        Ack = 0x06,
 
         /// <summary>
         /// Negative acknowledge
         /// </summary>
-        Nac = '\x15',
+        Nac = 0x15,
 
         /// <summary>
         /// Poll
         /// </summary>
-        Pol = 'p',
+        Pol = 0x70,
     }
 }

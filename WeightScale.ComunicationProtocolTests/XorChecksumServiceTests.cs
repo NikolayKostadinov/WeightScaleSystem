@@ -9,8 +9,8 @@ namespace WeightScale.ComunicationProtocolTests
     using System;
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using WeightScale.ComunicationPropocol;
-    using WeightScale.ComunicationPropocol.Helpers;
+    using WeightScale.ComunicationProtocol;
+    using WeightScale.ComunicationProtocol.Helpers;
 
     /// <summary>
     /// Unit tests for XORChecksumService class
