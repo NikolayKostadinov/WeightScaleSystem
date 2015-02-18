@@ -96,14 +96,14 @@ namespace WeightScale.ComunicationProtocolTests
         }
 
         [TestMethod]
-        public void EndOfTransfer_Returns_0x04()
+        public void EndOfTransmit_Returns_0x04()
         {
             // Arrange
             var expected = new byte[] { 0x04 };
             var command = new CommandFactory(null);
 
             // Act
-            var actual = command.EndOfTransfer();
+            var actual = command.EndOfTransmit();
 
             // Assert
             Assert.AreEqual(expected.Length, actual.Length);

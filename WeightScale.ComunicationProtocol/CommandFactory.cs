@@ -51,7 +51,7 @@ namespace WeightScale.ComunicationProtocol
             return barr.ToArray();
         }
 
-        public byte[] EndOfTransfer()
+        public byte[] EndOfTransmit()
         {
             return new byte[] { (byte)CommunicationConstants.Eot };
         }
