@@ -1,5 +1,5 @@
 ﻿//---------------------------------------------------------------------------------
-// <copyright file="StringExtention.cs" company="Business Management Systems">
+// <copyright file="StringExtentions.cs" company="Business Management Systems">
 //     Copyright (c) Business Management Systems. All rights reserved.
 // </copyright>
 // <author>Nikolay Kostadinov</author>

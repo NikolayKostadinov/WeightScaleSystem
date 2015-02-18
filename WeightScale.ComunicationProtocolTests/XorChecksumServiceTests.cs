@@ -72,6 +72,7 @@ namespace WeightScale.ComunicationProtocolTests
                 "012                                3     1              B. OTPADAK                                         A4836BK       69604".ToByteArray(), // 13                 
                 "022                             5532     1         138                                                845279120198                              ".ToByteArray(), // 14
                 "022                             5533     2         138                                                845279120198                              ".ToByteArray(), // 15
+                "102                                5     2         028                                                333333333333                              ".ToByteArray(), // 16
             };
 
             var actual = new List<byte>();
@@ -93,6 +94,7 @@ namespace WeightScale.ComunicationProtocolTests
                 230, // 13
                 159, // 14
                 157, // 15
+                141, // 16
             };
             var checksumService = new XorChecksumService();
 

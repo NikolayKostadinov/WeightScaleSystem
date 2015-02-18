@@ -12,7 +12,7 @@ namespace WeightScale.ComunicationProtocol
     /// <summary>
     /// Provides named constants for Weight scale messages construction
     /// </summary>
-    public enum CommunicationConstants :byte
+    public enum CommunicationConstants : byte
     {
         /// <summary>
         /// Start of heading
