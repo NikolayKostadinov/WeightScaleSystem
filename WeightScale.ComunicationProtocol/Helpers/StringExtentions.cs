@@ -16,6 +16,7 @@ namespace WeightScale.ComunicationProtocol.Helpers
     {
         public static byte[] ToByteArray(this string str)
         {
+            // empty. need to be removed after repository contributors test
             byte[] result = new byte[str.Length];
 
             for (int i = 0; i < str.Length; i++)
