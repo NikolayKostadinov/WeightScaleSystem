@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3924DB7D-CCDD-42DB-92D7-712402696BD0}</ProjectGuid>
+    <ProjectGuid>{8BAEB23C-7352-40AA-8B0C-46BDDDEB7AFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WeightScale.ComunicationProtocol</RootNamespace>
-    <AssemblyName>WeightScale.ComunicationProtocol</AssemblyName>
+    <RootNamespace>WeightScale.Utility</RootNamespace>
+    <AssemblyName>WeightScale.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,16 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandFactory.cs" />
-    <Compile Include="CommunicationConstants.cs" />
+    <Compile Include="Helpers\StringExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XorChecksumService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WeightScale.Contracts\WeightScale.Contracts.csproj">
-      <Project>{cb70a28c-89e8-46de-a79c-3a171c42b17f}</Project>
-      <Name>WeightScale.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

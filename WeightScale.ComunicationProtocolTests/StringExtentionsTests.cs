@@ -9,7 +9,7 @@ namespace WeightScale.ComunicationProtocolTests
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using WeightScale.ComunicationProtocol.Helpers;
+    using WeightScale.Utility.Helpers;
 
     [TestClass]
     public class StringExtentionsTests
@@ -35,6 +35,28 @@ namespace WeightScale.ComunicationProtocolTests
             {
                 Assert.AreEqual(expected[i], actual[i]);
             }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ToByteArray_Without_Parameters_Throws_exception_If_sting_Is_null()
+        {
+            // Arrange
+            string input = null;
+
+            // Act
+            byte[] actual = input.ToByteArray();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ToByteArray_Without_Parameters_Throws_exception_If_sting_Is_Empty()
+        {
+            // Arrange
+            string input = string.Empty;
+
+            // Act
+            byte[] actual = input.ToByteArray();
         }
 
         [TestMethod]
@@ -81,6 +103,39 @@ namespace WeightScale.ComunicationProtocolTests
             {
                 Assert.AreEqual(expected[i], actual[i]);
             }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ToByteArray_With_Parameters_Throws_exception_If_sting_Is_null()
+        {
+            // Arrange
+            string input = null;
+
+            // Act
+            byte[] actual = input.ToByteArray(Alignment.Right, 3);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ToByteArray_With_Parameters_Throws_exception_If_sting_Is_Empty()
+        {
+            // Arrange
+            string input = string.Empty;
+
+            // Act
+            byte[] actual = input.ToByteArray(Alignment.Right, 3);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ToByteArray_With_Parameters_Throws_exception_If_Alihgtment_is_wrong()
+        {
+            // Arrange
+            string input = "test";
+
+            // Act
+            byte[] actual = input.ToByteArray((Alignment)3, 5);
         }
     }
 }

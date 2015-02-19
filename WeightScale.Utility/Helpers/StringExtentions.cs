@@ -4,13 +4,12 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-
-namespace WeightScale.ComunicationProtocol.Helpers
+namespace WeightScale.Utility.Helpers
 {
     using System;
     using System.Linq;
 
-    /// <summary>
+        /// <summary>
     /// Alignment of result byte area
     /// </summary>
     public enum Alignment
@@ -31,8 +30,19 @@ namespace WeightScale.ComunicationProtocol.Helpers
     /// </summary>
     public static class StringExtentions
     {
+        /// <summary>
+        /// Converts string into byte array, which consists of single byte ASCII code for every single character in input string.
+        /// </summary>
+        /// <param name="str">input string</param>
+        /// <returns>byte array</returns>
         public static byte[] ToByteArray(this string str)
         {
+            var checkstring = str ?? string.Empty;
+            if (string.IsNullOrEmpty(checkstring.Trim()))
+            {
+                throw new ArgumentException("The input string cannot be empty.");
+            }
+
             byte[] result = new byte[str.Length];
 
             for (int i = 0; i < str.Length; i++)
@@ -43,15 +53,28 @@ namespace WeightScale.ComunicationProtocol.Helpers
             return result;
         }
 
+        /// <summary>
+        /// Converts string into byte array with fixed length, aligned in intended direction, which consists of single byte ASCII code for every single character in input string, padded with necessary number of spaces.
+        /// </summary>
+        /// <param name="str">Input string;</param>
+        /// <param name="align">Direction of the alignment;</param>
+        /// <param name="lenght">Desired length of the output array.</param>
+        /// <returns>byte array</returns>
         public static byte[] ToByteArray(this string str, Alignment align, int lenght)
         {
+            var checkstring = str ?? string.Empty;
+            if (string.IsNullOrEmpty(checkstring.Trim()))
+            {
+                throw new ArgumentException("The input string cannot be empty.");
+            }
+
             if (str.Length > lenght)
             {
                 throw new ArgumentException(
                     string.Format(
-                    "The lenght of output byte array must be greater than or equal to lenght of string. Lengt of string: {0}, Lenght of array: {1} .", 
-                    str.Length, 
-                    lenght));
+                        "The lenght of output byte array must be greater than or equal to lenght of string. Lengt of string: {0}, Lenght of array: {1} .",
+                        str.Length,
+                        lenght));
             }
 
             string alignedString = str;
@@ -64,7 +87,7 @@ namespace WeightScale.ComunicationProtocol.Helpers
                     alignedString = alignedString.PadLeft(lenght, ' ');
                     break;
                 default:
-                    throw new ArgumentException("Invalid argument \"align\". Must be Alignment.Legt or Alignment.Right");
+                    throw new ArgumentException("Invalid argument \"align\". Must be Alignment.Left or Alignment.Right");
             }
 
             byte[] result = alignedString.ToByteArray();
