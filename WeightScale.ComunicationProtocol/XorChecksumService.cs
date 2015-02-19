@@ -10,7 +10,7 @@ namespace WeightScale.ComunicationProtocol
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using WeightScale.Contracts;
+    using WeightScale.ComunicationProtocol.Contracts;
 
     /// <summary>
     /// Provides method calculating check sum for Weight scale messages 

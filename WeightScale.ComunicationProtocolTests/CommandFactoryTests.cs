@@ -11,8 +11,8 @@ namespace WeightScale.ComunicationProtocolTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using WeightScale.ComunicationProtocol;
-    using WeightScale.ComunicationProtocol.Helpers;
-    using WeightScale.Contracts;
+    using WeightScale.ComunicationProtocol.Contracts;
+    using WeightScale.Utility.Helpers;
 
     /// <summary>
     /// Unit tests for CommandFactory class

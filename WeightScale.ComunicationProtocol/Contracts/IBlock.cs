@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-namespace WeightScale.Contracts
+namespace WeightScale.ComunicationProtocol.Contracts
 {
     /// <summary>
     /// Public interface. Abstracts classes witch can be processed as input for the CommandFactory

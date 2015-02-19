@@ -9,6 +9,7 @@ namespace WeightScale.ComunicationProtocolTests
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using WeightScale.Utility;
     using WeightScale.Utility.Helpers;
 
     [TestClass]

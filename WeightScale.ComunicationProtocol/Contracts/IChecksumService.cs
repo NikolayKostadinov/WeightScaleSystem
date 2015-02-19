@@ -4,7 +4,7 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-namespace WeightScale.Contracts
+namespace WeightScale.ComunicationProtocol.Contracts
 {
     /// <summary>
     /// Provides method for calculating check sum of given data

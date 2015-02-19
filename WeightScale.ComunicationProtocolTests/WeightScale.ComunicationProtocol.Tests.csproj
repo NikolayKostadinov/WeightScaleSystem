@@ -66,9 +66,9 @@
       <Project>{3924db7d-ccdd-42db-92d7-712402696bd0}</Project>
       <Name>WeightScale.ComunicationProtocol</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WeightScale.Contracts\WeightScale.Contracts.csproj">
-      <Project>{cb70a28c-89e8-46de-a79c-3a171c42b17f}</Project>
-      <Name>WeightScale.Contracts</Name>
+    <ProjectReference Include="..\WeightScale.Utility\WeightScale.Utility.csproj">
+      <Project>{8baeb23c-7352-40aa-8b0c-46bdddeb7aff}</Project>
+      <Name>WeightScale.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -8,8 +8,7 @@ namespace WeightScale.ComunicationProtocol
 {
     using System;
     using System.Collections.Generic;
-    using WeightScale.ComunicationProtocol;
-    using WeightScale.Contracts;
+    using WeightScale.ComunicationProtocol.Contracts;
 
     /// <summary>
     /// Provides methods which constructs binary messages sent to the WeightScale

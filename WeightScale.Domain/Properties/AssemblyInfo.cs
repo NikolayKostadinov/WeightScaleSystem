@@ -1,21 +1,15 @@
-﻿//---------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="Business Management Systems">
-//     Copyright (c) Business Management Systems. All rights reserved.
-// </copyright>
-// <author>Nikolay Kostadinov</author>
-//--------------------------------------------------------------------------------
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WeightScale.Contracts")]
+[assembly: AssemblyTitle("WeightScale.Models")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("BMS")]
-[assembly: AssemblyProduct("WeightScale.Contracts")]
+[assembly: AssemblyCompany("ITSE")]
+[assembly: AssemblyProduct("WeightScale.Models")]
 [assembly: AssemblyCopyright("Copyright © ITSE 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -26,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7dac3547-f7ac-4ef2-9672-5368046f81fe")]
+[assembly: Guid("0fec94bf-9a39-4509-bc2d-1a6f8ff0d21a")]
 
 // Version information for an assembly consists of the following four values:
 //

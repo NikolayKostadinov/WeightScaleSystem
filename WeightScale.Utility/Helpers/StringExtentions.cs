@@ -9,7 +9,7 @@ namespace WeightScale.Utility.Helpers
     using System;
     using System.Linq;
 
-        /// <summary>
+    /// <summary>
     /// Alignment of result byte area
     /// </summary>
     public enum Alignment
