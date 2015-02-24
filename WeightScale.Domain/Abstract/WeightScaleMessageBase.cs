@@ -79,7 +79,7 @@ namespace WeightScale.Domain.Abstract
         /// <summary>
         /// single character 1 or 2
         /// </summary>
-        [ComSerializableProperty(length: 1, offset: 2, originalType: typeof(Direction), serializeFormat: "d")]
+        [ComSerializableProperty(length: 1, offset: 2, originalType: typeof(int), serializeFormat: "d")]
         
         public Direction Direction
         {
@@ -104,7 +104,7 @@ namespace WeightScale.Domain.Abstract
         /// <summary>
         /// Enumeration of measurement statuses 1 byte 
         /// </summary>
-        [ComSerializableProperty(length: 1, offset: 27, originalType: typeof(MeasurementStatus), serializeFormat: "d")]
+        [ComSerializableProperty(length: 1, offset: 27, originalType: typeof(int), serializeFormat: "d")]
         public MeasurementStatus MeasurementStatus
         {
             get { return this.measurementStatus; }

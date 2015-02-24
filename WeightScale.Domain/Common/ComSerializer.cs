@@ -9,6 +9,7 @@ namespace WeightScale.Domain.Common
     using System;
     using System.Linq;
     using System.Reflection;
+    using System.Text;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
     using WeightScale.Utility.Helpers;
@@ -40,14 +41,39 @@ namespace WeightScale.Domain.Common
         public T Deserialize<T>(byte[] input)
             where T : IComSerializable, new()
         {
-            return new T();
+            T resultObject = new T();
+
+            var properties = resultObject.GetType().GetProperties()
+                .Where(x =>
+                {
+                    var attr = x.CustomAttributes.Where(y =>
+                        y.AttributeType == typeof(ComSerializablePropertyAttribute));
+                    return attr.Count() > 0;
+                });
+
+            foreach (var property in properties)
+            {
+                var propSerializationAttr = property.GetCustomAttribute<ComSerializablePropertyAttribute>();
+
+                byte[] propBytes = new byte[propSerializationAttr.Length];
+                Array.Copy(input, propSerializationAttr.Offset, propBytes, 0, propBytes.Length);
+                string strProp = Encoding.Default.GetString(propBytes).Trim();
+
+                if (! string.IsNullOrEmpty(strProp))
+                {
+                    object safeValue = Convert.ChangeType(strProp, propSerializationAttr.OriginalType);
+                    property.SetValue(resultObject, safeValue, null);
+                }
+            }
+
+            return resultObject;
         }
 
-      /// <summary>
-      /// Creates the byte array.
-      /// </summary>
-      /// <typeparam name="T">Type of reflected object</typeparam>
-      /// <returns>byte array with appropriated length</returns>
+        /// <summary>
+        /// Creates the byte array.
+        /// </summary>
+        /// <typeparam name="T">Type of reflected object</typeparam>
+        /// <returns>byte array with appropriated length</returns>
         private byte[] CreateByteArray<T>()
         {
             var attr = typeof(T).GetCustomAttributes(true)

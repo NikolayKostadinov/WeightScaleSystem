@@ -33,7 +33,7 @@ namespace WeightScaleSystem.ConsoleDemo
             // ser.ProductName = "Нафта";
             // ser.TotalOfGrossWeight = 10;
             // ser.TotoalOfNetWeight = 20;
-            
+
 
             var validationResult = ser.Validate();
 
@@ -61,6 +61,7 @@ namespace WeightScaleSystem.ConsoleDemo
                                result.Length);
             }
 
+            var des = serializer.Deserialize<NewWeightScaleMessage>(serialized);
             Console.WriteLine(result);
             Console.WriteLine("Estimated time: {0}", estimatedTime);
         }
