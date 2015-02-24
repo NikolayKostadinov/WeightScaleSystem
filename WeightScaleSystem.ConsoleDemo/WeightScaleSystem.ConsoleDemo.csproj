@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4318F04E-487F-4603-94F8-2BA517891D30}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{96E89609-C3A8-4AD1-8FD8-28DD23F94F68}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WeightScale.Domain</RootNamespace>
-    <AssemblyName>WeightScale.Domain</AssemblyName>
+    <RootNamespace>WeightScaleSystem.ConsoleDemo</RootNamespace>
+    <AssemblyName>WeightScaleSystem.ConsoleDemo</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,25 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ComSerializer.cs" />
-    <Compile Include="Abstract\IValidateable.cs" />
-    <Compile Include="Common\ComSerializableClassAttribute.cs" />
-    <Compile Include="Common\ComSerializablePropertyAttribute.cs" />
-    <Compile Include="Common\ValidationMessage.cs" />
-    <Compile Include="Common\ValidationMessageCollection.cs" />
-    <Compile Include="Abstract\WeightScaleMessageBase.cs" />
-    <Compile Include="Abstract\IComSerializable.cs" />
-    <Compile Include="Concrete\NewWeightScaleMessage.cs" />
-    <Compile Include="Concrete\OldWeightScaleMessage.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WeightScale.Utility\WeightScale.Utility.csproj">
-      <Project>{8baeb23c-7352-40aa-8b0c-46bdddeb7aff}</Project>
-      <Name>WeightScale.Utility</Name>
+    <ProjectReference Include="..\WeightScale.Domain\WeightScale.Domain.csproj">
+      <Project>{4318F04E-487F-4603-94F8-2BA517891D30}</Project>
+      <Name>WeightScale.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,9 @@
 namespace WeightScale.Utility.Helpers
 {
     using System;
+    using System.Globalization;
     using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// Alignment of result byte area
@@ -37,20 +39,13 @@ namespace WeightScale.Utility.Helpers
         /// <returns>byte array</returns>
         public static byte[] ToByteArray(this string str)
         {
-            var checkstring = str ?? string.Empty;
-            if (string.IsNullOrEmpty(checkstring.Trim()))
+            if (str == null)
             {
                 throw new ArgumentException("The input string cannot be empty.");
             }
 
-            byte[] result = new byte[str.Length];
-
-            for (int i = 0; i < str.Length; i++)
-            {
-                result[i] = Convert.ToByte(str[i]);
-            }
-
-            return result;
+            byte[] strToByte = Encoding.Default.GetBytes(str);
+            return strToByte;
         }
 
         /// <summary>
@@ -62,8 +57,7 @@ namespace WeightScale.Utility.Helpers
         /// <returns>byte array</returns>
         public static byte[] ToByteArray(this string str, Alignment align, int lenght)
         {
-            var checkstring = str ?? string.Empty;
-            if (string.IsNullOrEmpty(checkstring.Trim()))
+            if (str == null)
             {
                 throw new ArgumentException("The input string cannot be empty.");
             }

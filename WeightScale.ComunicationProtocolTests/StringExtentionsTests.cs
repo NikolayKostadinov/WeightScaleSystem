@@ -50,17 +50,6 @@ namespace WeightScale.ComunicationProtocolTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ToByteArray_Without_Parameters_Throws_exception_If_sting_Is_Empty()
-        {
-            // Arrange
-            string input = string.Empty;
-
-            // Act
-            byte[] actual = input.ToByteArray();
-        }
-
-        [TestMethod]
         public void ToByteArray_With_Left_Parameter_Returns_Expected()
         {
             // Arrange
@@ -112,17 +101,6 @@ namespace WeightScale.ComunicationProtocolTests
         {
             // Arrange
             string input = null;
-
-            // Act
-            byte[] actual = input.ToByteArray(Alignment.Right, 3);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ToByteArray_With_Parameters_Throws_exception_If_sting_Is_Empty()
-        {
-            // Arrange
-            string input = string.Empty;
 
             // Act
             byte[] actual = input.ToByteArray(Alignment.Right, 3);
