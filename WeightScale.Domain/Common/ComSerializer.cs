@@ -38,16 +38,37 @@ namespace WeightScale.Domain.Common
         }
 
         public T Deserialize<T>(byte[] input)
-            where T : IComSerializable, new()
+            where T : class,IComSerializable, new()
         {
-            return new T();
+            var resultObject = new T();
+
+            var properties = typeof(T).GetProperties()
+                                      .Where(x =>
+                                          x.IsDefined(typeof(ComSerializablePropertyAttribute), true) &&
+                                          !x.IsDefined(typeof(NonSerializedAttribute), true));
+
+            foreach (var property in properties)
+            {
+                var attr = property.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(ComSerializablePropertyAttribute)) as ComSerializablePropertyAttribute;
+                if (attr != null)
+                {
+                    //    var bytes = Array.Copy(input,bytes,popery)
+                    //    property.SetValue()
+                    //Type propType = attr.OriginalType;
+
+                    //resultObject.GetType().GetRuntimeProperty(property.Name).SetValue
+                }
+
+            }
+
+            return resultObject;
         }
 
-      /// <summary>
-      /// Creates the byte array.
-      /// </summary>
-      /// <typeparam name="T">Type of reflected object</typeparam>
-      /// <returns>byte array with appropriated length</returns>
+        /// <summary>
+        /// Creates the byte array.
+        /// </summary>
+        /// <typeparam name="T">Type of reflected object</typeparam>
+        /// <returns>byte array with appropriated length</returns>
         private byte[] CreateByteArray<T>()
         {
             var attr = typeof(T).GetCustomAttributes(true)
