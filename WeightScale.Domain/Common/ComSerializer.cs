@@ -9,6 +9,7 @@ namespace WeightScale.Domain.Common
     using System;
     using System.Linq;
     using System.Reflection;
+    using System.Text;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
     using WeightScale.Utility.Helpers;
@@ -40,6 +41,7 @@ namespace WeightScale.Domain.Common
         public T Deserialize<T>(byte[] input)
             where T : class,IComSerializable, new()
         {
+<<<<<<< HEAD
             var resultObject = new T();
 
             var properties = typeof(T).GetProperties()
@@ -59,6 +61,31 @@ namespace WeightScale.Domain.Common
                     //resultObject.GetType().GetRuntimeProperty(property.Name).SetValue
                 }
 
+=======
+            T resultObject = new T();
+
+            var properties = resultObject.GetType().GetProperties()
+                .Where(x =>
+                {
+                    var attr = x.CustomAttributes.Where(y =>
+                        y.AttributeType == typeof(ComSerializablePropertyAttribute));
+                    return attr.Count() > 0;
+                });
+
+            foreach (var property in properties)
+            {
+                var propSerializationAttr = property.GetCustomAttribute<ComSerializablePropertyAttribute>();
+
+                byte[] propBytes = new byte[propSerializationAttr.Length];
+                Array.Copy(input, propSerializationAttr.Offset, propBytes, 0, propBytes.Length);
+                string strProp = Encoding.Default.GetString(propBytes).Trim();
+
+                if (! string.IsNullOrEmpty(strProp))
+                {
+                    object safeValue = Convert.ChangeType(strProp, propSerializationAttr.OriginalType);
+                    property.SetValue(resultObject, safeValue, null);
+                }
+>>>>>>> 0e6b5b42040c446e168c8915eb19560423680919
             }
 
             return resultObject;
