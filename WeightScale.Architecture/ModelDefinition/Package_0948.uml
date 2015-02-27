@@ -1,0 +1,1308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="5ad542b2-c4e2-4d59-95e6-0575e61bc0a5"
+  name="ComunicationProtocol"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="a3cfcda0-1871-4bbf-ab87-24aff9bf9e7f"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWeightScale.ComunicationProtocol"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="71cc6b0e-b3bd-4e07-a14c-36a6406b1129"
+        name="CommandFactory"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="43846ff2-5d2c-470d-8439-0bf201d2984d"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="af50ccd7-9e89-4b47-a2df-31e0af724371"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7a623b28-32f1-404d-b016-f47e287e3a8b">
+                <propertyInstance
+                  Id="c38941de-b245-4f8d-a155-54e53cff17ce"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1e767508-35ab-4a2c-9d36-1bc96167f330">
+                <propertyInstance
+                  Id="c122b280-6fa0-4bb4-adf5-ceee14c16f82"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5e75ace6-a59f-4131-bc6a-17cb297cc2b2">
+                <propertyInstance
+                  Id="c41c96d8-05f3-460b-949e-4f91c085e402"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="61b0fc5b-5350-4e78-9818-77fa4275d0d3">
+                <propertyInstance
+                  Id="5d5d3605-9e6c-4aff-902d-8d65c3d380c4"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="56dde612-d0e5-44a3-8997-8e4454805e80">
+                <propertyInstance
+                  Id="9aba9ab3-e381-4760-9b91-74d35af4c92b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <targetEnds>
+          <association
+            Id="59c18479-1911-4f94-bb14-bf24a38ac728"
+            isDerived="false"
+            sourceEndRoleName="CommandFactory"
+            targetEndRoleName="IChecksumService"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="fc6b6e0f-6b0d-4d43-81a9-a8863a1c08f7"
+              LastKnownName="IChecksumService"
+              LastKnownLocation="Package1_0948.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7387f2f6-6e22-4b74-a97a-d5a9adc4a23f"
+                  name="CommandFactory"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="42a87016-d0fb-46dc-86c8-22ef36a9eae6"
+                  name="IChecksumService"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="869f3e0f-fc1d-4e3f-bd19-df4fab6a41a7"
+            name="checkSumService"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="c5b4167f-482c-4c53-b2d3-256c058aa609"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3DcheckSumService"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="53d2ec58-fe53-4266-bb0d-0b86560df1ea"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2feffec-808f-4ddb-aac5-406e6c77f780">
+                    <propertyInstance
+                      Id="0f4936cb-8796-4c2b-bca6-bbf6dedce7a1"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b888b2db-a315-48d7-af2c-df111750600a">
+                    <propertyInstance
+                      Id="f6252cae-400c-48f9-8d6b-3ab2138d94de"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5e8b25f4-3f8c-4d4a-8298-1a6874f58eb0">
+                    <propertyInstance
+                      Id="774cdcb7-a8cb-41f6-8d79-9fb067478b0a"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30f74cde-7e6b-4098-959a-5825368686c6">
+                    <propertyInstance
+                      Id="f744feb9-8e2f-4b90-9f7d-7261b9b93c6a"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6d177a9a-4068-4d6c-be9b-e4c778e0954d">
+                    <propertyInstance
+                      Id="b8848ff2-6781-4467-b423-e07f58fccf39"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="fc6b6e0f-6b0d-4d43-81a9-a8863a1c08f7"
+                LastKnownName="IChecksumService"
+                LastKnownLocation="Package1_0948.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="3bc85b42-ae75-4357-b09b-bdd8d863a43a"
+            name="CommandFactory"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="5927497b-afc6-4df3-9e25-91c717df9a42"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol.Contracts Type%3DIChecksumService)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="27c83d1d-e8aa-400e-b8c6-7dd820a3bf2c"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="59fb4a5b-9e58-4968-87d2-2678851ce715">
+                    <propertyInstance
+                      Id="58491d3d-f824-4c61-831f-2a3e6dae10eb"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="02c600d2-4621-4a65-92a7-09261ea37a8c">
+                    <propertyInstance
+                      Id="ca81c489-8fa9-41c9-9bac-dd6e6bfb7382"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f0700e0b-f5ee-4d87-bc79-21d239c13946">
+                    <propertyInstance
+                      Id="18334884-3d4e-48e4-b3ed-bed876fb61fe"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9c796cd4-c14e-464d-8b2c-4beec7d17bf0">
+                    <propertyInstance
+                      Id="e23c99d4-2f88-4c10-b0c7-733c27ce9759"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="14c7183b-3e84-479f-b20c-c7ef1d881998">
+                    <propertyInstance
+                      Id="0662e48f-ac0e-49e4-a96d-f1ce3cde1268"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8810053c-bdf9-42ec-b5ee-1d171661dc6a">
+                    <propertyInstance
+                      Id="01becfc1-27d5-4755-a9fa-f1c4c8c4fb31"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="327668bb-3bc9-4da8-b540-1b0959bde861"
+                  name="checkSumServiceParam"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="bf0b5f85-ae67-4c90-be97-ecff9d0bc887"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol.Contracts Type%3DIChecksumService)]) ParameterIdentifier%3DcheckSumServiceParam"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="fc6b6e0f-6b0d-4d43-81a9-a8863a1c08f7"
+                      LastKnownName="IChecksumService"
+                      LastKnownLocation="Package1_0948.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="69945a8e-1074-410a-b339-9eda2dd98c4d"
+            name="WeightScaleRequest"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="2863e02b-e216-4291-85ba-4efba8e6b289"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3DWeightScaleRequest OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Domain%2Fbin%2FDebug%2FWeightScale.Domain.dll Namespace%3DWeightScale.Domain.Abstract Type%3DIBlock)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="248937f6-21d4-4fcf-a104-056510b6dc13"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fca2e9b6-50b0-4345-966c-1138c0e55fe0">
+                    <propertyInstance
+                      Id="29bd8c00-513e-4fb8-96c3-19b4acaa4273"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="99b43267-683f-4573-b294-cd17ded5d826">
+                    <propertyInstance
+                      Id="2c6e271f-e205-4876-a3f6-6c69875fe10c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="acb3daa7-fa3a-4846-b99d-08a0b7f608d5">
+                    <propertyInstance
+                      Id="ee3533e8-5891-4de7-b2af-0d32c6c9e980"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="59acc142-e22a-448a-a6c1-ca142f8ef3ca">
+                    <propertyInstance
+                      Id="6b449330-20c3-4d9c-928c-bf1a62022675"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6ee2920a-3d55-4699-876c-cd89b738aa0f">
+                    <propertyInstance
+                      Id="04133663-783f-4275-83d7-a6d8f06c22c4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="562022c8-f1b3-4efb-ad59-148fab4c792a">
+                    <propertyInstance
+                      Id="4f3437d3-8d83-42d6-ae44-477acfca77e8"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="deeb32aa-5c25-4e7a-9031-785268309d7b"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f05d044f-dde6-4c75-ba89-267b28c668d4"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="c1d5d784-cd14-41ac-9b1f-f2bb0f3114bd"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="31301449-6cbc-45bd-ae7a-69771112db82"
+                  name="inputObject"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="10891d01-017a-4dda-bcaa-6ad434c92d42"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3DWeightScaleRequest OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Domain%2Fbin%2FDebug%2FWeightScale.Domain.dll Namespace%3DWeightScale.Domain.Abstract Type%3DIBlock)]) ParameterIdentifier%3DinputObject"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="275b3dfc-509f-45ed-939e-558771b0a6d6"
+                      LastKnownName="IBlock"
+                      LastKnownLocation="Package_0928.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="b8275ae8-5c4e-477e-bc6f-3c4912a71f45"
+            name="SendDataToWeightScale"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="85e40f7d-0b8b-4f31-b678-97ba625bc546"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3DSendDataToWeightScale OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Domain%2Fbin%2FDebug%2FWeightScale.Domain.dll Namespace%3DWeightScale.Domain.Abstract Type%3DIBlock)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b73f05e2-2dc7-4e33-b350-5d2b8052d6fc"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="baac75c0-29eb-43ba-b2d4-97e515159514">
+                    <propertyInstance
+                      Id="69dfda42-f069-41fb-acda-884511184c2e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0aa998ad-1c65-462b-b630-3e36ff34b994">
+                    <propertyInstance
+                      Id="6b96feab-c869-46ff-b9aa-21a3257d3a42"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3d921e07-40cc-41e5-b798-9dde23809bf7">
+                    <propertyInstance
+                      Id="642b49d8-7f9f-4c6f-b3aa-e73f26440c29"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4cc42cf0-d5a7-436e-a7fa-178d65baf586">
+                    <propertyInstance
+                      Id="760bd899-7718-46f0-b972-bafda31b5d19"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7259c1a0-12e1-4c76-a45e-e361eab11592">
+                    <propertyInstance
+                      Id="b19cac55-d22e-46c2-b2c0-c9ee04027560"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="68ff19ef-0158-4224-9d96-57a720abbbe7">
+                    <propertyInstance
+                      Id="eaf6f825-48e4-4338-b195-c899b4207aad"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6bb943a4-5b9a-402e-bf48-4d0f45135637"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="494894cf-18b9-477e-9e47-20a8cbe43db8"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="bd4cd12f-9aaa-4ff4-bb21-a89af25676a1"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2c8698ea-0fd3-4e1f-a9bb-2f7b129e8684"
+                  name="inputObject"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="40aa7312-21ff-417f-bc05-31f9d73c0ec2"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3DSendDataToWeightScale OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Domain%2Fbin%2FDebug%2FWeightScale.Domain.dll Namespace%3DWeightScale.Domain.Abstract Type%3DIBlock)]) ParameterIdentifier%3DinputObject"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="275b3dfc-509f-45ed-939e-558771b0a6d6"
+                      LastKnownName="IBlock"
+                      LastKnownLocation="Package_0928.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d114aeba-7289-4a09-a054-09bb65f08255"
+            name="EndOfTransmit"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e36e9471-a64f-4420-a1eb-4a43f930ca11"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3DEndOfTransmit"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="35cee981-8878-400d-a7fc-158c34cc4704"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9765a237-40f4-4eac-b235-5b41c1d25102">
+                    <propertyInstance
+                      Id="a1ebef58-e1f0-41e1-97ab-7d55c627336e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="868fec52-1853-4566-9052-9d516be68cb8">
+                    <propertyInstance
+                      Id="278741fe-f514-427c-86df-120c019545be"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ae54209-cad1-4f37-961f-57a564c59b43">
+                    <propertyInstance
+                      Id="5634340a-fa14-4da8-b1c8-146d72795e4b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9b97ed4a-686d-4266-a522-4f727af82448">
+                    <propertyInstance
+                      Id="0a911cf6-ea14-4105-85b1-36cd685a99ee"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6dfc702f-09b3-4c39-a1bd-62bbffef4e21">
+                    <propertyInstance
+                      Id="ebb84482-881e-4aab-b4c7-5dff3c898157"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ca67ab3c-1a38-4657-a22e-c1ef05020283">
+                    <propertyInstance
+                      Id="5261ff58-c454-4f42-87f4-25746034e20f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2b4d0fb7-76f5-484f-8e7d-31230b029db9"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="1c5dce49-af17-43e7-a9e1-1d1b73054697"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="edeb9bbb-7223-42b9-8172-73efcc2e77ff"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ef0367fb-a6f4-4b91-9344-e30fa7ee8f15"
+            name="Acknowledge"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b11a07f6-999e-4307-b1a4-21067c2b5aa9"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3DAcknowledge"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1ab97561-dbdf-477b-9ff4-bd4e1773b20f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0a4a5899-1204-4def-8ce0-194d02735bfc">
+                    <propertyInstance
+                      Id="ccc09038-d769-4671-848c-d0a539a97a11"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="465a27f9-b6d7-40c2-901e-0c0348ae6074">
+                    <propertyInstance
+                      Id="43d40058-ae53-42b8-b3ff-f69010ea5dfe"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c2aabb0f-ec64-4619-9723-bab274fc0323">
+                    <propertyInstance
+                      Id="692cc070-fda9-43fb-af71-0c74ff84af69"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="21468bd9-71c1-4f10-94f3-562c48c0dbf0">
+                    <propertyInstance
+                      Id="1b55d780-9526-42a8-a5f2-22d56686a01b"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ff90f7e-cd24-47ef-b26d-8b5e4a7f53ff">
+                    <propertyInstance
+                      Id="29721d12-3e4b-4260-9e2c-da00f0ac6c4e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="931e9e81-02ab-4992-a4fc-8297d7ecc13f">
+                    <propertyInstance
+                      Id="fb84b697-2c83-445f-9478-6697fcbadd48"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8c98e57d-6599-4bc8-a0c1-0daa0adf0cbc"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="db19407c-52a9-4109-84cc-430e2ecaf034"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="8c29f692-948e-449a-84a2-2d6b86ea2aab"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f2d09a70-14d1-4b29-a600-791b70572c7b"
+            name="NegativeAcknowledge"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="2390d58a-a53a-417b-9e9c-13e8b3225b62"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3DNegativeAcknowledge"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="faf749f1-09c9-44e3-919b-38a14807c8aa"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5ddb0ca6-5b1c-44e2-827e-686fce150875">
+                    <propertyInstance
+                      Id="31a9ee1f-76d9-486a-8e75-a890fb27ae9a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d28e5609-388a-4d1e-a559-34378a953d98">
+                    <propertyInstance
+                      Id="9f3ab9df-8b90-4095-aad5-ac93b5fa2d0c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="987fa417-fdf8-48d1-9115-7e5dea3da086">
+                    <propertyInstance
+                      Id="f6886bb5-27db-433e-b1b5-5cbd819599ce"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="938db898-e1cf-42f6-802d-9855028e2d41">
+                    <propertyInstance
+                      Id="44fdffec-ff3d-4047-b26f-4f6afcb915aa"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4fe0df04-8669-4f64-bc52-3944fbdb5d3d">
+                    <propertyInstance
+                      Id="e9bbbf3b-b06f-4dde-baf2-26683cd94cbb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="67bf27ab-fa0c-47e1-b205-c45d8ef827e4">
+                    <propertyInstance
+                      Id="99cb034f-dfdb-4c43-8cd5-817a2da07684"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0e5ab961-1d07-41ae-a18d-5761981e7e91"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="63cffa55-8f65-4b22-95e8-0221386c1ab6"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="96b6edd9-a620-4976-b162-21757a2c5b5f"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f05e7539-a70b-4b3e-9ef8-2fd0e6dcf95e"
+            name="CalculateCheckSum"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ce2d814f-0942-4d1b-9f3b-ab8ebf998d80"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Domain%2Fbin%2FDebug%2FWeightScale.Domain.dll Namespace%3DWeightScale.Domain.Abstract Type%3DIBlock)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c01f05d6-82fd-425b-9905-c9de6fa6c737"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="38aa838b-923b-4f63-b7f6-1b307524d1dc">
+                    <propertyInstance
+                      Id="1b046f9f-65fb-472f-a591-4cbfaaea0c9c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="db519a02-caa4-428d-ad35-1dcfb29dac13">
+                    <propertyInstance
+                      Id="94e43719-a773-4837-93f0-0f0b2e4537cc"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d93755e9-525c-4fb6-9508-f23414adbd71">
+                    <propertyInstance
+                      Id="58307a01-0a93-4c4d-b620-7fd9b9888f09"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a4b88181-809f-49fd-b059-52a029c76c38">
+                    <propertyInstance
+                      Id="846e071c-b0b8-469e-a1e5-9aa2eb0a9c88"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cf421099-a1a1-4492-bc12-a714396b61f9">
+                    <propertyInstance
+                      Id="efaa9239-dedf-48bc-b464-b40055518c4c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fe8f1e41-65f4-405d-b886-49ff1074b8b4">
+                    <propertyInstance
+                      Id="eab840f2-7cc0-4c72-9f63-9bfb9da7bcbb"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="673f3947-3059-4501-998a-bdf0baa843b5"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="340372d6-6ee9-464e-8127-4d9dedf0395e"
+                  name="inputObject"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="11e26826-8804-41dc-a51e-a29860156f26"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DCommandFactory Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Domain%2Fbin%2FDebug%2FWeightScale.Domain.dll Namespace%3DWeightScale.Domain.Abstract Type%3DIBlock)]) ParameterIdentifier%3DinputObject"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <interfaceMoniker
+                      Id="275b3dfc-509f-45ed-939e-558771b0a6d6"
+                      LastKnownName="IBlock"
+                      LastKnownLocation="Package_0928.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="f18d2d48-ef80-454a-877d-66a23ad99ca1"
+        LastKnownName="Contracts"
+        LastKnownLocation="Package1_0948.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="e6cccad9-74fc-4a55-86f2-aa9b7bbe4dcf"
+        name="ComunicationConstants"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="976569e9-4f66-43b1-8462-18bc974f29c1"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5415074a-9eb1-4ab3-89c0-5b85affcb459"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ea709a6c-6c1b-4060-a500-fd4c557e6a64">
+                <propertyInstance
+                  Id="4818cfc4-e35d-49c4-8ea6-e938467f0427"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bf5eaa10-7e90-44f9-8a8d-6d0607748926">
+                <propertyInstance
+                  Id="54efcf9c-d9a0-4edb-986d-9239380a5b3c"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8d6efa8c-620a-484d-a5e6-b462b7393668">
+                <propertyInstance
+                  Id="68032bac-b307-43f2-9b95-7fedf0200bb3"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="5893bc91-05c4-4f56-9a3c-440e110155ad"
+            name="Soh">
+            <referencesInternal>
+              <reference
+                Id="c0accc22-a286-46c2-9e16-604fb757ef8a"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DSoh"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="3f2f3484-98ed-4e3d-9e21-2ee149d18b70"
+            name="Pol">
+            <referencesInternal>
+              <reference
+                Id="f8367096-f417-4ded-9eb1-1397a709a3a1"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DPol"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="82928f0c-1f1c-4fa1-86cc-4c335231f78b"
+            name="Enq">
+            <referencesInternal>
+              <reference
+                Id="21fa691a-51c1-42e0-b96b-791b241f669a"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DEnq"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="1c8ad318-0c68-42e0-b4c0-0adf269c8f6f"
+            name="Stx">
+            <referencesInternal>
+              <reference
+                Id="1d5a75ce-82cc-4bba-b607-a85ea9cae699"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DStx"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="542a62b1-a308-479c-8922-2aeb2d0b8528"
+            name="Etx">
+            <referencesInternal>
+              <reference
+                Id="ed761e44-bbf8-43e1-9ab6-55366e5a39e7"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DEtx"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="576e41fe-01a7-4d35-8f08-53b6dec6c82b"
+            name="Eot">
+            <referencesInternal>
+              <reference
+                Id="297290c8-fe1e-43ea-b498-e32b440f3f3b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DEot"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="5eb49af7-37f2-41d4-ad18-4d20bfc306ec"
+            name="Ack">
+            <referencesInternal>
+              <reference
+                Id="161a0dda-bc3c-49bf-be59-3b34ff74d094"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DAck"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="ca43cb10-b984-491b-aa7e-0bee945c49fa"
+            name="Nac">
+            <referencesInternal>
+              <reference
+                Id="c4ecb74c-5542-4c92-ac3e-03cfbe518b49"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DComunicationConstants Member%3DNac"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4a562194-897d-4726-be37-c0b0bb445aec"
+        name="XorChecksumService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="cd2d41f0-4d04-48aa-a766-943ef3ad01cf"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DXorChecksumService"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3fc05e68-9439-4dcd-901b-45bbdd234876"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="25f5ea85-e801-4673-850f-a908aed7b3d3">
+                <propertyInstance
+                  Id="d8755310-1f98-46f7-8eb4-4b6b44627bfa"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="713cf775-274f-4e16-88b9-5a19e3d5857a">
+                <propertyInstance
+                  Id="67197495-be94-46d9-8ef6-bf65f2438a0a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f67aee25-014c-451d-901a-480069028b25">
+                <propertyInstance
+                  Id="4076a29e-7dd6-457d-b55b-bb365dddb508"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="83921421-6300-4a64-b10a-d1857f0bec25">
+                <propertyInstance
+                  Id="2666ea9d-1e0f-4d5a-a378-48a348915f03"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="04b2d241-cf2b-48c4-b94f-6e1aee3b48de">
+                <propertyInstance
+                  Id="7ce8b45a-cb0a-4e51-af37-ce3aaba4a4b2"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="d1eade49-e2b7-41ab-89be-63636f5fdcd7">
+            <interfaceMoniker
+              Id="fc6b6e0f-6b0d-4d43-81a9-a8863a1c08f7"
+              LastKnownName="IChecksumService"
+              LastKnownLocation="Package1_0948.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="87f5f170-00a9-4243-a0f4-f89e323f5a71"
+            name="CalculateCheckSum"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="be468d07-7e08-4d25-926b-51bd0a07db63"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DXorChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4bfc3264-5c13-4517-b8a4-262ee4088cbb"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e8c998c3-877b-4203-be60-34cc5de2ca0c">
+                    <propertyInstance
+                      Id="11fb6eb9-b017-429c-8d30-fd2d9411c82b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bd7c6f28-cdff-496d-80b1-605ae12735f4">
+                    <propertyInstance
+                      Id="32e568aa-e921-41b9-b16b-1e91d4757c4c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5fc9068c-9bdb-4eab-81a3-9995f0e9b44a">
+                    <propertyInstance
+                      Id="5fc228bc-5fc7-4753-a138-d966eff8c03a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d1b39e33-ec50-40f1-92f4-0a7cb943229c">
+                    <propertyInstance
+                      Id="f372f8d6-78d2-49c5-ad15-17d7f91e9049"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0dca31b-2602-44fa-8dde-1006caa5bf30">
+                    <propertyInstance
+                      Id="52a8df01-1696-431c-abd2-d8f0f9b582ea"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="09029a7d-b646-4aab-96b7-ae2d530c49ee">
+                    <propertyInstance
+                      Id="c8219278-2228-469c-bcb4-b7cae3199cfe"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="12a8fdfe-9011-495c-befb-02488e23620b"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e745f076-eb37-402b-9792-fab56063d698"
+                  name="input"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="45b01a96-194a-4c1a-8d35-3b60f586f2d8"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DXorChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="76a1995d-c85a-41d6-b264-70d2003d83cc"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="a80856be-a148-4597-ae70-c4d466d2d9c2"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="44726e36-2705-41b7-9a13-ae64cc0e04b0"
+                  name="leadBytes"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="b6b9c203-7fa4-4073-9d26-ecdfbd2b1d93"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DXorChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))]) ParameterIdentifier%3DleadBytes"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="af16cb1a-ce8b-4fd0-baae-550f2ad0ae73"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="eeb0b856-56e7-405b-88c8-1fb657f56b56"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="64cffb86-81d4-4d12-90b2-c90457721425"
+                  name="trailBytes"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="baf4cc60-9dc5-4c9e-9395-1d02f802c479"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DXorChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))]) ParameterIdentifier%3DtrailBytes"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="f355a6a7-6e7c-4a6d-b12b-7a7d1cc52b57"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="6447ec6b-43bc-4b06-a784-eff29ee44ec8"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="761d58dc-7391-49fe-9aa5-2c7c67a9d4d8"
+            name="XorChecksumService"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b12e6ff5-45f0-49b7-80ae-349cd2cd83a2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol Type%3DXorChecksumService Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="748c68a0-357b-4095-a834-2f0963af3840"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c246bb50-4ba4-411e-a968-3b95749da303">
+                    <propertyInstance
+                      Id="5e9d0861-6fc5-44ea-b5b6-03d5950cfb51"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d7a62ef7-6506-421f-a25a-ef2991f784b0">
+                    <propertyInstance
+                      Id="d92fafd6-d50e-4518-95a3-2b0e32ec953c"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ffc15c3b-0998-49fc-bef9-20db12af83b7">
+                    <propertyInstance
+                      Id="c3c47712-a5bb-48dc-b6c3-bb8241c13b9c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="70007588-6f9e-4c28-baaa-18ab9ef8eddd">
+                    <propertyInstance
+                      Id="aa5b00da-90a2-4d7d-9282-985986437b29"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b77b3de4-18a8-4350-aee0-e04d181a9be5">
+                    <propertyInstance
+                      Id="6c6ab70c-bbef-4eca-9bd5-dcbe11fb3f20"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0def7618-fff0-4eaf-86b8-033f08630c15">
+                    <propertyInstance
+                      Id="894994e6-660d-4bd2-830b-f73b975a3d0e"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

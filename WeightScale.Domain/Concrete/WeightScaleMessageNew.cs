@@ -4,13 +4,10 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-
 namespace WeightScale.Domain.Concrete
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
 
@@ -18,9 +15,9 @@ namespace WeightScale.Domain.Concrete
     /// Class for transportation of messages from and to Weight Scales communicating over new protocol
     /// </summary>
     [ComSerializableClass(BlockLen.NewProtocol)]
-    public class NewWeightScaleMessage : WeightScaleMessageBase
+    public class WeightScaleMessageNew : WeightScaleMessageBase
     {
-        private const int EXCIZE_DOC_NUM_LENGTH = 10;
+        private const int EXCISE_DOC_NUM_LENGTH = 10;
         private const int TOTAL_NET_OF_INPUT_MIN = 0;
         private const int TOTAL_NET_OF_INPUT_MAX = 999999999;
         private const int TOTAL_NET_OF_OUTPUT_MIN = 0;
@@ -54,13 +51,13 @@ namespace WeightScale.Domain.Concrete
         }
 
         [ComSerializableProperty(length: 9, offset: 93, originalType: typeof(int?), serializeFormat: "")]
-        public int? ТotalNetOfOutput
+        public int? TotalNetOfOutput
         {
             get { return this.totalNetOfOutput; }
             set { this.totalNetOfOutput = value; }
         }
 
-        [ComSerializableProperty(length: 9, offset: 126, originalType: typeof(int?), serializeFormat: "")]
+        [ComSerializableProperty(length: 9, offset: 126, originalType: typeof(int), serializeFormat: "")]
         public int? TotalNetByProductInput
         {
             get { return this.totalNetByProductInput; }
@@ -82,11 +79,11 @@ namespace WeightScale.Domain.Concrete
             // Validate ExciseDocumentNumber
             if (!string.IsNullOrEmpty(this.exciseDocumentNumber))
             {
-                if (this.exciseDocumentNumber.Length != EXCIZE_DOC_NUM_LENGTH)
+                if (this.exciseDocumentNumber.Length != EXCISE_DOC_NUM_LENGTH)
                 {
                     validationResult.AddError(
                         "ExciseDocumentNumber",
-                        string.Format("ExciseDocumentNumber lenght must be {0} characters. The Actual value is {1}", EXCIZE_DOC_NUM_LENGTH, this.exciseDocumentNumber));
+                        string.Format("ExciseDocumentNumber length must be {0} characters. The Actual value is {1}", EXCISE_DOC_NUM_LENGTH, this.exciseDocumentNumber.Length));
                 }
             }
 
@@ -127,6 +124,16 @@ namespace WeightScale.Domain.Concrete
             }
 
             return validationResult;
+        }
+
+        /// <summary>
+        /// Provides data block to be sent as Weight scale message block element.
+        /// </summary>
+        /// <returns>byte[] - Array of bytes</returns>
+        public override byte[] ToBlock()
+        {
+            // TODO: Implement this method
+            throw new NotImplementedException();
         }
     }
 }

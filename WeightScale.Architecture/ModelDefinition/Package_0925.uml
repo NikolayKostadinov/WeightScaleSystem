@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="6bcf4dbd-e0e1-43c7-bd68-28ddb8f10423"
+  name="WeightScale"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="f282adfe-bb3f-4b78-9af4-0afe1d65d180"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWeightScale"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="70574cc1-8b4b-4469-98a7-0e80fdf37b77"
+        LastKnownName="Domain"
+        LastKnownLocation="Package1_0925.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="48449594-4309-43e5-af16-ea94473de426"
+        LastKnownName="Utility"
+        LastKnownLocation="Package4_0925.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="5ad542b2-c4e2-4d59-95e6-0575e61bc0a5"
+        LastKnownName="ComunicationProtocol"
+        LastKnownLocation="Package_0948.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

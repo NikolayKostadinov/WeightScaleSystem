@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="c818b334-d1b1-4eb9-aea2-e75618b3938a"
+  name="Helpers"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="a8e1bfec-a8e2-4abc-ad79-f44ae85457e1"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWeightScale.Utility.Helpers"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="74af0a98-78f8-4088-8a9d-caf001446b0e">
+      <profileInstance
+        Id="cc89e287-fce3-45b8-8a31-866094e71d23"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <enumeration
+        Id="607b0ef6-f12f-4033-8430-a8b9af815149"
+        name="Alignment"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="b352d620-4394-49bd-b723-bd8d1fa9aa32"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DAlignment"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="7a102ecd-dc25-40f7-a586-2dc27a48b1bf"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="aded478b-a19e-4339-b9c5-91474b90a04c">
+                <propertyInstance
+                  Id="86b2d06a-7808-42e0-a4a1-061462e6464a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6d9d71dd-d403-48e7-aec5-004adf17d68f">
+                <propertyInstance
+                  Id="a8336d72-fb0a-4d81-89a5-d81942dbdbea"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ef57da68-de18-4cec-b0fe-bf6327ec4527">
+                <propertyInstance
+                  Id="b0a80130-f2eb-4625-82bd-6f7707bf5ed6"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="27bf0c32-437b-458e-acea-becea2711f3d"
+            name="Left">
+            <referencesInternal>
+              <reference
+                Id="d9861851-69f4-433d-83c8-863ccbe95370"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DAlignment Member%3DLeft"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="b47fa9f4-169b-4320-9394-fbb5ebf2232f"
+            name="Right">
+            <referencesInternal>
+              <reference
+                Id="20f43d21-4718-41c2-a4d6-3e55e20af15c"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DAlignment Member%3DRight"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5d44235d-65f2-44fa-a5cc-5bb7ec3053da"
+        name="StringExtentions"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="7c40c746-9f31-4dcb-9075-37469353465e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DStringExtentions"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b82aabcb-6a8a-4c81-8fe9-958d236f0241"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2e300f75-3dd7-419c-86c5-07fe47c948a7">
+                <propertyInstance
+                  Id="2aa53e9d-31dc-44ff-a162-0ee7b48d52b5"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="40b27531-2556-42cb-9a55-23a01d70a12b">
+                <propertyInstance
+                  Id="b082b9c0-3562-4e15-8154-389fd84eb84a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="26da174e-0aa4-4e2c-bd12-5f7423333da0">
+                <propertyInstance
+                  Id="325ceda7-6eae-4215-bf7f-39448f8ac195"
+                  name="IsStatic"
+                  value="True" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="485880c8-0b0e-4d79-8ede-f76b596babd2">
+                <propertyInstance
+                  Id="fa92e0ce-83d8-4fa5-aca5-184c264b33fa"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e441b6ca-4b4c-4fac-8bfa-a6306e5d6f88">
+                <propertyInstance
+                  Id="38ea843a-33ec-47b8-96df-37b11286041f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="4c28ef39-e07f-4c33-97ed-cc16fc20b256"
+            name="ToByteArray"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="418cc74a-1751-45db-b297-b7e7a960937c"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DStringExtentions Member%3D(Name%3DToByteArray OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0ca45b77-8f48-4129-90ae-788ee2f3c443"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="95fcc797-b769-4dae-8c05-b6a0104563e2">
+                    <propertyInstance
+                      Id="815c6c3c-6226-41ed-90c6-22785ff5d75c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="03a7201c-aefd-433b-acda-d24671075fc2">
+                    <propertyInstance
+                      Id="60f9242e-9137-49cd-8fcc-e182128c7848"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="831c03d1-645b-4888-8eca-0db2967e9a94">
+                    <propertyInstance
+                      Id="db026278-246e-4ff8-829a-c6d9df437d5e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c8b605dd-653c-4c7b-9efd-8d98647b49ef">
+                    <propertyInstance
+                      Id="986c10be-45ef-4846-8d03-749f03e22de4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="630444da-3f14-4463-bca4-8cb1de9e8ee6">
+                    <propertyInstance
+                      Id="61188b4b-77b9-46e0-8c96-aeb27cfd201a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cdac8a6b-0c97-4d09-a9c3-e8d36ddf798b">
+                    <propertyInstance
+                      Id="121f1e4a-8c5c-46c5-8ba8-4b26f1f06c5c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3b2487f9-2af5-4cd5-9e92-8475ff962227"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="4d166312-5347-4ba5-b457-3ec01a9560b2"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="62af476a-64d5-4a83-b366-091c67662fb5"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="09326979-bc50-4856-adfc-07cad599203f"
+                  name="str"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="eed5bd64-01c3-4149-b047-ce197665fd1e"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DStringExtentions Member%3D(Name%3DToByteArray OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dstr"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="WeightScale.Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4c3ff418-b660-47b3-b976-49f34a9c7372"
+            name="ToByteArray"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="61184471-714b-4fce-8e04-5bc20c8a53aa"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DStringExtentions Member%3D(Name%3DToByteArray OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DAlignment)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="bc3d494f-e39d-413d-96e2-b4efefea320d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="468f2c59-6e63-477c-9093-d7264d814297">
+                    <propertyInstance
+                      Id="89848d3b-a7bd-4f79-a870-ea33278ed335"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5b0dfdf7-1066-43df-9064-dae7d56aec9b">
+                    <propertyInstance
+                      Id="48289548-55b7-4dd5-92ac-d2c6dcb2d358"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ad388324-fc40-43b2-949a-c0eb323deca4">
+                    <propertyInstance
+                      Id="2078f950-556c-4c57-88aa-3633ac710b7e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2687d9a7-6718-4f46-953d-48e9f0453605">
+                    <propertyInstance
+                      Id="7f085d75-7078-4818-9ddf-2915a1dc8030"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="07fdc46e-a8e5-4e9d-aac0-9aec49dda4b2">
+                    <propertyInstance
+                      Id="cbcce7fe-410d-4b24-9201-8e87d0b92f1a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fadb01cc-bdae-4c6f-94c3-ab4430dc2c41">
+                    <propertyInstance
+                      Id="bf003a80-459c-4c8a-8883-e256ec521e69"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7f587799-a957-4c5a-9088-5a2d7b6afbeb"
+                  direction="Return"
+                  isOrdered="true">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="5c01289a-0ff4-440e-a645-0ee26f55a617"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="5d991dab-fc25-4ee6-9475-093fd26204ad"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="03534f47-4b6e-48ad-8965-d8a0eeaa3d3c"
+                  name="str"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="a325c7d3-4e2e-4454-8093-03d312e2132c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DStringExtentions Member%3D(Name%3DToByteArray OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DAlignment)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dstr"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="WeightScale.Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c4864d87-f487-4959-9bd8-d26436da6220"
+                  name="align"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="0e4dd32f-7e90-4fa6-a695-7bd73c21b006"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DStringExtentions Member%3D(Name%3DToByteArray OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DAlignment)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dalign"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="607b0ef6-f12f-4033-8430-a8b9af815149"
+                      LastKnownName="Alignment"
+                      LastKnownLocation="Package5_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5582c983-eb72-4a74-9340-007c960ed17c"
+                  name="lenght"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3cb7ade1-d9e7-40e8-9dd3-14149ef4a1bc"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DStringExtentions Member%3D(Name%3DToByteArray OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.Utility%2Fbin%2FDebug%2FWeightScale.Utility.dll Namespace%3DWeightScale.Utility.Helpers Type%3DAlignment)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dlenght"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="WeightScale.Architecture.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

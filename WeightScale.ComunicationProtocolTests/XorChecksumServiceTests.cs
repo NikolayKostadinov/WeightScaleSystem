@@ -101,7 +101,7 @@ namespace WeightScale.ComunicationProtocolTests
             // Act
             foreach (var input in inputs)
             {
-                actual.Add(checksumService.CalculateCheckSum(input, null, new byte[] { (byte)CommunicationConstants.Etx }));
+                actual.Add(checksumService.CalculateCheckSum(input, null, new byte[] { (byte)ComunicationConstants.Etx }));
             }
 
             // Assert

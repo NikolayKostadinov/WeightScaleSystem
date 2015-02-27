@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="f18d2d48-ef80-454a-877d-66a23ad99ca1"
+  name="Contracts"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="c6457e8e-2afe-4d8c-8922-b57ac77de610"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DWeightScale.ComunicationProtocol.Contracts"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="fc6b6e0f-6b0d-4d43-81a9-a8863a1c08f7"
+        name="IChecksumService"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="31d01659-77bd-4fa3-b292-dc264c7e9f08"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol.Contracts Type%3DIChecksumService"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="8a6b86f0-d0c6-4b97-bd33-14b60b274057"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="59970179-d0c1-4350-bbeb-6bcb2bbfe9d7">
+                <propertyInstance
+                  Id="14ab8ff7-ca1d-4ef1-b4c9-3a00f807448e"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2ca16851-313b-4064-97f6-574c28b9ed73">
+                <propertyInstance
+                  Id="23e851b8-fe5d-45ab-9d9e-f978cd9829de"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6c849b29-376e-4ec5-96e2-56f52f58f31f">
+                <propertyInstance
+                  Id="65e55737-c5a7-4692-a4e8-52815e74844a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f64cfef9-4f79-418a-80a9-65ec0cfe071e">
+                <propertyInstance
+                  Id="d69ff841-a228-4377-8b59-7eac8866536b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedOperations>
+          <operation
+            Id="d54377cd-805b-4b90-9432-523750cebfa9"
+            name="CalculateCheckSum"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e2f3169d-de4c-4f27-a348-275619bee2c9"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol.Contracts Type%3DIChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f2099047-f977-469e-a4ee-41481cba9a48"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="64d61bea-9e44-40df-a634-524a2b13d4c5">
+                    <propertyInstance
+                      Id="831019c2-d66e-4f13-9711-74777d50a063"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cf135917-413f-4200-84ca-7ed0a5caf386">
+                    <propertyInstance
+                      Id="7874661e-1f93-4e8b-a510-98cb4330fc21"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6e4e0f67-be84-4e34-96ed-adbb63420226">
+                    <propertyInstance
+                      Id="88367f2c-229d-4240-abd4-2bc9bd843a99"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bf83fb58-2293-481d-a596-65908d9c6576">
+                    <propertyInstance
+                      Id="aa926dfd-eb5d-46bc-9326-641b584cf60c"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0459adb4-b0c4-4ca4-962a-eebdbbc710c2">
+                    <propertyInstance
+                      Id="2ec15ad2-d3c1-43e4-820c-5a64f829d664"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0251706a-08ca-49ac-9a15-820c7204e553">
+                    <propertyInstance
+                      Id="1bff20af-428a-4d09-8d30-0998a8d3dc93"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="52089a72-5ebc-424d-a71a-9d6fe1074b34"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="47aac0b9-2fa5-4f59-b37e-105651ee65aa"
+                  name="input"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="8d85a01b-4dfd-4f02-adaa-4a567ba29b20"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol.Contracts Type%3DIChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))]) ParameterIdentifier%3Dinput"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="28349cda-0dca-47ab-9a5f-75ad1821a58b"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="5c1fc042-7434-4f57-a5de-31f2aa0faaa2"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="612665f1-618a-4a61-ba0d-1733b5551a78"
+                  name="leadBytes"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="83cf1b5c-4ef5-4150-ad5d-b6ae47a43287"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol.Contracts Type%3DIChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))]) ParameterIdentifier%3DleadBytes"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="44c14131-33d9-4ba3-bdcc-4a856453b518"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="96c358d3-d54b-461c-8f6e-ba002ac93664"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d584389a-98ad-49b7-b18d-0fb46077cbb7"
+                  name="trailButes"
+                  direction="In"
+                  isOrdered="true">
+                  <referencesInternal>
+                    <reference
+                      Id="382302fe-c896-41c5-b095-7123edc03569"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FSystems%2FWeightScaleSystem%2FWeightScale.ComunicationProtocol%2Fbin%2FDebug%2FWeightScale.ComunicationProtocol.dll Namespace%3DWeightScale.ComunicationProtocol.Contracts Type%3DIChecksumService Member%3D(Name%3DCalculateCheckSum OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5.1%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3D(Name%3DByte ArrayRank%3D1 ParentType%3DByte))]) ParameterIdentifier%3DtrailButes"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <lowerValueInternal>
+                    <literalString
+                      Id="7a55a60f-3543-461c-98b1-96ce4556a517"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="88e6e5b8-72b4-4f1a-a128-a466b355bd4a"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="4c0d3c4f-9e92-4913-b301-91973868f103"
+                      LastKnownName="Byte"
+                      LastKnownLocation="Package3_0925.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperations>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

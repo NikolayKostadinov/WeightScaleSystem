@@ -11,7 +11,7 @@ namespace WeightScale.ComunicationProtocolTests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using WeightScale.ComunicationProtocol;
-    using WeightScale.ComunicationProtocol.Contracts;
+    using WeightScale.Domain.Abstract;
     using WeightScale.Utility.Helpers;
 
     /// <summary>

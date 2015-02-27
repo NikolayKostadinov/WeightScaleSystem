@@ -1,5 +1,5 @@
 ﻿//---------------------------------------------------------------------------------
-// <copyright file="CommunicationConstants.cs" company="Business Management Systems">
+// <copyright file="ComunicationConstants.cs" company="Business Management Systems">
 //     Copyright (c) Business Management Systems. All rights reserved.
 // </copyright>
 // <author>Nikolay Kostadinov</author>
@@ -12,7 +12,7 @@ namespace WeightScale.ComunicationProtocol
     /// <summary>
     /// Provides named constants for Weight scale messages construction
     /// </summary>
-    public enum CommunicationConstants : byte
+    public enum ComunicationConstants : byte
     {
         /// <summary>
         /// Start of heading

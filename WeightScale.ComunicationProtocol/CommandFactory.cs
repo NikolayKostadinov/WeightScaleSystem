@@ -9,6 +9,7 @@ namespace WeightScale.ComunicationProtocol
     using System;
     using System.Collections.Generic;
     using WeightScale.ComunicationProtocol.Contracts;
+    using WeightScale.Domain.Abstract;
 
     /// <summary>
     /// Provides methods which constructs binary messages sent to the WeightScale
@@ -29,40 +30,40 @@ namespace WeightScale.ComunicationProtocol
         public byte[] WeightScaleRequest(IBlock inputObject)
         {
             List<byte> barr = new List<byte>();
-            barr.Add((byte)CommunicationConstants.Soh);
+            barr.Add((byte)ComunicationConstants.Soh);
             barr.Add(inputObject.WeightScaleId);
-            barr.Add((byte)CommunicationConstants.Pol);
-            barr.Add((byte)CommunicationConstants.Enq);
+            barr.Add((byte)ComunicationConstants.Pol);
+            barr.Add((byte)ComunicationConstants.Enq);
             return barr.ToArray();
         }
 
         public byte[] SendDataToWeightScale(IBlock inputObject)
         {
             List<byte> barr = new List<byte>();
-            barr.Add((byte)CommunicationConstants.Soh);
+            barr.Add((byte)ComunicationConstants.Soh);
             barr.Add(inputObject.WeightScaleId);
-            barr.Add((byte)CommunicationConstants.Stx);
+            barr.Add((byte)ComunicationConstants.Stx);
             barr.AddRange(inputObject.ToBlock());
-            barr.Add((byte)CommunicationConstants.Etx);
+            barr.Add((byte)ComunicationConstants.Etx);
             var checkSum = this.CalculateCheckSum(inputObject);
             barr.Add(checkSum);
-            barr.Add((byte)CommunicationConstants.Enq);
+            barr.Add((byte)ComunicationConstants.Enq);
             return barr.ToArray();
         }
 
         public byte[] EndOfTransmit()
         {
-            return new byte[] { (byte)CommunicationConstants.Eot };
+            return new byte[] { (byte)ComunicationConstants.Eot };
         }
 
         public byte[] Acknowledge()
         {
-            return new byte[] { (byte)CommunicationConstants.Ack };
+            return new byte[] { (byte)ComunicationConstants.Ack };
         }
 
         public byte[] NegativeAcknowledge()
         {
-            return new[] { (byte)CommunicationConstants.Nac };
+            return new[] { (byte)ComunicationConstants.Nac };
         }
 
         private byte CalculateCheckSum(IBlock inputObject)
@@ -71,7 +72,7 @@ namespace WeightScale.ComunicationProtocol
                 this.checkSumService.CalculateCheckSum(
                     inputObject.ToBlock(),
                     null,
-                    new byte[] { (byte)CommunicationConstants.Etx });
+                    new byte[] { (byte)ComunicationConstants.Etx });
             return checkSum;
         }
     }

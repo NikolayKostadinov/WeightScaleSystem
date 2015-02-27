@@ -7,9 +7,7 @@
 namespace WeightScale.Domain.Concrete
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
 
@@ -17,7 +15,7 @@ namespace WeightScale.Domain.Concrete
     /// Class for transportation of messages from and to Weight Scales communicating over old protocol
     /// </summary>
     [ComSerializableClass(BlockLen.OldProtocol)]
-    public class OldWeightScaleMessage : WeightScaleMessageBase
+    public class WeightScaleMessageOld : WeightScaleMessageBase
     {
         private const int GROSS_TOTAL_MIN_VAL = 0;
         private const int GROSS_TOTAL_MAX_VAL = 999999999;
@@ -79,6 +77,16 @@ namespace WeightScale.Domain.Concrete
             }
 
             return validationResult;
+        }
+
+        /// <summary>
+        /// Provides data block to be sent as Weight scale message block element.
+        /// </summary>
+        /// <returns>byte[] - Array of bytes</returns>
+        public override byte[] ToBlock()
+        {
+            // TODO: Implement this method
+            throw new NotImplementedException();
         }
     }
 }

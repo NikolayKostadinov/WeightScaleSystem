@@ -7,18 +7,18 @@
 namespace WeightScale.Domain.Common
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Reflection;
     using System.Text;
     using WeightScale.Domain.Abstract;
-    using WeightScale.Domain.Common;
     using WeightScale.Utility.Helpers;
 
     /// <summary>
     /// Service for serialization and deserialization.
     /// Serializes IComSerializable objects to byte array
     /// </summary>
-    public class ComSerializer
+    public class ComSerializer : IComSerializer
     {
         public byte[] Setialize<T>(T serObj)
         where T : class, IComSerializable
@@ -41,27 +41,6 @@ namespace WeightScale.Domain.Common
         public T Deserialize<T>(byte[] input)
             where T : class,IComSerializable, new()
         {
-<<<<<<< HEAD
-            var resultObject = new T();
-
-            var properties = typeof(T).GetProperties()
-                                      .Where(x =>
-                                          x.IsDefined(typeof(ComSerializablePropertyAttribute), true) &&
-                                          !x.IsDefined(typeof(NonSerializedAttribute), true));
-
-            foreach (var property in properties)
-            {
-                var attr = property.CustomAttributes.FirstOrDefault(x => x.AttributeType == typeof(ComSerializablePropertyAttribute)) as ComSerializablePropertyAttribute;
-                if (attr != null)
-                {
-                    //    var bytes = Array.Copy(input,bytes,popery)
-                    //    property.SetValue()
-                    //Type propType = attr.OriginalType;
-
-                    //resultObject.GetType().GetRuntimeProperty(property.Name).SetValue
-                }
-
-=======
             T resultObject = new T();
 
             var properties = resultObject.GetType().GetProperties()
@@ -82,10 +61,29 @@ namespace WeightScale.Domain.Common
 
                 if (! string.IsNullOrEmpty(strProp))
                 {
-                    object safeValue = Convert.ChangeType(strProp, propSerializationAttr.OriginalType);
-                    property.SetValue(resultObject, safeValue, null);
+                    if (property != null)
+                    {
+                        Type t = Nullable.GetUnderlyingType(propSerializationAttr.OriginalType) ?? propSerializationAttr.OriginalType;
+                        object safeValue;
+                        if (t == typeof(DateTime))
+                        {
+                            if (strProp == null) 
+                            { 
+                                safeValue = null; 
+                            } 
+                            else 
+                            { 
+                                safeValue = DateTime.ParseExact(strProp, propSerializationAttr.SerializeFormat, CultureInfo.InvariantCulture); 
+                            }
+                        }
+                        else
+                        {
+                            safeValue = (strProp == null) ? null : Convert.ChangeType(strProp, t);
+                        }
+
+                        property.SetValue(resultObject, safeValue, null);
+                    }
                 }
->>>>>>> 0e6b5b42040c446e168c8915eb19560423680919
             }
 
             return resultObject;
