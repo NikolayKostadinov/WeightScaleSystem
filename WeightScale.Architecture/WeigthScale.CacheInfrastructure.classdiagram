@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="1cc87088-83ac-447e-a8ad-29113e7344f0" name="WeigthScale.CacheInfrastructure" linkedPackageId="fd63c266-56ce-4e8b-a31b-5c9e7dc8f3b9" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="68d77f8c-d00c-48b4-8432-00ddecdd8b69">
+      <profileInstance Id="151f4fd7-cb29-49fa-87c5-065968167275" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="6956138d-a8cb-45ce-947c-e16d709483e5">
+      <profileInstance Id="2d284d4c-4704-4800-8748-94a4f3d3b0f6" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="65df3f1b-57d9-48be-9dd2-81bb268bdcd1">
+      <profileInstance Id="b55fc5a8-c3ce-4e96-a20e-076cf985b86b" name="CSharpProfile">
+        <elementDefinition Id="83c24464-b853-4709-aabe-0629c0a4632a" />
+      </profileInstance>
+      <elementDefinition Id="72a82420-1a33-42be-abde-9c4e52fb40a6" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="fba4f7a1-479c-4b87-8e53-03ecdca302e2" name="CWeigthScaleMessageBase" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3f4c70fd-4a6b-446b-abb8-082d0cc5eac1" />
+        <targetEnds>
+          <association Id="9a90ec16-c4ed-41ec-8acb-32839f019c35" isDerived="false" sourceEndRoleName="CWeigthScaleMessageBase" targetEndRoleName="SoapMessage" isLeaf="false" isAbstract="false">
+            <classMoniker Id="1e946727-f7cd-4c4e-b2db-747847fe9831" LastKnownName="SoapMessage" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8647b02d-040a-4ddb-8749-29b0760a1585" name="CWeigthScaleMessageBase" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="63ee866b-581a-4518-90b3-8a523cee4e04" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="095d1980-861e-4baf-9720-93b7297db616" name="SoapMessage" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="2c2d9e58-e1d7-4313-ae78-abe5df1bfe06" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b3ab2d3e-0725-4960-a899-1ab3c6c15de5" />
+          </association>
+        </targetEnds>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="689b4957-ec32-412b-aa19-ea2c7f698ba3" name="CWeigthScaleMessageOld" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="36beb4d8-a433-4a8d-b4c6-a3280f55b3dc" />
+        <generalsInternal>
+          <generalization Id="f31901c0-01bd-4555-bd69-d0037c8514bf" isSubstitutable="false">
+            <classMoniker Id="fba4f7a1-479c-4b87-8e53-03ecdca302e2" LastKnownName="CWeigthScaleMessageBase" />
+            <elementDefinition Id="fda23735-789c-450f-b360-9610b9ff41c5" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="bb812792-580b-4a1f-a08a-a6595f4b496b" name="CWeigthScaleMessageNew" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6624bb29-facb-4f84-b1ec-e4a301c25d8a" />
+        <generalsInternal>
+          <generalization Id="d32940af-5d3a-442c-a8a1-86acae1c30f6" isSubstitutable="false">
+            <classMoniker Id="fba4f7a1-479c-4b87-8e53-03ecdca302e2" LastKnownName="CWeigthScaleMessageBase" />
+            <elementDefinition Id="1b0a29e9-262e-4042-b2f4-3212eb4a03a3" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1e946727-f7cd-4c4e-b2db-747847fe9831" name="SoapMessage" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e664a5cd-9d11-40ab-ba7c-92efffba6f3d" />
+        <ownedAttributesInternal>
+          <property Id="749fc13d-f5fb-4df9-8b87-7651c99ca521" name="Id" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="09e4cabc-3bd0-49dd-ae56-19e7303b7009" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="850606a0-3bfd-4c80-b729-ac257bee797c" LastKnownName="%Integer" />
+            </type_NamedElement>
+          </property>
+          <property Id="e25ef3d7-b2cf-4c9a-9f6e-937bf4b55a63" name="Url" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="55401573-f233-40c1-9d94-6c923c653d7b" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="72561981-a958-4c0f-b676-57b6b6fb7845" LastKnownName="%String" />
+            </type_NamedElement>
+          </property>
+          <property Id="085d7d61-54c6-4c1d-be14-d225b4030ace" name="Message" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="62d88d15-b9c7-405d-a325-79338904bdfd" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="ce3cdd94-3801-4ae2-82d5-ffd41792497e" LastKnownName="CWeightScaleMessageBase" />
+            </type_NamedElement>
+          </property>
+          <property Id="55876e61-e08a-44c3-9426-f8a677386a40" name="ValidationMessages" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="b70328ab-2b0d-43bb-ab26-31864e3e9a5c" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="2c260f9b-54d9-4068-8a4f-af2ae6a93443" LastKnownName="%ListOfObjects(COMPONENTTYPE" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString Id="ba1112c8-6b66-4635-8f5f-e928bebf3bf2" name="DefaultValue" value="&quot;CValidationMessage&quot;">
+                <elementDefinition Id="181d4b1c-233b-45dc-b793-e49d61f5b33c" />
+              </literalString>
+            </defaultValue>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="850606a0-3bfd-4c80-b729-ac257bee797c" name="%Integer" isAbstract="false" isLeaf="false" cachedFullName="%Integer">
+        <elementDefinition Id="272ca046-6c86-45ef-bd4f-4cf286ee9324" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="72561981-a958-4c0f-b676-57b6b6fb7845" name="%String" isAbstract="false" isLeaf="false" cachedFullName="%String">
+        <elementDefinition Id="996cab07-ad73-47c8-8e4e-2239dc7745e3" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="ce3cdd94-3801-4ae2-82d5-ffd41792497e" name="CWeightScaleMessageBase" isAbstract="false" isLeaf="false" cachedFullName="CWeightScaleMessageBase">
+        <elementDefinition Id="032f8f5b-1e63-46e8-93bc-2064ea960d5d" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="e07ded33-75e7-4d99-98fd-5aec51830b33" name="^WSPBON" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="162c6d17-36ca-4f58-a866-d4ba4489807d" />
+        <generalsInternal>
+          <generalization Id="c3d45f86-a734-4817-9441-ffbe185a7f89" isSubstitutable="false">
+            <classMoniker Id="7ad07166-5d27-457b-8502-4deaebb33982" LastKnownName="WsPoBoxOutNew" />
+            <elementDefinition Id="48719f7c-135f-4282-80d1-97137f0755f0" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="310610aa-8cc0-4b86-949f-c67db01e7502" name="^WSPBOO" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="95523e5f-9640-4b57-80ae-e03340257037" />
+        <generalsInternal>
+          <generalization Id="3f6f8e32-2231-45be-973e-cc85b31a1222" isSubstitutable="false">
+            <classMoniker Id="e743c74a-de21-4c3b-9c5b-1a3ae86f3cb9" LastKnownName="WsPoBoxOutOld" />
+            <elementDefinition Id="198e7963-c0fa-40e5-9d24-d947d56d0188" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="2d597b69-478e-4376-8a0d-1c1fee0f3ea4" name="^WSPBIO" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="781d32e5-b890-4342-9a08-ac44ea98fc74" />
+        <generalsInternal>
+          <generalization Id="d43993b9-edef-4e69-b2a0-c04a6f204a28" isSubstitutable="false">
+            <classMoniker Id="1921cb29-0785-46e2-b698-17446b4aa8d7" LastKnownName="MUMPS Programs" />
+            <elementDefinition Id="bfa80814-548d-4ce0-979f-076ce990b59d" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="9fe4b301-e492-4203-9c09-8ea46310c34c" name="^WSPBIN" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="556ce690-d4b9-4c41-9582-40940ddd3724" />
+        <generalsInternal>
+          <generalization Id="1077e36e-2396-4426-a9ed-e2e3a0390ac1" isSubstitutable="false">
+            <classMoniker Id="1921cb29-0785-46e2-b698-17446b4aa8d7" LastKnownName="MUMPS Programs" />
+            <elementDefinition Id="b623dc65-351c-4daa-9b90-27cd9111ed22" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1921cb29-0785-46e2-b698-17446b4aa8d7" name="MUMPS Programs" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e46aab8f-4ad0-4ce2-858f-eb5201265909" />
+        <generalsInternal>
+          <generalization Id="2a9267dd-e086-47f3-8a02-e6b334aa5488" isSubstitutable="false">
+            <classMoniker Id="e07ded33-75e7-4d99-98fd-5aec51830b33" LastKnownName="^WSPBON" />
+            <elementDefinition Id="41134725-9549-4d80-8adf-46238f2d3f0c" />
+          </generalization>
+          <generalization Id="bc07e330-34e1-4f7c-975f-b9db318db5db" isSubstitutable="false">
+            <classMoniker Id="310610aa-8cc0-4b86-949f-c67db01e7502" LastKnownName="^WSPBOO" />
+            <elementDefinition Id="038154fd-1c34-4e32-9491-df4603b729ec" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="e4bb32da-f50b-4300-b842-d84c28514e10" name="%Persistent">
+        <elementDefinition Id="8d409ef4-94b0-4d9f-aae8-ec0c5bbfe72c" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="e743c74a-de21-4c3b-9c5b-1a3ae86f3cb9" name="WsPoBoxOutOld" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="7365df91-7c07-4ffb-bf2f-100a258c4746" />
+              <ownedOperationsInternal>
+                <operation Id="e6b9ffc9-46e8-4ff3-8622-42fc4ede773f" name="Validate" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="63140b37-cbca-40fe-99ae-2ccea73aee9b" />
+                </operation>
+              </ownedOperationsInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="338727aa-a2c2-4e6c-bf60-b09acc43c5d3" name="WsPoBoxInNew" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="9f6577f5-7159-4472-9a9b-c9b69d16714d" />
+              <generalsInternal>
+                <generalization Id="feb8ec48-79de-4e2e-94a0-891a4fb77e8b" isSubstitutable="false">
+                  <classMoniker Id="9fe4b301-e492-4203-9c09-8ea46310c34c" LastKnownName="^WSPBIN" />
+                  <elementDefinition Id="fb66530f-851f-4a30-bc13-5f63c7db828a" />
+                </generalization>
+              </generalsInternal>
+              <ownedOperationsInternal>
+                <operation Id="9f5fd9cd-0f85-4edc-a49d-432c343f66ff" name="%OnBeforeSave" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="f6687cab-75a6-4b17-95ba-61f995c03e4e" />
+                </operation>
+              </ownedOperationsInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="56e238ee-1ec2-4b53-9f0f-c844c8dca708" name="WsPoBoxInOld" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="e68b4f33-47a5-4b57-9aaa-de5186c60f1f" />
+              <generalsInternal>
+                <generalization Id="405ac0ff-1c72-4701-9a8e-f93e8e670d45" isSubstitutable="false">
+                  <classMoniker Id="2d597b69-478e-4376-8a0d-1c1fee0f3ea4" LastKnownName="^WSPBIO" />
+                  <elementDefinition Id="7f81d0ba-0f08-40b6-a94d-db8cc6886ae9" />
+                </generalization>
+              </generalsInternal>
+              <ownedOperationsInternal>
+                <operation Id="0d598255-2066-45e5-a514-fa6b4a91089a" name="%OnBeforeSave" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="aa9b8a0d-3d82-49b3-8305-f5b2447d5e61" />
+                </operation>
+              </ownedOperationsInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="7ad07166-5d27-457b-8502-4deaebb33982" name="WsPoBoxOutNew" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="37337700-2802-4d76-81e9-6a4c49c9c36a" />
+              <ownedOperationsInternal>
+                <operation Id="c3323616-aae5-4101-b71d-ff7ddfb7238a" name="Validate" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="0725f744-ffb5-4a9b-9af5-f87717c7bcc7" />
+                </operation>
+              </ownedOperationsInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="fb76e82a-14d2-4c2e-9c93-5527dc9e5b4d" name="WsValidationMessage" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="718640e9-dbae-4547-a18e-aaa3c1ab51ad" />
+              <generalsInternal>
+                <generalization Id="32e225b5-8503-4cc3-809b-099f1d12135e" isSubstitutable="false">
+                  <classMoniker Id="af5e00d5-76d3-45c0-9228-4609029bab52" LastKnownName="^WSVALM" />
+                  <elementDefinition Id="dbf39d7a-5d8e-450e-accc-73b1e545c0a8" />
+                </generalization>
+              </generalsInternal>
+              <targetEnds>
+                <association Id="748894c9-d870-41e1-86bb-5514191dd811" isDerived="false" sourceEndRoleName="WsValidationMessage" targetEndRoleName="CValidationMessage" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="0b75d3cc-6834-4d1e-a1fa-e51e12454b32" LastKnownName="CValidationMessage" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="7a35078a-3176-4a3f-b706-d8023b9be4a7" name="WsValidationMessage" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="3f245ac0-2105-4478-b7ce-0d5aea156c48" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="d2e2a11c-7796-484f-936b-d940845dda52" name="CValidationMessage" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="16f3ecd7-e5ce-4968-87f0-6eb7ec7922f3" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="1174c56e-7eb1-4b78-bc06-068347ece9c5" />
+                </association>
+              </targetEnds>
+              <ownedAttributesInternal>
+                <property Id="0517d28b-4b3f-49b1-894d-1b2bc20c3630" name="Id" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f3fecab1-fe12-4c65-93b3-51abd78632a6" />
+                </property>
+                <property Id="de054fec-a702-4fe0-ab38-ca797a06ca8e" name="MVNumber" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d8e79777-3d2d-4814-99b0-da6593ae5b76" />
+                </property>
+                <property Id="531675d5-ef9b-45f1-b053-698d59acc030" name="Message" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7ab05e06-0954-4190-b2c9-7c3e4a236bf1" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="a6204909-a1b9-47e7-bae3-babff7fc72f6" LastKnownName="CValidationMessage" />
+                  </type_NamedElement>
+                </property>
+              </ownedAttributesInternal>
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="af5e00d5-76d3-45c0-9228-4609029bab52" name="^WSVALM" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bb8a3d27-65ab-4e01-b7a2-0efd60af5c99" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="a6204909-a1b9-47e7-bae3-babff7fc72f6" name="CValidationMessage" isAbstract="false" isLeaf="false" cachedFullName="CValidationMessage">
+        <elementDefinition Id="1fc0c619-57fb-4640-9e79-328153d7d1b4" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0b75d3cc-6834-4d1e-a1fa-e51e12454b32" name="CValidationMessage" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="2dd844d2-cb25-4427-bb18-877ffd048fd4" />
+        <generalsInternal>
+          <generalization Id="7a8249d2-20be-4b71-8dd8-f87306f0438d" isSubstitutable="false">
+            <classMoniker Id="1e946727-f7cd-4c4e-b2db-747847fe9831" LastKnownName="SoapMessage" />
+            <elementDefinition Id="ca99a395-74dd-4ef5-bf5e-cfe5c0267627" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="2c260f9b-54d9-4068-8a4f-af2ae6a93443" name="%ListOfObjects(COMPONENTTYPE" isAbstract="false" isLeaf="false" cachedFullName="%ListOfObjects(COMPONENTTYPE">
+        <elementDefinition Id="cb4f2635-4a80-4e7a-b6bb-f5f6b4328d0e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ce050ab0-d04b-4ba0-820d-46038b30aae0" name="WeightScaleService" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="15004f39-f4e3-4e3e-a65d-fc3d6c3cb247" />
+        <ownedAttributesInternal>
+          <property Id="dd034496-7af5-43d8-8e9c-d0581cd04d6c" name="GetAllMeasurementRequests() As %ListOfObjects(SoapMessage)" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="eef2b57f-11e6-4733-9a25-8c7534b0836e" />
+          </property>
+          <property Id="e4eee99e-d87f-4155-abf8-73e7e6365a1b" name="InsertMeasurementResult(inResult As SoapMessage) As %ListOfObjects(CValidationMessage)" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="52eb8635-914e-4a0b-8930-da41f6d29f4c" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="fd63c266-56ce-4e8b-a31b-5c9e7dc8f3b9" name="WeightScale.Architecture">
+    <elementDefinition Id="5bd3f9a1-0e2f-4832-8f4d-4e7d9305975b" />
+  </package>
+</logicalClassDesignerModel>

@@ -107,6 +107,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="8cc0b522-a400-4950-87ac-5a5c6d117102"
+            isDerived="false"
+            sourceEndRoleName="CommandFactory"
+            targetEndRoleName="IChecksumService"
+            isLeaf="false"
+            isAbstract="false">
+            <interfaceMoniker
+              Id="fc6b6e0f-6b0d-4d43-81a9-a8863a1c08f7"
+              LastKnownName="IChecksumService"
+              LastKnownLocation="Package1_0948.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="62b80294-4114-4b04-b61c-31b616a16d37"
+                  name="CommandFactory"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a702d3c9-0ed6-4f59-b56d-d7e77320ad3b"
+                  name="IChecksumService"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property

@@ -934,6 +934,22 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="59c18479-1911-4f94-bb14-bf24a38ac728" />
           </association>
+          <association Id="dbc41696-e4de-4e6b-a016-7b6b34035686" isDerived="false" sourceEndRoleName="CommandFactory" targetEndRoleName="IChecksumService" isLeaf="false" isAbstract="false">
+            <interfaceMoniker Id="1421e006-49a1-4014-a065-1fb7f75d8d5d" LastKnownName="IChecksumService" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ca7baf60-db71-4d5b-b5f3-c7a47c3dc6fc" name="CommandFactory" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="62b80294-4114-4b04-b61c-31b616a16d37" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0eebb60b-2147-451a-81f6-c30feb18b98e" name="IChecksumService" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a702d3c9-0ed6-4f59-b56d-d7e77320ad3b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8cc0b522-a400-4950-87ac-5a5c6d117102" />
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property Id="06b3f3c9-6e4a-48e8-8de9-92864f5a70e0" name="checkSumService" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">

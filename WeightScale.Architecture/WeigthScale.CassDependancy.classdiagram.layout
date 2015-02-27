@@ -99,6 +99,14 @@
         <interfaceShapeMoniker Id="53bd1d28-eac3-4919-a44e-4e46f0fef10c" />
       </nodes>
     </associationConnector>
+    <associationConnector edgePoints="[(21 : 0.875125859777133); (23 : 0.875125859777133)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="1">
+      <associationMoniker Id="dbc41696-e4de-4e6b-a016-7b6b34035686" />
+      <relativeChildShapes />
+      <nodes>
+        <classShapeMoniker Id="3d596e8d-4803-4fe7-bf58-c5483fd3a4f8" />
+        <interfaceShapeMoniker Id="53bd1d28-eac3-4919-a44e-4e46f0fef10c" />
+      </nodes>
+    </associationConnector>
     <interfaceShape Id="200be998-598a-41f2-972d-4dcc99a7a027" absoluteBounds="5.875, 0.625, 1.5, 1.0903471940755845" hideQualifiedName="false" increaseHeight="0.18800345897674564" customColor="207, 223, 191">
       <interfaceMoniker Id="ccdc7c3f-3437-42d4-b305-8e78d8972d41" LastKnownName="IComSerializable" />
       <nestedChildShapes>

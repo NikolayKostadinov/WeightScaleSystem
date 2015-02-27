@@ -39,7 +39,7 @@ namespace WeightScale.Domain.Abstract
     /// <summary>
     /// Abstract class. Base class for transportation of messages from and to Weight Scales
     /// </summary>
-    public abstract class WeightScaleMessageBase : IValidateable, IComSerializable,IBlock
+    public abstract class WeightScaleMessageBase : IValidateable, IComSerializable,IBlock, IWeightScaleMessage
     {
         private const int NUMBER_MIN_VALUE = 1;
         private const int NUMBER_MAX_VALUE = 99;

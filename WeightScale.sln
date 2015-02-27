@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScaleSystem.ConsoleDe
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "WeightScale.Architecture", "WeightScale.Architecture\WeightScale.Architecture.modelproj", "{D4EEBD71-CEB7-407E-9E25-615F5854484A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.Application", "WeightScale.Application\WeightScale.Application.csproj", "{F2DCFBD3-3CA1-4B73-97D0-859FF3AC2148}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{D4EEBD71-CEB7-407E-9E25-615F5854484A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4EEBD71-CEB7-407E-9E25-615F5854484A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4EEBD71-CEB7-407E-9E25-615F5854484A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2DCFBD3-3CA1-4B73-97D0-859FF3AC2148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DCFBD3-3CA1-4B73-97D0-859FF3AC2148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DCFBD3-3CA1-4B73-97D0-859FF3AC2148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DCFBD3-3CA1-4B73-97D0-859FF3AC2148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

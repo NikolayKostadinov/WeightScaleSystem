@@ -36,6 +36,400 @@
         LastKnownName="System"
         LastKnownLocation="Package3_0925.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3f4c70fd-4a6b-446b-abb8-082d0cc5eac1"
+        name="CWeigthScaleMessageBase"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="b3ab2d3e-0725-4960-a899-1ab3c6c15de5"
+            isDerived="false"
+            sourceEndRoleName="CWeigthScaleMessageBase"
+            targetEndRoleName="SoapMessage"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="e664a5cd-9d11-40ab-ba7c-92efffba6f3d"
+              LastKnownName="SoapMessage"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="63ee866b-581a-4518-90b3-8a523cee4e04"
+                  name="CWeigthScaleMessageBase"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2c2d9e58-e1d7-4313-ae78-abe5df1bfe06"
+                  name="SoapMessage"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="36beb4d8-a433-4a8d-b4c6-a3280f55b3dc"
+        name="CWeigthScaleMessageOld"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="fda23735-789c-450f-b360-9610b9ff41c5"
+            isSubstitutable="false">
+            <classMoniker
+              Id="3f4c70fd-4a6b-446b-abb8-082d0cc5eac1"
+              LastKnownName="CWeigthScaleMessageBase"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6624bb29-facb-4f84-b1ec-e4a301c25d8a"
+        name="CWeigthScaleMessageNew"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="1b0a29e9-262e-4042-b2f4-3212eb4a03a3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="3f4c70fd-4a6b-446b-abb8-082d0cc5eac1"
+              LastKnownName="CWeigthScaleMessageBase"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e664a5cd-9d11-40ab-ba7c-92efffba6f3d"
+        name="SoapMessage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="09e4cabc-3bd0-49dd-ae56-19e7303b7009"
+            name="Id"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="272ca046-6c86-45ef-bd4f-4cf286ee9324"
+                LastKnownName="%Integer"
+                LastKnownLocation="WeightScale.Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="55401573-f233-40c1-9d94-6c923c653d7b"
+            name="Url"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="996cab07-ad73-47c8-8e4e-2239dc7745e3"
+                LastKnownName="%String"
+                LastKnownLocation="WeightScale.Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="62d88d15-b9c7-405d-a325-79338904bdfd"
+            name="Message"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="032f8f5b-1e63-46e8-93bc-2064ea960d5d"
+                LastKnownName="CWeightScaleMessageBase"
+                LastKnownLocation="WeightScale.Architecture.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b70328ab-2b0d-43bb-ab26-31864e3e9a5c"
+            name="ValidationMessages"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="cb4f2635-4a80-4e7a-b6bb-f5f6b4328d0e"
+                LastKnownName="%ListOfObjects(COMPONENTTYPE"
+                LastKnownLocation="WeightScale.Architecture.uml" />
+            </type_NamedElement>
+            <defaultValue>
+              <literalString
+                Id="181d4b1c-233b-45dc-b793-e49d61f5b33c"
+                name="DefaultValue"
+                value="&quot;CValidationMessage&quot;" />
+            </defaultValue>
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="272ca046-6c86-45ef-bd4f-4cf286ee9324"
+        name="%Integer" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="996cab07-ad73-47c8-8e4e-2239dc7745e3"
+        name="%String" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="032f8f5b-1e63-46e8-93bc-2064ea960d5d"
+        name="CWeightScaleMessageBase" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="162c6d17-36ca-4f58-a866-d4ba4489807d"
+        name="^WSPBON"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="48719f7c-135f-4282-80d1-97137f0755f0"
+            isSubstitutable="false">
+            <classMoniker
+              Id="37337700-2802-4d76-81e9-6a4c49c9c36a"
+              LastKnownName="WsPoBoxOutNew"
+              LastKnownLocation="Package_1422.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="95523e5f-9640-4b57-80ae-e03340257037"
+        name="^WSPBOO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="198e7963-c0fa-40e5-9d24-d947d56d0188"
+            isSubstitutable="false">
+            <classMoniker
+              Id="7365df91-7c07-4ffb-bf2f-100a258c4746"
+              LastKnownName="WsPoBoxOutOld"
+              LastKnownLocation="Package_1422.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="781d32e5-b890-4342-9a08-ac44ea98fc74"
+        name="^WSPBIO"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="bfa80814-548d-4ce0-979f-076ce990b59d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="e46aab8f-4ad0-4ce2-858f-eb5201265909"
+              LastKnownName="MUMPS Programs"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="556ce690-d4b9-4c41-9582-40940ddd3724"
+        name="^WSPBIN"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="b623dc65-351c-4daa-9b90-27cd9111ed22"
+            isSubstitutable="false">
+            <classMoniker
+              Id="e46aab8f-4ad0-4ce2-858f-eb5201265909"
+              LastKnownName="MUMPS Programs"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ca2ce99e-accd-47c5-9330-2519756b73b4"
+        LastKnownName="MUMPS Programs"
+        LastKnownLocation="Package_1356.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="2df7b87e-1ba6-475e-9b4b-fa9ad0b071a9"
+        name="Interface1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e46aab8f-4ad0-4ce2-858f-eb5201265909"
+        name="MUMPS Programs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="41134725-9549-4d80-8adf-46238f2d3f0c"
+            isSubstitutable="false">
+            <classMoniker
+              Id="162c6d17-36ca-4f58-a866-d4ba4489807d"
+              LastKnownName="^WSPBON"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+          </generalization>
+          <generalization
+            Id="038154fd-1c34-4e32-9491-df4603b729ec"
+            isSubstitutable="false">
+            <classMoniker
+              Id="95523e5f-9640-4b57-80ae-e03340257037"
+              LastKnownName="^WSPBOO"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="414c2b1f-c4fc-406c-8bc5-80b0ae8a1a45"
+        name="%Persistent"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="8d409ef4-94b0-4d9f-aae8-ec0c5bbfe72c"
+        LastKnownName="%Persistent"
+        LastKnownLocation="Package_1422.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="d019ba52-559c-445d-a725-1a3140b1110b"
+        name="Enumeration1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="bb8a3d27-65ab-4e01-b7a2-0efd60af5c99"
+        name="^WSVALM"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="2dd844d2-cb25-4427-bb18-877ffd048fd4"
+        name="CValidationMessage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="ca99a395-74dd-4ef5-bf5e-cfe5c0267627"
+            isSubstitutable="false">
+            <classMoniker
+              Id="e664a5cd-9d11-40ab-ba7c-92efffba6f3d"
+              LastKnownName="SoapMessage"
+              LastKnownLocation="WeightScale.Architecture.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="cb4f2635-4a80-4e7a-b6bb-f5f6b4328d0e"
+        name="%ListOfObjects(COMPONENTTYPE" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="15004f39-f4e3-4e3e-a65d-fc3d6c3cb247"
+        name="WeightScaleService"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="eef2b57f-11e6-4733-9a25-8c7534b0836e"
+            name="GetAllMeasurementRequests() As %ListOfObjects(SoapMessage)"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="52eb8635-914e-4a0b-8930-da41f6d29f4c"
+            name="InsertMeasurementResult(inResult As SoapMessage) As %ListOfObjects(CValidationMessage)"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"
