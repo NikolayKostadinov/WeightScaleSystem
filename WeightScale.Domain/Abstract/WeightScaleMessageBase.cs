@@ -50,7 +50,7 @@ namespace WeightScale.Domain.Abstract
         private const byte M_NUM_MIN_VALUE = 1;
         private const byte M_NUM_MAX_VALUE = 2;
 
-        private int number;
+        private byte number;
         private Direction direction;
         private DateTime? timeOfFirstMeasure;
         private DateTime? timeOfSecondMeasure;
@@ -66,24 +66,6 @@ namespace WeightScale.Domain.Abstract
         private int? documentNumber;
 
         /// <summary>
-        /// Gets or sets Id of target Weight scale
-        /// </summary>
-        /// <value></value>
-        public byte WeightScaleId
-        {
-            get
-            {
-                // TODO: Implement this property getter
-                throw new NotImplementedException();
-            }
-            set
-            {
-                // TODO: Implement this property setter
-                throw new NotImplementedException();
-            }
-        }
-
-        /// <summary>
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
         /// <returns>byte[] - Array of bytes</returns>
@@ -93,8 +75,8 @@ namespace WeightScale.Domain.Abstract
         /// Two bytes numeric literal
         /// 01 or 11 or 23 or....
         /// </summary>
-        [ComSerializableProperty(length: 2, offset: 0, originalType: typeof(int), serializeFormat: "d2")]
-        public int Number
+        [ComSerializableProperty(length: 2, offset: 0, originalType: typeof(byte), serializeFormat: "d2")]
+        public byte Number
         {
             get { return this.number; }
             set { this.number = value; }
@@ -111,14 +93,14 @@ namespace WeightScale.Domain.Abstract
             set { this.direction = value; }
         }
 
-        [ComSerializableProperty(length: 12, offset: 3, originalType: typeof(DateTime), serializeFormat: "yyMMddhhmmss")]
+        [ComSerializableProperty(length: 12, offset: 3, originalType: typeof(DateTime), serializeFormat: "yyMMddHHmmss")]
         public DateTime? TimeOfFirstMeasure
         {
             get { return this.timeOfFirstMeasure; }
             set { this.timeOfFirstMeasure = value; }
         }
 
-        [ComSerializableProperty(length: 12, offset: 15, originalType: typeof(DateTime), serializeFormat: "yyMMddhhmmss")]
+        [ComSerializableProperty(length: 12, offset: 15, originalType: typeof(DateTime), serializeFormat: "yyMMddHHmmss")]
         public DateTime? TimeOfSecondMeasure
         {
             get { return this.timeOfSecondMeasure; }

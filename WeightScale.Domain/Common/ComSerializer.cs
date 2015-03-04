@@ -28,7 +28,7 @@ namespace WeightScale.Domain.Common
             var properties = typeof(T).GetProperties()
                                       .Where(x =>
                                           x.IsDefined(typeof(ComSerializablePropertyAttribute), true) &&
-                                          !x.IsDefined(typeof(NonSerializedAttribute), true));
+                                          !x.IsDefined(typeof(ComNonSerializablePropertyAttribute), true));
 
             foreach (var property in properties)
             {
@@ -73,7 +73,7 @@ namespace WeightScale.Domain.Common
                             } 
                             else 
                             { 
-                                safeValue = DateTime.ParseExact(strProp, propSerializationAttr.SerializeFormat, CultureInfo.InvariantCulture); 
+                                safeValue = DateTime.ParseExact(strProp, propSerializationAttr.SerializeFormat, CultureInfo.CurrentCulture); 
                             }
                         }
                         else
@@ -135,7 +135,7 @@ namespace WeightScale.Domain.Common
             }
             else
             {
-                str = string.Format("{0:" + propSerInfo.SerializeFormat + "}", p);
+                str = string.Format("{0:" + propSerInfo.SerializeFormat + "}", p, CultureInfo.CurrentCulture);
             }
 
             return str.ToByteArray(propSerInfo.Align, propSerInfo.Length);
@@ -158,7 +158,7 @@ namespace WeightScale.Domain.Common
 
             if (propSerInfo.Length + propSerInfo.Offset > length)
             {
-                string message = @"The serialization offser of property {0} is outside boundary of array. 
+                string message = @"The serialization offset of property {0} is outside boundary of array. 
 The last char position must be less than {1}. 
 Actual position of last char is {2}.";
                 throw new ArgumentOutOfRangeException(

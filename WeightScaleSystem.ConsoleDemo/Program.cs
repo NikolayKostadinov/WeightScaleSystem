@@ -16,8 +16,8 @@ namespace WeightScaleSystem.ConsoleDemo
         static void Main(string[] args)
         {
             //ExtractPropertiesToFile();
-            var ser = new WeightScaleMessageNew();
-            // var ser = new WeightScaleMessageOld();
+            //var ser = new WeightScaleMessageNew();
+            var ser = new WeightScaleMessageOld();
             ser.Number = 1;
             ser.Direction = Direction.Out;
             ser.TimeOfFirstMeasure = DateTime.Now.AddDays(-1).AddHours(-1);
@@ -27,12 +27,12 @@ namespace WeightScaleSystem.ConsoleDemo
             ser.TransactionNumber = 12345;
             ser.MeasurementNumber = 1;
             ser.ProductCode = 141;
-            ser.ExciseDocumentNumber = "1400032512";
+            //ser.ExciseDocumentNumber = "1400032512";
             ser.Vehicle = "A3335KX";
             ser.GrossWeight = 30;
             ser.TareWeight = 10;
             ser.NetWeight = 20;
-            // ser.ProductName = "Нафта";
+            ser.ProductName = "Нафта";
             // ser.TotalOfGrossWeight = 10;
             // ser.TotoalOfNetWeight = 20;
 
@@ -62,7 +62,7 @@ namespace WeightScaleSystem.ConsoleDemo
                     result.Length);
             }
 
-            var des = serializer.Deserialize<WeightScaleMessageNew>(serialized);
+            var des = serializer.Deserialize<WeightScaleMessageOld>(serialized);
             serialized = serializer.Setialize(des);
             var result1 = new string(Encoding.Default.GetChars(serialized));
 

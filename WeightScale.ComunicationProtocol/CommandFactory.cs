@@ -31,7 +31,7 @@ namespace WeightScale.ComunicationProtocol
         {
             List<byte> barr = new List<byte>();
             barr.Add((byte)ComunicationConstants.Soh);
-            barr.Add(inputObject.WeightScaleId);
+            barr.Add(inputObject.Number);
             barr.Add((byte)ComunicationConstants.Pol);
             barr.Add((byte)ComunicationConstants.Enq);
             return barr.ToArray();
@@ -41,7 +41,7 @@ namespace WeightScale.ComunicationProtocol
         {
             List<byte> barr = new List<byte>();
             barr.Add((byte)ComunicationConstants.Soh);
-            barr.Add(inputObject.WeightScaleId);
+            barr.Add(inputObject.Number);
             barr.Add((byte)ComunicationConstants.Stx);
             barr.AddRange(inputObject.ToBlock());
             barr.Add((byte)ComunicationConstants.Etx);

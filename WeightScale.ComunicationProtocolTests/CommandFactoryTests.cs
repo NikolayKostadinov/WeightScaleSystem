@@ -34,7 +34,7 @@ namespace WeightScale.ComunicationProtocolTests
                  "138                                                     " +
                  "A8756MK       " +
                  "13500                  ").ToByteArray());
-            mock.Setup(m => m.WeightScaleId).Returns(3);
+            mock.Setup(m => m.Number).Returns(3);
         }
 
         [TestMethod]

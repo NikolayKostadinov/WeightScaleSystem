@@ -14,7 +14,7 @@ namespace WeightScale.Domain.Abstract
         /// <summary>
         /// Gets or sets Id of target Weight scale
         /// </summary>
-        byte WeightScaleId { get; set; }
+        byte Number { get; set; }
 
         /// <summary>
         /// Provides data block to be sent as Weight scale message block element.
