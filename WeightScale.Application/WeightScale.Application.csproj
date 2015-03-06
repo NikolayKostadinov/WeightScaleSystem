@@ -45,6 +45,8 @@
     <Compile Include="App_Start\AutomapperConfig.cs" />
     <Compile Include="App_Start\NinjectInjector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IMeasurementService.cs" />
+    <Compile Include="Services\MeasurementService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -58,6 +60,9 @@
       <Project>{4318F04E-487F-4603-94F8-2BA517891D30}</Project>
       <Name>WeightScale.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
