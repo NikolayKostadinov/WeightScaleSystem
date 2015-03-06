@@ -23,7 +23,7 @@ namespace WeightScaleSystem.ConsoleDemo
         {
             SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
             handler += SecondHandler;
-            ComDriver com = new ComDriver();
+            ComManager com = new ComManager();
             com.DataReceivedHandler = handler;
 
             try

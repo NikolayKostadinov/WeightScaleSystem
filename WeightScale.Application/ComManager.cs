@@ -8,11 +8,11 @@
     using System.IO.Ports;
     using WeightScale.Application.Properties;
 
-    public class ComDriver
+    public class ComManager
     {
         private SerialPort port;
 
-        public ComDriver()
+        public ComManager()
             : this(
             Settings.Default.PortName,
             Settings.Default.BaudRate,
@@ -22,7 +22,7 @@
             )
         {}
 
-        public ComDriver(string portName, int baudRate, Parity parity, int dateBits, StopBits stopBits)
+        public ComManager(string portName, int baudRate, Parity parity, int dateBits, StopBits stopBits)
         {
             this.port = new SerialPort(portName, baudRate, parity, dateBits, stopBits);
         }
