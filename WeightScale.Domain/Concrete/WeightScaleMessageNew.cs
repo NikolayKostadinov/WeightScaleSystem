@@ -32,6 +32,17 @@ namespace WeightScale.Domain.Concrete
         private int? totalNetOfOutput;
         private int? totalNetByProductInput;
         private int? totalNetByProductOutput;
+        private IComSerializer serializer;
+
+        /// <summary>
+        /// Froms the block.
+        /// </summary>
+        /// <param name="block">The block.</param>
+        /// <returns></returns>
+        public WeightScaleMessageNew FromBlock(byte[] block)
+        {
+            return this.serializer.Deserialize<WeightScaleMessageNew>(block);
+        }
 
         /// <summary>
         /// Gets or Sets number of excise document
@@ -130,10 +141,10 @@ namespace WeightScale.Domain.Concrete
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
         /// <returns>byte[] - Array of bytes</returns>
-        public override byte[] ToBlock()
+        public override byte[] ToBlock(IComSerializer serializer)
         {
-            // TODO: Implement this method
-            throw new NotImplementedException();
+            return serializer.Setialize(this);
         }
+
     }
 }

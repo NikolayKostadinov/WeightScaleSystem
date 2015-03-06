@@ -39,7 +39,7 @@ namespace WeightScale.Domain.Abstract
     /// <summary>
     /// Abstract class. Base class for transportation of messages from and to Weight Scales
     /// </summary>
-    public abstract class WeightScaleMessageBase : IValidateable, IComSerializable,IBlock, IWeightScaleMessage
+    public abstract class WeightScaleMessageBase : IValidateable, IComSerializable,IBlock
     {
         private const int NUMBER_MIN_VALUE = 1;
         private const int NUMBER_MAX_VALUE = 99;
@@ -65,11 +65,13 @@ namespace WeightScale.Domain.Abstract
         private string vehicle;
         private int? documentNumber;
 
-        /// <summary>
-        /// Provides data block to be sent as Weight scale message block element.
-        /// </summary>
-        /// <returns>byte[] - Array of bytes</returns>
-        public abstract byte[] ToBlock();
+        ///// <summary>
+        ///// Initializes a new instance of the <see cref="WeightScaleMessageBase" /> class.
+        ///// </summary>
+        //public WeightScaleMessageBase(IComSerializer serializerParam)
+        //{
+        //    this.serializer = serializerParam;
+        //}
 
         /// <summary>
         /// Two bytes numeric literal
@@ -338,5 +340,13 @@ So {0} is not equal to {3}";
 
             return validationResult;
         }
+
+        /// <summary>
+        /// Provides data block to be sent as Weight scale message block element.
+        /// </summary>
+        /// <returns>byte[] - Array of bytes</returns>
+        public abstract byte[] ToBlock(IComSerializer serializer) ;
+        
+        //public abstract WeightScaleMessageBase FromBlock(byte[] block);
     }
 }

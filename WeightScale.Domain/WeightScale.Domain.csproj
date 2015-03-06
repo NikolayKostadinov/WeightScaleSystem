@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IBlock.cs" />
-    <Compile Include="Abstract\IWeightScaleMessage.cs" />
     <Compile Include="Common\ComNonSerializablePropertyAttribute.cs" />
     <Compile Include="Common\ComSerializer.cs" />
     <Compile Include="Abstract\IValidateable.cs" />

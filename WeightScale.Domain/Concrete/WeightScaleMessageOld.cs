@@ -25,6 +25,7 @@ namespace WeightScale.Domain.Concrete
         private string productName;
         private int? totalOfGrossWeight;
         private int? totalOfNetWeight;
+        private IComSerializer serializer;
 
         [ComSerializableProperty(length: 12, offset: 54, originalType: typeof(string), serializeFormat: "")]
         public string ProductName
@@ -83,10 +84,9 @@ namespace WeightScale.Domain.Concrete
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
         /// <returns>byte[] - Array of bytes</returns>
-        public override byte[] ToBlock()
+        public override byte[] ToBlock(IComSerializer serializer)
         {
-            // TODO: Implement this method
-            throw new NotImplementedException();
+            return serializer.Setialize(this);
         }
     }
 }

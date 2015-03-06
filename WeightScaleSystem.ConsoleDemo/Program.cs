@@ -5,9 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeightScale.Application.App_Start;
+using WeightScale.ComunicationProtocol.Contracts;
 using WeightScale.Domain.Abstract;
 using WeightScale.Domain.Common;
 using WeightScale.Domain.Concrete;
+using Ninject;
 
 namespace WeightScaleSystem.ConsoleDemo
 {
@@ -15,10 +18,12 @@ namespace WeightScaleSystem.ConsoleDemo
     {
         static void Main(string[] args)
         {
-            //ExtractPropertiesToFile();
+            IKernel injector = NinjectInjector.GetInjector();
+            ICommandFactory commands = injector.Get<ICommandFactory>();
+
             //var ser = new WeightScaleMessageNew();
             var ser = new WeightScaleMessageOld();
-            ser.Number = 1;
+            ser.Number = 5;
             ser.Direction = Direction.Out;
             ser.TimeOfFirstMeasure = DateTime.Now.AddDays(-1).AddHours(-1);
             ser.TimeOfSecondMeasure = DateTime.Now;
@@ -35,40 +40,43 @@ namespace WeightScaleSystem.ConsoleDemo
             ser.ProductName = "Нафта";
             // ser.TotalOfGrossWeight = 10;
             // ser.TotoalOfNetWeight = 20;
+            var res = commands.WeightScaleRequest(ser);
+            Console.WriteLine(Encoding.Default.GetString((commands.SendDataToWeightScale(ser))));
 
-            var validationResult = ser.Validate();
 
-            foreach (var validationMessage in validationResult)
-            {
-                Console.WriteLine("{0} {1}: {2}", validationMessage.Type.ToString(), validationMessage.Field, validationMessage.Text);
-            }
+            //var validationResult = ser.Validate();
 
-            var serializer = new ComSerializer();
+            //foreach (var validationMessage in validationResult)
+            //{
+            //    Console.WriteLine("{0} {1}: {2}", validationMessage.Type.ToString(), validationMessage.Field, validationMessage.Text);
+            //}
 
-            var btime = DateTime.Now;
-            var serialized = serializer.Setialize(ser);
-            var estimatedTime = DateTime.Now - btime;
+            //var serializer = new ComSerializer();
 
-            string result = string.Empty;
-            result = new string(Encoding.Default.GetChars(serialized));
+            //var btime = DateTime.Now;
+            //var serialized = serializer.Setialize(ser);
+            //var estimatedTime = DateTime.Now - btime;
 
-            ComSerializableClassAttribute attr = Attribute.GetCustomAttribute(ser.GetType(), typeof(ComSerializableClassAttribute)) as ComSerializableClassAttribute;
-            if (attr != null)
-            {
-                Console.WriteLine("The result type: {0}\nblock type: {1}\nblock Length:{2}\nactual length: {3}",
-                    ser.GetType().Name,
-                    attr.BlockLength,
-                    (int)attr.BlockLength,
-                    result.Length);
-            }
+            //string result = string.Empty;
+            //result = new string(Encoding.Default.GetChars(serialized));
 
-            var des = serializer.Deserialize<WeightScaleMessageOld>(serialized);
-            serialized = serializer.Setialize(des);
-            var result1 = new string(Encoding.Default.GetChars(serialized));
+            //ComSerializableClassAttribute attr = Attribute.GetCustomAttribute(ser.GetType(), typeof(ComSerializableClassAttribute)) as ComSerializableClassAttribute;
+            //if (attr != null)
+            //{
+            //    Console.WriteLine("The result type: {0}\nblock type: {1}\nblock Length:{2}\nactual length: {3}",
+            //        ser.GetType().Name,
+            //        attr.BlockLength,
+            //        (int)attr.BlockLength,
+            //        result.Length);
+            //}
 
-            Console.WriteLine(result);
-            Console.WriteLine(result1);
-            Console.WriteLine("Estimated time: {0}", estimatedTime);
+            //var des = serializer.Deserialize<WeightScaleMessageOld>(serialized);
+            //serialized = serializer.Setialize(des);
+            //var result1 = new string(Encoding.Default.GetChars(serialized));
+
+            //Console.WriteLine(result);
+            //Console.WriteLine(result1);
+            //Console.WriteLine("Estimated time: {0}", estimatedTime);
         }
 
         /// <summary>

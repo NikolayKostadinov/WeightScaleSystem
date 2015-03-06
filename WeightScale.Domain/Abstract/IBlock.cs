@@ -20,6 +20,6 @@ namespace WeightScale.Domain.Abstract
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
         /// <returns>byte[] - Array of bytes</returns>
-        byte[] ToBlock();
+        byte[] ToBlock(IComSerializer serializer);
     }
 }

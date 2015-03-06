@@ -12,6 +12,7 @@ namespace WeightScale.ComunicationProtocolTests
     using Moq;
     using WeightScale.ComunicationProtocol;
     using WeightScale.Domain.Abstract;
+    using WeightScale.Domain.Common;
     using WeightScale.Utility.Helpers;
 
     /// <summary>
@@ -27,7 +28,7 @@ namespace WeightScale.ComunicationProtocolTests
         /// </summary>
         static CommandFactoryTests()
         {
-            mock.Setup(m => m.ToBlock()).Returns(
+            mock.Setup(m => m.ToBlock(It.IsAny<IComSerializer>())).Returns(
                 ("032                            " +
                  "26837     " +
                  "1         " +
@@ -48,7 +49,7 @@ namespace WeightScale.ComunicationProtocolTests
                 Convert.ToByte('p'),
                 (byte)5
             };
-            var command = new CommandFactory(null);
+            var command = new CommandFactory(null,new ComSerializer());
 
             // Act
             var actual = command.WeightScaleRequest(mock.Object);
@@ -82,7 +83,7 @@ namespace WeightScale.ComunicationProtocolTests
 
             byte[] expected = list.ToArray();
 
-            var command = new CommandFactory(new XorChecksumService());
+            var command = new CommandFactory(new XorChecksumService(),new ComSerializer());
 
             // Act
             var actual = command.SendDataToWeightScale(mock.Object);
@@ -100,7 +101,7 @@ namespace WeightScale.ComunicationProtocolTests
         {
             // Arrange
             var expected = new byte[] { 0x04 };
-            var command = new CommandFactory(null);
+            var command = new CommandFactory(null,null);
 
             // Act
             var actual = command.EndOfTransmit();
@@ -118,7 +119,7 @@ namespace WeightScale.ComunicationProtocolTests
         { 
             // Arrange
             var expected = new byte[] { 0x06 };
-            var command = new CommandFactory(null);
+            var command = new CommandFactory(null,null);
 
             // Act
             var actual = command.Acknowledge();
@@ -136,7 +137,7 @@ namespace WeightScale.ComunicationProtocolTests
         {
             // Arrange
             var expected = new byte[] { 0x15 };
-            var command = new CommandFactory(null);
+            var command = new CommandFactory(null,null);
 
             // Act
             var actual = command.NegativeAcknowledge();

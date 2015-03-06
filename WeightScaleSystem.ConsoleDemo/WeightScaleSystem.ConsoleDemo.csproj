@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,8 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WeightScale.Application\WeightScale.Application.csproj">
+      <Project>{F2DCFBD3-3CA1-4B73-97D0-859FF3AC2148}</Project>
+      <Name>WeightScale.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeightScale.ComunicationProtocol\WeightScale.ComunicationProtocol.csproj">
+      <Project>{3924DB7D-CCDD-42DB-92D7-712402696BD0}</Project>
+      <Name>WeightScale.ComunicationProtocol</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WeightScale.Domain\WeightScale.Domain.csproj">
       <Project>{4318F04E-487F-4603-94F8-2BA517891D30}</Project>
       <Name>WeightScale.Domain</Name>
