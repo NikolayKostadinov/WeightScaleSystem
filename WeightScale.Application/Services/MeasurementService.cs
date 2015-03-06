@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using WeightScale.ComunicationProtocol.Contracts;
-using WeightScale.Domain.Abstract;
-
-namespace WeightScale.Application.Services
+﻿namespace WeightScale.Application.Services
 {
-    public class MeasurementService : WeightScale.Application.Services.IMeasurementService
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Timers;
+    using WeightScale.ComunicationProtocol.Contracts;
+    using WeightScale.Domain.Abstract;
+    public class MeasurementService : WeightScale.Application.Contracts.IMeasurementService
     {
         private const int INTERVAL = 60 * 1000;
         private bool wDTbreak = false;

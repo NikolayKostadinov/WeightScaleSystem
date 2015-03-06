@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WeightScale.Application;
 using WeightScale.Application.App_Start;
 using WeightScale.ComunicationProtocol.Contracts;
 using WeightScale.Domain.Abstract;
@@ -16,32 +18,59 @@ namespace WeightScaleSystem.ConsoleDemo
 {
     class Program
     {
+        private static bool received = false;
         static void Main(string[] args)
         {
-            IKernel injector = NinjectInjector.GetInjector();
-            ICommandFactory commands = injector.Get<ICommandFactory>();
+            SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
+            handler += SecondHandler;
+            ComDriver com = new ComDriver();
+            com.DataReceivedHandler = handler;
 
-            //var ser = new WeightScaleMessageNew();
-            var ser = new WeightScaleMessageOld();
-            ser.Number = 5;
-            ser.Direction = Direction.Out;
-            ser.TimeOfFirstMeasure = DateTime.Now.AddDays(-1).AddHours(-1);
-            ser.TimeOfSecondMeasure = DateTime.Now;
-            ser.MeasurementStatus = MeasurementStatus.ProtocolPrinterFailure;
-            ser.SerialNumber = 12345678;
-            ser.TransactionNumber = 12345;
-            ser.MeasurementNumber = 1;
-            ser.ProductCode = 141;
-            //ser.ExciseDocumentNumber = "1400032512";
-            ser.Vehicle = "A3335KX";
-            ser.GrossWeight = 30;
-            ser.TareWeight = 10;
-            ser.NetWeight = 20;
-            ser.ProductName = "Нафта";
-            // ser.TotalOfGrossWeight = 10;
-            // ser.TotoalOfNetWeight = 20;
-            var res = commands.WeightScaleRequest(ser);
-            Console.WriteLine(Encoding.Default.GetString((commands.SendDataToWeightScale(ser))));
+            try
+            {
+                com.Open();
+                com.SendComman(new byte[] { 10 }, 1);
+                while (!received) 
+                { 
+                    
+                }
+                received = false;
+                com.SendComman(new byte[] { 20,30,40 }, 3);
+                while (!received)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message); 
+            }
+
+            //IKernel injector = NinjectInjector.GetInjector();
+            //ICommandFactory commands = injector.Get<ICommandFactory>();
+
+            ////var ser = new WeightScaleMessageNew();
+            //var ser = new WeightScaleMessageOld();
+            //ser.Number = 5;
+            //ser.Direction = Direction.Out;
+            //ser.TimeOfFirstMeasure = DateTime.Now.AddDays(-1).AddHours(-1);
+            //ser.TimeOfSecondMeasure = DateTime.Now;
+            //ser.MeasurementStatus = MeasurementStatus.ProtocolPrinterFailure;
+            //ser.SerialNumber = 12345678;
+            //ser.TransactionNumber = 12345;
+            //ser.MeasurementNumber = 1;
+            //ser.ProductCode = 141;
+            ////ser.ExciseDocumentNumber = "1400032512";
+            //ser.Vehicle = "A3335KX";
+            //ser.GrossWeight = 30;
+            //ser.TareWeight = 10;
+            //ser.NetWeight = 20;
+            //ser.ProductName = "Нафта";
+            //// ser.TotalOfGrossWeight = 10;
+            //// ser.TotoalOfNetWeight = 20;
+            //var res = commands.WeightScaleRequest(ser);
+            //Console.WriteLine(Encoding.Default.GetString((commands.SendDataToWeightScale(ser))));
 
 
             //var validationResult = ser.Validate();
@@ -143,6 +172,30 @@ namespace WeightScaleSystem.ConsoleDemo
                 list.Add(prop.Name + " As " + (Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType).Name);
             }
             return list;
+        }
+
+        static void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            Console.WriteLine("Message Received");
+             
+            var port = (sender as SerialPort);
+            var result = new byte[port.ReceivedBytesThreshold];
+            port.Read(result,0,result.Length);
+
+            foreach (byte item in result)
+            {
+                Console.Write(item);
+                Console.Write(" ");
+            }
+
+            Console.WriteLine();
+
+            received = true;
+        }
+
+        static void SecondHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            Console.WriteLine("I am SecondHandler");
         }
     }
 }

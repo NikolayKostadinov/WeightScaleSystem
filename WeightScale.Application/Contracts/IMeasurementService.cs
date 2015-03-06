@@ -1,9 +1,9 @@
-﻿namespace WeightScale.Application.Services
+﻿namespace WeightScale.Application.Contracts
 {
     using System;
     using WeightScale.Domain.Abstract;
 
-    interface IMeasurementService
+    public interface IMeasurementService
     {
         IWeightScaleMessage Measure(IWeightScaleMessage message);
     }
