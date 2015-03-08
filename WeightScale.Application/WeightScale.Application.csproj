@@ -45,6 +45,7 @@
     <Compile Include="App_Start\AutomapperConfig.cs" />
     <Compile Include="App_Start\NinjectInjector.cs" />
     <Compile Include="ComManager.cs" />
+    <Compile Include="CommunicationPort\CommunicationPortManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\IMeasurementService.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\WeightScale.Domain\WeightScale.Domain.csproj">
       <Project>{4318F04E-487F-4603-94F8-2BA517891D30}</Project>
       <Name>WeightScale.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeightScale.Utility\WeightScale.Utility.csproj">
+      <Project>{8baeb23c-7352-40aa-8b0c-46bdddeb7aff}</Project>
+      <Name>WeightScale.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
