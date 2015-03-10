@@ -11,6 +11,7 @@
     public class ComManager : IDisposable
     {
         private SerialPort port;
+        private int receiveBufferTreshold;
 
         #region Constructors
         public ComManager()
@@ -40,14 +41,24 @@
 
         public int ReceiveBytesThreshold
         {
-            get { return this.port.ReceivedBytesThreshold; }
+            get { return this.receiveBufferTreshold; }
             set
             {
-                if (value < 1)
+                if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("ReceiveBufferSize");
                 }
-                this.port.ReceivedBytesThreshold = value;
+                if (value < 1)
+                {
+                    this.port.ReceivedBytesThreshold = 1;
+                    this.receiveBufferTreshold = value;
+                }
+                else 
+                {
+                    this.port.ReceivedBytesThreshold = value;
+                    this.receiveBufferTreshold = value;
+                }
+                
             }
         }
 
@@ -72,13 +83,31 @@
 
         public void SendComman(byte[] command, int receiveBufferSize)
         {
-            this.ReceiveBytesThreshold = receiveBufferSize;
+            if (receiveBufferSize >0)
+            {
+                this.ReceiveBytesThreshold = receiveBufferSize;
+            }
+          
             port.Write(command, 0, command.Length);
         }
 
         public void SendComman(byte[] command)
         {
             port.Write(command, 0, command.Length);
+        }
+
+        public byte[] Read() 
+        {
+            var result = new byte[this.ReceiveBytesThreshold];
+            port.Read(result, 0, result.Length);
+            return result;
+        }
+
+        public byte[] ReadAll() 
+        {
+            var result = new byte[this.port.BytesToRead];
+            port.Read(result, 0, result.Length);
+            return result;
         }
 
         /// <summary>

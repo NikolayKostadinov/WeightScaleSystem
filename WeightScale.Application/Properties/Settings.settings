@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="PortName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">COM1</Value>
+      <Value Profile="(Default)">COM7</Value>
     </Setting>
     <Setting Name="BaudRate" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">4800</Value>
