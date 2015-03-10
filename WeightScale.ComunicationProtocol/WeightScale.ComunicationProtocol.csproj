@@ -45,7 +45,6 @@
     <Compile Include="Contracts\IChecksumService.cs" />
     <Compile Include="Contracts\ICommandFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CommunicationPort\CommunicationPortManager.cs" />
     <Compile Include="XorChecksumService.cs" />
   </ItemGroup>
   <ItemGroup>
