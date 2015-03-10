@@ -30,9 +30,9 @@ namespace WeightScaleSystem.ConsoleDemo
             Thread workerThread = new Thread(worker.GetSimbole);
             workerThread.Start();
 
-            //var ser = new WeightScaleMessageNew();
-            var ser = new WeightScaleMessageOld();
-            ser.Number = 5;
+            var ser = new WeightScaleMessageNew();
+            //var ser = new WeightScaleMessageOld();
+            ser.Number = 3;
             ser.Direction = Direction.Out;
             ser.TimeOfFirstMeasure = DateTime.Now.AddDays(-1).AddHours(-1);
             ser.TimeOfSecondMeasure = DateTime.Now;
@@ -41,72 +41,53 @@ namespace WeightScaleSystem.ConsoleDemo
             ser.TransactionNumber = 12345;
             ser.MeasurementNumber = 1;
             ser.ProductCode = 141;
-            //ser.ExciseDocumentNumber = "1400032512";
+            ser.ExciseDocumentNumber = "1400032512";
             ser.Vehicle = "A3335KX";
             ser.GrossWeight = 30;
             ser.TareWeight = 10;
             ser.NetWeight = 20;
-            ser.ProductName = "Нафта";
-            // ser.TotalOfGrossWeight = 10;
-            // ser.TotoalOfNetWeight = 20;
-            while (! (Worker.stopChar=='a'))
+            //ser.ProductName = "Нафта";
+            //ser.TotalOfGrossWeight = 10;
+            //ser.TotoalOfNetWeight = 20;
+
+            //SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
+            
+                //com.DataReceivedHandler = handler;
+                //com.ReceiveBytesThreshold = 4;
+                //com.Open();
+            using (ComManager com = new ComManager())
             {
-                var command = commands.WeightScaleRequest(ser);
-                SendCommand(command, command.Length);
-                command = commands.SendDataToWeightScale(ser);
-                SendCommand(command, command.Length);
+                SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
+                com.DataReceivedHandler = handler;
+
+                com.Open();
+                while (Worker.stopChar=='a')
+                {
+                    var command = commands.WeightScaleRequest(ser);
+                    SendCommand(command, 1,com);
+                    //command = commands.SendDataToWeightScale(ser);
+                    //SendCommand(command, command.Length);
+                }
             }
+           
 
             worker.RequestStop();
             //workerThread.Join();
             Console.WriteLine("Press a key to exit...");
 
-            //Console.WriteLine(Encoding.Default.GetString((commands.SendDataToWeightScale(ser))));
-            //var validationResult = ser.Validate();
-            //foreach (var validationMessage in validationResult)
-            //{
-            //    Console.WriteLine("{0} {1}: {2}", validationMessage.Type.ToString(), validationMessage.Field, validationMessage.Text);
-            //}
-            //var serializer = new ComSerializer();
-            //var btime = DateTime.Now;
-            //var serialized = serializer.Setialize(ser);
-            //var estimatedTime = DateTime.Now - btime;
-            //string result = string.Empty;
-            //result = new string(Encoding.Default.GetChars(serialized));
-            //ComSerializableClassAttribute attr = Attribute.GetCustomAttribute(ser.GetType(), typeof(ComSerializableClassAttribute)) as ComSerializableClassAttribute;
-            //if (attr != null)
-            //{
-            //    Console.WriteLine("The result type: {0}\nblock type: {1}\nblock Length:{2}\nactual length: {3}",
-            //        ser.GetType().Name,
-            //        attr.BlockLength,
-            //        (int)attr.BlockLength,
-            //        result.Length);
-            //}
-            //var des = serializer.Deserialize<WeightScaleMessageOld>(serialized);
-            //serialized = serializer.Setialize(des);
-            //var result1 = new string(Encoding.Default.GetChars(serialized));
-            //Console.WriteLine(result);
-            //Console.WriteLine(result1);
-            //Console.WriteLine("Estimated time: {0}", estimatedTime);
         }
-  
-        private static void SendCommand(byte[] command, int inBufferLength)
+
+        private static void SendCommand(byte[] command, int inBufferLength, ComManager com)
         {
             System.Timers.Timer wDTimer = new System.Timers.Timer();
             wDTimer.Interval = 5 * 1000;
             wDTimer.Elapsed += timer_Elapsed;
-            SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
-            handler += SecondHandler;
-            using (ComManager com = new ComManager())
-            {
-                com.DataReceivedHandler = handler;
 
                 try
                 {
-                    com.Open();
                     com.SendComman(command, inBufferLength);
                     wDTimer.Start();
-                    while (!(received||WDTimerTick))
+                    while (!(received || WDTimerTick))
                     {
                     }
                     received = false;
@@ -115,7 +96,7 @@ namespace WeightScaleSystem.ConsoleDemo
                         WDTimerTick = false;
                         throw new InvalidOperationException(string.Format("No answer from {0}", com.PortName));
                     }
-                    else 
+                    else
                     {
                         WDTimerTick = false;
                         wDTimer.Stop();
@@ -125,7 +106,6 @@ namespace WeightScaleSystem.ConsoleDemo
                 {
                     Console.WriteLine(ex.Message);
                 }
-            }
         }
 
         static void timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -203,10 +183,10 @@ namespace WeightScaleSystem.ConsoleDemo
         static void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Console.WriteLine("Message Received");
-             
+
             var port = (sender as SerialPort);
             var result = new byte[port.ReceivedBytesThreshold];
-            port.Read(result,0,result.Length);
+            port.Read(result, 0, result.Length);
 
             foreach (byte item in result)
             {
@@ -225,28 +205,28 @@ namespace WeightScaleSystem.ConsoleDemo
         }
     }
 
-    class Worker 
+    class Worker
     {
-            // Volatile is used as hint to the compiler that this data 
-    // member will be accessed by multiple threads. 
-    private volatile bool shouldStop;
+        // Volatile is used as hint to the compiler that this data 
+        // member will be accessed by multiple threads. 
+        private volatile bool shouldStop;
 
         public static char stopChar;
-         /// <summary>
+        /// <summary>
         /// Gets the simbole asynk.
         /// </summary>
         public void GetSimbole()
         {
-            while (! shouldStop)
+            while (!shouldStop)
             {
                 stopChar = Console.ReadKey().KeyChar;
             }
         }
 
         public void RequestStop()
-    {
-        shouldStop = true;
-    }
+        {
+            shouldStop = true;
+        }
 
     }
 }

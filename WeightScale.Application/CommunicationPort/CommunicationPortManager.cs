@@ -45,10 +45,10 @@
             }
             set
             {
-                if (value <= DATA_BITS_MIN_VALUE || value >= DATA_BITS_MAX_VALUE)
-                {
-                    throw new ArgumentOutOfRangeException("The data bits value is less than 5 or more than 8!");
-                }
+                //if (value <= DATA_BITS_MIN_VALUE || value >= DATA_BITS_MAX_VALUE)
+                //{
+                //    throw new ArgumentOutOfRangeException("The data bits value is less than 5 or more than 8!");
+                //}
 
                 dataBits = value;
             }

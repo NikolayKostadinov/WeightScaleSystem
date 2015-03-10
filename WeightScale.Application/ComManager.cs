@@ -74,6 +74,7 @@
         {
             this.ReceiveBytesThreshold = receiveBufferSize;
             port.Write(command, 0, command.Length);
+            //port.WriteLine(string.Empty);
         }
 
         public void SendComman(byte[] command)
