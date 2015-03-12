@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Timers;
 using WeightScale.Application;
 using WeightScale.Application.App_Start;
+using WeightScale.Application.Contracts;
+using WeightScale.Application.Services;
+using WeightScale.ComunicationProtocol;
 using WeightScale.ComunicationProtocol.Contracts;
 using WeightScale.Domain.Abstract;
 using WeightScale.Domain.Common;
@@ -21,98 +24,53 @@ namespace WeightScaleSystem.ConsoleDemo
     class Program
     {
         private static bool received = false;
+        private static bool completed = false;
         private static bool WDTimerTick = false;
+        private static IComSerializer serializer = new ComSerializer();
         static void Main(string[] args)
         {
             IKernel injector = NinjectInjector.GetInjector();
             ICommandFactory commands = injector.Get<ICommandFactory>();
+            //IComSerializer serializer = injector.Get<IComSerializer>();
             Worker worker = new Worker();
-            Thread workerThread = new Thread(worker.GetSimbole);
-            workerThread.Start();
+            IWeightScaleMessage message = GenerateWeightBlock();
+            var mService = injector.Get<MeasurementService>();
+            IWeightScaleMessageDto messageDto = new WeightScaleMessageDto(){Message = message, ValidationMessages = new ValidationMessageCollection()};
+           
+            mService.Measure(messageDto);
 
+            var props = GetProps(messageDto.Message);
+            props.Add(string.Empty);
+            props.AddRange(GetProps(messageDto.ValidationMessages));
+            foreach (var err in messageDto.ValidationMessages.Errors)
+            {
+                props.Add(err.Text);
+            }
+
+            foreach (var prop in props)
+            {
+                Console.WriteLine(prop);
+            }
+
+        }
+
+        private static IWeightScaleMessage GenerateWeightBlock()
+        {
             var ser = new WeightScaleMessageNew();
             //var ser = new WeightScaleMessageOld();
             ser.Number = 3;
             ser.Direction = Direction.Out;
-            ser.TimeOfFirstMeasure = DateTime.Now.AddDays(-1).AddHours(-1);
-            ser.TimeOfSecondMeasure = DateTime.Now;
-            ser.MeasurementStatus = MeasurementStatus.ProtocolPrinterFailure;
             ser.SerialNumber = 12345678;
             ser.TransactionNumber = 12345;
-            ser.MeasurementNumber = 1;
-            ser.ProductCode = 141;
+            ser.MeasurementNumber = 2;
+            ser.ProductCode = 201;
             ser.ExciseDocumentNumber = "1400032512";
             ser.Vehicle = "A3335KX";
-            ser.GrossWeight = 30;
-            ser.TareWeight = 10;
-            ser.NetWeight = 20;
-            //ser.ProductName = "Нафта";
-            //ser.TotalOfGrossWeight = 10;
-            //ser.TotoalOfNetWeight = 20;
-
-            //SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
-            
-                //com.DataReceivedHandler = handler;
-                //com.ReceiveBytesThreshold = 4;
-                //com.Open();
-            using (ComManager com = new ComManager())
-            {
-                SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
-                com.DataReceivedHandler = handler;
-
-                com.Open();
-                while (Worker.stopChar=='a')
-                {
-                    var command = commands.WeightScaleRequest(ser);
-                    SendCommand(command, 1,com);
-                    //command = commands.SendDataToWeightScale(ser);
-                    //SendCommand(command, command.Length);
-                }
-            }
-           
-
-            worker.RequestStop();
-            //workerThread.Join();
-            Console.WriteLine("Press a key to exit...");
-
+            return ser;
         }
 
-        private static void SendCommand(byte[] command, int inBufferLength, ComManager com)
-        {
-            System.Timers.Timer wDTimer = new System.Timers.Timer();
-            wDTimer.Interval = 5 * 1000;
-            wDTimer.Elapsed += timer_Elapsed;
+       
 
-                try
-                {
-                    com.SendComman(command, inBufferLength);
-                    wDTimer.Start();
-                    while (!(received || WDTimerTick))
-                    {
-                    }
-                    received = false;
-                    if (WDTimerTick)
-                    {
-                        WDTimerTick = false;
-                        throw new InvalidOperationException(string.Format("No answer from {0}", com.PortName));
-                    }
-                    else
-                    {
-                        WDTimerTick = false;
-                        wDTimer.Stop();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-        }
-
-        static void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            (sender as System.Timers.Timer).Stop();
-            WDTimerTick = true;
-        }
 
         /// <summary>
         /// Extracts the properties to file.
@@ -175,29 +133,12 @@ namespace WeightScaleSystem.ConsoleDemo
 
             foreach (var prop in props)
             {
-                list.Add(prop.Name + " As " + (Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType).Name);
+                list.Add(prop.Name + " As " + (Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType).Name + " = " + prop.GetValue(cls));
             }
             return list;
         }
 
-        static void DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            Console.WriteLine("Message Received");
 
-            var port = (sender as SerialPort);
-            var result = new byte[port.ReceivedBytesThreshold];
-            port.Read(result, 0, result.Length);
-
-            foreach (byte item in result)
-            {
-                Console.Write(item);
-                Console.Write(" ");
-            }
-
-            Console.WriteLine();
-
-            received = true;
-        }
 
         static void SecondHandler(object sender, SerialDataReceivedEventArgs e)
         {

@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Ninject;
+    using WeightScale.Application.Contracts;
     using WeightScale.ComunicationProtocol;
     using WeightScale.ComunicationProtocol.Contracts;
     using WeightScale.Domain.Abstract;
@@ -28,6 +29,7 @@
             this.kernel.Bind<IComSerializer>().To<ComSerializer>();
             this.kernel.Bind<IChecksumService>().To<XorChecksumService>();
             this.kernel.Bind<ICommandFactory>().To<CommandFactory>();
+            this.kernel.Bind<IComManager>().To<ComManager>();
         }
 
         public IKernel Kernel

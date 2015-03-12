@@ -14,7 +14,7 @@ namespace WeightScale.ComunicationProtocol
     /// <summary>
     /// Provides methods which constructs binary messages sent to the WeightScale
     /// </summary>
-    public class CommandFactory : WeightScale.ComunicationProtocol.Contracts.ICommandFactory
+    public class CommandFactory : ICommandFactory
     {
         private readonly IChecksumService checkSumService;
         private readonly IComSerializer serializer;
@@ -76,6 +76,40 @@ namespace WeightScale.ComunicationProtocol
                     null,
                     new byte[] { (byte)ComunicationConstants.Etx });
             return checkSum;
+        }
+
+        public bool CheckMeasurementDataFromWeightScale(int blockLen, int weightScaleNumber, byte[] serializedMessage)
+        {
+            // The Payload of the protocol
+            int payload = 5;
+            // Offset of block from the beginning of serializedMessage
+            int startOffset = 3;
+            var len = serializedMessage.Length;
+
+            byte[] block = GetBlock(serializedMessage, blockLen, startOffset);
+            byte etx = serializedMessage[startOffset + blockLen];
+            byte expectedCheckSum = this.checkSumService.CalculateCheckSum(block, null, new byte[] { (byte)ComunicationConstants.Etx });
+            byte actualCheckSum = serializedMessage[serializedMessage.Length - 1];
+
+            return (len == (blockLen + payload)) &&
+                    (serializedMessage[0] == (byte)ComunicationConstants.Soh) &&
+                    (serializedMessage[1] == weightScaleNumber) &&
+                    (serializedMessage[2] == (byte)ComunicationConstants.Stx) &&
+                    (etx == (byte)ComunicationConstants.Etx) &&
+                    (actualCheckSum == expectedCheckSum);
+        }
+
+        /// <summary>
+        /// Gets the block.
+        /// </summary>
+        /// <param name="serializedMessage">The serialized message.</param>
+        /// <param name="blockLen">The block len.</param>
+        /// <returns></returns>
+        private byte[] GetBlock(byte[] serializedMessage, int blockLen, int offset)
+        {
+            var result = new byte[blockLen];
+            Array.Copy(serializedMessage, offset, result, 0, blockLen);
+            return result;
         }
     }
 }

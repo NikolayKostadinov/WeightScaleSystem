@@ -5,6 +5,6 @@
 
     public interface IMeasurementService
     {
-        IWeightScaleMessage Measure(IWeightScaleMessage message);
+        void Measure(IWeightScaleMessageDto messageDto);
     }
 }

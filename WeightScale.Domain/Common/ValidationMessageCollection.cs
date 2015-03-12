@@ -6,14 +6,16 @@
 //--------------------------------------------------------------------------------
 namespace WeightScale.Domain.Common
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
 
     /// <summary>
     /// Collection container for validation messages.
     /// </summary>
-    public class ValidationMessageCollection : List<ValidationMessage>
+    public class ValidationMessageCollection : List<ValidationMessage>, IValidationMessageCollection
     {
         /// <summary>
         /// Gets a list of messages with the status 'Info'.
@@ -64,6 +66,18 @@ namespace WeightScale.Domain.Common
         public void AddError(string text)
         {
             this.Add(new ValidationMessage(MessageType.Error, text));
+        }
+
+        /// <summary>
+        /// Adds the range.
+        /// </summary>
+        /// <param name="validationResult"></param>
+        public void AddRange(IValidationMessageCollection validationResult)
+        {
+            foreach (var item in validationResult as List<ValidationMessage>)
+            {
+                this.Add(item);
+            }
         }
 
         /// <summary>

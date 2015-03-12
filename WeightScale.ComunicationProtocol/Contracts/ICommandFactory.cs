@@ -1,4 +1,5 @@
 ﻿using System;
+using WeightScale.Domain.Abstract;
 
 namespace WeightScale.ComunicationProtocol.Contracts
 {
@@ -7,7 +8,8 @@ namespace WeightScale.ComunicationProtocol.Contracts
         byte[] Acknowledge();
         byte[] EndOfTransmit();
         byte[] NegativeAcknowledge();
-        byte[] SendDataToWeightScale(WeightScale.Domain.Abstract.IBlock inputObject);
-        byte[] WeightScaleRequest(WeightScale.Domain.Abstract.IBlock inputObject);
+        byte[] SendDataToWeightScale(IBlock inputObject);
+        byte[] WeightScaleRequest(IBlock inputObject);
+        bool CheckMeasurementDataFromWeightScale(int blockLen,int weightScaleNumber , byte[] serializedMessage);
     }
 }

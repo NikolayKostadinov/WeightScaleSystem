@@ -42,7 +42,7 @@ namespace WeightScale.Domain.Concrete
         }
 
         [ComSerializableProperty(length: 9, offset: 93, originalType: typeof(int?), serializeFormat: "")]
-        public int? TotoalOfNetWeight
+        public int? TotalOfNetWeight
         {
             get { return this.totalOfNetWeight; }
             set { this.totalOfNetWeight = value; }
