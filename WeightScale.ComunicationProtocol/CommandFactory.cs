@@ -80,6 +80,7 @@ namespace WeightScale.ComunicationProtocol
 
         public bool CheckMeasurementDataFromWeightScale(int blockLen, int weightScaleNumber, byte[] serializedMessage)
         {
+
             // The Payload of the protocol
             int payload = 5;
             // Offset of block from the beginning of serializedMessage
@@ -91,12 +92,15 @@ namespace WeightScale.ComunicationProtocol
             byte expectedCheckSum = this.checkSumService.CalculateCheckSum(block, null, new byte[] { (byte)ComunicationConstants.Etx });
             byte actualCheckSum = serializedMessage[serializedMessage.Length - 1];
 
-            return (len == (blockLen + payload)) &&
+            var result = (len == (blockLen + payload)) &&
                     (serializedMessage[0] == (byte)ComunicationConstants.Soh) &&
                     (serializedMessage[1] == weightScaleNumber) &&
                     (serializedMessage[2] == (byte)ComunicationConstants.Stx) &&
                     (etx == (byte)ComunicationConstants.Etx) &&
                     (actualCheckSum == expectedCheckSum);
+
+            return result;
+            
         }
 
         /// <summary>

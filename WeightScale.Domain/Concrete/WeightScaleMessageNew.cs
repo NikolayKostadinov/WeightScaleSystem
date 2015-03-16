@@ -8,6 +8,7 @@ namespace WeightScale.Domain.Concrete
 {
     using System;
     using System.Linq;
+    using System.Text;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
 
@@ -32,17 +33,6 @@ namespace WeightScale.Domain.Concrete
         private int? totalNetOfOutput;
         private int? totalNetByProductInput;
         private int? totalNetByProductOutput;
-        private IComSerializer serializer;
-
-        /// <summary>
-        /// Froms the block.
-        /// </summary>
-        /// <param name="block">The block.</param>
-        /// <returns></returns>
-        public WeightScaleMessageNew FromBlock(byte[] block)
-        {
-            return this.serializer.Deserialize<WeightScaleMessageNew>(block);
-        }
 
         /// <summary>
         /// Gets or Sets number of excise document
@@ -146,5 +136,27 @@ namespace WeightScale.Domain.Concrete
             return serializer.Setialize(this);
         }
 
+        public override string ToString()
+        {
+            return GetProps();
+        }
+
+        protected string GetProps()
+        {
+            var props = this.GetType()
+                           .GetProperties()
+                           .Where(x => x.CustomAttributes.Where(y => y.AttributeType == typeof(ComSerializablePropertyAttribute)).Count() != 0)
+                           .OrderBy(x => ((x.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault()) as ComSerializablePropertyAttribute).Offset);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var prop in props)
+            {
+                var attr =prop.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault() as ComSerializablePropertyAttribute;
+                var length = attr.Length;
+                sb.Append((prop.GetValue(this)??string.Empty).ToString().PadLeft(length,' '));
+                sb.Append(" | ");
+            }
+            return sb.ToString();
+        }
     }
 }

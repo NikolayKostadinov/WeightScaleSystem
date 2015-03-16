@@ -8,6 +8,7 @@ namespace WeightScale.Domain.Concrete
 {
     using System;
     using System.Linq;
+    using System.Text;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
 
@@ -25,7 +26,7 @@ namespace WeightScale.Domain.Concrete
         private string productName;
         private int? totalOfGrossWeight;
         private int? totalOfNetWeight;
-        private IComSerializer serializer;
+        private readonly IComSerializer serializer;        
 
         [ComSerializableProperty(length: 12, offset: 54, originalType: typeof(string), serializeFormat: "")]
         public string ProductName
@@ -87,6 +88,31 @@ namespace WeightScale.Domain.Concrete
         public override byte[] ToBlock(IComSerializer serializer)
         {
             return serializer.Setialize(this);
+        }
+
+        /// <summary>
+        /// Toes the string.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return GetProps();
+        }
+
+        protected string GetProps()
+        {
+            var props = this.GetType()
+                           .GetProperties()
+                           .Where(x => x.CustomAttributes.Where(y => y.AttributeType == typeof(ComSerializablePropertyAttribute)).Count() != 0)
+                           .OrderBy(x => ((x.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault()) as ComSerializablePropertyAttribute).Offset);
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var prop in props)
+            {
+                sb.Append(prop.GetValue(this));
+                sb.Append(" | ");
+            }
+            return sb.ToString();
         }
     }
 }

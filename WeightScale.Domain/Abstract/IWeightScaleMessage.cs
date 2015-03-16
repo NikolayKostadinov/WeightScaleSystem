@@ -8,5 +8,6 @@ namespace WeightScale.Domain.Abstract
 {
     public interface IWeightScaleMessage : IValidateable, IComSerializable, IBlock
     {
+        string ToString();
     }
 }

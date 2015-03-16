@@ -7,7 +7,9 @@
 namespace WeightScale.Domain.Abstract
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using WeightScale.Domain.Common;
 
     /// <summary>
@@ -348,5 +350,6 @@ So {0} is not equal to {3}";
         public abstract byte[] ToBlock(IComSerializer serializer) ;
         
         //public abstract WeightScaleMessageBase FromBlock(byte[] block);
+
     }
 }

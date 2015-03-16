@@ -1,11 +1,14 @@
-﻿namespace WeightScale.Application
+﻿//---------------------------------------------------------------------------------
+// <copyright file="ComManager.cs" company="Business Management Systems">
+//     Copyright (c) Business Management Systems. All rights reserved.
+// </copyright>
+// <author>Nikolay Kostadinov</author>
+//--------------------------------------------------------------------------------
+namespace WeightScale.Application
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using System.IO.Ports;
     using WeightScale.Application.Properties;
 
@@ -14,7 +17,7 @@
         private const string PORT_NAME_PATTERN = @"\bCOM\d+\b";
         private const int DATA_BITS_MIN_VALUE = 5;
         private const int DATA_BITS_MAX_VALUE = 8;
-        private SerialPort port;
+        private readonly SerialPort port;
         private int receiveBufferTreshold;
 
         #region Constructors

@@ -1,4 +1,10 @@
-﻿namespace WeightScale.Application.App_Start
+﻿//---------------------------------------------------------------------------------
+// <copyright file="NinjectInjector.cs" company="Business Management Systems">
+//     Copyright (c) Business Management Systems. All rights reserved.
+// </copyright>
+// <author>Nikolay Kostadinov</author>
+//--------------------------------------------------------------------------------
+namespace WeightScale.Application.AppStart
 {
     using System;
     using System.Linq;
@@ -8,12 +14,13 @@
     using WeightScale.ComunicationProtocol.Contracts;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
+    using log4net;
 
     public class NinjectInjector
     {
         private readonly IKernel kernel;
         private static NinjectInjector injector;
-        private static object lObj = new object();
+        private static readonly object lObj = new object();
 
         private NinjectInjector()
         {
@@ -30,6 +37,8 @@
             this.kernel.Bind<IChecksumService>().To<XorChecksumService>();
             this.kernel.Bind<ICommandFactory>().To<CommandFactory>();
             this.kernel.Bind<IComManager>().To<ComManager>();
+            this.kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>();
+            kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType));
         }
 
         public IKernel Kernel

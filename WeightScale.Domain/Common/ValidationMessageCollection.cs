@@ -72,12 +72,9 @@ namespace WeightScale.Domain.Common
         /// Adds the range.
         /// </summary>
         /// <param name="validationResult"></param>
-        public void AddRange(IValidationMessageCollection validationResult)
+        public void AddMany(IValidationMessageCollection validationResult)
         {
-            foreach (var item in validationResult as List<ValidationMessage>)
-            {
-                this.Add(item);
-            }
+                this.AddRange(validationResult);
         }
 
         /// <summary>

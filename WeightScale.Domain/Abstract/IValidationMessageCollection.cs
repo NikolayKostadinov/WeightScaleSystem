@@ -5,13 +5,18 @@ using WeightScale.Domain.Common;
 
 namespace WeightScale.Domain.Abstract
 {
-    public interface IValidationMessageCollection
+    public interface IValidationMessageCollection:IEnumerable<ValidationMessage>
     {
         /// <summary>
-        /// Adds the range.
+        /// Clears this instance.
+        /// </summary>
+        void Clear();
+
+        /// <summary>
+        /// Adds collection of validation messages.
         /// </summary>
         /// <param name="validate">The validate.</param>
-        void AddRange(IValidationMessageCollection validationResult);
+        void AddMany(IValidationMessageCollection validationResult);
 
         void AddError(string field, string text);
 

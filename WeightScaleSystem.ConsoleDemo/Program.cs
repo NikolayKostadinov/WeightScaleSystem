@@ -1,57 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
-using WeightScale.Application;
-using WeightScale.Application.App_Start;
-using WeightScale.Application.Contracts;
-using WeightScale.Application.Services;
-using WeightScale.ComunicationProtocol;
-using WeightScale.ComunicationProtocol.Contracts;
-using WeightScale.Domain.Abstract;
-using WeightScale.Domain.Common;
-using WeightScale.Domain.Concrete;
-using Ninject;
-
-namespace WeightScaleSystem.ConsoleDemo
+﻿namespace WeightScaleSystem.ConsoleDemo
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.IO.Ports;
+    using System.Linq;
+    using System.Text;
+    using WeightScale.Application;
+    using WeightScale.Application.AppStart;
+    using WeightScale.Application.Contracts;
+    using WeightScale.Application.Services;
+    using WeightScale.Domain.Abstract;
+    using WeightScale.Domain.Common;
+    using WeightScale.Domain.Concrete;
+    using Ninject;
+    using log4net;
+    using log4net.Config;
+
+
     class Program
     {
-        private static bool received = false;
-        private static bool completed = false;
-        private static bool WDTimerTick = false;
-        private static IComSerializer serializer = new ComSerializer();
         static void Main(string[] args)
         {
+            // Confugure log4net
+            FileInfo configFile = new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+            XmlConfigurator.Configure(configFile);
+            ILog logger = LogManager.GetLogger("WeightScaleSystem.ConsoleDemo");
+            // end of configuretion
+
             IKernel injector = NinjectInjector.GetInjector();
-            ICommandFactory commands = injector.Get<ICommandFactory>();
-            //IComSerializer serializer = injector.Get<IComSerializer>();
-            Worker worker = new Worker();
             IWeightScaleMessage message = GenerateWeightBlock();
-            var mService = injector.Get<MeasurementService>();
-            IWeightScaleMessageDto messageDto = new WeightScaleMessageDto(){Message = message, ValidationMessages = new ValidationMessageCollection()};
-           
-            mService.Measure(messageDto);
+            
+            IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
+            var begin = DateTime.Now;
 
-            var props = GetProps(messageDto.Message);
-            props.Add(string.Empty);
-            props.AddRange(GetProps(messageDto.ValidationMessages));
-            foreach (var err in messageDto.ValidationMessages.Errors)
+            logger.Debug("Application begin.");
+            try
             {
-                props.Add(err.Text);
-            }
+                using (var mService = injector.Get<MeasurementService>())
+                {
+                    if (mService.IsWeightScaleOk(messageDto))
+                    {
+                        Console.WriteLine("The status of the scale {0} is Ok", messageDto.Message.Number);
+                    }
+                    else
+                    {
+                        var valMessages = GetProps(messageDto.ValidationMessages);
+                        foreach (var err in messageDto.ValidationMessages.Errors)
+                        {
+                            valMessages.Add(err.Text);
+                        }
 
-            foreach (var prop in props)
+                        foreach (var prop in valMessages)
+                        {
+                            Console.WriteLine(prop);
+                        }
+                        messageDto.ValidationMessages.Clear();
+                    }
+
+                    mService.Measure(messageDto);
+
+                    logger.Debug(string.Format("Estimated time: {0}", DateTime.Now - begin));
+
+                    var props = GetProps(messageDto.Message);
+                    props.Add(string.Empty);
+                    props.AddRange(GetProps(messageDto.ValidationMessages));
+                    foreach (var err in messageDto.ValidationMessages.Errors)
+                    {
+                        props.Add(err.Text);
+                    }
+
+                    foreach (var prop in props)
+                    {
+                        Console.WriteLine(prop);
+                    }
+
+                    logger.Debug("Application finish.");
+                }
+            }
+            catch (Exception ex) 
             {
-                Console.WriteLine(prop);
+                Console.WriteLine(ex.GetType().ToString());
+                Console.WriteLine(ex.Message);
             }
-
         }
 
         private static IWeightScaleMessage GenerateWeightBlock()
@@ -62,15 +93,12 @@ namespace WeightScaleSystem.ConsoleDemo
             ser.Direction = Direction.Out;
             ser.SerialNumber = 12345678;
             ser.TransactionNumber = 12345;
-            ser.MeasurementNumber = 2;
+            ser.MeasurementNumber = 1;
             ser.ProductCode = 201;
             ser.ExciseDocumentNumber = "1400032512";
             ser.Vehicle = "A3335KX";
             return ser;
         }
-
-       
-
 
         /// <summary>
         /// Extracts the properties to file.
@@ -137,37 +165,6 @@ namespace WeightScaleSystem.ConsoleDemo
             }
             return list;
         }
-
-
-
-        static void SecondHandler(object sender, SerialDataReceivedEventArgs e)
-        {
-            Console.WriteLine("I am SecondHandler");
-        }
     }
 
-    class Worker
-    {
-        // Volatile is used as hint to the compiler that this data 
-        // member will be accessed by multiple threads. 
-        private volatile bool shouldStop;
-
-        public static char stopChar;
-        /// <summary>
-        /// Gets the simbole asynk.
-        /// </summary>
-        public void GetSimbole()
-        {
-            while (!shouldStop)
-            {
-                stopChar = Console.ReadKey().KeyChar;
-            }
-        }
-
-        public void RequestStop()
-        {
-            shouldStop = true;
-        }
-
-    }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WeightScale.Application.App_Start
+﻿namespace WeightScale.Application.AppStart
 {
+    using System;
+    using System.Linq;
+
     public class AutomapperConfig
     {
     }
