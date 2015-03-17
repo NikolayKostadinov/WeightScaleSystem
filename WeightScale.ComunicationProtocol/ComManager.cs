@@ -4,15 +4,18 @@
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
-namespace WeightScale.Application
+namespace WeightScale.ComunicationProtocol
 {
     using System;
+    using System.IO.Ports;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using System.IO.Ports;
-    using WeightScale.Application.Properties;
+    using WeightScale.ComunicationProtocol.Contracts;
 
-    public class ComManager : IDisposable, WeightScale.Application.Contracts.IComManager
+    /// <summary>
+    /// Custom serial port manager class
+    /// </summary>
+    public class ComManager : IDisposable, WeightScale.ComunicationProtocol.Contracts.IComManager
     {
         private const string PORT_NAME_PATTERN = @"\bCOM\d+\b";
         private const int DATA_BITS_MIN_VALUE = 5;
@@ -22,23 +25,35 @@ namespace WeightScale.Application
 
         #region Constructors
 
-        public ComManager()
-            : this(
-                Settings.Default.PortName,
-                Settings.Default.BaudRate,
-                Settings.Default.Parity,
-                Settings.Default.DateBits,
-                Settings.Default.StopBits)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComManager" /> class with default settings.
+        /// </summary>
+        public ComManager(IComSettingsProvider settings) : this(
+        settings.PortName,
+        settings.BaudRate,
+        settings.Parity,
+        settings.DataBits,
+        settings.StopBits)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComManager" /> class.
+        /// </summary>
+        /// <param name="portName">Name of the port.</param>
+        /// <param name="baudRate">The baud rate.</param>
+        /// <param name="parity">The parity.</param>
+        /// <param name="dataBits">The data bits.</param>
+        /// <param name="stopBits">The stop bits.</param>
         public ComManager(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)
         {
             if (DATA_BITS_MIN_VALUE > dataBits || dataBits > DATA_BITS_MAX_VALUE)
             {
-                string message = string.Format("The value of dataBits must be between {0} and {1}.\nActual value is {2}.",
-                    DATA_BITS_MIN_VALUE,
-                    DATA_BITS_MAX_VALUE, dataBits);
+                string message = string.Format(
+                    "The value of dataBits must be between {0} and {1}.\nActual value is {2}.",
+                    DATA_BITS_MIN_VALUE, 
+                    DATA_BITS_MAX_VALUE, 
+                    dataBits);
                 throw new ArgumentOutOfRangeException("dataBits", message);
             }
 
@@ -69,12 +84,14 @@ namespace WeightScale.Application
             {
                 return this.receiveBufferTreshold;
             }
+
             set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("ReceiveBufferSize");
                 }
+
                 if (value < 1)
                 {
                     this.port.ReceivedBytesThreshold = 1;
@@ -102,16 +119,16 @@ namespace WeightScale.Application
 
         public void Open()
         {
-            if (port.IsOpen)
+            if (this.port.IsOpen)
             {
-                throw new InvalidOperationException(string.Format("The port {0} is already opened!", port.PortName));
+                throw new InvalidOperationException(string.Format("The port {0} is already opened!", this.port.PortName));
             }
 
-            port.Open();
+            this.port.Open();
 
-            if (!port.IsOpen)
+            if (!this.port.IsOpen)
             {
-                throw new InvalidOperationException(string.Format("Cannot Open {0} port.", port.PortName));
+                throw new InvalidOperationException(string.Format("Cannot Open {0} port.", this.port.PortName));
             }
         }
 
@@ -122,25 +139,25 @@ namespace WeightScale.Application
                 this.ReceiveBytesThreshold = receiveBufferSize;
             }
 
-            port.Write(command, 0, command.Length);
+            this.port.Write(command, 0, command.Length);
         }
 
         public void SendComman(byte[] command)
         {
-            port.Write(command, 0, command.Length);
+            this.port.Write(command, 0, command.Length);
         }
 
         public byte[] Read()
         {
             var result = new byte[this.ReceiveBytesThreshold];
-            port.Read(result, 0, result.Length);
+            this.port.Read(result, 0, result.Length);
             return result;
         }
 
         public byte[] ReadAll()
         {
             var result = new byte[this.port.BytesToRead];
-            port.Read(result, 0, result.Length);
+            this.port.Read(result, 0, result.Length);
             return result;
         }
 
@@ -153,7 +170,6 @@ namespace WeightScale.Application
             this.port.Close();
             this.port.Dispose();
         }
-
         #endregion
     }
 }

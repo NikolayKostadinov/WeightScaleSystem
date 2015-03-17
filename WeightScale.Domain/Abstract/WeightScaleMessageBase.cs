@@ -67,18 +67,13 @@ namespace WeightScale.Domain.Abstract
         private string vehicle;
         private int? documentNumber;
 
-        ///// <summary>
-        ///// Initializes a new instance of the <see cref="WeightScaleMessageBase" /> class.
-        ///// </summary>
-        //public WeightScaleMessageBase(IComSerializer serializerParam)
-        //{
-        //    this.serializer = serializerParam;
-        //}
-
         /// <summary>
+        /// Gets or sets Id of target Weight scale
+        /// </summary>
+        /// <value>
         /// Two bytes numeric literal
         /// 01 or 11 or 23 or....
-        /// </summary>
+        /// </value>
         [ComSerializableProperty(length: 2, offset: 0, originalType: typeof(byte), serializeFormat: "d2")]
         public byte Number
         {
@@ -87,16 +82,21 @@ namespace WeightScale.Domain.Abstract
         }
 
         /// <summary>
-        /// single character 1 or 2
+        /// Gets or sets Direction
         /// </summary>
+        /// <value>The direction. Single character 1 or 2.</value>
         [ComSerializableProperty(length: 1, offset: 2, originalType: typeof(int), serializeFormat: "d")]
-        
+
         public Direction Direction
         {
             get { return this.direction; }
             set { this.direction = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the time of first measure.
+        /// </summary>
+        /// <value>The time of first measure.</value>
         [ComSerializableProperty(length: 12, offset: 3, originalType: typeof(DateTime), serializeFormat: "yyMMddHHmmss")]
         public DateTime? TimeOfFirstMeasure
         {
@@ -104,6 +104,10 @@ namespace WeightScale.Domain.Abstract
             set { this.timeOfFirstMeasure = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the time of second measure.
+        /// </summary>
+        /// <value>The time of second measure.</value>
         [ComSerializableProperty(length: 12, offset: 15, originalType: typeof(DateTime), serializeFormat: "yyMMddHHmmss")]
         public DateTime? TimeOfSecondMeasure
         {
@@ -111,9 +115,13 @@ namespace WeightScale.Domain.Abstract
             set { this.timeOfSecondMeasure = value; }
         }
 
+
         /// <summary>
-        /// Enumeration of measurement statuses 1 byte 
+        /// Gets or sets the measurement status.
         /// </summary>
+        /// <value>
+        /// The measurement status. Enumeration of measurement statuses 1 byte
+        /// </value>
         [ComSerializableProperty(length: 1, offset: 27, originalType: typeof(int), serializeFormat: "d")]
         public MeasurementStatus MeasurementStatus
         {
@@ -122,9 +130,13 @@ namespace WeightScale.Domain.Abstract
         }
 
         /// <summary>
+        /// Gets or sets the serial number.
+        /// </summary>
+        /// <value>
+        /// The serial number.
         /// Eight bytes number
         /// 1 or 99999999
-        /// </summary>
+        /// </value>
         [ComSerializableProperty(length: 8, offset: 28, originalType: typeof(int), serializeFormat: "")]
         public int SerialNumber
         {
@@ -133,9 +145,13 @@ namespace WeightScale.Domain.Abstract
         }
 
         /// <summary>
+        /// Gets or sets the transaction number.
+        /// </summary>
+        /// <value>
+        /// The transaction number.
         /// Eight bytes number
         /// 1 or 99999
-        /// </summary>
+        /// </value>
         [ComSerializableProperty(length: 5, offset: 36, originalType: typeof(int), serializeFormat: "")]
         public int TransactionNumber
         {
@@ -143,6 +159,10 @@ namespace WeightScale.Domain.Abstract
             set { this.transactionNumber = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the measurement number.
+        /// </summary>
+        /// <value>The measurement number.</value>
         [ComSerializableProperty(length: 1, offset: 41, originalType: typeof(byte), serializeFormat: "")]
         public byte MeasurementNumber
         {
@@ -150,6 +170,10 @@ namespace WeightScale.Domain.Abstract
             set { this.measurementNumber = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the product code.
+        /// </summary>
+        /// <value>The product code.</value>
         [ComSerializableProperty(length: 12, offset: 42, originalType: typeof(long), serializeFormat: "")]
         public long ProductCode
         {
@@ -157,6 +181,10 @@ namespace WeightScale.Domain.Abstract
             set { this.productCode = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the tare weight.
+        /// </summary>
+        /// <value>The tare weight.</value>
         [ComSerializableProperty(length: 6, offset: 66, originalType: typeof(int?), serializeFormat: "")]
         public int? TareWeight
         {
@@ -164,6 +192,10 @@ namespace WeightScale.Domain.Abstract
             set { this.tareWeight = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the gross weight.
+        /// </summary>
+        /// <value>The gross weight.</value>
         [ComSerializableProperty(length: 6, offset: 72, originalType: typeof(int?), serializeFormat: "")]
         public int? GrossWeight
         {
@@ -171,6 +203,10 @@ namespace WeightScale.Domain.Abstract
             set { this.grossWeight = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the net weight.
+        /// </summary>
+        /// <value>The net weight.</value>
         [ComSerializableProperty(length: 6, offset: 78, originalType: typeof(int?), serializeFormat: "")]
         public int? NetWeight
         {
@@ -178,6 +214,10 @@ namespace WeightScale.Domain.Abstract
             set { this.netWeight = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the vehicle.
+        /// </summary>
+        /// <value>The vehicle registration number.</value>
         [ComSerializableProperty(length: 12, offset: 102, originalType: typeof(string), serializeFormat: "")]
         public string Vehicle
         {
@@ -185,6 +225,10 @@ namespace WeightScale.Domain.Abstract
             set { this.vehicle = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the document number.
+        /// </summary>
+        /// <value>The document number.</value>
         [ComSerializableProperty(length: 12, offset: 114, originalType: typeof(int?), serializeFormat: "")]
         public int? DocumentNumber
         {
@@ -347,9 +391,6 @@ So {0} is not equal to {3}";
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
         /// <returns>byte[] - Array of bytes</returns>
-        public abstract byte[] ToBlock(IComSerializer serializer) ;
-        
-        //public abstract WeightScaleMessageBase FromBlock(byte[] block);
-
+        public abstract byte[] ToBlock(IComSerializer serializer);
     }
 }

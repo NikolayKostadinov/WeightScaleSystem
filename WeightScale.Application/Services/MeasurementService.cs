@@ -13,47 +13,48 @@ namespace WeightScale.Application.Services
     using System.Reflection;
     using System.Text;
     using System.Timers;
+    using log4net;
     using Ninject;
     using WeightScale.Application.Contracts;
     using WeightScale.ComunicationProtocol;
     using WeightScale.ComunicationProtocol.Contracts;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
-    using WeightScale.Domain.Concrete;
-    using log4net;
 
+    /// <summary>
+    /// Presents two services. Measure witch makes measurement and IsWeightScaleOk witch checks weight scale status.
+    /// </summary>
     public class MeasurementService : IMeasurementService, IDisposable
     {
         private const int INTERVAL = 5 * 1000;
-        private volatile bool received = false;
-        private bool wDTimerTick = false;
         private readonly IComSerializer serializer;
         private readonly ICommandFactory commands;
         private readonly IComManager com;
         private readonly IKernel kernel;
-        private readonly Timer wDTimer;
+        private readonly Timer watchDogTimer;
         private readonly ILog loger;
+        private volatile bool received = false;
+        private volatile bool watchDogTimerTick = false;
         private int iterations;
-
 
         public MeasurementService(ICommandFactory commandParam, IComSerializer serializerParam, IComManager comManagerParam, IKernel kernel, ILog loger, int iterationsParam = 5)
         {
             this.commands = commandParam;
             this.serializer = serializerParam;
-            wDTimer = new Timer(INTERVAL);
-            wDTimer.Elapsed += WDTimer_Elapsed;
+            this.watchDogTimer = new Timer(INTERVAL);
+            this.watchDogTimer.Elapsed += this.WDTimer_Elapsed;
             this.Iterations = iterationsParam;
             this.com = comManagerParam;
             this.kernel = kernel;
             this.loger = loger;
 
-            SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(DataReceived);
-            com.DataReceivedHandler = handler;
-            com.Open();
+            SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(this.DataReceived);
+            this.com.DataReceivedHandler = handler;
+            this.com.Open();
         }
 
         /// <summary>
-        /// Gets or sets the iterations.
+        /// Sets the iterations.
         /// </summary>
         /// <value>The iterations.</value>
         private int Iterations
@@ -72,29 +73,31 @@ namespace WeightScale.Application.Services
 
         public bool IsWeightScaleOk(IWeightScaleMessageDto messageDto) 
         {
-            var command = commands.WeightScaleRequest(messageDto.Message);
-            var trailingCommand = commands.EndOfTransmit();
-            var validationMessages = kernel.Get<IValidationMessageCollection>();
+            var command = this.commands.WeightScaleRequest(messageDto.Message);
+            var trailingCommand = this.commands.EndOfTransmit();
+            var validationMessages = this.kernel.Get<IValidationMessageCollection>();
             try
             {
                 string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
-                var comAnswer = DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
-                loger.Debug(string.Format("Command: {0} Answer Step1: {1}", ByteArrayToString(command), ByteArrayToString(comAnswer)));
+                var comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
+                this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
             }
             catch (InvalidOperationException ex) 
             {
-                command = commands.Acknowledge();
-                SendCommand(command, 0, com);
-                loger.Info(string.Format("Command clear broken communication: {0}", ByteArrayToString(command)));
+                command = this.commands.Acknowledge();
+                this.SendCommand(command, 0, this.com);
+                this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
                 messageDto.ValidationMessages.AddError(ex.Message);
                 messageDto.ValidationMessages.AddMany(validationMessages);
-                loger.Error(ex.Message);
+                this.loger.Error(ex.Message);
                 foreach (var err in validationMessages)
                 {
-                    loger.Error(err.Text);
+                    this.loger.Error(err.Text);
                 }
+
                 return false;
             }
+
             if (messageDto.ValidationMessages.Count() > 0)
             {
                 return false;
@@ -107,49 +110,59 @@ namespace WeightScale.Application.Services
 
         public void Measure(IWeightScaleMessageDto messageDto)
         {
-            int blockLength = GetBlockLength(messageDto.Message);
+            int blockLength = this.GetBlockLength(messageDto.Message);
             const int PAILOAD_LEN = 5;
 
             var comAnswer = new byte[1];
 
-            var command = commands.WeightScaleRequest(messageDto.Message);
-            var trailingCommand = commands.EndOfTransmit();
-            var validationMessages = kernel.Get<IValidationMessageCollection>();
+            var command = this.commands.WeightScaleRequest(messageDto.Message);
+            var trailingCommand = this.commands.EndOfTransmit();
+            var validationMessages = this.kernel.Get<IValidationMessageCollection>();
             try
             {
                 string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
-                comAnswer = DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
-                loger.Debug(string.Format("Command: {0} Answer Step1: {1}", ByteArrayToString(command), ByteArrayToString(comAnswer)));
-                // -------------Step1 completed successfully------------- //
-                // -------------Step2------------- //;
+                comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
+                this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
+                
+                // -------------Step1 completed successfully------------- 
+                // -------------Step2------------- 
+                command = this.commands.SendDataToWeightScale(messageDto.Message);
+                comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Ack, "Cannot send data to weight scale", trailingCommand, validationMessages);
+                this.loger.Debug(string.Format("Command: {0} Answer Step2: {1}", this.ByteArrayToString(command, blockLength), this.ByteArrayToString(comAnswer)));
 
-                command = commands.SendDataToWeightScale(messageDto.Message);
-                comAnswer = DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Ack, "Cannot send data to weight scale", trailingCommand, validationMessages);
-                loger.Debug(string.Format("Command: {0} Answer Step2: {1}", ByteArrayToString(command, blockLength), ByteArrayToString(comAnswer)));
                 // -------------Step2 completed successfully-------------
                 // -------------Step3-------------
-
-                command = commands.WeightScaleRequest(messageDto.Message);
-                trailingCommand = commands.Acknowledge();
+                command = this.commands.WeightScaleRequest(messageDto.Message);
+                trailingCommand = this.commands.Acknowledge();
                 Predicate<byte[]> checkMessage = x => this.commands.CheckMeasurementDataFromWeightScale(blockLength, messageDto.Message.Number, x);
-                comAnswer = DoProtocolStep(command, blockLength + PAILOAD_LEN, checkMessage, "Invalid data in received block", trailingCommand, validationMessages);
-                FormResult(blockLength, comAnswer, messageDto);
-                loger.Debug(string.Format("Command: {0} Answer Step3: {1}", ByteArrayToString(command), ByteArrayToString(comAnswer, blockLength, messageDto)));
+                comAnswer = this.DoProtocolStep(command, blockLength + PAILOAD_LEN, checkMessage, "Invalid data in received block", trailingCommand, validationMessages);
+                this.FormResult(blockLength, comAnswer, messageDto);
+                this.loger.Debug(string.Format("Command: {0} Answer Step3: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer, blockLength, messageDto)));
             }
             catch (InvalidOperationException ex)
             {
-                command = commands.Acknowledge();
-                SendCommand(command, 0, com);
-                loger.Info(string.Format("Command clear broken communication: {0}", ByteArrayToString(command)));
+                command = this.commands.Acknowledge();
+                this.SendCommand(command, 0, this.com);
+                this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
                 messageDto.ValidationMessages.AddError(ex.Message);
                 messageDto.ValidationMessages.AddMany(validationMessages);
-                loger.Error(ex.Message);
+                this.loger.Error(ex.Message);
                 foreach (var err in validationMessages)
                 {
-                    loger.Error(err.Text);
+                    this.loger.Error(err.Text);
                 }
             }
+
             // -------------Step3 completed successfully-------------
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing,
+        /// or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.com.Dispose();
         }
 
         private void FormResult(int blockLength, byte[] comAnswer, IWeightScaleMessageDto message)
@@ -159,9 +172,9 @@ namespace WeightScale.Application.Services
             try
             {
                 // Executes generic method without nowing of concrete type
-                MethodInfo deserialize = serializer.GetType().GetMethod("Deserialize");
+                MethodInfo deserialize = this.serializer.GetType().GetMethod("Deserialize");
                 MethodInfo genericMethod = deserialize.MakeGenericMethod(message.Message.GetType());
-                IWeightScaleMessage des = genericMethod.Invoke(serializer, new object[] { block }) as IWeightScaleMessage;
+                IWeightScaleMessage des = genericMethod.Invoke(this.serializer, new object[] { block }) as IWeightScaleMessage;
 
                 message.Message = des;
                 message.ValidationMessages.AddMany(des.Validate());
@@ -172,24 +185,25 @@ namespace WeightScale.Application.Services
             }
         }
 
-        private byte[] DoProtocolStep(byte[] command, int resultLength, Predicate<byte[]> isOk, string errMessage, byte[] trailingCommand, IValidationMessageCollection ValidationMessages)
+        private byte[] DoProtocolStep(byte[] command, int resultLength, Predicate<byte[]> isOk, string errMessage, byte[] trailingCommand, IValidationMessageCollection validationMessages)
         {
             int counter = 0;
             byte[] result = new byte[resultLength];
             do
             {
-                result = this.SendCommand(command, resultLength, com);
+                result = this.SendCommand(command, resultLength, this.com);
                 counter++;
-            } while (!(isOk(result) || (counter > this.iterations)));
+            }
+            while (!(isOk(result) || (counter > this.iterations)));
 
             if (!isOk(result))
             {
-                ValidationMessages.AddError(string.Format("The command is: {0}", ByteArrayToString(command)));
-                ValidationMessages.AddError(string.Format("The answer is: {0}", ByteArrayToString(result)));
+                validationMessages.AddError(string.Format("The command is: {0}", this.ByteArrayToString(command)));
+                validationMessages.AddError(string.Format("The answer is: {0}", this.ByteArrayToString(result)));
                 throw new InvalidOperationException(errMessage);
             }
 
-            SendCommand(trailingCommand, 0, com);
+            this.SendCommand(trailingCommand, 0, this.com);
             return result;
         }
 
@@ -200,7 +214,7 @@ namespace WeightScale.Application.Services
             {
                 foreach (byte item in result)
                 {
-                    strResult.Append(DecodeByte(item));
+                    strResult.Append(this.DecodeByte(item));
                     strResult.Append(" ");
                 }
             }
@@ -208,12 +222,13 @@ namespace WeightScale.Application.Services
             {
                 byte[] block = new byte[blockLength];
                 Array.Copy(result, 3, block, 0, block.Length);
-                //write decodec message
-                strResult.Append(DecodeByte(result[0]));
+
+                // write decoded message
+                strResult.Append(this.DecodeByte(result[0]));
                 strResult.Append(" ");
                 strResult.Append(result[1]);
                 strResult.Append(" ");
-                strResult.Append(DecodeByte(result[2]));
+                strResult.Append(this.DecodeByte(result[2]));
                 strResult.Append(" ");
                 if (messageDto == null)
                 {
@@ -223,8 +238,9 @@ namespace WeightScale.Application.Services
                 {
                     strResult.Append(messageDto.Message.ToString());
                 }
+
                 strResult.Append(" ");
-                strResult.Append(DecodeByte(result[result.Length - 2]));
+                strResult.Append(this.DecodeByte(result[result.Length - 2]));
                 strResult.Append(" ");
                 strResult.Append(result[result.Length - 1]);
                 strResult.Append(" ");
@@ -256,64 +272,40 @@ namespace WeightScale.Application.Services
                 return new byte[0];
             }
 
-            this.wDTimer.Start();
-            while (!(received || wDTimerTick))
+            this.watchDogTimer.Start();
+            while (!(this.received || this.watchDogTimerTick))
             {
             }
-            if (received)
+
+            if (this.received)
             {
-                received = false;
+                this.received = false;
                 result = com.Read();
             }
 
-            if (wDTimerTick)
+            if (this.watchDogTimerTick)
             {
-                wDTimerTick = false;
+                this.watchDogTimerTick = false;
                 throw new InvalidOperationException(string.Format("No answer from {0}", com.PortName));
             }
             else
             {
-                wDTimerTick = false;
-                this.wDTimer.Stop();
+                this.watchDogTimerTick = false;
+                this.watchDogTimer.Stop();
             }
 
             return result;
         }
 
-
         private void WDTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             (sender as System.Timers.Timer).Stop();
-            this.wDTimerTick = true;
+            this.watchDogTimerTick = true;
         }
 
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            received = true;
-        }
-
-        /// <summary>
-        /// Gets the props.
-        /// </summary>
-        /// <param name="class1">The class1.</param>
-        /// <returns></returns>
-        private static List<string> GetProps(object cls)
-        {
-            var props = cls.GetType()
-                           .GetProperties()
-                           .Where(x => x.CustomAttributes.Where(y => y.AttributeType == typeof(ComSerializablePropertyAttribute)).Count() != 0)
-                           .OrderBy(x => ((x.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault()) as ComSerializablePropertyAttribute).Offset);
-            var list = new List<string>(props.Count());
-            list.Add(string.Empty);
-            list.Add(cls.GetType().Name);
-            list.Add("----------------------------------------");
-            list.Add(string.Empty);
-
-            foreach (var prop in props)
-            {
-                list.Add(prop.Name + " As " + (Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType).Name + " = " + prop.GetValue(cls));
-            }
-            return list;
+            this.received = true;
         }
 
         private int GetBlockLength(IWeightScaleMessage message)
@@ -330,15 +322,6 @@ namespace WeightScale.Application.Services
             }
 
             return (int)attr.BlockLength;
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing,
-        /// or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            this.com.Dispose();
         }
     }
 }

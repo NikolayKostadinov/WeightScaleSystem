@@ -1,5 +1,5 @@
 ﻿//---------------------------------------------------------------------------------
-// <copyright file="NewWeightScaleMessage.cs" company="Business Management Systems">
+// <copyright file="WeightScaleMessageNew.cs" company="Business Management Systems">
 //     Copyright (c) Business Management Systems. All rights reserved.
 // </copyright>
 // <author>Nikolay Kostadinov</author>
@@ -34,9 +34,11 @@ namespace WeightScale.Domain.Concrete
         private int? totalNetByProductInput;
         private int? totalNetByProductOutput;
 
+
         /// <summary>
-        /// Gets or Sets number of excise document
+        /// Gets or sets the excise document number.
         /// </summary>
+        /// <value>The excise document number.</value>
         [ComSerializableProperty(length: 12, offset: 54, originalType: typeof(string), serializeFormat: "")]
         public string ExciseDocumentNumber
         {
@@ -44,6 +46,10 @@ namespace WeightScale.Domain.Concrete
             set { this.exciseDocumentNumber = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the total net of input.
+        /// </summary>
+        /// <value>The total net of input.</value>
         [ComSerializableProperty(length: 9, offset: 84, originalType: typeof(int?), serializeFormat: "")]
         public int? TotalNetOfInput
         {
@@ -51,6 +57,10 @@ namespace WeightScale.Domain.Concrete
             set { this.totalNetOfInput = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the total net of output.
+        /// </summary>
+        /// <value>The total net of output.</value>
         [ComSerializableProperty(length: 9, offset: 93, originalType: typeof(int?), serializeFormat: "")]
         public int? TotalNetOfOutput
         {
@@ -58,6 +68,10 @@ namespace WeightScale.Domain.Concrete
             set { this.totalNetOfOutput = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the total net by product input.
+        /// </summary>
+        /// <value>The total net by product input.</value>
         [ComSerializableProperty(length: 9, offset: 126, originalType: typeof(int), serializeFormat: "")]
         public int? TotalNetByProductInput
         {
@@ -65,6 +79,10 @@ namespace WeightScale.Domain.Concrete
             set { this.totalNetByProductInput = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the total net by product output.
+        /// </summary>
+        /// <value>The total net by product output.</value>
         [ComSerializableProperty(length: 9, offset: 135, originalType: typeof(int?), serializeFormat: "")]
         public int? TotalNetByProductOutput
         {
@@ -138,7 +156,7 @@ namespace WeightScale.Domain.Concrete
 
         public override string ToString()
         {
-            return GetProps();
+            return this.GetProps();
         }
 
         protected string GetProps()
@@ -146,16 +164,17 @@ namespace WeightScale.Domain.Concrete
             var props = this.GetType()
                            .GetProperties()
                            .Where(x => x.CustomAttributes.Where(y => y.AttributeType == typeof(ComSerializablePropertyAttribute)).Count() != 0)
-                           .OrderBy(x => ((x.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault()) as ComSerializablePropertyAttribute).Offset);
+                           .OrderBy(x => (x.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault() as ComSerializablePropertyAttribute).Offset);
 
             StringBuilder sb = new StringBuilder();
             foreach (var prop in props)
             {
-                var attr =prop.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault() as ComSerializablePropertyAttribute;
+                var attr = prop.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault() as ComSerializablePropertyAttribute;
                 var length = attr.Length;
-                sb.Append((prop.GetValue(this)??string.Empty).ToString().PadLeft(length,' '));
+                sb.Append((prop.GetValue(this) ?? string.Empty).ToString().PadLeft(length, ' '));
                 sb.Append(" | ");
             }
+
             return sb.ToString();
         }
     }

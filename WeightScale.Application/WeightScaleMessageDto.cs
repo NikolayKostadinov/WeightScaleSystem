@@ -11,6 +11,9 @@ namespace WeightScale.Application
     using WeightScale.Application.Contracts;
     using WeightScale.Domain.Abstract;
 
+    /// <summary>
+    /// WeightScaleMessage data transfer object
+    /// </summary>
     public class WeightScaleMessageDto : IWeightScaleMessageDto
     {
         /// <summary>
@@ -18,7 +21,6 @@ namespace WeightScale.Application
         /// </summary>
         /// <value>The message.</value>
         public IWeightScaleMessage Message { get; set; }
-
 
         /// <summary>
         /// Gets or sets the validation messages.

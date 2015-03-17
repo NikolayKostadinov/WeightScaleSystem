@@ -1,5 +1,5 @@
 ﻿//---------------------------------------------------------------------------------
-// <copyright file="OldWeightScaleMessage.cs" company="Business Management Systems">
+// <copyright file="WeightScaleMessageOld.cs" company="Business Management Systems">
 //     Copyright (c) Business Management Systems. All rights reserved.
 // </copyright>
 // <author>Nikolay Kostadinov</author>
@@ -25,8 +25,7 @@ namespace WeightScale.Domain.Concrete
 
         private string productName;
         private int? totalOfGrossWeight;
-        private int? totalOfNetWeight;
-        private readonly IComSerializer serializer;        
+        private int? totalOfNetWeight;        
 
         [ComSerializableProperty(length: 12, offset: 54, originalType: typeof(string), serializeFormat: "")]
         public string ProductName
@@ -84,6 +83,7 @@ namespace WeightScale.Domain.Concrete
         /// <summary>
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
+        /// <param name="serializer"> IComSerializer </param>
         /// <returns>byte[] - Array of bytes</returns>
         public override byte[] ToBlock(IComSerializer serializer)
         {
@@ -93,10 +93,10 @@ namespace WeightScale.Domain.Concrete
         /// <summary>
         /// Toes the string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>String representation of the "WeightScaleOld" object </returns>
         public override string ToString()
         {
-            return GetProps();
+            return this.GetProps();
         }
 
         protected string GetProps()
@@ -104,7 +104,7 @@ namespace WeightScale.Domain.Concrete
             var props = this.GetType()
                            .GetProperties()
                            .Where(x => x.CustomAttributes.Where(y => y.AttributeType == typeof(ComSerializablePropertyAttribute)).Count() != 0)
-                           .OrderBy(x => ((x.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault()) as ComSerializablePropertyAttribute).Offset);
+                           .OrderBy(x => (x.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault() as ComSerializablePropertyAttribute).Offset);
 
             StringBuilder sb = new StringBuilder();
             foreach (var prop in props)
@@ -112,6 +112,7 @@ namespace WeightScale.Domain.Concrete
                 sb.Append(prop.GetValue(this));
                 sb.Append(" | ");
             }
+
             return sb.ToString();
         }
     }

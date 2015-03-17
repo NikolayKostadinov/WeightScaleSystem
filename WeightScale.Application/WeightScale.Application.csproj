@@ -47,9 +47,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AutomapperConfig.cs" />
     <Compile Include="App_Start\NinjectInjector.cs" />
-    <Compile Include="ComManager.cs" />
     <Compile Include="Contracts\IWeightScaleMessageDto.cs" />
-    <Compile Include="Contracts\IComManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\IMeasurementService.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

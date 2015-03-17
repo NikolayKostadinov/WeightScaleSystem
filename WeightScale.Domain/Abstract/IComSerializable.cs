@@ -9,6 +9,9 @@ namespace WeightScale.Domain.Abstract
     using System;
     using System.Linq;
 
+    /// <summary>
+    /// Marks that class is enabled for serialization via serial port
+    /// </summary>
     public interface IComSerializable
     {
     }

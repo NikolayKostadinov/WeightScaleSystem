@@ -1,4 +1,10 @@
-﻿using System.Reflection;
+﻿//---------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Business Management Systems">
+//     Copyright (c) Business Management Systems. All rights reserved.
+// </copyright>
+// <author>Nikolay Kostadinov</author>
+//--------------------------------------------------------------------------------
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 

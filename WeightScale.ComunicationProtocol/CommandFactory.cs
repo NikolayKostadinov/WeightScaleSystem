@@ -68,26 +68,16 @@ namespace WeightScale.ComunicationProtocol
             return new[] { (byte)ComunicationConstants.Nac };
         }
 
-        private byte CalculateCheckSum(IBlock inputObject)
-        {
-            var checkSum =
-                this.checkSumService.CalculateCheckSum(
-                    inputObject.ToBlock(this.serializer),
-                    null,
-                    new byte[] { (byte)ComunicationConstants.Etx });
-            return checkSum;
-        }
-
         public bool CheckMeasurementDataFromWeightScale(int blockLen, int weightScaleNumber, byte[] serializedMessage)
         {
-
             // The Payload of the protocol
             int payload = 5;
+
             // Offset of block from the beginning of serializedMessage
             int startOffset = 3;
             var len = serializedMessage.Length;
 
-            byte[] block = GetBlock(serializedMessage, blockLen, startOffset);
+            byte[] block = this.GetBlock(serializedMessage, blockLen, startOffset);
             byte etx = serializedMessage[startOffset + blockLen];
             byte expectedCheckSum = this.checkSumService.CalculateCheckSum(block, null, new byte[] { (byte)ComunicationConstants.Etx });
             byte actualCheckSum = serializedMessage[serializedMessage.Length - 1];
@@ -100,7 +90,6 @@ namespace WeightScale.ComunicationProtocol
                     (actualCheckSum == expectedCheckSum);
 
             return result;
-            
         }
 
         /// <summary>
@@ -108,12 +97,22 @@ namespace WeightScale.ComunicationProtocol
         /// </summary>
         /// <param name="serializedMessage">The serialized message.</param>
         /// <param name="blockLen">The block len.</param>
-        /// <returns></returns>
+        /// <returns>>String representation of the "WeightScaleNew" object</returns>
         private byte[] GetBlock(byte[] serializedMessage, int blockLen, int offset)
         {
             var result = new byte[blockLen];
             Array.Copy(serializedMessage, offset, result, 0, blockLen);
             return result;
+        }
+
+        private byte CalculateCheckSum(IBlock inputObject)
+        {
+            var checkSum =
+                this.checkSumService.CalculateCheckSum(
+                    inputObject.ToBlock(this.serializer),
+                    null,
+                    new byte[] { (byte)ComunicationConstants.Etx });
+            return checkSum;
         }
     }
 }

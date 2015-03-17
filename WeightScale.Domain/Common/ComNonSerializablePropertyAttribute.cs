@@ -9,8 +9,11 @@ namespace WeightScale.Domain.Common
     using System;
     using System.Linq;
 
-    [AttributeUsage(AttributeTargets.Property,AllowMultiple=false,Inherited=true)]
-    public class ComNonSerializablePropertyAttribute:Attribute
+    /// <summary>
+    /// Custom attribute. Describes property as not serializable
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
+    public class ComNonSerializablePropertyAttribute : Attribute
     {
     }
 }

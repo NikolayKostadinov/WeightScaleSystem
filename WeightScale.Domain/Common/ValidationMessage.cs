@@ -55,9 +55,11 @@ namespace WeightScale.Domain.Common
             this.text = text;
         }
 
+     
         /// <summary>
-        /// Gets/sets the error level.
+        /// Gets or sets the type.
         /// </summary>
+        /// <value>The type.</value>
         public MessageType Type
         {
             get { return this.type; }
@@ -65,7 +67,7 @@ namespace WeightScale.Domain.Common
         }
 
         /// <summary>
-        /// Gets/sets the field that this validation message relates to.
+        /// Gets or sets the field that this validation message relates to.
         /// </summary>
         public string Field
         {
@@ -74,7 +76,7 @@ namespace WeightScale.Domain.Common
         }
 
         /// <summary>
-        /// Gets/sets the error message.
+        /// Gets or sets the error message.
         /// </summary>
         public string Text
         {

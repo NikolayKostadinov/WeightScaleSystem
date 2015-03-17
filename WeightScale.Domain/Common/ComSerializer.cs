@@ -39,7 +39,7 @@ namespace WeightScale.Domain.Common
         }
 
         public T Deserialize<T>(byte[] input)
-            where T : class,IComSerializable, new()
+            where T : class, IComSerializable, new()
         {
             T resultObject = new T();
 
@@ -59,7 +59,7 @@ namespace WeightScale.Domain.Common
                 Array.Copy(input, propSerializationAttr.Offset, propBytes, 0, propBytes.Length);
                 string strProp = Encoding.Default.GetString(propBytes).Trim();
 
-                if (! string.IsNullOrEmpty(strProp))
+                if (!string.IsNullOrEmpty(strProp))
                 {
                     if (property != null)
                     {
@@ -67,13 +67,13 @@ namespace WeightScale.Domain.Common
                         object safeValue;
                         if (t == typeof(DateTime))
                         {
-                            if (strProp == null) 
-                            { 
-                                safeValue = null; 
-                            } 
-                            else 
-                            { 
-                                safeValue = DateTime.ParseExact(strProp, propSerializationAttr.SerializeFormat, CultureInfo.CurrentCulture); 
+                            if (strProp == null)
+                            {
+                                safeValue = null;
+                            }
+                            else
+                            {
+                                safeValue = DateTime.ParseExact(strProp, propSerializationAttr.SerializeFormat, CultureInfo.CurrentCulture);
                             }
                         }
                         else
