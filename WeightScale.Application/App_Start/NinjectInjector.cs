@@ -38,17 +38,23 @@ namespace WeightScale.Application.AppStart
             get { return this.kernel; }
         }
 
-        public static IKernel GetInjector()
+        public static IKernel GetInjector
         {
-            if (injector == null)
+            get
             {
-                lock (LockObj)
+                if (injector == null)
                 {
-                    injector = new NinjectInjector();
+                    lock (LockObj)
+                    {
+                        if (injector == null)
+                        {
+                            injector = new NinjectInjector();
+                        }
+                    }
                 }
-            }
 
-            return injector.Kernel;
+                return injector.Kernel;
+            }
         }
 
         /// <summary>
@@ -59,7 +65,7 @@ namespace WeightScale.Application.AppStart
             this.kernel.Bind<IComSerializer>().To<ComSerializer>();
             this.kernel.Bind<IChecksumService>().To<XorChecksumService>();
             this.kernel.Bind<ICommandFactory>().To<CommandFactory>();
-            this.kernel.Bind<IComSettingsProvider>().ToMethod(m => ComSettingsProvider.GetComSettingsProvider());
+            this.kernel.Bind<IComSettingsProvider>().ToMethod(context => ComSettingsProvider.GetComSettingsProvider);
             this.kernel.Bind<IComManager>().To<ComManager>();
             this.kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>();
             this.kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType));

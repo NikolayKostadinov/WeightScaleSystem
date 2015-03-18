@@ -47,20 +47,25 @@
         /// DataBits: 8
         /// StopBits: StopBits.One
         /// </returns>
-        public static ComSettingsProvider GetComSettingsProvider()
+        public static ComSettingsProvider GetComSettingsProvider
         {
             // Singleton
             // Todo: refactore to be a real singleton !!! 
-
-            if (settings == null)
+            get
             {
-                lock (LockObj)
+                if (settings == null)
                 {
-                    settings = GetComSettingsFromCurrentApplication();
+                    lock (LockObj)
+                    {
+                        if (settings == null)
+                        {
+                            settings = GetComSettingsFromCurrentApplication();
+                        }
+                    }
                 }
-            }
 
-            return settings;
+                return settings;
+            }
         }
 
         /// <summary>

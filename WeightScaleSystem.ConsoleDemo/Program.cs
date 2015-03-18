@@ -28,11 +28,11 @@
             ILog logger = LogManager.GetLogger("WeightScaleSystem.ConsoleDemo");
             // end of configuretion
 
-            IKernel injector = NinjectInjector.GetInjector();
+            IKernel injector = NinjectInjector.GetInjector;
             IWeightScaleMessage message = GenerateWeightBlock();
             
             IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
-            var begin = DateTime.Now;
+           
 
             logger.Debug("Application begin.");
             try
@@ -57,6 +57,7 @@
                         }
                         messageDto.ValidationMessages.Clear();
                     }
+                    var begin = DateTime.Now;
 
                     mService.Measure(messageDto);
 
@@ -90,7 +91,7 @@
             var ser = new WeightScaleMessageNew();
             //var ser = new WeightScaleMessageOld();
             ser.Number = 3;
-            ser.Direction = Direction.Out;
+            ser.Direction = Direction.In;
             ser.SerialNumber = 12345678;
             ser.TransactionNumber = 12345;
             ser.MeasurementNumber = 1;
