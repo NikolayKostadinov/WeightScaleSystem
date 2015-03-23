@@ -9,6 +9,8 @@ namespace WeightScale.Application.AppStart
     using System;
     using System.Linq;
     using Ninject;
+    using WeightScale.Application.Contracts;
+    using WeightScale.Application.Services;
     using WeightScale.ComunicationProtocol;
     using WeightScale.ComunicationProtocol.Contracts;
     using WeightScale.Domain.Abstract;
@@ -69,6 +71,7 @@ namespace WeightScale.Application.AppStart
             this.kernel.Bind<IComManager>().To<ComManager>();
             this.kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>();
             this.kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType));
+            this.Kernel.Bind<IMeasurementService>().To<MeasurementService>();
         }
     }
 }

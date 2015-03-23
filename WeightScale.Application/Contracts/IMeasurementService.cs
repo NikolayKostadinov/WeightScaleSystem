@@ -8,7 +8,7 @@ namespace WeightScale.Application.Contracts
 {
     using System;
 
-    public interface IMeasurementService
+    public interface IMeasurementService:IDisposable
     {
         void Measure(IWeightScaleMessageDto messageDto);
 
