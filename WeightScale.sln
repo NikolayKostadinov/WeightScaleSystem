@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.Domain.Tests", 
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "WeightScale.Documentation", "WeightScale.Documentation\WeightScale.Documentation.shfbproj", "{F12B9748-39E5-45D0-B65A-EFF9C4FF197A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.WebApi", "WeightScale.WebApi\WeightScale.WebApi.csproj", "{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.MeasurementWindowsService", "WeightScale.MeasurementWindowsService\WeightScale.MeasurementWindowsService.csproj", "{722212F2-48DE-4EFB-8A78-7793A69718B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{F12B9748-39E5-45D0-B65A-EFF9C4FF197A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12B9748-39E5-45D0-B65A-EFF9C4FF197A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12B9748-39E5-45D0-B65A-EFF9C4FF197A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722212F2-48DE-4EFB-8A78-7793A69718B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722212F2-48DE-4EFB-8A78-7793A69718B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722212F2-48DE-4EFB-8A78-7793A69718B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722212F2-48DE-4EFB-8A78-7793A69718B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
