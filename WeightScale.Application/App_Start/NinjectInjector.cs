@@ -8,6 +8,7 @@ namespace WeightScale.Application.AppStart
 {
     using System;
     using System.Linq;
+    using log4net;
     using Ninject;
     using WeightScale.Application.Contracts;
     using WeightScale.Application.Services;
@@ -15,14 +16,13 @@ namespace WeightScale.Application.AppStart
     using WeightScale.ComunicationProtocol.Contracts;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
-    using log4net;
 
     /// <summary>
     /// Dependency injector provider
     /// </summary>
     public class NinjectInjector
     {
-        private static readonly object LockObj = new object();
+        private static readonly object lockObj = new object();
         private static NinjectInjector injector;
         private readonly IKernel kernel;
 
@@ -35,18 +35,13 @@ namespace WeightScale.Application.AppStart
             this.InitializeKernel();
         }
 
-        public IKernel Kernel
-        {
-            get { return this.kernel; }
-        }
-
         public static IKernel GetInjector
         {
             get
             {
                 if (injector == null)
                 {
-                    lock (LockObj)
+                    lock (lockObj)
                     {
                         if (injector == null)
                         {
@@ -57,6 +52,11 @@ namespace WeightScale.Application.AppStart
 
                 return injector.Kernel;
             }
+        }
+
+        public IKernel Kernel
+        {
+            get { return this.kernel; }
         }
 
         /// <summary>

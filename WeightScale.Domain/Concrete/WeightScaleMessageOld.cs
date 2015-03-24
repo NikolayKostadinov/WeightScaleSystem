@@ -83,7 +83,7 @@ namespace WeightScale.Domain.Concrete
         /// <summary>
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
-        /// <param name="serializer"> IComSerializer </param>
+        /// <param name="serializer">An instance of IComSerializer.</param>
         /// <returns>byte[] - Array of bytes</returns>
         public override byte[] ToBlock(IComSerializer serializer)
         {
@@ -99,6 +99,10 @@ namespace WeightScale.Domain.Concrete
             return this.GetProps();
         }
 
+        /// <summary>
+        /// Gets the props.
+        /// </summary>
+        /// <returns>String collection of properties.</returns>
         protected string GetProps()
         {
             var props = this.GetType()

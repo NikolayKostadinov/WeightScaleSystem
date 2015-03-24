@@ -29,17 +29,17 @@
 
         static void Main(string[] args)
         {
-            // Confugure log4net
+            // Configure log4net
             FileInfo configFile = new FileInfo(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
             XmlConfigurator.Configure(configFile);
             ILog logger = LogManager.GetLogger("WeightScaleSystem.ConsoleDemo");
-            // end of configuretion
+            // end of configuration
 
             IKernel injector = NinjectInjector.GetInjector;
             //IWeightScaleMessage message = GenerateWeightBlock();
 
             //IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
-            //Thread stoper = new Thread(new ThreadStart(Stopper));
+            //Thread stopper = new Thread(new ThreadStart(Stopper));
             //stoper.Start();
             //Thread stoper1 = new Thread(new ThreadStart(StopAtTheMorning));
             //stoper1.Start();
@@ -69,47 +69,25 @@
                         {
                             if (messageDto.ValidationMessages.Count() == 0)
                             {
-                                measures++; // ако всичко е наред
+                                measures++; 
                             }
                             else
                             {
-                                errors++; //иначе грешка
+                                errors++; 
                             }
                         }
                         else
                         {
                             errors++;
                         }
-                        // есстествено само го погледни пускам една нишка да следи клавиатирата
-                        // иначе има проблем ако го затвориш от х са остава в неясно състояние и следващият път почва
-                        // с една грешка
-                        //като натиснеш копче 
-                        // ако искаш да ти работи спирането по време коригирай датата и разкоментирай 
-                        // вече трябва да е готово можеш да си го копнеш. Сега ще го копирам и ще го пусна. Утре ще анализираме лог-а
-                        //Супер само да знаеш че ще изглежда сутринта все едно е пуснато 
 
-                        logger.Debug(string.Format("Number of iteration: {0} Successfull measurements: {1} Errors: {2}", iterations, measures, errors));
+                        logger.Debug(string.Format("Number of iteration: {0} Successful measurements: {1} Errors: {2}", iterations, measures, errors));
                         logger.Debug(string.Format("Estimated time: {0}", estimatedTime));
                         Console.CursorLeft = 0;
                         Console.CursorTop = 0;
                         Console.WriteLine(iterations);
                         Thread.Sleep(5000);
                     }
-
-                    //var props = GetProps(messageDto.Message);
-                    //props.Add(string.Empty);
-                    //props.AddRange(GetProps(messageDto.ValidationMessages));
-                    //foreach (var err in messageDto.ValidationMessages.Errors)
-                    //{
-                    //    props.Add(err.Text);
-                    //}
-
-                    //foreach (var prop in props)
-                    //{
-                    //    Console.WriteLine(prop);
-                    //}
-
-                    //logger.Debug("Application finish.");
                 }
             }
             catch (Exception ex)
@@ -253,7 +231,7 @@
                 if (mService.IsWeightScaleOk(messageDto))
                 {
                     Console.CursorTop = rownum++;
-                    Console.WriteLine("{0} The status of the scale {1} is Ok", DateTime.Now,messageDto.Message.Number);
+                    Console.WriteLine("{0} The status of the scale {1} is OK", DateTime.Now,messageDto.Message.Number);
                 }
                 else
                 {

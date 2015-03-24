@@ -34,12 +34,20 @@ namespace WeightScale.Application.Services
         private readonly IKernel kernel;
         private readonly System.Timers.Timer watchDogTimer;
         private readonly ILog loger;
+        private readonly Mutex mutex = new Mutex();
         private volatile bool received = false;
         private volatile bool watchDogTimerTick = false;
         private int iterations;
-        private readonly Mutex mutex = new Mutex();
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MeasurementService"/> class.
+        /// </summary>
+        /// <param name="commandParam">The command parameter.</param>
+        /// <param name="serializerParam">The serializer parameter.</param>
+        /// <param name="comManagerParam">The COM manager parameter.</param>
+        /// <param name="kernel">The kernel.</param>
+        /// <param name="loger">The logger.</param>
+        /// <param name="iterationsParam">The iterations parameter.</param>
         public MeasurementService(ICommandFactory commandParam, IComSerializer serializerParam, IComManager comManagerParam, IKernel kernel, ILog loger, int iterationsParam = 5)
         {
             this.commands = commandParam;
@@ -74,9 +82,16 @@ namespace WeightScale.Application.Services
             }
         }
 
-        public bool IsWeightScaleOk(IWeightScaleMessageDto messageDto) 
+        /// <summary>
+        /// Determines whether given weight scale is OK.
+        /// </summary>
+        /// <param name="messageDto">The message data transfer object.</param>
+        /// <returns> True or false </returns>
+        /// <exception cref="System.InvalidOperationException">Cannot get exclusive access to measurement service. </exception>
+        public bool IsWeightScaleOk(IWeightScaleMessageDto messageDto)
         {
-            if (mutex.WaitOne(INTERVAL * 3))
+            bool result = false;
+            if (this.mutex.WaitOne(INTERVAL * 3))
             {
                 var command = this.commands.WeightScaleRequest(messageDto.Message);
                 var trailingCommand = this.commands.EndOfTransmit();
@@ -86,6 +101,14 @@ namespace WeightScale.Application.Services
                     string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
                     var comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
                     this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
+                    if (messageDto.ValidationMessages.Count() > 0)
+                    {
+                        result = false;
+                    }
+                    else
+                    {
+                        result = true;
+                    }
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -100,20 +123,15 @@ namespace WeightScale.Application.Services
                         this.loger.Error(err.Text);
                     }
 
-                    mutex.ReleaseMutex();
-                    return false;
+                    result = false;
+                }
+                finally
+                {
+                    // Must release the mutex in every case
+                    this.mutex.ReleaseMutex();
                 }
 
-                if (messageDto.ValidationMessages.Count() > 0)
-                {
-                    mutex.ReleaseMutex();
-                    return false;
-                }
-                else
-                {
-                    mutex.ReleaseMutex();
-                    return true;
-                }
+                return result;
             }
             else
             {
@@ -123,7 +141,7 @@ namespace WeightScale.Application.Services
 
         public void Measure(IWeightScaleMessageDto messageDto)
         {
-            if (mutex.WaitOne(INTERVAL * 3))
+            if (this.mutex.WaitOne(INTERVAL * 3))
             {
                 int blockLength = this.GetBlockLength(messageDto.Message);
                 const int PAILOAD_LEN = 5;
@@ -153,6 +171,8 @@ namespace WeightScale.Application.Services
                     comAnswer = this.DoProtocolStep(command, blockLength + PAILOAD_LEN, checkMessage, "Invalid data in received block", trailingCommand, validationMessages);
                     this.FormResult(blockLength, comAnswer, messageDto);
                     this.loger.Debug(string.Format("Command: {0} Answer Step3: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer, blockLength, messageDto)));
+
+                    // -------------Step3 completed successfully-------------
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -167,13 +187,12 @@ namespace WeightScale.Application.Services
                         this.loger.Error(err.Text);
                     }
                 }
-                // -------------Step3 completed successfully-------------
-                finally 
+                finally
                 {
-                    mutex.ReleaseMutex();
+                    this.mutex.ReleaseMutex();
                 }
             }
-            else 
+            else
             {
                 throw new InvalidOperationException("Cannot get exclusive access to measurement service. ");
             }
@@ -185,6 +204,7 @@ namespace WeightScale.Application.Services
         /// </summary>
         public void Dispose()
         {
+            this.mutex.Dispose();
             this.com.Dispose();
         }
 
@@ -194,7 +214,7 @@ namespace WeightScale.Application.Services
             Array.Copy(comAnswer, 3, block, 0, block.Length);
             try
             {
-                // Executes generic method without nowing of concrete type
+                // Executes generic method without knowing of concrete type
                 MethodInfo deserialize = this.serializer.GetType().GetMethod("Deserialize");
                 MethodInfo genericMethod = deserialize.MakeGenericMethod(message.Message.GetType());
                 IWeightScaleMessage des = genericMethod.Invoke(this.serializer, new object[] { block }) as IWeightScaleMessage;

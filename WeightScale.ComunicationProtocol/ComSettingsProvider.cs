@@ -1,22 +1,26 @@
-﻿namespace WeightScale.ComunicationProtocol
+﻿//---------------------------------------------------------------------------------
+// <copyright file="ComSettingsProvider.cs" company="Business Management Systems">
+//     Copyright (c) Business Management Systems. All rights reserved.
+// </copyright>
+// <author>Nikolay Kostadinov</author>
+//--------------------------------------------------------------------------------
+namespace WeightScale.ComunicationProtocol
 {
     using System;
-    using System.Collections.Generic;
     using System.Configuration;
     using System.IO.Ports;
     using System.Linq;
     using System.Reflection;
-    using System.Text;
-    using System.Threading.Tasks;
     using WeightScale.ComunicationProtocol.Contracts;
 
     /// <summary>
-    /// 
+    /// Provides settings for the serial port
     /// </summary>
     public class ComSettingsProvider : IComSettingsProvider
     {
-        private static object LockObj = new object();
+        private static object lockObj = new object();
         private static ComSettingsProvider settings;
+
         private ComSettingsProvider(string portName, int baudRate, Parity parity, int dataBits, StopBits stopBits)
         {
             this.PortName = portName;
@@ -25,15 +29,6 @@
             this.DataBits = dataBits;
             this.StopBits = stopBits;
         }
-        public string PortName { get; set; }
-
-        public int BaudRate { get; set; }
-
-        public Parity Parity { get; set; }
-
-        public int DataBits { get; set; }
-
-        public StopBits StopBits { get; set; }
 
         /// <summary>
         /// Gets the COM settings provider.
@@ -55,7 +50,7 @@
             {
                 if (settings == null)
                 {
-                    lock (LockObj)
+                    lock (lockObj)
                     {
                         if (settings == null)
                         {
@@ -68,6 +63,16 @@
             }
         }
 
+        public string PortName { get; set; }
+
+        public int BaudRate { get; set; }
+
+        public Parity Parity { get; set; }
+
+        public int DataBits { get; set; }
+
+        public StopBits StopBits { get; set; }
+
         /// <summary>
         /// Gets the COM settings from current application.
         /// </summary>
@@ -75,7 +80,6 @@
         private static ComSettingsProvider GetComSettingsFromCurrentApplication()
         {
             string exeFileName = Assembly.GetEntryAssembly().Location;
-            //string configFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(exeFileName);
             ConfigurationSectionGroup appSettingsGroup = configuration.GetSectionGroup("applicationSettings");
             if (appSettingsGroup != null)
@@ -121,12 +125,11 @@
             }
         }
 
-
         /// <summary>
         /// Checks if setting exists.
         /// </summary>
-        /// <param name="get">Checked setting</param>
-        /// <returns></returns>
+        /// <param name="setting">The setting.</param>
+        /// <returns>True or false</returns>
         private static bool CheckIfSettingExists(SettingElement setting)
         {
             if (setting == null)
@@ -138,6 +141,7 @@
             {
                 return false;
             }
+
             return true;
         }
     }

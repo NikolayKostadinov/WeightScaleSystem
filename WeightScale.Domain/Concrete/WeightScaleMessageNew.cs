@@ -34,7 +34,6 @@ namespace WeightScale.Domain.Concrete
         private int? totalNetByProductInput;
         private int? totalNetByProductOutput;
 
-
         /// <summary>
         /// Gets or sets the excise document number.
         /// </summary>
@@ -148,6 +147,7 @@ namespace WeightScale.Domain.Concrete
         /// <summary>
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
+        /// <param name="serializer">An instance of IComSerializer.</param>
         /// <returns>byte[] - Array of bytes</returns>
         public override byte[] ToBlock(IComSerializer serializer)
         {

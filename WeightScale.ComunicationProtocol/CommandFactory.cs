@@ -20,9 +20,11 @@ namespace WeightScale.ComunicationProtocol
         private readonly IComSerializer serializer;
 
         /// <summary>
-        /// Dependency injection constructor. Initializes a new instance of the <see cref="CommandFactory" /> class.
+        /// Initializes a new instance of the <see cref="CommandFactory" /> class.
+        /// Dependency injection constructor
         /// </summary>
-        /// <param name="checkSumServiceParam">concrete implementation of IChecksumService interface</param>
+        /// <param name="checkSumServiceParam">Instance of ICheckSumService.</param>
+        /// <param name="serializerParam">Instance of IComSerializer.</param>
         public CommandFactory(IChecksumService checkSumServiceParam, IComSerializer serializerParam)
         {
             this.checkSumService = checkSumServiceParam;
@@ -97,7 +99,8 @@ namespace WeightScale.ComunicationProtocol
         /// </summary>
         /// <param name="serializedMessage">The serialized message.</param>
         /// <param name="blockLen">The block len.</param>
-        /// <returns>>String representation of the "WeightScaleNew" object</returns>
+        /// <param name="offset">The offset.</param>
+        /// <returns>Byte array which contains only bytes from block.</returns>
         private byte[] GetBlock(byte[] serializedMessage, int blockLen, int offset)
         {
             var result = new byte[blockLen];
@@ -105,6 +108,11 @@ namespace WeightScale.ComunicationProtocol
             return result;
         }
 
+        /// <summary>
+        /// Calculates the check sum.
+        /// </summary>
+        /// <param name="inputObject">The input object.</param>
+        /// <returns>The check sum of the given record.</returns>
         private byte CalculateCheckSum(IBlock inputObject)
         {
             var checkSum =

@@ -9,7 +9,7 @@ namespace WeightScale.Domain.Abstract
     using System;
 
     /// <summary>
-    /// Provides obligation for implementation of Serialize<T> and Deserialize<T> metods.
+    /// Provides obligation for implementation of Serialize and Deserialize methods.
     /// </summary>
     public interface IComSerializer
     {

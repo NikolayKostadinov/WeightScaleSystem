@@ -115,7 +115,6 @@ namespace WeightScale.Domain.Abstract
             set { this.timeOfSecondMeasure = value; }
         }
 
-
         /// <summary>
         /// Gets or sets the measurement status.
         /// </summary>
@@ -390,6 +389,7 @@ So {0} is not equal to {3}";
         /// <summary>
         /// Provides data block to be sent as Weight scale message block element.
         /// </summary>
+        /// <param name="serializer">An instance of IComSerializer.</param>
         /// <returns>byte[] - Array of bytes</returns>
         public abstract byte[] ToBlock(IComSerializer serializer);
     }

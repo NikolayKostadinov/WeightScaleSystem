@@ -24,10 +24,10 @@ namespace WeightScale.ComunicationProtocol
         private int receiveBufferTreshold;
 
         #region Constructors
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="ComManager" /> class with default settings.
+        /// Initializes a new instance of the <see cref="ComManager" /> class.
         /// </summary>
+        /// <param name="settings">The settings.</param>
         public ComManager(IComSettingsProvider settings) : this(
         settings.PortName,
         settings.BaudRate,
@@ -51,8 +51,8 @@ namespace WeightScale.ComunicationProtocol
             {
                 string message = string.Format(
                     "The value of dataBits must be between {0} and {1}.\nActual value is {2}.",
-                    DATA_BITS_MIN_VALUE, 
-                    DATA_BITS_MAX_VALUE, 
+                    DATA_BITS_MIN_VALUE,
+                    DATA_BITS_MAX_VALUE,
                     dataBits);
                 throw new ArgumentOutOfRangeException("dataBits", message);
             }

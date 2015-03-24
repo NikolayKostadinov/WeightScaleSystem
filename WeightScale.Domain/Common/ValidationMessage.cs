@@ -55,7 +55,6 @@ namespace WeightScale.Domain.Common
             this.text = text;
         }
 
-     
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
