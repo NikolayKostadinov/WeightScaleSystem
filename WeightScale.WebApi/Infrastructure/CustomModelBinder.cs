@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
 using Newtonsoft.Json;
@@ -18,7 +19,7 @@ namespace WeightScale.WebApi.Infrastructure
             if (bindingContext.ModelType == typeof(IWeightScaleMessageDto))
             {
                 var value = actionContext.Request.Content.ReadAsStringAsync().Result;
-                var model = new WeightScaleMessageDto();
+                var model = actionContext.Request.GetDependencyScope().GetService(typeof(IWeightScaleMessageDto)) as IWeightScaleMessageDto;
                 var message = JObject.Parse(value).Root["Message"].ToString();
                 var messageType = actionContext.Request.Headers.GetValues("X-MessageType").FirstOrDefault();
                 switch (messageType)

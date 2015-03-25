@@ -24,15 +24,15 @@ namespace WeightScale.Application.AppStart
     {
         private static readonly object lockObj = new object();
         private static NinjectInjector injector;
-        private readonly IKernel kernel;
+        private static IKernel kernel;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="NinjectInjector" /> class from being created.
         /// </summary>
         private NinjectInjector()
         {
-            this.kernel = new StandardKernel();
-            this.InitializeKernel();
+            kernel = new StandardKernel();
+            InitializeKernel(kernel);
         }
 
         public static IKernel GetInjector
@@ -50,28 +50,24 @@ namespace WeightScale.Application.AppStart
                     }
                 }
 
-                return injector.Kernel;
+                return kernel;
             }
-        }
-
-        public IKernel Kernel
-        {
-            get { return this.kernel; }
         }
 
         /// <summary>
         /// Initializes the kernel.
         /// </summary>
-        private void InitializeKernel()
+        private static void InitializeKernel(IKernel kernel)
         {
-            this.kernel.Bind<IComSerializer>().To<ComSerializer>();
-            this.kernel.Bind<IChecksumService>().To<XorChecksumService>();
-            this.kernel.Bind<ICommandFactory>().To<CommandFactory>();
-            this.kernel.Bind<IComSettingsProvider>().ToMethod(context => ComSettingsProvider.GetComSettingsProvider);
-            this.kernel.Bind<IComManager>().To<ComManager>();
-            this.kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>();
-            this.kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType));
-            this.Kernel.Bind<IMeasurementService>().To<MeasurementService>();
+           kernel.Bind<IComSerializer>().To<ComSerializer>();
+           kernel.Bind<IChecksumService>().To<XorChecksumService>();
+           kernel.Bind<ICommandFactory>().To<CommandFactory>();
+           kernel.Bind<IComSettingsProvider>().ToMethod(context => ComSettingsProvider.GetComSettingsProvider);
+           kernel.Bind<IComManager>().To<ComManager>();
+           kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>();
+           kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType));
+           kernel.Bind<IMeasurementService>().To<MeasurementService>();
+           kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>();
         }
     }
 }

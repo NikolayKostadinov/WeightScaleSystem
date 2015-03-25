@@ -1,61 +1,61 @@
-﻿namespace WeightScale.WebApi
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Http;
-    using System.Web.Http;
-    using System.Web.Http.ModelBinding;
-    using Ninject;
-    using WeightScale.Application;
-    using WeightScale.Application.AppStart;
-    using WeightScale.Application.Contracts;
-    using WeightScale.Application.Services;
-    using WeightScale.Domain.Common;
-    using WeightScale.Domain.Abstract;
-    using WeightScale.Domain.Concrete;
-    using WeightScale.WebApi;
-    using WeightScale.WebApi.Infrastructure;
+﻿//namespace WeightScale.WebApi
+//{
+//    using System;
+//    using System.Collections.Generic;
+//    using System.Linq;
+//    using System.Net;
+//    using System.Net.Http;
+//    using System.Web.Http;
+//    using System.Web.Http.ModelBinding;
+//    using Ninject;
+//    using WeightScale.Application;
+//    using WeightScale.Application.AppStart;
+//    using WeightScale.Application.Contracts;
+//    using WeightScale.Application.Services;
+//    using WeightScale.Domain.Common;
+//    using WeightScale.Domain.Abstract;
+//    using WeightScale.Domain.Concrete;
+//    using WeightScale.WebApi;
+//    using WeightScale.WebApi.Infrastructure;
 
-    public class Person 
-    {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
-}
+//    public class Person 
+//    {
+//        public int Id { get; set; }
+//        public string FirstName { get; set; }
+//        public string LastName { get; set; }
+//    }
+//}
 
 namespace WeightScale.WebApi.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
     using System.Web.Http.ModelBinding;
-    using Ninject;
     using WeightScale.Application;
-    using WeightScale.Application.AppStart;
     using WeightScale.Application.Contracts;
-    using WeightScale.Application.Services;
-    using WeightScale.Domain.Common;
     using WeightScale.Domain.Abstract;
+    using WeightScale.Domain.Common;
     using WeightScale.Domain.Concrete;
-    using WeightScale.WebApi;
     using WeightScale.WebApi.Infrastructure;
 
     public class MeasurementsController : ApiController
     {
-        private readonly IKernel injector;
+        private readonly IMeasurementService mService;
 
-        public MeasurementsController()
+        public MeasurementsController(IMeasurementService mServiceParam)
         {
-            injector = NinjectInjector.GetInjector;
+            if (mServiceParam == null)
+            {
+                throw new ArgumentException("Cannot initialize measurement service.");
+            }
+            
+            this.mService = mServiceParam;
         }
 
-        public IWeightScaleMessageDto GetTest() 
+        public IWeightScaleMessageDto GetTest()
         {
             IWeightScaleMessage message = GenerateWeightBlock();
             IWeightScaleMessageDto value = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
@@ -73,63 +73,24 @@ namespace WeightScale.WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage PostMeasurement([ModelBinder(typeof(CustomModelBinder))]IWeightScaleMessageDto value)
         {
-            //IWeightScaleMessage message = GenerateWeightBlock();
-            //IWeightScaleMessageDto value = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
-            IWeightScaleMessageDto value1 = injector.Get<WeightScaleMessageDto>();
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && value != null)
             {
                 try
                 {
-                    using (var mService = injector.Get<MeasurementService>())
-                    {
-                        value1.Message = value.Message;
-                        value1.ValidationMessages = value.ValidationMessages;
-                        mService.Measure(value1);
-                    }
+                    this.mService.Measure(value);
                 }
                 catch (Exception ex)
                 {
                     value.ValidationMessages.AddError("PostMeasurement", ex.Message);
                 }
             }
-            else 
+            else
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentException("value", "Invalid input weigh scale message"));
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, value1);
+            return Request.CreateResponse(HttpStatusCode.OK, value);
         }
-
-        //// POST api/Measurements
-        //[HttpPost]
-        //public HttpResponseMessage PostMeasurement([ModelBinder(typeof(CustomModelBinderOld))]WeightScaleMessageConcreteOldDto value)
-        //{
-        //    //IWeightScaleMessage message = GenerateWeightBlock();
-        //    //IWeightScaleMessageDto value = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
-        //    IWeightScaleMessageDto value1 = injector.Get<WeightScaleMessageDto>();
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            using (var mService = injector.Get<MeasurementService>())
-        //            {
-        //                value1.Message = value.Message;
-        //                value1.ValidationMessages = value.ValidationMessages;
-        //                //mService.Measure(value1);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            value.ValidationMessages.AddError("PostMeasurement", ex.Message);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentException("value", "Invalid input weigh scale message"));
-        //    }
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, value1);
-        //}
 
         private static IWeightScaleMessage GenerateWeightBlock()
         {
@@ -161,30 +122,30 @@ namespace WeightScale.WebApi.Controllers
             return ser;
         }
 
-        [HttpPost]
-        public HttpResponseMessage PostPerson(Person p) 
-        {
-            HttpResponseMessage response;
-            if (ModelState.IsValid)
-            {
-                response = Request.CreateResponse(HttpStatusCode.OK, p);
-            }
-            else 
-            {
-                response = Request.CreateErrorResponse(HttpStatusCode.NotModified, new ArgumentException("p", "Invalid person data!"));
-            }
-            return response;
-        }
+        //[HttpPost]
+        //public HttpResponseMessage PostPerson(Person p) 
+        //{
+        //    HttpResponseMessage response;
+        //    if (ModelState.IsValid)
+        //    {
+        //        response = Request.CreateResponse(HttpStatusCode.OK, p);
+        //    }
+        //    else 
+        //    {
+        //        response = Request.CreateErrorResponse(HttpStatusCode.NotModified, new ArgumentException("p", "Invalid person data!"));
+        //    }
+        //    return response;
+        //}
 
-        // PUT api/Measurements/5
-        public void PutMeasurement(int id, [FromBody]
-                                   string value)
-        {
-        }
+        //// PUT api/Measurements/5
+        //public void PutMeasurement(int id, [FromBody]
+        //                           string value)
+        //{
+        //}
 
-        // DELETE api/Measurements/5
-        public void DeleteMeasurement(int id)
-        {
-        }
+        //// DELETE api/Measurements/5
+        //public void DeleteMeasurement(int id)
+        //{
+        //}
     }
 }
