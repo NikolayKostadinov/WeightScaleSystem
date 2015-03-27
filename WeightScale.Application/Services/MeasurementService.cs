@@ -27,6 +27,7 @@ namespace WeightScale.Application.Services
     /// </summary>
     public class MeasurementService : IMeasurementService, IDisposable
     {
+        private readonly static object lockObj = new object();
         private const int INTERVAL = 5 * 1000;
         private readonly IComSerializer serializer;
         private readonly ICommandFactory commands;
@@ -61,7 +62,17 @@ namespace WeightScale.Application.Services
 
             SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(this.DataReceived);
             this.com.DataReceivedHandler = handler;
-            this.com.Open();
+
+            //if (!com.IsOpen)
+            //{
+            //    lock (lockObj)
+            //    {
+                    if (!com.IsOpen)
+                    {
+                        this.com.Open();
+                    } 
+            //    } 
+            //}
         }
 
         /// <summary>
@@ -194,7 +205,7 @@ namespace WeightScale.Application.Services
             }
             else
             {
-                throw new InvalidOperationException("Cannot get exclusive access to measurement service. ");
+                throw new InvalidOperationException("Cannot get exclusive access to measurement service.");
             }
         }
 
@@ -349,6 +360,7 @@ namespace WeightScale.Application.Services
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             this.received = true;
+            loger.Info(Thread.CurrentThread.Name);
         }
 
         private int GetBlockLength(IWeightScaleMessage message)

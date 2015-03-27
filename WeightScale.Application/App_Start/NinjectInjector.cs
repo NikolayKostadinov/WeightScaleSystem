@@ -8,6 +8,7 @@ namespace WeightScale.Application.AppStart
 {
     using System;
     using System.Linq;
+    using Ninject.Web.Common;
     using log4net;
     using Ninject;
     using WeightScale.Application.Contracts;
@@ -57,17 +58,17 @@ namespace WeightScale.Application.AppStart
         /// <summary>
         /// Initializes the kernel.
         /// </summary>
-        private static void InitializeKernel(IKernel kernel)
+        public static void InitializeKernel(IKernel kernel)
         {
-           kernel.Bind<IComSerializer>().To<ComSerializer>();
-           kernel.Bind<IChecksumService>().To<XorChecksumService>();
-           kernel.Bind<ICommandFactory>().To<CommandFactory>();
-           kernel.Bind<IComSettingsProvider>().ToMethod(context => ComSettingsProvider.GetComSettingsProvider);
-           kernel.Bind<IComManager>().To<ComManager>();
-           kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>();
-           kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType));
-           kernel.Bind<IMeasurementService>().To<MeasurementService>();
-           kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>();
+            kernel.Bind<IComSerializer>().To<ComSerializer>().InRequestScope();
+            kernel.Bind<IChecksumService>().To<XorChecksumService>().InRequestScope();
+            kernel.Bind<ICommandFactory>().To<CommandFactory>().InRequestScope();
+            kernel.Bind<IComSettingsProvider>().ToMethod(context => ComSettingsProvider.GetComSettingsProvider).InRequestScope();
+            kernel.Bind<IComManager>().To<ComManager>().InSingletonScope();
+            kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>().InRequestScope();
+            kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType)).InRequestScope();
+            kernel.Bind<IMeasurementService>().To<MeasurementService>().InRequestScope();
+            kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>().InRequestScope();
         }
     }
 }

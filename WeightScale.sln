@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.Domain.Tests", "WeigthScale.Domain.Tests\WeightScale.Domain.Tests.csproj", "{DE6BB046-9A4A-4B74-8FB7-0F5B2F1A05C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.WebApi", "WeightScale.WebApi\WeightScale.WebApi.csproj", "{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeigthScale.WebApiHost", "WeigthScale.WebApiHost\WeigthScale.WebApiHost.csproj", "{0F5712DF-A9A6-4645-9983-78A924A71958}"
 EndProject
 Global
@@ -61,10 +59,6 @@ Global
 		{DE6BB046-9A4A-4B74-8FB7-0F5B2F1A05C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE6BB046-9A4A-4B74-8FB7-0F5B2F1A05C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE6BB046-9A4A-4B74-8FB7-0F5B2F1A05C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2978B91F-A5C0-48A6-8F5B-D1ADA6FD0676}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0F5712DF-A9A6-4645-9983-78A924A71958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0F5712DF-A9A6-4645-9983-78A924A71958}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F5712DF-A9A6-4645-9983-78A924A71958}.Release|Any CPU.ActiveCfg = Release|Any CPU

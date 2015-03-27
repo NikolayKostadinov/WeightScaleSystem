@@ -28,12 +28,13 @@ namespace WeightScale.ComunicationProtocol
         /// Initializes a new instance of the <see cref="ComManager" /> class.
         /// </summary>
         /// <param name="settings">The settings.</param>
-        public ComManager(IComSettingsProvider settings) : this(
-        settings.PortName,
-        settings.BaudRate,
-        settings.Parity,
-        settings.DataBits,
-        settings.StopBits)
+        public ComManager(IComSettingsProvider settings)
+            : this(
+                settings.PortName,
+                settings.BaudRate,
+                settings.Parity,
+                settings.DataBits,
+                settings.StopBits)
         {
         }
 
@@ -69,6 +70,13 @@ namespace WeightScale.ComunicationProtocol
         #endregion
 
         #region Properties
+        public bool IsOpen
+        {
+            get
+            {
+                return this.port.IsOpen;
+            }
+        }
 
         public SerialDataReceivedEventHandler DataReceivedHandler
         {

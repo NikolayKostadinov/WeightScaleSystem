@@ -4,32 +4,8 @@
     using System.Linq;
     using System.Web.Http.Dependencies;
     using Ninject;
-    using WeigthScale.WebApiHost.App_Start;
-
-    // This class is the resolver, but it is also the global scope
-    // so we derive from NinjectScope.
-    public class NinjectDependencyResolver1 : NinjectDependencyScope, IDependencyResolver 
-    {
-        private readonly IKernel kernel;
-
-        public NinjectDependencyResolver1(IKernel kernel): base(kernel)
-        {
-            this.kernel = kernel;
-        }
-
-        public IDependencyScope BeginScope()
-        {
-            return new NinjectDependencyScope(kernel.BeginBlock());
-        }
-    }
-}
-
-namespace WeigthScale.WebApiHost.App_Start
-{
-    using System;
-    using System.Linq;
-    using System.Web.Http.Dependencies;
-    using Ninject;
+    using Ninject.Activation;
+    using Ninject.Parameters;
     using Ninject.Syntax;
 
     public class NinjectDependencyScope : IDependencyScope
@@ -46,7 +22,8 @@ namespace WeigthScale.WebApiHost.App_Start
             if (resolver == null)
                 throw new ObjectDisposedException("this", "This scope has been disposed");
 
-            return resolver.TryGet(serviceType);
+            IRequest request = resolver.CreateRequest(serviceType, null, new Parameter[0], true, true);
+            return resolver.Resolve(request).SingleOrDefault();
         }
 
         public System.Collections.Generic.IEnumerable<object> GetServices(Type serviceType)
@@ -54,7 +31,8 @@ namespace WeigthScale.WebApiHost.App_Start
             if (resolver == null)
                 throw new ObjectDisposedException("this", "This scope has been disposed");
 
-            return resolver.GetAll(serviceType);
+            IRequest request = resolver.CreateRequest(serviceType, null, new Parameter[0], true, true);
+            return resolver.Resolve(request).ToList();
         }
 
         public void Dispose()

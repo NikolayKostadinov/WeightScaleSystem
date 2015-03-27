@@ -11,6 +11,7 @@ namespace WeightScale.ComunicationProtocol.Contracts
     public interface IComManager
     {
         System.IO.Ports.SerialDataReceivedEventHandler DataReceivedHandler { set; }
+        bool IsOpen { get; }
 
         string PortName { get; }
 
