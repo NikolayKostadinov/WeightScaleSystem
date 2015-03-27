@@ -64,7 +64,6 @@ namespace WeigthScale.WebApiHost.Controllers
             
             this.mService = mServiceParam;
             this.logger = logerParam;
-            System.Threading.Thread.CurrentThread.Name = "Thread " + Guid.NewGuid();
         }
 
         public IWeightScaleMessageDto GetTest()

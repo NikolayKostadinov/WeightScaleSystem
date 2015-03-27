@@ -360,7 +360,6 @@ namespace WeightScale.Application.Services
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             this.received = true;
-            loger.Info(Thread.CurrentThread.Name);
         }
 
         private int GetBlockLength(IWeightScaleMessage message)
