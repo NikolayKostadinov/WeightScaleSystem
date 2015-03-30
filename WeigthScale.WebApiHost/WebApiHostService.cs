@@ -3,22 +3,30 @@
 namespace WeigthScale.WebApiHost
 {
     using System.ServiceProcess;
+    using System.Threading;
+    using log4net;
 
     partial class WebApiHostService : ServiceBase
     {
-        public WebApiHostService()
+        private readonly ILog logger;
+
+        public WebApiHostService(ILog loggerParam)
         {
             InitializeComponent();
+            this.logger = loggerParam;
         }
 
         protected override void OnStart(string[] args)
         {
-            Program.App_Start();
+            Thread t = new Thread(new ThreadStart(WebApiHostMain.App_Start));
+            t.Start();
+            logger.Info("WebApi Service started");
         }
 
         protected override void OnStop()
         {
             // TODO: Add code here to perform any tear-down necessary to stop your service.
+            logger.Info("WebApi Service stopped");
         }
     }
 }

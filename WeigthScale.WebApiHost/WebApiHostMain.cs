@@ -1,0 +1,78 @@
+﻿
+
+namespace WeigthScale.WebApiHost
+{
+    using System;
+    using System.ServiceProcess;
+    using System.Web.Http;
+    using System.Web.Http.SelfHost;
+    using Ninject;
+    using WeightScale.Application.AppStart;
+    using log4net;
+    using Ninject.Web.Common.SelfHost;
+    class WebApiHostMain
+    {
+        private static ILog logger;
+
+        static WebApiHostMain() 
+        {
+            logger = LogManager.GetLogger("WeigthScale.WebApiHost");
+        }
+
+        static void Main(string[] args)
+        {
+            ServiceBase[] servicesToRun;
+            servicesToRun = new ServiceBase[] 
+            { 
+                new WebApiHostService(logger) 
+            };
+            ServiceBase.Run(servicesToRun);
+
+            // !!!! Comment the lines before and uncoment next line if you want to compile application as a console.
+            // App_Start();
+        }
+
+        /// <summary>
+        /// start a selfhosted web server with methods for working and monitoring of the electron weight scale
+        /// </summary>
+        internal static void App_Start()
+        {
+            try
+            {
+                Uri baseAddress = new Uri(Properties.Settings.Default.SelfHostedWebApiUri);
+                var config = new HttpSelfHostConfiguration(baseAddress);
+
+                config.Routes.MapHttpRoute(
+                    name: "",
+                    routeTemplate: "api/{controller}/{action}",
+                    defaults: new { action = "PostMeasurement" }
+                );
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{action}/{id}",
+                    defaults: new { id = RouteParameter.Optional }
+                );
+                using (var selfHost = new NinjectSelfHostBootstrapper(CreateKernel, config))
+                {
+                    selfHost.Start();
+                    logger.Info("WebApi selfhosted thread is started!");
+                    while (true) { }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+            }
+        }
+
+        /// <summary>
+        /// Creates the kernel.
+        /// </summary>
+        /// <returns>the newly created kernel.</returns>
+        private static IKernel CreateKernel()
+        {
+            var kernel = NinjectInjector.GetInjector;
+            return kernel;
+        }
+    }
+}

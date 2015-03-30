@@ -18,8 +18,6 @@ namespace WeigthScale.WebApiHost.Infrastructure
     {
         public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
         {
-            string assemblyName = "WeightScale.Domain";
-
             if (bindingContext.ModelType == typeof(IWeightScaleMessageDto))
             {
                 var value = actionContext.Request.Content.ReadAsStringAsync().Result;
@@ -27,21 +25,18 @@ namespace WeigthScale.WebApiHost.Infrastructure
                 var message = JObject.Parse(value).Root["Message"].ToString();
                 var messageType = actionContext.Request.Headers.GetValues("X-MessageType").FirstOrDefault();
 
-                // Executes generic method without knowing of concrete type
-                MethodInfo deserializeMethod = typeof(JsonConvert).GetMethod("DeserializeObject");
-                MethodInfo genericMethod = deserializeMethod.MakeGenericMethod(Activator.CreateInstance(assemblyName, messageType).GetType());
-                IWeightScaleMessage des = genericMethod.Invoke(null, new object[] { message }) as IWeightScaleMessage;
-                //switch (messageType)
-                //{
-                //    case "WeightScaleMessageOld":
-                //        model.Message = JsonConvert.DeserializeObject<WeightScaleMessageOld>(message);
-                //        break;
-                //    case "WeightScaleMessageNew":
-                //        model.Message = JsonConvert.DeserializeObject<WeightScaleMessageNew>(message);
-                //        break;
-                //    default:
-                //        break;
-                //}
+                try
+                {
+                    Type t = GetType(messageType);
+                    MethodInfo deserialize = typeof(CustomModelBinder).GetMethod("DeserializeObject", BindingFlags.NonPublic | BindingFlags.Instance);
+                    MethodInfo genericMethod = deserialize.MakeGenericMethod(t);
+                    IWeightScaleMessage deserializedMessage = genericMethod.Invoke(this, new object[] { message }) as IWeightScaleMessage;
+                    model.Message = deserializedMessage;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
                 var validationMessages = JObject.Parse(value).Root["ValidationMessages"].ToString();
                 model.ValidationMessages = JsonConvert.DeserializeObject<ValidationMessageCollection>(validationMessages);
                 bindingContext.Model = model;
@@ -49,5 +44,24 @@ namespace WeigthScale.WebApiHost.Infrastructure
             }
             return false;
         }
+
+        private T DeserializeObject<T>(string message)
+        {
+            return JsonConvert.DeserializeObject<T>(message);
+        }
+
+        public static Type GetType(string typeName)
+        {
+            var type = Type.GetType(typeName);
+            if (type != null) return type;
+            foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                type = a.GetTypes().FirstOrDefault(x => x.Name == typeName);
+                if (type != null)
+                    return type;
+            }
+            return null;
+        }
     }
+
 }

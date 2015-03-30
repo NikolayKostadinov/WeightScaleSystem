@@ -1,30 +1,4 @@
-﻿//namespace WeightScale.WebApi
-//{
-//    using System;
-//    using System.Collections.Generic;
-//    using System.Linq;
-//    using System.Net;
-//    using System.Net.Http;
-//    using System.Web.Http;
-//    using System.Web.Http.ModelBinding;
-//    using Ninject;
-//    using WeightScale.Application;
-//    using WeightScale.Application.AppStart;
-//    using WeightScale.Application.Contracts;
-//    using WeightScale.Application.Services;
-//    using WeightScale.Domain.Common;
-//    using WeightScale.Domain.Abstract;
-//    using WeightScale.Domain.Concrete;
-//    using WeightScale.WebApi;
-//    using WeightScale.WebApi.Infrastructure;
-//    public class Person 
-//    {
-//        public int Id { get; set; }
-//        public string FirstName { get; set; }
-//        public string LastName { get; set; }
-//    }
-//}
-namespace WeigthScale.WebApiHost.Controllers
+﻿namespace WeigthScale.WebApiHost.Controllers
 {
     using System;
     using System.Linq;

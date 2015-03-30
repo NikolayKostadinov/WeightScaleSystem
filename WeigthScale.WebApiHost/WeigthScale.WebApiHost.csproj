@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0F5712DF-A9A6-4645-9983-78A924A71958}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WeigthScale.WebApiHost</RootNamespace>
     <AssemblyName>WeigthScale.WebApiHost</AssemblyName>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>WeigthScale.WebApiHost.Program</StartupObject>
+    <StartupObject>WeigthScale.WebApiHost.WebApiHostMain</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -95,7 +95,7 @@
     <Compile Include="Infrastructure\CustomAssemblyResolver.cs" />
     <Compile Include="Infrastructure\CustomModelBinder.cs" />
     <Compile Include="Infrastructure\CustomModelBinderProvider.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="WebApiHostMain.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>

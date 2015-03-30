@@ -28,29 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
-            this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
+            this.WebApiHostServiceProcessInstaller = new System.ServiceProcess.ServiceProcessInstaller();
+            this.WebApiHostServiceInstaller = new System.ServiceProcess.ServiceInstaller();
             // 
-            // serviceProcessInstaller1
+            // WebApiHostServiceProcessInstaller
             // 
-            this.serviceProcessInstaller1.Password = null;
-            this.serviceProcessInstaller1.Username = null;
+            this.WebApiHostServiceProcessInstaller.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
+            this.WebApiHostServiceProcessInstaller.Password = null;
+            this.WebApiHostServiceProcessInstaller.Username = null;
             // 
-            // serviceInstaller1
+            // WebApiHostServiceInstaller
             // 
-            this.serviceInstaller1.ServiceName = "WebApiHostService";
+            this.WebApiHostServiceInstaller.Description = "Self hosted WebApi metods for working and managementing of a weight scale";
+            this.WebApiHostServiceInstaller.DisplayName = "Measurements WebApi";
+            this.WebApiHostServiceInstaller.ServiceName = "WebApiHostService";
+            this.WebApiHostServiceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
-            this.serviceProcessInstaller1,
-            this.serviceInstaller1});
+            this.WebApiHostServiceProcessInstaller,
+            this.WebApiHostServiceInstaller});
 
         }
 
         #endregion
 
-        private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
-        private System.ServiceProcess.ServiceInstaller serviceInstaller1;
+        private System.ServiceProcess.ServiceProcessInstaller WebApiHostServiceProcessInstaller;
+        private System.ServiceProcess.ServiceInstaller WebApiHostServiceInstaller;
     }
 }

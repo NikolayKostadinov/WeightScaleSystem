@@ -67,5 +67,14 @@ namespace WeigthScale.WebApiHost.Properties {
                 return ((string)(this["PortName"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8111/")]
+        public string SelfHostedWebApiUri {
+            get {
+                return ((string)(this["SelfHostedWebApiUri"]));
+            }
+        }
     }
 }
