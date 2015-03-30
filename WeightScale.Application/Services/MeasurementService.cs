@@ -27,7 +27,7 @@ namespace WeightScale.Application.Services
     /// </summary>
     public class MeasurementService : IMeasurementService, IDisposable
     {
-        private readonly static object lockObj = new object();
+        private static readonly Mutex mutex = new Mutex();
         private const int INTERVAL = 5 * 1000;
         private readonly IComSerializer serializer;
         private readonly ICommandFactory commands;
@@ -35,7 +35,6 @@ namespace WeightScale.Application.Services
         private readonly IKernel kernel;
         private readonly System.Timers.Timer watchDogTimer;
         private readonly ILog loger;
-        private readonly Mutex mutex = new Mutex();
         private volatile bool received = false;
         private volatile bool watchDogTimerTick = false;
         private int iterations;
@@ -67,10 +66,7 @@ namespace WeightScale.Application.Services
             //{
             //    lock (lockObj)
             //    {
-                    if (!com.IsOpen)
-                    {
-                        this.com.Open();
-                    } 
+                   
             //    } 
             //}
         }
@@ -102,13 +98,18 @@ namespace WeightScale.Application.Services
         public bool IsWeightScaleOk(IWeightScaleMessageDto messageDto)
         {
             bool result = false;
-            if (this.mutex.WaitOne(INTERVAL * 3))
+            if (mutex.WaitOne(INTERVAL * 3))
             {
                 var command = this.commands.WeightScaleRequest(messageDto.Message);
                 var trailingCommand = this.commands.EndOfTransmit();
                 var validationMessages = this.kernel.Get<IValidationMessageCollection>();
                 try
                 {
+                    if (!com.IsOpen)
+                    {
+                        this.com.Open();
+                    } 
+
                     string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
                     var comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
                     this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
@@ -139,7 +140,7 @@ namespace WeightScale.Application.Services
                 finally
                 {
                     // Must release the mutex in every case
-                    this.mutex.ReleaseMutex();
+                    mutex.ReleaseMutex();
                 }
 
                 return result;
@@ -152,7 +153,7 @@ namespace WeightScale.Application.Services
 
         public void Measure(IWeightScaleMessageDto messageDto)
         {
-            if (this.mutex.WaitOne(INTERVAL * 3))
+            if (mutex.WaitOne(INTERVAL * 3))
             {
                 int blockLength = this.GetBlockLength(messageDto.Message);
                 const int PAILOAD_LEN = 5;
@@ -164,6 +165,11 @@ namespace WeightScale.Application.Services
                 var validationMessages = this.kernel.Get<IValidationMessageCollection>();
                 try
                 {
+                    if (!com.IsOpen)
+                    {
+                        this.com.Open();
+                    } 
+
                     string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
                     comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
                     this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
@@ -200,7 +206,7 @@ namespace WeightScale.Application.Services
                 }
                 finally
                 {
-                    this.mutex.ReleaseMutex();
+                    mutex.ReleaseMutex();
                 }
             }
             else
@@ -215,7 +221,6 @@ namespace WeightScale.Application.Services
         /// </summary>
         public void Dispose()
         {
-            this.mutex.Dispose();
             this.com.Dispose();
         }
 
@@ -360,7 +365,6 @@ namespace WeightScale.Application.Services
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             this.received = true;
-            loger.Info(Thread.CurrentThread.Name);
         }
 
         private int GetBlockLength(IWeightScaleMessage message)

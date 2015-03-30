@@ -42,14 +42,9 @@ namespace WeigthScale.WebApiHost.Controllers
 
     public class MeasurementsController : ApiController
     {
-        private static volatile object lockObj;
         private readonly IMeasurementService mService;
         private readonly ILog logger;
 
-        static MeasurementsController() 
-        {
-            lockObj = new object();
-        }
         public MeasurementsController(IMeasurementService mServiceParam, ILog logerParam)
         {
             if (mServiceParam == null)
@@ -64,7 +59,6 @@ namespace WeigthScale.WebApiHost.Controllers
             
             this.mService = mServiceParam;
             this.logger = logerParam;
-            System.Threading.Thread.CurrentThread.Name = "Thread " + Guid.NewGuid();
         }
 
         public IWeightScaleMessageDto GetTest()
@@ -85,8 +79,7 @@ namespace WeigthScale.WebApiHost.Controllers
         [HttpPost]
         public HttpResponseMessage PostMeasurement([ModelBinder(typeof(CustomModelBinder))]IWeightScaleMessageDto value)
         {
-            lock (lockObj)
-            {
+           
                 if (ModelState.IsValid && value != null)
                 {
                     try
@@ -103,10 +96,34 @@ namespace WeigthScale.WebApiHost.Controllers
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentException("value", "Invalid input weigh scale message"));
                 }
-                
-            }
 
             return Request.CreateResponse(HttpStatusCode.OK, value);
+        }
+
+        // POST api/Measurements
+        [HttpPost]
+        public HttpResponseMessage PostIsOk([ModelBinder(typeof(CustomModelBinder))]IWeightScaleMessageDto value)
+        {
+            bool result = false;
+
+            if (ModelState.IsValid && value != null)
+            {
+                try
+                {
+                    result = this.mService.IsWeightScaleOk(value);
+                }
+                catch (Exception ex)
+                {
+                    value.ValidationMessages.AddError("PostMeasurement", ex.Message);
+                    logger.Error(ex.Message, ex);
+                }
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentException("value", "Invalid input weigh scale message"));
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         private static IWeightScaleMessage GenerateWeightBlock()
@@ -126,33 +143,18 @@ namespace WeigthScale.WebApiHost.Controllers
 
         private IWeightScaleMessage GenerateWeightBlockOld()
         {
-            //var ser = new WeightScaleMessageNew();
-            var ser = new WeightScaleMessageOld();
+            var ser = new WeightScaleMessageNew();
+            //var ser = new WeightScaleMessageOld();
             ser.Number = 3;
             ser.Direction = Direction.In;
             ser.SerialNumber = 12345678;
             ser.TransactionNumber = 12345;
             ser.MeasurementNumber = 2;
             ser.ProductCode = 100;
-            //ser.ExciseDocumentNumber = "1400032512";
+            ser.ExciseDocumentNumber = "1400032512";
             ser.Vehicle = "A3335KX";
             return ser;
         }
-
-        //[HttpPost]
-        //public HttpResponseMessage PostPerson(Person p) 
-        //{
-        //    HttpResponseMessage response;
-        //    if (ModelState.IsValid)
-        //    {
-        //        response = Request.CreateResponse(HttpStatusCode.OK, p);
-        //    }
-        //    else 
-        //    {
-        //        response = Request.CreateErrorResponse(HttpStatusCode.NotModified, new ArgumentException("p", "Invalid person data!"));
-        //    }
-        //    return response;
-        //}
 
         //// PUT api/Measurements/5
         //public void PutMeasurement(int id, [FromBody]
