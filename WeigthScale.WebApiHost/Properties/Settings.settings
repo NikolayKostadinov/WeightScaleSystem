@@ -17,8 +17,11 @@
     <Setting Name="PortName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">COM7</Value>
     </Setting>
-    <Setting Name="SelfHostedWebApiUri" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:8111/</Value>
+    <Setting Name="SelfHostedWebApiPort" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8111</Value>
+    </Setting>
+    <Setting Name="SelfHostedWebApiHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost</Value>
     </Setting>
   </Settings>
 </SettingsFile>

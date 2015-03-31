@@ -49,7 +49,10 @@ namespace WeigthScale.WebApiHost
         {
             try
             {
-                Uri baseAddress = new Uri(Properties.Settings.Default.SelfHostedWebApiUri);
+                string uri = string.Format("{0}:{1}", 
+                    Properties.Settings.Default.SelfHostedWebApiHost, 
+                    Properties.Settings.Default.SelfHostedWebApiPort);
+                Uri baseAddress = new Uri(uri);
                 var config = new HttpSelfHostConfiguration(baseAddress);
 
                 config.Routes.MapHttpRoute(
@@ -65,9 +68,9 @@ namespace WeigthScale.WebApiHost
                 using (var selfHost = new NinjectSelfHostBootstrapper(CreateKernel, config))
                 {
                     selfHost.Start();
-                    logger.Info("WebApi selfhosted thread is started!");
+                    logger.Info("WebApi SelfHosted thread is started!");
                     while (!StopWebApiServer) { }
-                    logger.Info("Self hosted WebApi service is stopped!");
+                    logger.Info("SelfHosted WebApi service is stopped!");
                 }
             }
             catch (Exception ex)

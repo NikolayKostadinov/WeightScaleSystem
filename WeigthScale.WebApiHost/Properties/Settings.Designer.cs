@@ -70,10 +70,19 @@ namespace WeigthScale.WebApiHost.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8111/")]
-        public string SelfHostedWebApiUri {
+        [global::System.Configuration.DefaultSettingValueAttribute("8111")]
+        public string SelfHostedWebApiPort {
             get {
-                return ((string)(this["SelfHostedWebApiUri"]));
+                return ((string)(this["SelfHostedWebApiPort"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost")]
+        public string SelfHostedWebApiHost {
+            get {
+                return ((string)(this["SelfHostedWebApiHost"]));
             }
         }
     }

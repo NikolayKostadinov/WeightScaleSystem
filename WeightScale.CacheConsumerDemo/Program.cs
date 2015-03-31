@@ -23,34 +23,24 @@ namespace WeightScale.CacheConsumerDemo
             var repository = injector.Get<IRepository<SoapMessage, CValidationMessage>>();
             var result = repository.GetAll();
             List<IWeightScaleMessageDto> messages = new List<IWeightScaleMessageDto>();
+            var mapper = new MappingService();
             foreach (var item in result)
             {
                 var message = injector.Get<IWeightScaleMessageDto>();
                 message.Message = item.Message.ToDomainType();
                 messages.Add(message);
+                // Get result from HttpClient
+                
+                SoapMessage currentSoap = item;
+                mapper.ToProxy(message, currentSoap);
+                repository.Update(currentSoap);
             }
 
             foreach (var message in messages)
             {
                 Console.WriteLine(message.Message.ToString());
             }
-
-            var mapper = new MappingService();
-
-            var cMessages = new List<SoapMessage>();
-
-            var outMessages = result.ToList();
-
-            for (int i = 0; i < messages.Count; i++)
-            {
-                mapper.ToProxy(messages[i], outMessages[i]);
-            }
-
-            foreach (var item in outMessages)
-            {
-                Console.WriteLine(item.ToString());
-                repository.Update(item);
-            }
+            
         }
     }
 }
