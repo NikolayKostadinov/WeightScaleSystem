@@ -61,8 +61,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long idField;
         
-        private bool idFieldSpecified;
-        
         private string uRLField;
         
         private CWeigthScaleMessageBase messageField;
@@ -78,18 +76,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.idField = value;
                 this.RaisePropertyChanged("Id");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool IdSpecified {
-            get {
-                return this.idFieldSpecified;
-            }
-            set {
-                this.idFieldSpecified = value;
-                this.RaisePropertyChanged("IdSpecified");
             }
         }
         
@@ -167,11 +153,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long numberField;
         
-        private bool numberFieldSpecified;
-        
         private long directionField;
-        
-        private bool directionFieldSpecified;
         
         private string timeOfFirstMeasureField;
         
@@ -179,55 +161,31 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long measurementStatusField;
         
-        private bool measurementStatusFieldSpecified;
-        
         private long serialNumberField;
-        
-        private bool serialNumberFieldSpecified;
         
         private long transactionNumberField;
         
-        private bool transactionNumberFieldSpecified;
-        
         private long measurementNumberField;
         
-        private bool measurementNumberFieldSpecified;
-        
         private long productCodeField;
-        
-        private bool productCodeFieldSpecified;
         
         private string productNameField;
         
         private long tareWeightField;
         
-        private bool tareWeightFieldSpecified;
-        
         private long grossWeightField;
-        
-        private bool grossWeightFieldSpecified;
         
         private long netWeightField;
         
-        private bool netWeightFieldSpecified;
-        
         private long totalOfGrossWeightField;
         
-        private bool totalOfGrossWeightFieldSpecified;
-        
         private long totalOfNetWeightField;
-        
-        private bool totalOfNetWeightFieldSpecified;
         
         private string vehicleField;
         
         private long documentNumberField;
         
-        private bool documentNumberFieldSpecified;
-        
         private long statusField;
-        
-        private bool statusFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -242,18 +200,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NumberSpecified {
-            get {
-                return this.numberFieldSpecified;
-            }
-            set {
-                this.numberFieldSpecified = value;
-                this.RaisePropertyChanged("NumberSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
         public long Direction {
             get {
@@ -262,18 +208,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.directionField = value;
                 this.RaisePropertyChanged("Direction");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DirectionSpecified {
-            get {
-                return this.directionFieldSpecified;
-            }
-            set {
-                this.directionFieldSpecified = value;
-                this.RaisePropertyChanged("DirectionSpecified");
             }
         }
         
@@ -314,18 +248,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MeasurementStatusSpecified {
-            get {
-                return this.measurementStatusFieldSpecified;
-            }
-            set {
-                this.measurementStatusFieldSpecified = value;
-                this.RaisePropertyChanged("MeasurementStatusSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public long SerialNumber {
             get {
@@ -334,18 +256,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.serialNumberField = value;
                 this.RaisePropertyChanged("SerialNumber");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool SerialNumberSpecified {
-            get {
-                return this.serialNumberFieldSpecified;
-            }
-            set {
-                this.serialNumberFieldSpecified = value;
-                this.RaisePropertyChanged("SerialNumberSpecified");
             }
         }
         
@@ -362,18 +272,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TransactionNumberSpecified {
-            get {
-                return this.transactionNumberFieldSpecified;
-            }
-            set {
-                this.transactionNumberFieldSpecified = value;
-                this.RaisePropertyChanged("TransactionNumberSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public long MeasurementNumber {
             get {
@@ -386,18 +284,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MeasurementNumberSpecified {
-            get {
-                return this.measurementNumberFieldSpecified;
-            }
-            set {
-                this.measurementNumberFieldSpecified = value;
-                this.RaisePropertyChanged("MeasurementNumberSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public long ProductCode {
             get {
@@ -406,18 +292,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.productCodeField = value;
                 this.RaisePropertyChanged("ProductCode");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ProductCodeSpecified {
-            get {
-                return this.productCodeFieldSpecified;
-            }
-            set {
-                this.productCodeFieldSpecified = value;
-                this.RaisePropertyChanged("ProductCodeSpecified");
             }
         }
         
@@ -446,18 +320,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TareWeightSpecified {
-            get {
-                return this.tareWeightFieldSpecified;
-            }
-            set {
-                this.tareWeightFieldSpecified = value;
-                this.RaisePropertyChanged("TareWeightSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public long GrossWeight {
             get {
@@ -466,18 +328,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.grossWeightField = value;
                 this.RaisePropertyChanged("GrossWeight");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool GrossWeightSpecified {
-            get {
-                return this.grossWeightFieldSpecified;
-            }
-            set {
-                this.grossWeightFieldSpecified = value;
-                this.RaisePropertyChanged("GrossWeightSpecified");
             }
         }
         
@@ -494,18 +344,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NetWeightSpecified {
-            get {
-                return this.netWeightFieldSpecified;
-            }
-            set {
-                this.netWeightFieldSpecified = value;
-                this.RaisePropertyChanged("NetWeightSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public long TotalOfGrossWeight {
             get {
@@ -518,18 +356,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalOfGrossWeightSpecified {
-            get {
-                return this.totalOfGrossWeightFieldSpecified;
-            }
-            set {
-                this.totalOfGrossWeightFieldSpecified = value;
-                this.RaisePropertyChanged("TotalOfGrossWeightSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public long TotalOfNetWeight {
             get {
@@ -538,18 +364,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.totalOfNetWeightField = value;
                 this.RaisePropertyChanged("TotalOfNetWeight");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalOfNetWeightSpecified {
-            get {
-                return this.totalOfNetWeightFieldSpecified;
-            }
-            set {
-                this.totalOfNetWeightFieldSpecified = value;
-                this.RaisePropertyChanged("TotalOfNetWeightSpecified");
             }
         }
         
@@ -578,18 +392,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DocumentNumberSpecified {
-            get {
-                return this.documentNumberFieldSpecified;
-            }
-            set {
-                this.documentNumberFieldSpecified = value;
-                this.RaisePropertyChanged("DocumentNumberSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=17)]
         public long Status {
             get {
@@ -598,18 +400,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.statusField = value;
                 this.RaisePropertyChanged("Status");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool StatusSpecified {
-            get {
-                return this.statusFieldSpecified;
-            }
-            set {
-                this.statusFieldSpecified = value;
-                this.RaisePropertyChanged("StatusSpecified");
             }
         }
         
@@ -633,11 +423,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long numberField;
         
-        private bool numberFieldSpecified;
-        
         private long directionField;
-        
-        private bool directionFieldSpecified;
         
         private string timeOfFirstMeasureField;
         
@@ -645,45 +431,25 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long measurementStatusField;
         
-        private bool measurementStatusFieldSpecified;
-        
         private long serialNumberField;
-        
-        private bool serialNumberFieldSpecified;
         
         private long transactionNumberField;
         
-        private bool transactionNumberFieldSpecified;
-        
         private long measurementNumberField;
         
-        private bool measurementNumberFieldSpecified;
-        
         private long productCodeField;
-        
-        private bool productCodeFieldSpecified;
         
         private string exciseDocumentNumberField;
         
         private long tareWeightField;
         
-        private bool tareWeightFieldSpecified;
-        
         private long grossWeightField;
-        
-        private bool grossWeightFieldSpecified;
         
         private long netWeightField;
         
-        private bool netWeightFieldSpecified;
-        
         private long totalNetOfInputField;
         
-        private bool totalNetOfInputFieldSpecified;
-        
         private long totalNetOfOutputField;
-        
-        private bool totalNetOfOutputFieldSpecified;
         
         private string vehicleField;
         
@@ -691,15 +457,9 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long totalNetByProductInputField;
         
-        private bool totalNetByProductInputFieldSpecified;
-        
         private long totalNetByProductOutputField;
         
-        private bool totalNetByProductOutputFieldSpecified;
-        
         private long statusField;
-        
-        private bool statusFieldSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -714,18 +474,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NumberSpecified {
-            get {
-                return this.numberFieldSpecified;
-            }
-            set {
-                this.numberFieldSpecified = value;
-                this.RaisePropertyChanged("NumberSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
         public long Direction {
             get {
@@ -734,18 +482,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.directionField = value;
                 this.RaisePropertyChanged("Direction");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DirectionSpecified {
-            get {
-                return this.directionFieldSpecified;
-            }
-            set {
-                this.directionFieldSpecified = value;
-                this.RaisePropertyChanged("DirectionSpecified");
             }
         }
         
@@ -786,18 +522,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MeasurementStatusSpecified {
-            get {
-                return this.measurementStatusFieldSpecified;
-            }
-            set {
-                this.measurementStatusFieldSpecified = value;
-                this.RaisePropertyChanged("MeasurementStatusSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public long SerialNumber {
             get {
@@ -806,18 +530,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.serialNumberField = value;
                 this.RaisePropertyChanged("SerialNumber");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool SerialNumberSpecified {
-            get {
-                return this.serialNumberFieldSpecified;
-            }
-            set {
-                this.serialNumberFieldSpecified = value;
-                this.RaisePropertyChanged("SerialNumberSpecified");
             }
         }
         
@@ -834,18 +546,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TransactionNumberSpecified {
-            get {
-                return this.transactionNumberFieldSpecified;
-            }
-            set {
-                this.transactionNumberFieldSpecified = value;
-                this.RaisePropertyChanged("TransactionNumberSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public long MeasurementNumber {
             get {
@@ -858,18 +558,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool MeasurementNumberSpecified {
-            get {
-                return this.measurementNumberFieldSpecified;
-            }
-            set {
-                this.measurementNumberFieldSpecified = value;
-                this.RaisePropertyChanged("MeasurementNumberSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public long ProductCode {
             get {
@@ -878,18 +566,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.productCodeField = value;
                 this.RaisePropertyChanged("ProductCode");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ProductCodeSpecified {
-            get {
-                return this.productCodeFieldSpecified;
-            }
-            set {
-                this.productCodeFieldSpecified = value;
-                this.RaisePropertyChanged("ProductCodeSpecified");
             }
         }
         
@@ -916,19 +592,6 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TareWeight");
             }
         }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TareWeightSpecified {
-            get {
-                return this.tareWeightFieldSpecified;
-            }
-            set {
-                this.tareWeightFieldSpecified = value;
-                this.RaisePropertyChanged("TareWeightSpecified");
-            }
-        }
-        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public long GrossWeight {
@@ -938,18 +601,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.grossWeightField = value;
                 this.RaisePropertyChanged("GrossWeight");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool GrossWeightSpecified {
-            get {
-                return this.grossWeightFieldSpecified;
-            }
-            set {
-                this.grossWeightFieldSpecified = value;
-                this.RaisePropertyChanged("GrossWeightSpecified");
             }
         }
         
@@ -966,18 +617,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NetWeightSpecified {
-            get {
-                return this.netWeightFieldSpecified;
-            }
-            set {
-                this.netWeightFieldSpecified = value;
-                this.RaisePropertyChanged("NetWeightSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public long TotalNetOfInput {
             get {
@@ -990,18 +629,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalNetOfInputSpecified {
-            get {
-                return this.totalNetOfInputFieldSpecified;
-            }
-            set {
-                this.totalNetOfInputFieldSpecified = value;
-                this.RaisePropertyChanged("TotalNetOfInputSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public long TotalNetOfOutput {
             get {
@@ -1010,18 +637,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.totalNetOfOutputField = value;
                 this.RaisePropertyChanged("TotalNetOfOutput");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalNetOfOutputSpecified {
-            get {
-                return this.totalNetOfOutputFieldSpecified;
-            }
-            set {
-                this.totalNetOfOutputFieldSpecified = value;
-                this.RaisePropertyChanged("TotalNetOfOutputSpecified");
             }
         }
         
@@ -1062,18 +677,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalNetByProductInputSpecified {
-            get {
-                return this.totalNetByProductInputFieldSpecified;
-            }
-            set {
-                this.totalNetByProductInputFieldSpecified = value;
-                this.RaisePropertyChanged("TotalNetByProductInputSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=18)]
         public long TotalNetByProductOutput {
             get {
@@ -1086,18 +689,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TotalNetByProductOutputSpecified {
-            get {
-                return this.totalNetByProductOutputFieldSpecified;
-            }
-            set {
-                this.totalNetByProductOutputFieldSpecified = value;
-                this.RaisePropertyChanged("TotalNetByProductOutputSpecified");
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public long Status {
             get {
@@ -1106,18 +697,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.statusField = value;
                 this.RaisePropertyChanged("Status");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool StatusSpecified {
-            get {
-                return this.statusFieldSpecified;
-            }
-            set {
-                this.statusFieldSpecified = value;
-                this.RaisePropertyChanged("StatusSpecified");
             }
         }
         
@@ -1141,8 +720,6 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long typeField;
         
-        private bool typeFieldSpecified;
-        
         private string fieldField;
         
         private string textField;
@@ -1156,18 +733,6 @@ namespace WeightScale.CacheApi.SoapProxy {
             set {
                 this.typeField = value;
                 this.RaisePropertyChanged("Type");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool TypeSpecified {
-            get {
-                return this.typeFieldSpecified;
-            }
-            set {
-                this.typeFieldSpecified = value;
-                this.RaisePropertyChanged("TypeSpecified");
             }
         }
         

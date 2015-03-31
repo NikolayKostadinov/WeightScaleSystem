@@ -9,6 +9,9 @@ namespace WeightScale.Application.AppStart
     using System;
     using System.Linq;
     using Ninject.Web.Common;
+    using WeightScale.CacheApi.Concrete;
+    using WeightScale.CacheApi.Contract;
+    using WeightScale.CacheApi.SoapProxy;
     using log4net;
     using Ninject;
     using WeightScale.Application.Contracts;
@@ -69,6 +72,7 @@ namespace WeightScale.Application.AppStart
             kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType)).InRequestScope();
             kernel.Bind<IMeasurementService>().To<MeasurementService>().InRequestScope();
             kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>().InRequestScope();
+            kernel.Bind<IRepository<SoapMessage, CValidationMessage>>().To<MeasurementRequestsRepository>();
         }
     }
 }
