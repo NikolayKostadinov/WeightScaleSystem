@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.Domain.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeigthScale.WebApiHost", "WeigthScale.WebApiHost\WeigthScale.WebApiHost.csproj", "{0F5712DF-A9A6-4645-9983-78A924A71958}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.CacheApi", "WeightScale.CacheApi\WeightScale.CacheApi.csproj", "{1D7B7D4D-4E2B-4EF8-AEAA-F19B7FDCC0A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{0F5712DF-A9A6-4645-9983-78A924A71958}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F5712DF-A9A6-4645-9983-78A924A71958}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F5712DF-A9A6-4645-9983-78A924A71958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7B7D4D-4E2B-4EF8-AEAA-F19B7FDCC0A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7B7D4D-4E2B-4EF8-AEAA-F19B7FDCC0A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7B7D4D-4E2B-4EF8-AEAA-F19B7FDCC0A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7B7D4D-4E2B-4EF8-AEAA-F19B7FDCC0A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

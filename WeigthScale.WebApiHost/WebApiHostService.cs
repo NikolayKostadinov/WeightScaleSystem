@@ -21,12 +21,14 @@ namespace WeigthScale.WebApiHost
             Thread t = new Thread(new ThreadStart(WebApiHostMain.App_Start));
             t.Start();
             logger.Info("WebApi Service started");
+            WebApiHostMain.StopWebApiServer = false; 
         }
 
         protected override void OnStop()
         {
             // TODO: Add code here to perform any tear-down necessary to stop your service.
             // JUST test
+            WebApiHostMain.StopWebApiServer = true; 
             logger.Info("WebApi Service stopped");
         }
     }

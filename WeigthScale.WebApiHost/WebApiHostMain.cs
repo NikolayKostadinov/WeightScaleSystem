@@ -14,9 +14,19 @@ namespace WeigthScale.WebApiHost
     {
         private static ILog logger;
 
+        private static volatile bool stopWebApiServer;
+
+        public static bool StopWebApiServer
+        {
+            get { return stopWebApiServer; }
+            set { stopWebApiServer = value; }
+        }
+        
+
         static WebApiHostMain() 
         {
             logger = LogManager.GetLogger("WeigthScale.WebApiHost");
+            StopWebApiServer = false;
         }
 
         static void Main(string[] args)
@@ -56,7 +66,8 @@ namespace WeigthScale.WebApiHost
                 {
                     selfHost.Start();
                     logger.Info("WebApi selfhosted thread is started!");
-                    while (true) { }
+                    while (!StopWebApiServer) { }
+                    logger.Info("Self hosted WebApi service is stopped!");
                 }
             }
             catch (Exception ex)

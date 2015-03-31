@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s0="http://tempuri.org" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:element name="GetAllMeasurementRequests">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllMeasurementRequestsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetAllMeasurementRequestsResult" type="s0:ArrayOfSoapMessageSoapMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSoapMessageSoapMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SoapMessage" nillable="true" type="s0:SoapMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SoapMessage">
+        <s:sequence>
+          <s:element minOccurs="0" name="Id" type="s:long" />
+          <s:element minOccurs="0" name="URL" type="s:string" />
+          <s:element minOccurs="0" name="Message" type="s0:CWeigthScaleMessageBase" />
+          <s:element minOccurs="0" name="ValidationMessages" type="s0:ArrayOfCValidationMessageCValidationMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWeigthScaleMessageNew">
+        <s:sequence>
+          <s:element minOccurs="0" name="Number" type="s:long" />
+          <s:element minOccurs="0" name="Direction" type="s:long" />
+          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:string" />
+          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:string" />
+          <s:element minOccurs="0" name="MeasurementStatus" type="s:long" />
+          <s:element minOccurs="0" name="SerialNumber" type="s:long" />
+          <s:element minOccurs="0" name="TransactionNumber" type="s:long" />
+          <s:element minOccurs="0" name="MeasurementNumber" type="s:long" />
+          <s:element minOccurs="0" name="ProductCode" type="s:long" />
+          <s:element minOccurs="0" name="ExciseDocumentNumber" type="s:string" />
+          <s:element minOccurs="0" name="TareWeight" type="s:long" />
+          <s:element minOccurs="0" name="GrossWeight" type="s:long" />
+          <s:element minOccurs="0" name="NetWeight" type="s:long" />
+          <s:element minOccurs="0" name="TotalNetOfInput" type="s:long" />
+          <s:element minOccurs="0" name="TotalNetOfOutput" type="s:long" />
+          <s:element minOccurs="0" name="Vehicle" type="s:string" />
+          <s:element minOccurs="0" name="DocumentNumber" type="s:string" />
+          <s:element minOccurs="0" name="TotalNetByProductInput" type="s:long" />
+          <s:element minOccurs="0" name="TotalNetByProductOutput" type="s:long" />
+          <s:element minOccurs="0" name="Status" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWeigthScaleMessageOld">
+        <s:sequence>
+          <s:element minOccurs="0" name="Number" type="s:long" />
+          <s:element minOccurs="0" name="Direction" type="s:long" />
+          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:string" />
+          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:string" />
+          <s:element minOccurs="0" name="MeasurementStatus" type="s:long" />
+          <s:element minOccurs="0" name="SerialNumber" type="s:long" />
+          <s:element minOccurs="0" name="TransactionNumber" type="s:long" />
+          <s:element minOccurs="0" name="MeasurementNumber" type="s:long" />
+          <s:element minOccurs="0" name="ProductCode" type="s:long" />
+          <s:element minOccurs="0" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" name="TareWeight" type="s:long" />
+          <s:element minOccurs="0" name="GrossWeight" type="s:long" />
+          <s:element minOccurs="0" name="NetWeight" type="s:long" />
+          <s:element minOccurs="0" name="TotalOfGrossWeight" type="s:long" />
+          <s:element minOccurs="0" name="TotalOfNetWeight" type="s:long" />
+          <s:element minOccurs="0" name="Vehicle" type="s:string" />
+          <s:element minOccurs="0" name="DocumentNumber" type="s:long" />
+          <s:element minOccurs="0" name="Status" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWeigthScaleMessageBase" abstract="true" />
+      <s:complexType name="ArrayOfCValidationMessageCValidationMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CValidationMessage" nillable="true" type="s0:CValidationMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CValidationMessage">
+        <s:sequence>
+          <s:element minOccurs="0" name="Type" type="s:long" />
+          <s:element minOccurs="0" name="Field" type="s:string" />
+          <s:element minOccurs="0" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertMeasurementResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="inResult" type="s0:SoapMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertMeasurementResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="InsertMeasurementResultResult" type="s0:ArrayOfCValidationMessageCValidationMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Test">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+      <s:element name="TestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="TestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transport1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="input" type="s0:CWeigthScaleMessageNew" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transport1Response">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+      <s:element name="Transport2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="input" type="s0:CWeigthScaleMessageOld" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transport2Response">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllMeasurementRequestsSoapIn">
+    <wsdl:part name="parameters" element="s0:GetAllMeasurementRequests" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMeasurementRequestsSoapOut">
+    <wsdl:part name="parameters" element="s0:GetAllMeasurementRequestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertMeasurementResultSoapIn">
+    <wsdl:part name="parameters" element="s0:InsertMeasurementResult" />
+  </wsdl:message>
+  <wsdl:message name="InsertMeasurementResultSoapOut">
+    <wsdl:part name="parameters" element="s0:InsertMeasurementResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestSoapIn">
+    <wsdl:part name="parameters" element="s0:Test" />
+  </wsdl:message>
+  <wsdl:message name="TestSoapOut">
+    <wsdl:part name="parameters" element="s0:TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Transport1SoapIn">
+    <wsdl:part name="parameters" element="s0:Transport1" />
+  </wsdl:message>
+  <wsdl:message name="Transport1SoapOut">
+    <wsdl:part name="parameters" element="s0:Transport1Response" />
+  </wsdl:message>
+  <wsdl:message name="Transport2SoapIn">
+    <wsdl:part name="parameters" element="s0:Transport2" />
+  </wsdl:message>
+  <wsdl:message name="Transport2SoapOut">
+    <wsdl:part name="parameters" element="s0:Transport2Response" />
+  </wsdl:message>
+  <wsdl:portType name="WeightScaleServiceSoap">
+    <wsdl:operation name="GetAllMeasurementRequests">
+      <wsdl:input message="s0:GetAllMeasurementRequestsSoapIn" />
+      <wsdl:output message="s0:GetAllMeasurementRequestsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertMeasurementResult">
+      <wsdl:input message="s0:InsertMeasurementResultSoapIn" />
+      <wsdl:output message="s0:InsertMeasurementResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <wsdl:input message="s0:TestSoapIn" />
+      <wsdl:output message="s0:TestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transport1">
+      <wsdl:input message="s0:Transport1SoapIn" />
+      <wsdl:output message="s0:Transport1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transport2">
+      <wsdl:input message="s0:Transport2SoapIn" />
+      <wsdl:output message="s0:Transport2SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WeightScaleServiceSoap" type="s0:WeightScaleServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllMeasurementRequests">
+      <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.GetAllMeasurementRequests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertMeasurementResult">
+      <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.InsertMeasurementResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Test">
+      <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transport1">
+      <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.Transport1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transport2">
+      <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.Transport2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WeightScaleService">
+    <wsdl:port name="WeightScaleServiceSoap" binding="s0:WeightScaleServiceSoap">
+      <soap:address location="http://localhost:57772/csp/webservices/SWT.WeightScaleService.cls" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

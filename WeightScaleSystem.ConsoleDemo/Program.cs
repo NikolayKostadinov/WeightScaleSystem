@@ -49,10 +49,10 @@
             {
                 using (var mService = injector.Get<IMeasurementService>())
                 {
-                    var mt = new MutexTest(mService, new WeightScaleMessageDto() { Message = GenerateWeightBlock(), ValidationMessages = new ValidationMessageCollection() });
+                    //var mt = new MutexTest(mService, new WeightScaleMessageDto() { Message = GenerateWeightBlock(), ValidationMessages = new ValidationMessageCollection() });
 
-                    Thread statusCheckerThread = new Thread(new ThreadStart(mt.CheckStatus));
-                    statusCheckerThread.Start();
+                    //Thread statusCheckerThread = new Thread(new ThreadStart(mt.CheckStatus));
+                    //statusCheckerThread.Start();
 
                     while (!stop)
                     {
