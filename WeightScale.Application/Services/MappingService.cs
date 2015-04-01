@@ -7,6 +7,8 @@ using AutoMapper;
 using WeightScale.Application.Contracts;
 using WeightScale.CacheApi.SoapProxy;
 using WeightScale.Domain.Abstract;
+using WeightScale.Domain.Common;
+using WeightScale.Domain.Concrete;
 
 namespace WeightScale.Application.Services
 {
@@ -14,9 +16,7 @@ namespace WeightScale.Application.Services
     {
         public void ToProxy(IWeightScaleMessageDto source, SoapMessage proxy) 
         {
-            CWeigthScaleMessageBase proxyMessage = Activator.CreateInstance(proxy.Message.GetType()) as CWeigthScaleMessageBase;
-            Mapper.Map(source.Message, proxyMessage);
-            proxy.Message = proxyMessage as CWeigthScaleMessageBase;
+            Mapper.Map(source.Message, proxy.Message, source.Message.GetType(), proxy.Message.GetType());
             var proxyValidationMessages = new List<CValidationMessage>();
             Mapper.Map(source.ValidationMessages, proxy.ValidationMessages);
             proxy.ValidationMessages = proxyValidationMessages.ToArray();

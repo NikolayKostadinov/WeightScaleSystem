@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
 namespace WeightScale.CacheApi.SoapProxy {
     
     
@@ -154,10 +155,10 @@ namespace WeightScale.CacheApi.SoapProxy {
         private long numberField;
         
         private long directionField;
-        
-        private string timeOfFirstMeasureField;
-        
-        private string timeOfSecondMeasureField;
+
+        private DateTime? timeOfFirstMeasureField;
+
+        private DateTime? timeOfSecondMeasureField;
         
         private long measurementStatusField;
         
@@ -213,7 +214,8 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string TimeOfFirstMeasure {
+        public DateTime? TimeOfFirstMeasure
+        {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -225,7 +227,8 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public string TimeOfSecondMeasure {
+        public DateTime? TimeOfSecondMeasure
+        {
             get {
                 return this.timeOfSecondMeasureField;
             }
@@ -425,9 +428,9 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long directionField;
         
-        private string timeOfFirstMeasureField;
-        
-        private string timeOfSecondMeasureField;
+        private DateTime? timeOfFirstMeasureField;
+
+        private DateTime? timeOfSecondMeasureField;
         
         private long measurementStatusField;
         
@@ -487,7 +490,8 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string TimeOfFirstMeasure {
+        public DateTime? TimeOfFirstMeasure
+        {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -499,7 +503,8 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public string TimeOfSecondMeasure {
+        public DateTime? TimeOfSecondMeasure
+        {
             get {
                 return this.timeOfSecondMeasureField;
             }

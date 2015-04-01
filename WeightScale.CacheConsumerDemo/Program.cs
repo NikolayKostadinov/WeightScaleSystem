@@ -54,7 +54,7 @@ namespace WeightScale.CacheConsumerDemo
                             SoapMessage currentSoap = item;
                             mapper.ToProxy(incommmingMeasurementResult, currentSoap);
                             var validationMessages = repository.Update(currentSoap);
-                            if (validationMessages.Count() > 0)
+                            if (validationMessages !=null && validationMessages.Count() > 0)
                             {
                                 foreach (var vm in validationMessages)
                                 {

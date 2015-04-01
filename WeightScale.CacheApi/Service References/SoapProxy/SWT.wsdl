@@ -31,8 +31,8 @@
         <s:sequence>
           <s:element minOccurs="0" name="Number" type="s:long" />
           <s:element minOccurs="0" name="Direction" type="s:long" />
-          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:string" />
-          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:string" />
+          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:DateTime?" />
+          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:DateTime?" />
           <s:element minOccurs="0" name="MeasurementStatus" type="s:long" />
           <s:element minOccurs="0" name="SerialNumber" type="s:long" />
           <s:element minOccurs="0" name="TransactionNumber" type="s:long" />
@@ -55,8 +55,8 @@
         <s:sequence>
           <s:element minOccurs="0" name="Number" type="s:long" />
           <s:element minOccurs="0" name="Direction" type="s:long" />
-          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:string" />
-          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:string" />
+          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:DateTime?" />
+          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:DateTime?" />
           <s:element minOccurs="0" name="MeasurementStatus" type="s:long" />
           <s:element minOccurs="0" name="SerialNumber" type="s:long" />
           <s:element minOccurs="0" name="TransactionNumber" type="s:long" />
