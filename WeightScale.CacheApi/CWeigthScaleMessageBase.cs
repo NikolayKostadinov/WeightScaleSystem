@@ -72,4 +72,20 @@ namespace WeightScale.CacheApi.SoapProxy
             return domain;
         }
     }
+
+    public partial class CValidationMessage 
+    {
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            var properties = this.GetType().GetProperties();
+            sb.AppendLine();
+            foreach (var prop in properties)
+            {
+                sb.AppendLine(string.Format("-----{0}: {1}", prop.Name, prop.GetValue(this)));
+            }
+
+            return sb.ToString();
+        }
+    }
 }

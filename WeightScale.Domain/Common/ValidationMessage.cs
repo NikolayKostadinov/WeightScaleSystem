@@ -6,6 +6,8 @@
 //--------------------------------------------------------------------------------
 namespace WeightScale.Domain.Common
 {
+    using System.Linq;
+    using System.Text;
     using WeightScale.Domain.Common;
 
     /// <summary>
@@ -105,6 +107,29 @@ namespace WeightScale.Domain.Common
             return this.type.GetHashCode()
                 ^ (this.field == null ? 0 : this.field.GetHashCode())
                 ^ (this.text == null ? 0 : this.text.GetHashCode());
+        }
+
+        public override string ToString()
+        {
+            return this.GetProps();
+        }
+
+        protected string GetProps()
+        {
+            var props = this.GetType()
+                           .GetProperties();
+                         
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var prop in props)
+            {
+                var attr = prop.GetCustomAttributes(typeof(ComSerializablePropertyAttribute), true).FirstOrDefault() as ComSerializablePropertyAttribute;
+                var length = attr.Length;
+                sb.Append((prop.GetValue(this) ?? string.Empty).ToString().PadLeft(length, ' '));
+                sb.Append(" | ");
+            }
+
+            return sb.ToString();
         }
     }
 }

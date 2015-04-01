@@ -14,8 +14,12 @@ namespace WeightScale.Application.Services
     {
         public void ToProxy(IWeightScaleMessageDto source, SoapMessage proxy) 
         {
-            Mapper.Map(source.Message, proxy.Message);
+            CWeigthScaleMessageBase proxyMessage = Activator.CreateInstance(proxy.Message.GetType()) as CWeigthScaleMessageBase;
+            Mapper.Map(source.Message, proxyMessage);
+            proxy.Message = proxyMessage as CWeigthScaleMessageBase;
+            var proxyValidationMessages = new List<CValidationMessage>();
             Mapper.Map(source.ValidationMessages, proxy.ValidationMessages);
+            proxy.ValidationMessages = proxyValidationMessages.ToArray();
         }
     }
 }
