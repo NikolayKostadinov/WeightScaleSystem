@@ -429,7 +429,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         private long directionField;
         
         private DateTime? timeOfFirstMeasureField;
-
+        
         private DateTime? timeOfSecondMeasureField;
         
         private long measurementStatusField;
