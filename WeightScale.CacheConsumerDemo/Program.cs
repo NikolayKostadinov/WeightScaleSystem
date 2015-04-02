@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.ServiceModel;
-using Newtonsoft.Json.Linq;
 using Ninject;
 using WeightScale.Application.AppStart;
 using WeightScale.Application.Contracts;
@@ -48,10 +46,6 @@ namespace WeightScale.CacheConsumerDemo
                             {
                                 string jsonAnswer = response.Content.ReadAsStringAsync().Result;
                                 IWeightScaleMessageDto incommmingMeasurementResult = deserializer.GetResultFromJson(jsonAnswer, message) as IWeightScaleMessageDto;
-                                //var dto = JsonConvert.DeserializeObject<WeightScaleMessageDto>(json);
-                                //var dtoMessage = JObject.Parse(json).Root["Message"].ToString();
-                                //var dtoValidationMessages = JObject.Parse(json).Root["ValidationMessages"].ToString();
-
                                 SoapMessage currentSoap = item;
                                 mapper.ToProxy(incommmingMeasurementResult, currentSoap);
                                 var validationMessages = repository.Update(currentSoap);
