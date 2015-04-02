@@ -8,6 +8,7 @@ namespace WeightScale.Domain.Common
 {
     using System.Linq;
     using System.Text;
+    using Newtonsoft.Json;
     using WeightScale.Domain.Common;
 
     /// <summary>
@@ -31,6 +32,10 @@ namespace WeightScale.Domain.Common
         private string field;
         private string text;
 
+        [JsonConstructor]
+        public ValidationMessage() 
+        {
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidationMessage" /> class. 
         /// Constructor that creates a validation error with the specified type, field and message.

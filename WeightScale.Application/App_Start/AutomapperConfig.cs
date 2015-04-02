@@ -33,8 +33,10 @@ namespace WeightScale.Application.AppStart
             Mapper.CreateMap<WeightScaleMessageOld, CWeigthScaleMessageOld>()
                 .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
                 .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
-            Mapper.CreateMap<CValidationMessage, ValidationMessage>();
-            Mapper.CreateMap<ValidationMessage, CValidationMessage>();
+            Mapper.CreateMap<CValidationMessage, ValidationMessage>()
+                .ForMember(des => des.Type, opt => opt.MapFrom(src => (int)src.Type));
+            Mapper.CreateMap<ValidationMessage, CValidationMessage>()
+                .ForMember(des=>des.Type, opt=>opt.MapFrom(src=>(int)src.Type));
             Mapper.CreateMap<IWeightScaleMessage, CWeigthScaleMessageBase>()
                    .Include<WeightScaleMessageOld, CWeigthScaleMessageOld>()
                    .Include<WeightScaleMessageNew, CWeigthScaleMessageNew>();
