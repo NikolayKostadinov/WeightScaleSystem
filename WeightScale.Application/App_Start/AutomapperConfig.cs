@@ -32,13 +32,18 @@ namespace WeightScale.Application.AppStart
                 .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
             Mapper.CreateMap<WeightScaleMessageOld, CWeigthScaleMessageOld>()
                 .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
+                .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus)); 
+            Mapper.CreateMap<WeightScaleMessageNew, CWeigthScaleMessageNew>()
+            .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
+                .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
+            Mapper.CreateMap<WeightScaleMessageOld, CWeigthScaleMessageOld>()
+                .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
                 .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
             Mapper.CreateMap<CValidationMessage, ValidationMessage>();
             Mapper.CreateMap<ValidationMessage, CValidationMessage>();
             Mapper.CreateMap<IWeightScaleMessage, CWeigthScaleMessageBase>()
-                   .Include<WeightScaleMessageOld, CWeigthScaleMessageOld>()
-                   .Include<WeightScaleMessageNew, CWeigthScaleMessageNew>();
-
+                .Include<WeightScaleMessageOld,CWeigthScaleMessageOld>()
+                .Include<WeightScaleMessageNew,CWeigthScaleMessageNew>();
         }
     }
 }

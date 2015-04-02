@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using AutoMapper;
 using Newtonsoft.Json.Linq;
 using Ninject;
 using WeightScale.Application.AppStart;
@@ -52,9 +53,11 @@ namespace WeightScale.CacheConsumerDemo
                             //var dtoValidationMessages = JObject.Parse(json).Root["ValidationMessages"].ToString();
 
                             SoapMessage currentSoap = item;
+                            //Mapper.Map(incommmingMeasurementResult.Message, currentSoap.Message);
+                            //Mapper.Map(incommmingMeasurementResult.ValidationMessages, currentSoap.ValidationMessages);
                             mapper.ToProxy(incommmingMeasurementResult, currentSoap);
                             var validationMessages = repository.Update(currentSoap);
-                            if (validationMessages !=null && validationMessages.Count() > 0)
+                            if (validationMessages != null && validationMessages.Count() > 0)
                             {
                                 foreach (var vm in validationMessages)
                                 {
@@ -69,7 +72,7 @@ namespace WeightScale.CacheConsumerDemo
                     }
                 }
 
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(5000);
 
             } while (true);
             //foreach (var message in messages)
