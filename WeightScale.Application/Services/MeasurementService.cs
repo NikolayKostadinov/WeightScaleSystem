@@ -127,7 +127,7 @@ namespace WeightScale.Application.Services
                     command = this.commands.Acknowledge();
                     this.SendCommand(command, 0, this.com);
                     this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
-                    messageDto.ValidationMessages.AddError(ex.Message);
+                    messageDto.ValidationMessages.AddError("PostMeasurement", ex.Message);
                     messageDto.ValidationMessages.AddMany(validationMessages);
                     this.loger.Error(ex.Message);
                     foreach (var err in validationMessages)

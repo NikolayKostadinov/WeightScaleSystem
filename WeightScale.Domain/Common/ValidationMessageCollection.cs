@@ -9,6 +9,7 @@ namespace WeightScale.Domain.Common
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Newtonsoft.Json;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
 
@@ -17,6 +18,16 @@ namespace WeightScale.Domain.Common
     /// </summary>
     public class ValidationMessageCollection : List<ValidationMessage>, IValidationMessageCollection
     {
+        public ValidationMessageCollection() 
+        {
+            //Do nothing!!!
+        }
+
+        [JsonConstructor]
+        public ValidationMessageCollection(IEnumerable<ValidationMessage> inputMessages) 
+        {
+            this.AddRange(inputMessages);
+        }
         /// <summary>
         /// Gets a list of messages with the status 'Info'.
         /// </summary>

@@ -19,7 +19,7 @@ namespace WeightScale.Application.AppStart
     /// </summary>
     public class AutomapperConfig
     {
-        public static void AutoMapperConfig() 
+        public static void AutoMapperConfig()
         {
             Mapper.CreateMap<CWeigthScaleMessageNew, WeightScaleMessageNew>()
                  .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
@@ -32,18 +32,21 @@ namespace WeightScale.Application.AppStart
                 .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
             Mapper.CreateMap<WeightScaleMessageOld, CWeigthScaleMessageOld>()
                 .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
-                .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus)); 
+                .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
             Mapper.CreateMap<WeightScaleMessageNew, CWeigthScaleMessageNew>()
             .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
                 .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
             Mapper.CreateMap<WeightScaleMessageOld, CWeigthScaleMessageOld>()
                 .ForMember(dest => dest.Direction, opt => opt.MapFrom(src => (int)src.Direction))
                 .ForMember(dest => dest.MeasurementStatus, opt => opt.MapFrom(src => (int)src.MeasurementStatus));
-            Mapper.CreateMap<CValidationMessage, ValidationMessage>();
-            Mapper.CreateMap<ValidationMessage, CValidationMessage>();
+            Mapper.CreateMap<CValidationMessage, ValidationMessage>()
+                .ForMember(des => des.Type, opt => opt.MapFrom(src => (int)src.Type));
+            Mapper.CreateMap<ValidationMessage, CValidationMessage>()
+                .ForMember(des => des.Type, opt => opt.MapFrom(src => (int)src.Type));
+            //Mapper.CreateMap<ValidationMessageCollection, CValidationMessage[]>();
             Mapper.CreateMap<IWeightScaleMessage, CWeigthScaleMessageBase>()
-                .Include<WeightScaleMessageOld,CWeigthScaleMessageOld>()
-                .Include<WeightScaleMessageNew,CWeigthScaleMessageNew>();
+                .Include<WeightScaleMessageOld, CWeigthScaleMessageOld>()
+                .Include<WeightScaleMessageNew, CWeigthScaleMessageNew>();
         }
     }
 }
