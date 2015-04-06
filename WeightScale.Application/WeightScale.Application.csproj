@@ -67,6 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Contracts\IJsonDeserializeService.cs" />
+    <Compile Include="Contracts\IMappingService.cs" />
     <Compile Include="Services\JsonDeserializeService.cs" />
     <Compile Include="Services\MappingService.cs" />
     <Compile Include="Services\MeasurementService.cs" />

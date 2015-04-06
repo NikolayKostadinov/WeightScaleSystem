@@ -204,6 +204,18 @@ namespace WeightScale.Application.Services
                         this.loger.Error(err.Text);
                     }
                 }
+                catch(Exception ex)
+                {// I think that's it.
+                    try
+                    {
+                        mutex.ReleaseMutex();
+                    }
+                    catch (Exception) 
+                    {
+                    }
+
+                    throw ex;
+                }
                 finally
                 {
                     mutex.ReleaseMutex();
