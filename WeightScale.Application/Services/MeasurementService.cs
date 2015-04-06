@@ -250,7 +250,17 @@ namespace WeightScale.Application.Services
             byte[] result = new byte[resultLength];
             do
             {
-                result = this.SendCommand(command, resultLength, this.com);
+                try
+                {
+                    result = this.SendCommand(command, resultLength, this.com);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    if (counter == this.iterations)
+                    {
+                        throw ex;
+                    }
+                }
                 counter++;
             }
             while (!(isOk(result) || (counter > this.iterations)));
