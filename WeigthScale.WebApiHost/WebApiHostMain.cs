@@ -31,15 +31,15 @@ namespace WeigthScale.WebApiHost
 
         static void Main(string[] args)
         {
-            //ServiceBase[] servicesToRun;
-            //servicesToRun = new ServiceBase[] 
-            //{ 
-            //    new WebApiHostService(logger) 
-            //};
-            //ServiceBase.Run(servicesToRun);
+            ServiceBase[] servicesToRun;
+            servicesToRun = new ServiceBase[] 
+            { 
+                new WebApiHostService(logger) 
+            };
+            ServiceBase.Run(servicesToRun);
 
             // !!!! Comment the lines before and uncoment next line if you want to compile application as a console.
-            App_Start();
+            // App_Start();
         }
 
         /// <summary>
@@ -65,6 +65,7 @@ namespace WeigthScale.WebApiHost
                     routeTemplate: "api/{controller}/{action}/{id}",
                     defaults: new { id = RouteParameter.Optional }
                 );
+                
                 using (var selfHost = new NinjectSelfHostBootstrapper(CreateKernel, config))
                 {
                     selfHost.Start();

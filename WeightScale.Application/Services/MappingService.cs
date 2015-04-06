@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using WeightScale.Application.Contracts;
-using WeightScale.CacheApi.SoapProxy;
-using WeightScale.Domain.Abstract;
-using WeightScale.Domain.Concrete;
-
-namespace WeightScale.Application.Services
+﻿namespace WeightScale.Application.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using AutoMapper;
+    using WeightScale.Application.Contracts;
+    using WeightScale.CacheApi.SoapProxy;
+
+
     public class MappingService : WeightScale.Application.Contracts.IMappingService
     {
         public void ToProxy(IWeightScaleMessageDto source, SoapMessage proxy)
         {
-            //var proxyMessage = //Activator.CreateInstance(proxy.Message.GetType());// as CWeigthScaleMessageNew;
-            //var sourceMessage = //Activator.CreateInstance(source.Message.GetType());// as WeightScaleMessageNew;
-            //sourceMessage = source.Message;
             Mapper.Map(source.Message, proxy.Message, source.Message.GetType(), proxy.Message.GetType());
-            //var proxyValidationMessages = new List<CValidationMessage>();
             if (source.ValidationMessages.Count() > 0)
             {
                 IList<CValidationMessage> proxyValidationMessages = new List<CValidationMessage>();
