@@ -66,7 +66,7 @@ namespace WeightScale.Application.Services
             //{
             //    lock (lockObj)
             //    {
-                   
+
             //    } 
             //}
         }
@@ -108,7 +108,7 @@ namespace WeightScale.Application.Services
                     if (!com.IsOpen)
                     {
                         this.com.Open();
-                    } 
+                    }
 
                     string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
                     var comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
@@ -124,18 +124,26 @@ namespace WeightScale.Application.Services
                 }
                 catch (InvalidOperationException ex)
                 {
-                    command = this.commands.Acknowledge();
-                    this.SendCommand(command, 0, this.com);
-                    this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
-                    messageDto.ValidationMessages.AddError("PostMeasurement", ex.Message);
-                    messageDto.ValidationMessages.AddMany(validationMessages);
-                    this.loger.Error(ex.Message);
-                    foreach (var err in validationMessages)
+                    try
                     {
-                        this.loger.Error(err.Text);
-                    }
+                        command = this.commands.Acknowledge();
+                        this.SendCommand(command, 0, this.com);
+                        this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
+                        messageDto.ValidationMessages.AddError("PostMeasurement", ex.Message);
+                        messageDto.ValidationMessages.AddMany(validationMessages);
+                        this.loger.Error(ex.Message);
+                        foreach (var err in validationMessages)
+                        {
+                            this.loger.Error(err.Text);
+                        }
 
-                    result = false;
+                        result = false;
+                    }
+                    catch (Exception internalEx)
+                    {
+                        messageDto.ValidationMessages.AddError(internalEx.Message);
+                        this.loger.Error(internalEx.Message);
+                    }
                 }
                 finally
                 {
@@ -168,7 +176,7 @@ namespace WeightScale.Application.Services
                     if (!com.IsOpen)
                     {
                         this.com.Open();
-                    } 
+                    }
 
                     string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
                     comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
@@ -206,7 +214,7 @@ namespace WeightScale.Application.Services
                             this.loger.Error(err.Text);
                         }
                     }
-                    catch (Exception internalEx) 
+                    catch (Exception internalEx)
                     {
                         messageDto.ValidationMessages.AddError(internalEx.Message);
                         this.loger.Error(internalEx.Message);
