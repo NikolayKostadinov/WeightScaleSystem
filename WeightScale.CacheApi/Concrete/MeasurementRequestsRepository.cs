@@ -15,7 +15,7 @@ namespace WeightScale.CacheApi.Concrete
         public MeasurementRequestsRepository() 
         {
             this.client = new WeightScaleServiceSoapClient();
-            this.client.Endpoint.EndpointBehaviors.Add(new MessageBehavior("_system", "SYS"));
+            this.client.Endpoint.EndpointBehaviors.Add(new MessageBehavior("_system", "ADMCACHE"));
         }
 
         /// <summary>

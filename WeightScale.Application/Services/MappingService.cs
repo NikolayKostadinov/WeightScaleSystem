@@ -11,7 +11,7 @@ using WeightScale.Domain.Concrete;
 
 namespace WeightScale.Application.Services
 {
-    public class MappingService
+    public class MappingService : WeightScale.Application.Contracts.IMappingService
     {
         public void ToProxy(IWeightScaleMessageDto source, SoapMessage proxy)
         {
