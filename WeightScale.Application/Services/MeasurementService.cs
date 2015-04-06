@@ -28,7 +28,7 @@ namespace WeightScale.Application.Services
     public class MeasurementService : IMeasurementService, IDisposable
     {
         private static readonly Mutex mutex = new Mutex();
-        private const int INTERVAL = 5 * 1000;
+        private const int INTERVAL = 1 * 1000;
         private readonly IComSerializer serializer;
         private readonly ICommandFactory commands;
         private readonly IComManager com;
@@ -193,28 +193,24 @@ namespace WeightScale.Application.Services
                 }
                 catch (InvalidOperationException ex)
                 {
-                    command = this.commands.Acknowledge();
-                    this.SendCommand(command, 0, this.com);
-                    this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
-                    messageDto.ValidationMessages.AddError(ex.Message);
-                    messageDto.ValidationMessages.AddMany(validationMessages);
-                    this.loger.Error(ex.Message);
-                    foreach (var err in validationMessages)
-                    {
-                        this.loger.Error(err.Text);
-                    }
-                }
-                catch(Exception ex)
-                {// I think that's it.
                     try
                     {
-                        mutex.ReleaseMutex();
+                        command = this.commands.Acknowledge();
+                        this.SendCommand(command, 0, this.com);
+                        this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
+                        messageDto.ValidationMessages.AddError(ex.Message);
+                        messageDto.ValidationMessages.AddMany(validationMessages);
+                        this.loger.Error(ex.Message);
+                        foreach (var err in validationMessages)
+                        {
+                            this.loger.Error(err.Text);
+                        }
                     }
-                    catch (Exception) 
+                    catch (Exception internalEx) 
                     {
+                        messageDto.ValidationMessages.AddError(internalEx.Message);
+                        this.loger.Error(internalEx.Message);
                     }
-
-                    throw ex;
                 }
                 finally
                 {
