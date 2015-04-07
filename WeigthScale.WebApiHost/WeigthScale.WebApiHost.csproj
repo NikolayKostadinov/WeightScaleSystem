@@ -91,10 +91,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\MeasurementsController.cs" />
     <Compile Include="Infrastructure\CustomAssemblyResolver.cs" />
     <Compile Include="Infrastructure\CustomModelBinder.cs" />
     <Compile Include="Infrastructure\CustomModelBinderProvider.cs" />
+    <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
     <Compile Include="WebApiHostMain.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

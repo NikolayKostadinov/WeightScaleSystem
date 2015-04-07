@@ -12,6 +12,8 @@ namespace WeightScale.Application.Contracts
 
     public interface IWeightScaleMessageDto
     {
+        long Id { get; set; }
+
         IWeightScaleMessage Message { get; set; }
 
         IValidationMessageCollection ValidationMessages { get; set; }

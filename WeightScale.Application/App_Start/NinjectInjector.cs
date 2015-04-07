@@ -75,6 +75,7 @@ namespace WeightScale.Application.AppStart
             kernel.Bind<IRepository<SoapMessage, CValidationMessage>>().To<MeasurementRequestsRepository>();
             kernel.Bind<IJsonDeserializeService>().To<JsonDeserializeService>();
             kernel.Bind<IMappingService>().To<MappingService>();
+            kernel.Bind<IArchivingService>().To<ArchivingService>();
         }
     }
 }

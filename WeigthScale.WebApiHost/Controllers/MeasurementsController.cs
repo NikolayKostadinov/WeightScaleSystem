@@ -53,24 +53,22 @@
         [HttpPost]
         public HttpResponseMessage PostMeasurement([ModelBinder(typeof(CustomModelBinder))]IWeightScaleMessageDto value)
         {
-           
-                if (ModelState.IsValid && value != null)
+            if (ModelState.IsValid && value != null)
+            {
+                try
                 {
-                    try
-                    {
-                        this.mService.Measure(value);
-                    }
-                    catch (Exception ex)
-                    {
-                        value.ValidationMessages.AddError("PostMeasurement", ex.Message);
-                        logger.Error(ex.Message, ex);
-                    }
+                    this.mService.Measure(value);
                 }
-                else
+                catch (Exception ex)
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentException("value", "Invalid input weigh scale message"));
+                    value.ValidationMessages.AddError("PostMeasurement", ex.Message);
+                    logger.Error(ex.Message, ex);
                 }
-
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentException("value", "Invalid input weigh scale message"));
+            }
             return Request.CreateResponse(HttpStatusCode.OK, value);
         }
 

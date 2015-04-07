@@ -22,6 +22,10 @@ namespace WeigthScale.WebApiHost.Infrastructure
             {
                 var value = actionContext.Request.Content.ReadAsStringAsync().Result;
                 var model = actionContext.Request.GetDependencyScope().GetService(typeof(IWeightScaleMessageDto)) as IWeightScaleMessageDto;
+
+                var strId = JObject.Parse(value).Root["Id"].ToString();
+                model.Id = long.Parse(strId);
+
                 var message = JObject.Parse(value).Root["Message"].ToString();
                 var messageType = actionContext.Request.Headers.GetValues("X-MessageType").FirstOrDefault();
 

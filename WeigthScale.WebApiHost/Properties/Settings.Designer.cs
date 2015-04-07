@@ -61,7 +61,7 @@ namespace WeigthScale.WebApiHost.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM7")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
         public string PortName {
             get {
                 return ((string)(this["PortName"]));

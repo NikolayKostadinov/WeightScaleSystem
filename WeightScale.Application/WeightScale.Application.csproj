@@ -49,6 +49,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,6 +70,8 @@
     </Compile>
     <Compile Include="Contracts\IJsonDeserializeService.cs" />
     <Compile Include="Contracts\IMappingService.cs" />
+    <Compile Include="Services\ArchivingService.cs" />
+    <Compile Include="Services\IArchivingService.cs" />
     <Compile Include="Services\JsonDeserializeService.cs" />
     <Compile Include="Services\MappingService.cs" />
     <Compile Include="Services\MeasurementService.cs" />

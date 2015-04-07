@@ -61,14 +61,6 @@ namespace WeightScale.Application.Services
 
             SerialDataReceivedEventHandler handler = new SerialDataReceivedEventHandler(this.DataReceived);
             this.com.DataReceivedHandler = handler;
-
-            //if (!com.IsOpen)
-            //{
-            //    lock (lockObj)
-            //    {
-
-            //    } 
-            //}
         }
 
         /// <summary>
@@ -98,7 +90,7 @@ namespace WeightScale.Application.Services
         public bool IsWeightScaleOk(IWeightScaleMessageDto messageDto)
         {
             bool result = false;
-            if (mutex.WaitOne(INTERVAL * 3))
+            if (mutex.WaitOne(INTERVAL * 15))
             {
                 var command = this.commands.WeightScaleRequest(messageDto.Message);
                 var trailingCommand = this.commands.EndOfTransmit();
@@ -161,7 +153,7 @@ namespace WeightScale.Application.Services
 
         public void Measure(IWeightScaleMessageDto messageDto)
         {
-            if (mutex.WaitOne(INTERVAL * 3))
+            if (mutex.WaitOne(INTERVAL * 15))
             {
                 int blockLength = this.GetBlockLength(messageDto.Message);
                 const int PAILOAD_LEN = 5;
@@ -178,12 +170,14 @@ namespace WeightScale.Application.Services
                         this.com.Open();
                     }
 
+                    this.loger.Debug(string.Format("------------- Processing message Id: {0} -------------", messageDto.Id));
                     string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
                     comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
                     this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
-
+                    
                     // -------------Step1 completed successfully------------- 
                     // -------------Step2------------- 
+                    
                     command = this.commands.SendDataToWeightScale(messageDto.Message);
                     comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Ack, "Cannot send data to weight scale", trailingCommand, validationMessages);
                     this.loger.Debug(string.Format("Command: {0} Answer Step2: {1}", this.ByteArrayToString(command, blockLength), this.ByteArrayToString(comAnswer)));

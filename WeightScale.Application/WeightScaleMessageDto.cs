@@ -17,6 +17,12 @@ namespace WeightScale.Application
     public class WeightScaleMessageDto : IWeightScaleMessageDto
     {
         /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        /// <value>The id.</value>
+        public long Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the message.
         /// </summary>
         /// <value>The message.</value>

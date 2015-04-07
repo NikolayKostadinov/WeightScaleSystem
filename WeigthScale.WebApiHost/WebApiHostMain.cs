@@ -8,8 +8,10 @@ namespace WeigthScale.WebApiHost
     using System.Web.Http.SelfHost;
     using Ninject;
     using WeightScale.Application.AppStart;
+    using WeigthScale.WebApiHost.Infrastructure;
     using log4net;
     using Ninject.Web.Common.SelfHost;
+
     class WebApiHostMain
     {
         private static ILog logger;
@@ -65,6 +67,7 @@ namespace WeigthScale.WebApiHost
                     routeTemplate: "api/{controller}/{action}/{id}",
                     defaults: new { id = RouteParameter.Optional }
                 );
+                config.Filters.Add(new HandleErrorAttribute(logger));
                 
                 using (var selfHost = new NinjectSelfHostBootstrapper(CreateKernel, config))
                 {
