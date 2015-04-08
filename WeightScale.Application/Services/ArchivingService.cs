@@ -74,6 +74,15 @@
                 {
                     if (fs.CanWrite)
                     {
+                        var file = new FileInfo(path);
+                        var targetTime = DateTime.Now;
+                        var creationTime = file.CreationTime;
+
+                        if (creationTime.Date == targetTime.Date  && creationTime.Hour == targetTime.Hour) 
+                        {
+                            return true;
+                        }
+
                         return false;
                     }
                     else 

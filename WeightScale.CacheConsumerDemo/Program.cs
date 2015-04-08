@@ -90,9 +90,10 @@
                                 logger.Error(string.Format("Error Code: {0} : Message: {1}", response.StatusCode, response.ReasonPhrase));
                             }
                         }
+                        logger.Info(string.Format("Total estimated time for transaction: {0}", (DateTime.Now - beginTotal).ToString(@"ss\:fff")));
                     }
 
-                    logger.Info(string.Format("Total estimated time for transaction: {0}", (DateTime.Now - beginTotal).ToString(@"ss\:fff")));
+                   
                     //System.Threading.Thread.Sleep(2000);
 
                 } while (true);

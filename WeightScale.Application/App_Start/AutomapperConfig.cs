@@ -19,6 +19,8 @@ namespace WeightScale.Application.AppStart
     /// </summary>
     public class AutomapperConfig
     {
+        private const int CACHE_TEXT_MAXLEN = 320;
+
         public static void AutoMapperConfig()
         {
             Mapper.CreateMap<CWeigthScaleMessageNew, WeightScaleMessageNew>()
@@ -42,7 +44,8 @@ namespace WeightScale.Application.AppStart
             Mapper.CreateMap<CValidationMessage, ValidationMessage>()
                 .ForMember(des => des.Type, opt => opt.MapFrom(src => (int)src.Type));
             Mapper.CreateMap<ValidationMessage, CValidationMessage>()
-                .ForMember(des => des.Type, opt => opt.MapFrom(src => (int)src.Type));
+                  .ForMember(des => des.Text, opt => opt.MapFrom(src => src.Text.Length > CACHE_TEXT_MAXLEN ? src.Text.Substring(0, CACHE_TEXT_MAXLEN) : src.Text))
+                  .ForMember(des => des.Type, opt => opt.MapFrom(src => (int)src.Type));
             //Mapper.CreateMap<ValidationMessageCollection, CValidationMessage[]>();
             Mapper.CreateMap<IWeightScaleMessage, CWeigthScaleMessageBase>()
                 .Include<WeightScaleMessageOld, CWeigthScaleMessageOld>()
