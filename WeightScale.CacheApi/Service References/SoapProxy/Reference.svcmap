@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:57772/csp/webservices/SWT.WeightScaleService.cls?wsdl=1&amp;CacheUserName=_system&amp;CachePassword=SYS" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls?wsdl=1&amp;CacheUserName=_system&amp;CachePassword=SYS" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SWT.wsdl" MetadataType="Wsdl" ID="4ff190f9-27ab-437b-bef0-c6cc7e718875" SourceId="1" SourceUrl="http://localhost:57772/csp/webservices/SWT.WeightScaleService.cls?wsdl=1&amp;CSPCHD=00200001000032kgeL5d000000UnWKdqWGGDZsE4OrxscTLA--" />
+    <MetadataFile FileName="SWT1.wsdl" MetadataType="Wsdl" ID="a2205628-a309-4ded-84e8-230c8f33358b" SourceId="1" SourceUrl="http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls?wsdl=1&amp;CSPCHD=002000010000410snfVG000000Boqcq95LIrcx1x9oyQVDdQ--" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
