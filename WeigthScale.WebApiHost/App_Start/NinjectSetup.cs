@@ -24,7 +24,7 @@
             kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>();
             kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType));
             kernel.Bind<IMeasurementService>().To<MeasurementService>();
-            kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>();
+            kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>(); 
         }
     }
 }
