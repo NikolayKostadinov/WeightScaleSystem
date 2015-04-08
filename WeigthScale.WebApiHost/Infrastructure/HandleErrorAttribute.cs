@@ -21,7 +21,7 @@
         {
             var actionCtx = actionExecutedContext.ActionContext;
             var controllerCtx = actionCtx.ControllerContext;
-            logger.ErrorFormat("Exception occured. Controller: {0}, action: {1}. Exception message: {2}",
+            logger.ErrorFormat("Exception occurred. Controller: {0}, action: {1}. Exception message: {2}",
                 controllerCtx.ControllerDescriptor.ControllerName,
                 actionCtx.ActionDescriptor.ActionName,
                 actionExecutedContext.Exception.Message);
