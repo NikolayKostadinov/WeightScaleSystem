@@ -40,12 +40,12 @@ namespace WeigthScale.WebApiHost
             };
             ServiceBase.Run(servicesToRun);
 
-            // !!!! Comment the lines before and uncoment next line if you want to compile application as a console.
+            // !!!! Comment the lines before and uncomment next line if you want to compile application as a console.
             // App_Start();
         }
 
         /// <summary>
-        /// start a selfhosted web server with methods for working and monitoring of the electron weight scale
+        /// start a self-hosted web server with methods for working and monitoring of the electron weight scale
         /// </summary>
         internal static void App_Start()
         {

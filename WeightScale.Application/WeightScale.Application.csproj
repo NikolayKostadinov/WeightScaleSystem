@@ -70,8 +70,8 @@
     </Compile>
     <Compile Include="Contracts\IJsonDeserializeService.cs" />
     <Compile Include="Contracts\IMappingService.cs" />
-    <Compile Include="Services\ArchivingService.cs" />
-    <Compile Include="Services\IArchivingService.cs" />
+    <Compile Include="Services\LogFileService.cs" />
+    <Compile Include="Contracts\IFileService.cs" />
     <Compile Include="Services\JsonDeserializeService.cs" />
     <Compile Include="Services\MappingService.cs" />
     <Compile Include="Services\MeasurementService.cs" />

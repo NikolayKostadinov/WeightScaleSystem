@@ -13,16 +13,7 @@
     {
         public override IModelBinder GetBinder(HttpConfiguration configuration, Type modelType)
         {
-            // if (modelType == typeof(WeightScaleMessageConcreteNewDto))
-            // {
             return new WeigthScale.WebApiHost.Infrastructure.CustomModelBinder();
-            // }
-            // else if (modelType == typeof(WeightScaleMessageConcreteOldDto)) 
-            // {
-            //    return new CustomModelBinderOld();
-            // }
-
-            // return null;
         }
     }
 }

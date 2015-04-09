@@ -28,6 +28,15 @@ namespace WeightScale.CacheApi.Concrete
         }
 
         /// <summary>
+        /// Gets the target urls.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<string> GetTargetUrls()
+        {
+            return this.client.GetAllHostAndPort();
+        }
+
+        /// <summary>
         /// Updates the specified message.
         /// </summary>
         /// <typeparam name="T">The type of the T.</typeparam>
