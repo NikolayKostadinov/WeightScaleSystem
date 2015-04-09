@@ -192,9 +192,9 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private long directionField;
         
-        private System.DateTime timeOfFirstMeasureField;
+        private DateTime? timeOfFirstMeasureField;
         
-        private System.DateTime timeOfSecondMeasureField;
+        private DateTime? timeOfSecondMeasureField;
         
         private long measurementStatusField;
         
@@ -250,7 +250,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public System.DateTime TimeOfFirstMeasure {
+        public DateTime? TimeOfFirstMeasure {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -262,7 +262,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public System.DateTime TimeOfSecondMeasure {
+        public DateTime? TimeOfSecondMeasure {
             get {
                 return this.timeOfSecondMeasureField;
             }
@@ -463,9 +463,9 @@ namespace WeightScale.CacheApi.SoapProxy {
 
         private long directionField;
         
-        private System.DateTime timeOfFirstMeasureField;
+        private DateTime? timeOfFirstMeasureField;
         
-        private System.DateTime timeOfSecondMeasureField;
+        private DateTime? timeOfSecondMeasureField;
         
         private long measurementStatusField;
         
@@ -525,7 +525,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public System.DateTime TimeOfFirstMeasure {
+        public DateTime? TimeOfFirstMeasure {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -537,7 +537,7 @@ namespace WeightScale.CacheApi.SoapProxy {
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public System.DateTime TimeOfSecondMeasure {
+        public DateTime? TimeOfSecondMeasure {
             get {
                 return this.timeOfSecondMeasureField;
             }
