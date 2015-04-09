@@ -8,7 +8,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using WeightScale.Application.Services;
+using System.Web.Http.ModelBinding;
+using WeightScale.Application.Contracts;
+using WeigthScale.WebApiHost.Infrastructure;
 using log4net;
 using log4net.Appender;
 
@@ -17,12 +19,12 @@ namespace WeigthScale.WebApiHost.Controllers
     public class LogsController : ApiController
     {
         private readonly ILog logger;
-        private readonly IArchivingService archiver;
+        private readonly IFileService fileManager;
 
-        public LogsController(ILog loggerParam, IArchivingService archiverParam)
+        public LogsController(ILog loggerParam, IFileService archiverParam)
         {
             this.logger = loggerParam;
-            this.archiver = archiverParam;
+            this.fileManager = archiverParam;
         }
 
         [HttpGet]
@@ -32,16 +34,16 @@ namespace WeigthScale.WebApiHost.Controllers
             {
                 string archiveFileName = @"ArchivedLogs.zip";
                 string path = GetLogFilesLocation();
-                var archivedFiles = archiver.ArchiveFilesInFolder(path, archiveFileName);
+                var archivedFiles = fileManager.ArchiveFilesInFolder(path, archiveFileName);
                 LogArchivedFiles(archivedFiles);
-                return GenerateFileResponse(archiveFileName);  
+                return GenerateFileResponse(archiveFileName);
             }
             catch (DirectoryNotFoundException ex)
             {
                 return Request.CreateErrorResponse(System.Net.HttpStatusCode.BadRequest, ex);
             }
         }
- 
+
         private HttpResponseMessage GenerateFileResponse(string archiveFileName)
         {
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
@@ -53,7 +55,7 @@ namespace WeigthScale.WebApiHost.Controllers
             result.Content.Headers.ContentLength = stream.Length;
             return result;
         }
- 
+
         private void LogArchivedFiles(IEnumerable<FileInfo> archivedFiles)
         {
             logger.Info("------------------- Archived .log Files -------------------");
@@ -65,9 +67,29 @@ namespace WeigthScale.WebApiHost.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult PostClearLogs(IEnumerable<string> files)
+        public HttpResponseMessage PostClearLogs(IEnumerable<string> files)
         {
-            throw new NotImplementedException();
+            string path = GetLogFilesLocation();
+            try
+            {
+                var result = this.fileManager.ClearFiles(path, files);
+                if (result.Count() > 0)
+                {
+                    StringBuilder message = new StringBuilder();
+                    foreach (var validationMessage in result)
+                    {
+                        message.Append(string.Format("File \"{0}\" could not be deleted.", validationMessage.Field));
+                    }
+
+                    return Request.CreateErrorResponse(HttpStatusCode.Conflict, message.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.Conflict, ex.Message, ex);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         private string GetLogFilesLocation()
@@ -83,5 +105,6 @@ namespace WeigthScale.WebApiHost.Controllers
                 throw new DirectoryNotFoundException("Current logging path not found");
             }
         }
+
     }
 }

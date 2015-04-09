@@ -96,6 +96,7 @@
     <Compile Include="Infrastructure\CustomAssemblyResolver.cs" />
     <Compile Include="Infrastructure\CustomModelBinder.cs" />
     <Compile Include="Infrastructure\CustomModelBinderProvider.cs" />
+    <Compile Include="Infrastructure\FilesModelBinder.cs" />
     <Compile Include="Infrastructure\HandleErrorAttribute.cs" />
     <Compile Include="WebApiHostMain.cs" />
     <Compile Include="ProjectInstaller.cs">

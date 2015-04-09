@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="+jddj5sfjGwTwxr1qDMFz75zZlU=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="H8DVtwQPAYpvwYBNC0ShPm4qark=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="WeightScaleServiceSoap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WeightScaleServiceSoap" contract="SoapProxy.WeightScaleServiceSoap" bindingType="basicHttpBinding" address="http://localhost:57772/csp/webservices/SWT.WeightScaleService.cls" bindingConfiguration="WeightScaleServiceSoap">
+    <endpoint name="WeightScaleServiceSoap" contract="SoapProxy.WeightScaleServiceSoap" bindingType="basicHttpBinding" address="http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls" bindingConfiguration="WeightScaleServiceSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:57772/csp/webservices/SWT.WeightScaleService.cls</serializedValue>
+          <serializedValue>http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

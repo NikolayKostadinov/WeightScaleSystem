@@ -8,13 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
 namespace WeightScale.CacheApi.SoapProxy {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://tempuri.org", ConfigurationName="SoapProxy.WeightScaleServiceSoap")]
     public interface WeightScaleServiceSoap {
+        
+        // CODEGEN: Parameter 'GetAllHostAndPortResult' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlArrayItemAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SWT.WeightScaleService.GetAllHostAndPort", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        WeightScale.CacheApi.SoapProxy.GetAllHostAndPortResponse GetAllHostAndPort(WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SWT.WeightScaleService.GetAllHostAndPort", ReplyAction="*")]
+        System.Threading.Tasks.Task<WeightScale.CacheApi.SoapProxy.GetAllHostAndPortResponse> GetAllHostAndPortAsync(WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SWT.WeightScaleService.GetAllMeasurementRequests", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -50,6 +57,34 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SWT.WeightScaleService.Transport2", ReplyAction="*")]
         System.Threading.Tasks.Task Transport2Async(WeightScale.CacheApi.SoapProxy.CWeigthScaleMessageOld input);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllHostAndPort", WrapperNamespace="http://tempuri.org", IsWrapped=true)]
+    public partial class GetAllHostAndPortRequest {
+        
+        public GetAllHostAndPortRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllHostAndPortResponse", WrapperNamespace="http://tempuri.org", IsWrapped=true)]
+    public partial class GetAllHostAndPortResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org", Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("GetAllHostAndPortResultItem")]
+        public string[] GetAllHostAndPortResult;
+        
+        public GetAllHostAndPortResponse() {
+        }
+        
+        public GetAllHostAndPortResponse(string[] GetAllHostAndPortResult) {
+            this.GetAllHostAndPortResult = GetAllHostAndPortResult;
+        }
     }
     
     /// <remarks/>
@@ -150,14 +185,15 @@ namespace WeightScale.CacheApi.SoapProxy {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org")]
-    public partial class CWeigthScaleMessageOld : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CWeigthScaleMessageOld : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged
+    {
         
         private long numberField;
         
         private long directionField;
-
+        
         private DateTime? timeOfFirstMeasureField;
-
+        
         private DateTime? timeOfSecondMeasureField;
         
         private long measurementStatusField;
@@ -214,8 +250,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public DateTime? TimeOfFirstMeasure
-        {
+        public DateTime? TimeOfFirstMeasure {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -227,8 +262,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public DateTime? TimeOfSecondMeasure
-        {
+        public DateTime? TimeOfSecondMeasure {
             get {
                 return this.timeOfSecondMeasureField;
             }
@@ -422,10 +456,11 @@ namespace WeightScale.CacheApi.SoapProxy {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org")]
-    public partial class CWeigthScaleMessageNew : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CWeigthScaleMessageNew : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged
+    {
         
         private long numberField;
-        
+
         private long directionField;
         
         private DateTime? timeOfFirstMeasureField;
@@ -490,8 +525,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public DateTime? TimeOfFirstMeasure
-        {
+        public DateTime? TimeOfFirstMeasure {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -500,11 +534,10 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TimeOfFirstMeasure");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public DateTime? TimeOfSecondMeasure
-        {
+        public DateTime? TimeOfSecondMeasure {
             get {
                 return this.timeOfSecondMeasureField;
             }
@@ -525,7 +558,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("MeasurementStatus");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public long SerialNumber {
@@ -537,7 +570,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("SerialNumber");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         public long TransactionNumber {
@@ -549,7 +582,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TransactionNumber");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public long MeasurementNumber {
@@ -561,7 +594,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("MeasurementNumber");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public long ProductCode {
@@ -573,7 +606,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("ProductCode");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=9)]
         public string ExciseDocumentNumber {
@@ -597,6 +630,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TareWeight");
             }
         }
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public long GrossWeight {
@@ -608,7 +642,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("GrossWeight");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=12)]
         public long NetWeight {
@@ -620,7 +654,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("NetWeight");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public long TotalNetOfInput {
@@ -632,7 +666,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TotalNetOfInput");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public long TotalNetOfOutput {
@@ -644,7 +678,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TotalNetOfOutput");
             }
         }
-        
+          
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=15)]
         public string Vehicle {
@@ -692,7 +726,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TotalNetByProductOutput");
             }
         }
-        
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public long Status {
@@ -704,7 +738,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("Status");
             }
         }
-        
+
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -800,6 +834,27 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         public WeightScaleServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        WeightScale.CacheApi.SoapProxy.GetAllHostAndPortResponse WeightScale.CacheApi.SoapProxy.WeightScaleServiceSoap.GetAllHostAndPort(WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest request) {
+            return base.Channel.GetAllHostAndPort(request);
+        }
+        
+        public string[] GetAllHostAndPort() {
+            WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest inValue = new WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest();
+            WeightScale.CacheApi.SoapProxy.GetAllHostAndPortResponse retVal = ((WeightScale.CacheApi.SoapProxy.WeightScaleServiceSoap)(this)).GetAllHostAndPort(inValue);
+            return retVal.GetAllHostAndPortResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<WeightScale.CacheApi.SoapProxy.GetAllHostAndPortResponse> WeightScale.CacheApi.SoapProxy.WeightScaleServiceSoap.GetAllHostAndPortAsync(WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest request) {
+            return base.Channel.GetAllHostAndPortAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<WeightScale.CacheApi.SoapProxy.GetAllHostAndPortResponse> GetAllHostAndPortAsync() {
+            WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest inValue = new WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest();
+            return ((WeightScale.CacheApi.SoapProxy.WeightScaleServiceSoap)(this)).GetAllHostAndPortAsync(inValue);
         }
         
         public WeightScale.CacheApi.SoapProxy.SoapMessage[] GetAllMeasurementRequests() {

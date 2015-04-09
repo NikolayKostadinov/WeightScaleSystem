@@ -2,6 +2,23 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s0="http://tempuri.org" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:element name="GetAllHostAndPort">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllHostAndPortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetAllHostAndPortResult" type="s0:ArrayOfGetAllHostAndPortResultItemString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetAllHostAndPortResultItemString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetAllHostAndPortResultItem" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="GetAllMeasurementRequests">
         <s:complexType>
           <s:sequence />
@@ -22,7 +39,13 @@
       <s:complexType name="SoapMessage">
         <s:sequence>
           <s:element minOccurs="0" name="Id" type="s:long" />
-          <s:element minOccurs="0" name="URL" type="s:string" />
+          <s:element minOccurs="0" name="URL">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="250" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
           <s:element minOccurs="0" name="Message" type="s0:CWeigthScaleMessageBase" />
           <s:element minOccurs="0" name="ValidationMessages" type="s0:ArrayOfCValidationMessageCValidationMessage" />
         </s:sequence>
@@ -31,8 +54,8 @@
         <s:sequence>
           <s:element minOccurs="0" name="Number" type="s:long" />
           <s:element minOccurs="0" name="Direction" type="s:long" />
-          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:DateTime?" />
-          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:DateTime?" />
+          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:dateTime" />
+          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:dateTime" />
           <s:element minOccurs="0" name="MeasurementStatus" type="s:long" />
           <s:element minOccurs="0" name="SerialNumber" type="s:long" />
           <s:element minOccurs="0" name="TransactionNumber" type="s:long" />
@@ -55,8 +78,8 @@
         <s:sequence>
           <s:element minOccurs="0" name="Number" type="s:long" />
           <s:element minOccurs="0" name="Direction" type="s:long" />
-          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:DateTime?" />
-          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:DateTime?" />
+          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:dateTime" />
+          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:dateTime" />
           <s:element minOccurs="0" name="MeasurementStatus" type="s:long" />
           <s:element minOccurs="0" name="SerialNumber" type="s:long" />
           <s:element minOccurs="0" name="TransactionNumber" type="s:long" />
@@ -83,7 +106,13 @@
         <s:sequence>
           <s:element minOccurs="0" name="Type" type="s:long" />
           <s:element minOccurs="0" name="Field" type="s:string" />
-          <s:element minOccurs="0" name="Text" type="s:string" />
+          <s:element minOccurs="0" name="Text">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="320" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
         </s:sequence>
       </s:complexType>
       <s:element name="InsertMeasurementResult">
@@ -138,6 +167,12 @@
       </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="GetAllHostAndPortSoapIn">
+    <wsdl:part name="parameters" element="s0:GetAllHostAndPort" />
+  </wsdl:message>
+  <wsdl:message name="GetAllHostAndPortSoapOut">
+    <wsdl:part name="parameters" element="s0:GetAllHostAndPortResponse" />
+  </wsdl:message>
   <wsdl:message name="GetAllMeasurementRequestsSoapIn">
     <wsdl:part name="parameters" element="s0:GetAllMeasurementRequests" />
   </wsdl:message>
@@ -169,6 +204,10 @@
     <wsdl:part name="parameters" element="s0:Transport2Response" />
   </wsdl:message>
   <wsdl:portType name="WeightScaleServiceSoap">
+    <wsdl:operation name="GetAllHostAndPort">
+      <wsdl:input message="s0:GetAllHostAndPortSoapIn" />
+      <wsdl:output message="s0:GetAllHostAndPortSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllMeasurementRequests">
       <wsdl:input message="s0:GetAllMeasurementRequestsSoapIn" />
       <wsdl:output message="s0:GetAllMeasurementRequestsSoapOut" />
@@ -192,6 +231,15 @@
   </wsdl:portType>
   <wsdl:binding name="WeightScaleServiceSoap" type="s0:WeightScaleServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllHostAndPort">
+      <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.GetAllHostAndPort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAllMeasurementRequests">
       <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.GetAllMeasurementRequests" style="document" />
       <wsdl:input>
@@ -240,7 +288,7 @@
   </wsdl:binding>
   <wsdl:service name="WeightScaleService">
     <wsdl:port name="WeightScaleServiceSoap" binding="s0:WeightScaleServiceSoap">
-      <soap:address location="http://localhost:57772/csp/webservices/SWT.WeightScaleService.cls" />
+      <soap:address location="http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

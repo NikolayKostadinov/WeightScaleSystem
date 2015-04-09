@@ -1,4 +1,4 @@
-﻿namespace WeightScale.Application.Services
+﻿namespace WeightScale.Application.Services.LogFileService
 {
     using System;
     using System.Collections.Generic;
@@ -7,8 +7,27 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    public class ArchivingService : WeightScale.Application.Services.IArchivingService
+    using Ninject;
+    using WeightScale.Domain.Abstract;
+    using log4net;
+
+    public class LogFileService : WeightScale.Application.Contracts.IFileService
     {
+        private readonly ILog logger;
+        private readonly IKernel injector;
+        public LogFileService(ILog loggerParam, IKernel injectorParam) 
+        {
+            this.logger = loggerParam;
+            this.injector = injectorParam;
+        }
+
+        /// <summary>
+        /// Archives the files in folder.
+        /// </summary>
+        /// <param name="targetPath">The target path.</param>
+        /// <param name="resultFileName">Name of the result file.</param>
+        /// <returns>Collection of FileInfo for archived files</returns>
+        /// <exception cref="System.InvalidOperationException"></exception>
         public IEnumerable<FileInfo> ArchiveFilesInFolder(string targetPath, string resultFileName)
         {
             if (File.Exists(resultFileName))
@@ -36,6 +55,38 @@
                     return filesList;
                 }
             }
+        }
+
+        public IValidationMessageCollection ClearFiles(string targetPath, IEnumerable<string> files) 
+        {
+            var result = injector.Get<IValidationMessageCollection>();
+            foreach (var fileName in files)
+            {
+                var fileFullName = targetPath + @"\" + fileName;
+                if (File.Exists(fileFullName))
+                {
+                    if (!FileInUse(fileFullName))
+                    {
+                        try
+                        {
+                            File.Delete(fileFullName);
+                            logger.Info(string.Format("File \"{0}\" was deleted successfully.", fileFullName));
+                        }
+                        catch (Exception ex)
+                        {
+                            result.AddError(fileFullName, ex.Message + ex.StackTrace);
+                            logger.Error(string.Format("The file \"{0}\" couldn't be deleted due to {1}.\n{2}", fileFullName, ex.Message, ex.StackTrace));
+                        }
+                    }
+                    else
+                    {
+                        result.AddError(fileFullName, string.Format("The file \"{0}\" couldn't be deleted because is in use.", fileFullName));
+                        logger.Error(string.Format("The file \"{0}\" couldn't be deleted because is in use.", fileFullName));
+                    }
+                }
+            }
+
+            return result;
         }
 
         /// <summary>

@@ -9,6 +9,9 @@ namespace WeightScale.CacheApi.Contract
     public interface IRepository<T,R>
     {
         IEnumerable<T> GetAll();
+
+        IEnumerable<string> GetTargetUrls();
+
         IEnumerable<R> Update(T message);
     }
 }

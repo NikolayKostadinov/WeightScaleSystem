@@ -9,6 +9,7 @@ namespace WeightScale.Application.AppStart
     using System;
     using System.Linq;
     using Ninject.Web.Common;
+    using WeightScale.Application.Services.LogFileService;
     using WeightScale.CacheApi.Concrete;
     using WeightScale.CacheApi.Contract;
     using WeightScale.CacheApi.SoapProxy;
@@ -75,7 +76,7 @@ namespace WeightScale.Application.AppStart
             kernel.Bind<IRepository<SoapMessage, CValidationMessage>>().To<MeasurementRequestsRepository>();
             kernel.Bind<IJsonDeserializeService>().To<JsonDeserializeService>();
             kernel.Bind<IMappingService>().To<MappingService>();
-            kernel.Bind<IArchivingService>().To<ArchivingService>();
+            kernel.Bind<IFileService>().To<LogFileService>();
         }
     }
 }
