@@ -50,12 +50,14 @@
 
         static void Main()
         {
-            ServiceBase[] servicesToRun;
-            servicesToRun = new ServiceBase[] 
-            { 
-                new MeasurementsService(logger) 
-            };
-            ServiceBase.Run(servicesToRun);
+            //ServiceBase[] servicesToRun;
+            //servicesToRun = new ServiceBase[] 
+            //{ 
+            //    new MeasurementsService(logger) 
+            //};
+            //ServiceBase.Run(servicesToRun);
+
+            ProcessLogs();
         }
 
         internal static void ProcessMeasurements()
@@ -70,7 +72,7 @@
             {
                 do
                 {
-                    //logger.Info("ProcessMeasurements");
+                    logger.Info("ProcessMeasurements");
                     DateTime beginTotal = DateTime.Now;
 
                     IEnumerable<SoapMessage> result = null;
@@ -155,11 +157,21 @@
         {
             try
             {
-                do
-                {
-                    //logger.Info("ProcessLogs");
-                    System.Threading.Thread.Sleep(10000);
-                } while (true);
+                    logger.Info("ProcessLogs");
+
+                    var urlsList = repository.GetTargetUrls();
+                    if (urlsList != null)
+                    {
+                        foreach (var url in urlsList)
+                        {
+                            Console.WriteLine(url);
+ 
+                        }    
+                    }
+                    else 
+                    { 
+                    
+                    }
             }
             catch (FaultException faultEx)
             {

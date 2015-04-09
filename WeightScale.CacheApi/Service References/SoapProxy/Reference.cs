@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
 namespace WeightScale.CacheApi.SoapProxy {
     
     

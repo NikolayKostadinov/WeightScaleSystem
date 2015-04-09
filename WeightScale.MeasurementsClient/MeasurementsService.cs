@@ -26,8 +26,8 @@
                 Thread measurementThread = new Thread(new ThreadStart(MeasurementClientMain.ProcessMeasurements));
                 measurementThread.Start();
 
-                Thread logsThread = new Thread(new ThreadStart(MeasurementClientMain.ProcessLogs));
-                logsThread.Start();
+                //Thread logsThread = new Thread(new ThreadStart(MeasurementClientMain.ProcessLogs));
+                //logsThread.Start();
 
                 logger.Info("Service started!");
                 MeasurementClientMain.StopProcessMeasurementThread = false;
