@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WeightScale.CacheConsumerDemo")]
+[assembly: AssemblyTitle("WeightScale.MeasurementsClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ITSE")]
-[assembly: AssemblyProduct("WeightScale.CacheConsumerDemo")]
-[assembly: AssemblyCopyright("Copyright © ITSE 2015")]
+[assembly: AssemblyCompany("Business Management Systems Ltd.")]
+[assembly: AssemblyProduct("WeightScale.MeasurementsClient")]
+[assembly: AssemblyCopyright("Copyright © BMS 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.3")]
+[assembly: AssemblyFileVersion("1.0.3")]

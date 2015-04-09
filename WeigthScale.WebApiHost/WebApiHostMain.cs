@@ -23,7 +23,6 @@ namespace WeigthScale.WebApiHost
             get { return stopWebApiServer; }
             set { stopWebApiServer = value; }
         }
-        
 
         static WebApiHostMain() 
         {
