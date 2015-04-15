@@ -40,13 +40,13 @@
         "Entry"
         {
         "MsmKey" = "8:_47346442E1884BF1B633DE8BE071567C"
-        "OwnerKey" = "8:_BAB8078BD7D1F3FD08E1ED2A4F2D5A7C"
+        "OwnerKey" = "8:_9DF2C1F5EB93888CC0FEF207875F65A9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_47346442E1884BF1B633DE8BE071567C"
-        "OwnerKey" = "8:_9DF2C1F5EB93888CC0FEF207875F65A9"
+        "OwnerKey" = "8:_BAB8078BD7D1F3FD08E1ED2A4F2D5A7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -59,18 +59,6 @@
         {
         "MsmKey" = "8:_82BC254B63E8DBCEA7FF0F9D589B3C50"
         "OwnerKey" = "8:_9DF2C1F5EB93888CC0FEF207875F65A9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8FC94CC4AD32E0B080360203DEE67F73"
-        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8FC94CC4AD32E0B080360203DEE67F73"
-        "OwnerKey" = "8:_F8368091994C4AEBC86BE547B8045A42"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,7 +70,19 @@
         "Entry"
         {
         "MsmKey" = "8:_8FC94CC4AD32E0B080360203DEE67F73"
+        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8FC94CC4AD32E0B080360203DEE67F73"
         "OwnerKey" = "8:_9DF2C1F5EB93888CC0FEF207875F65A9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8FC94CC4AD32E0B080360203DEE67F73"
+        "OwnerKey" = "8:_F8368091994C4AEBC86BE547B8045A42"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,19 +220,13 @@
         "Entry"
         {
         "MsmKey" = "8:_F8368091994C4AEBC86BE547B8045A42"
-        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F8368091994C4AEBC86BE547B8045A42"
         "OwnerKey" = "8:_9DF2C1F5EB93888CC0FEF207875F65A9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_47346442E1884BF1B633DE8BE071567C"
+        "MsmKey" = "8:_F8368091994C4AEBC86BE547B8045A42"
+        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -325,6 +319,12 @@
         "OwnerKey" = "8:_BAB8078BD7D1F3FD08E1ED2A4F2D5A7C"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_47346442E1884BF1B633DE8BE071567C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -343,6 +343,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -359,55 +375,29 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_693D55FCF1E34DE197A3D2828ADF29A2"
-            {
-            "Name" = "8:Primary output from WeightScale.MeasurementsClient (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
-            "FileType" = "3:2"
-            "InstallAction" = "3:1"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_73750A4D_0E4B_49D2_A8D9_23B6A7C5FDE2"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_8994D87ADD874AA38D5FBE4F46228D25"
-            {
-            "Name" = "8:Primary output from WeightScale.MeasurementsClient (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_1C14E717_2FD2_4C45_B241_90733FC9DE68"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_94BBE3A71B764609AE99FB73B362EEDB"
-            {
-            "Name" = "8:Primary output from WeightScale.MeasurementsClient (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
-            "FileType" = "3:2"
-            "InstallAction" = "3:3"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_B5AB0218_9A53_4CBE_9BCD_7C4F564ED234"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9A42B582990B4E1A852B073D179BC8C9"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_438F4F5D70B247EFA12034BF09311D46"
             {
             "Name" = "8:Primary output from WeightScale.MeasurementsClient (Active)"
             "Condition" = "8:"
@@ -417,7 +407,49 @@
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_0870A1A2_6C7C_4E81_9CCE_A31EA6A4CF62"
+            "Identifier" = "8:_96C478F1_BE00_4D37_A3BB_C646C58E729A"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_A3B363DE030443D08D523CE3F59880EF"
+            {
+            "Name" = "8:Primary output from WeightScale.MeasurementsClient (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_CEC7BA5D_CDFF_4A01_BCAE_256367721D22"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DFB8666508E24868BC93F640400E698E"
+            {
+            "Name" = "8:Primary output from WeightScale.MeasurementsClient (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
+            "FileType" = "3:2"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_CFD343E3_1CEE_4069_A298_563BC2B55953"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_EEBAE6A02C764E9AAE28043F2C8DDF83"
+            {
+            "Name" = "8:Primary output from WeightScale.MeasurementsClient (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_05CA1A5D_F28B_4EB8_A86B_D24D464C602B"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -965,15 +997,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WeightScale.MeasurementsClient"
-        "ProductCode" = "8:{804B5B43-D976-4619-91FB-01E25686263C}"
-        "PackageCode" = "8:{70D62429-579E-41F3-8B54-503A2FE7DD3D}"
+        "ProductCode" = "8:{ACF8320F-736B-4200-99A7-FA7FAD0199E3}"
+        "PackageCode" = "8:{CBACBB02-FBC9-4C98-8669-50297D2DAD4F}"
         "UpgradeCode" = "8:{97DC4ADA-A044-4B1B-97BE-21E9DC56F0FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.3"
+        "ProductVersion" = "8:1.0.7"
         "Manufacturer" = "8:Business Management Systems"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

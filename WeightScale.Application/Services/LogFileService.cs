@@ -47,9 +47,13 @@
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
                 {
                     var filesList = GetFilesToArchive(targetPath);
-                    foreach (var filePath in filesList)
+
+                    if (filesList.Count() > 0)
                     {
-                        archive.CreateEntryFromFile(filePath.FullName,filePath.Name);
+                        foreach (var filePath in filesList)
+                        {
+                            archive.CreateEntryFromFile(filePath.FullName, filePath.Name);
+                        } 
                     }
 
                     return filesList;

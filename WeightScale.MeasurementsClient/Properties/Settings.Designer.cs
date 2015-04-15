@@ -25,7 +25,7 @@ namespace WeightScale.MeasurementsClient.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30000")]
         public int TimerDueTime {
             get {
                 return ((int)(this["TimerDueTime"]));
