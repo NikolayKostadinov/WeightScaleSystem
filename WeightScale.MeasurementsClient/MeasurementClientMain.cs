@@ -26,6 +26,7 @@
     {
         private const string GetLogsWebApiController = @"api/Logs/GetLogs";
         private const string ClearLogsWebApiController = @"api/Logs/PostClearLogs";
+        private const string IpAddressPattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b";
 
         private static IKernel injector;
         private static IRepository<SoapMessage, CValidationMessage> repository;
@@ -164,7 +165,7 @@
             {
                 var currentHour = DateTime.Now.Hour;
 
-                if (currentHour != LastLogProcessingHour)
+                if (currentHour != LastLogProcessingHour && DateTime.Now.Minute > Properties.Settings.Default.LogFilesCheckMinutesOffset)
                 {
                     var urlsList = repository.GetTargetUrls();
                     if (urlsList != null)
@@ -237,7 +238,7 @@
  
         private static string CreateArchivedFilePath(string url, int currentHour)
         {
-            Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
+            Regex ip = new Regex(IpAddressPattern);
             MatchCollection address = ip.Matches(url);
 
             var folder = string.Format(@"{0}\logs\ws\{1}", Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), address[0]);
@@ -247,7 +248,7 @@
                 Directory.CreateDirectory(folder);
             }
 
-            var fileName = string.Format("{0}/{1:yyyy-mm-dd-HH-MM}-{2:D2}-{3}.zip", folder, DateTime.Now, currentHour, address[0]);
+            var fileName = string.Format("{0}/{1:yyyy-MM-dd-HH-mm}-{2}.zip", folder, DateTime.Now, address[0]);
             return fileName;
         }
  
