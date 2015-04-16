@@ -1,25 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="1cc87088-83ac-447e-a8ad-29113e7344f0" name="WeigthScale.CacheInfrastructure" linkedPackageId="fd63c266-56ce-4e8b-a31b-5c9e7dc8f3b9" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="68d77f8c-d00c-48b4-8432-00ddecdd8b69">
-      <profileInstance Id="151f4fd7-cb29-49fa-87c5-065968167275" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="6956138d-a8cb-45ce-947c-e16d709483e5">
-      <profileInstance Id="2d284d4c-4704-4800-8748-94a4f3d3b0f6" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="65df3f1b-57d9-48be-9dd2-81bb268bdcd1">
-      <profileInstance Id="b55fc5a8-c3ce-4e96-a20e-076cf985b86b" name="CSharpProfile">
-        <elementDefinition Id="83c24464-b853-4709-aabe-0629c0a4632a" />
-      </profileInstance>
-      <elementDefinition Id="72a82420-1a33-42be-abde-9c4e52fb40a6" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasTypes>
       <class Id="fba4f7a1-479c-4b87-8e53-03ecdca302e2" name="CWeigthScaleMessageBase" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -320,5 +300,25 @@
   </packagedElements>
   <package Id="fd63c266-56ce-4e8b-a31b-5c9e7dc8f3b9" name="WeightScale.Architecture">
     <elementDefinition Id="5bd3f9a1-0e2f-4832-8f4d-4e7d9305975b" />
+    <profileInstances>
+      <packageHasProfileInstances Id="68d77f8c-d00c-48b4-8432-00ddecdd8b69">
+        <profileInstance Id="151f4fd7-cb29-49fa-87c5-065968167275" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="6956138d-a8cb-45ce-947c-e16d709483e5">
+        <profileInstance Id="2d284d4c-4704-4800-8748-94a4f3d3b0f6" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="65df3f1b-57d9-48be-9dd2-81bb268bdcd1">
+        <profileInstance Id="b55fc5a8-c3ce-4e96-a20e-076cf985b86b" name="CSharpProfile">
+          <elementDefinition Id="83c24464-b853-4709-aabe-0629c0a4632a" />
+        </profileInstance>
+        <elementDefinition Id="72a82420-1a33-42be-abde-9c4e52fb40a6" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>
