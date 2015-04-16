@@ -9,7 +9,7 @@ namespace WeightScale.Application.AppStart
     using System;
     using System.Linq;
     using Ninject.Web.Common;
-    using WeightScale.Application.Services.LogFileService;
+    using WeightScale.LogFileService;
     using WeightScale.CacheApi.Concrete;
     using WeightScale.CacheApi.Contract;
     using WeightScale.CacheApi.SoapProxy;

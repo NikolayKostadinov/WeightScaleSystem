@@ -33,7 +33,7 @@ namespace WeightScale.CacheApi.Concrete
         /// <returns></returns>
         public IEnumerable<string> GetTargetUrls()
         {
-            return this.client.GetAllHostAndPort();
+            return new List<string>{"http://10.94.23.80:8111/"};//this.client.GetAllHostAndPort();
         }
 
         /// <summary>

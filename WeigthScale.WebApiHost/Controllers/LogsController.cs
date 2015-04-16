@@ -35,8 +35,15 @@ namespace WeigthScale.WebApiHost.Controllers
                 string archiveFileName = @"ArchivedLogs.zip";
                 string path = GetLogFilesLocation();
                 var archivedFiles = fileManager.ArchiveFilesInFolder(path, archiveFileName);
-                LogArchivedFiles(archivedFiles);
-                return GenerateFileResponse(archiveFileName);
+                if (archivedFiles.Count() > 0)
+                {
+                    LogArchivedFiles(archivedFiles);
+                    return GenerateFileResponse(archiveFileName); 
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Files not found");
+                }
             }
             catch (DirectoryNotFoundException ex)
             {
