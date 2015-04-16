@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading;
+    using System.Threading.Tasks;
     using WeightScale.Application;
     using WeightScale.Application.AppStart;
     using WeightScale.Application.Contracts;
@@ -58,35 +59,55 @@
                     {
                         IWeightScaleMessage message = GenerateWeightBlock();
                         IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
-
-                        iterations++;
-
-                        var begin = DateTime.Now;
-                        mService.Measure(messageDto);
-                        var estimatedTime = DateTime.Now - begin;
-
-                        if (((WeightScaleMessageNew)messageDto.Message).MeasurementStatus == MeasurementStatus.OK)
+                        try
                         {
-                            if (messageDto.ValidationMessages.Count() == 0)
+                            Task t1 = Task.Run(() => mService.IsWeightScaleOk(messageDto));
+                            Task t2 = Task.Run(() => mService.IsWeightScaleOk(messageDto));
+                            Task.WaitAll(new Task[] { t1, t2 });
+                        }
+                        catch (AggregateException ex) 
+                        {
+                            foreach (var exc in ex.Flatten().InnerExceptions)
                             {
-                                measures++; 
-                            }
-                            else
-                            {
-                                errors++; 
+                                Console.WriteLine(exc.Message);
                             }
                         }
-                        else
+                        catch (InvalidOperationException ex)
                         {
-                            errors++;
+                            Console.WriteLine(ex.Message + ex.StackTrace);
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        //iterations++;
 
-                        logger.Debug(string.Format("Number of iteration: {0} Successful measurements: {1} Errors: {2}", iterations, measures, errors));
-                        logger.Debug(string.Format("Estimated time: {0}", estimatedTime));
-                        Console.CursorLeft = 0;
-                        Console.CursorTop = 0;
-                        Console.WriteLine(iterations);
-                        Thread.Sleep(5000);
+                        //var begin = DateTime.Now;
+                        //mService.Measure(messageDto);
+                        //var estimatedTime = DateTime.Now - begin;
+
+                        //if (((WeightScaleMessageNew)messageDto.Message).MeasurementStatus == MeasurementStatus.OK)
+                        //{
+                        //    if (messageDto.ValidationMessages.Count() == 0)
+                        //    {
+                        //        measures++; 
+                        //    }
+                        //    else
+                        //    {
+                        //        errors++; 
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    errors++;
+                        //}
+
+                        //logger.Debug(string.Format("Number of iteration: {0} Successful measurements: {1} Errors: {2}", iterations, measures, errors));
+                        //logger.Debug(string.Format("Estimated time: {0}", estimatedTime));
+                        //Console.CursorLeft = 0;
+                        //Console.CursorTop = 0;
+                        //Console.WriteLine(iterations);
+                        //Thread.Sleep(5000);
                     }
                 }
             }
@@ -231,7 +252,7 @@
                 if (mService.IsWeightScaleOk(messageDto))
                 {
                     Console.CursorTop = rownum++;
-                    Console.WriteLine("{0} The status of the scale {1} is OK", DateTime.Now,messageDto.Message.Number);
+                    Console.WriteLine("{0} The status of the scale {1} is OK", DateTime.Now, messageDto.Message.Number);
                 }
                 else
                 {

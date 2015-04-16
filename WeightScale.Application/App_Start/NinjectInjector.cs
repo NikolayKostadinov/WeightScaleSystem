@@ -71,6 +71,7 @@ namespace WeightScale.Application.AppStart
             kernel.Bind<IComManager>().To<ComManager>().InSingletonScope();
             kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>().InRequestScope();
             kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType)).InRequestScope();
+            // Todo: return to MeasurementService
             kernel.Bind<IMeasurementService>().To<MeasurementService>().InRequestScope();
             kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>().InRequestScope();
             kernel.Bind<IRepository<SoapMessage, CValidationMessage>>().To<MeasurementRequestsRepository>();
