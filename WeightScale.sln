@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScale.MeasurementsCli
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WeightScale.MeasurementsClientSetup", "WeightScale.MeasurementsClientSetup\WeightScale.MeasurementsClientSetup.vdproj", "{98C03FCA-B828-4DFF-9161-2AD1DE9D7FCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightScaleSystem.ConsoleDemo", "WeightScaleSystem.ConsoleDemo\WeightScaleSystem.ConsoleDemo.csproj", "{96E89609-C3A8-4AD1-8FD8-28DD23F94F68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{0C7FC536-8722-43D3-B4B7-8D4246C305AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98C03FCA-B828-4DFF-9161-2AD1DE9D7FCC}.Debug|Any CPU.ActiveCfg = Debug
 		{98C03FCA-B828-4DFF-9161-2AD1DE9D7FCC}.Release|Any CPU.ActiveCfg = Release
+		{96E89609-C3A8-4AD1-8FD8-28DD23F94F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E89609-C3A8-4AD1-8FD8-28DD23F94F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E89609-C3A8-4AD1-8FD8-28DD23F94F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E89609-C3A8-4AD1-8FD8-28DD23F94F68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

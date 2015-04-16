@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WeightScale.CacheApi.Contract;
-using WeightScale.CacheApi.SoapProxy;
-using WeightScale.CacheApi.Utility;
-
-namespace WeightScale.CacheApi.Concrete
+﻿namespace WeightScale.CacheApi.Concrete
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using WeightScale.CacheApi.Contract;
+    using WeightScale.CacheApi.SoapProxy;
+    using WeightScale.CacheApi.Utility;
+
     public class MeasurementRequestsRepository:IRepository<SoapMessage,CValidationMessage>
     {
         private readonly WeightScaleServiceSoapClient client;
@@ -33,7 +33,7 @@ namespace WeightScale.CacheApi.Concrete
         /// <returns></returns>
         public IEnumerable<string> GetTargetUrls()
         {
-            return new List<string>{"http://10.94.23.80:8111/"};//this.client.GetAllHostAndPort();
+            return this.client.GetAllHostAndPort();//new List<string>{"http://10.94.23.80:8111/"};//
         }
 
         /// <summary>

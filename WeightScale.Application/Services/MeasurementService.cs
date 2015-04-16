@@ -17,17 +17,20 @@ namespace WeightScale.Application.Services
     using log4net;
     using Ninject;
     using WeightScale.Application.Contracts;
+    using WeightScale.Application.Helpers;
     using WeightScale.ComunicationProtocol;
     using WeightScale.ComunicationProtocol.Contracts;
     using WeightScale.Domain.Abstract;
     using WeightScale.Domain.Common;
+
 
     /// <summary>
     /// Presents two services. Measure witch makes measurement and IsWeightScaleOk witch checks weight scale status.
     /// </summary>
     public class MeasurementService : IMeasurementService, IDisposable
     {
-        private static readonly Mutex mutex = new Mutex();
+        private static readonly object stateGuard = new object();
+        //private static readonly Mutex mutex = new Mutex();
         private const int INTERVAL = 1 * 1000;
         private readonly IComSerializer serializer;
         private readonly ICommandFactory commands;
@@ -90,62 +93,65 @@ namespace WeightScale.Application.Services
         public bool IsWeightScaleOk(IWeightScaleMessageDto messageDto)
         {
             bool result = false;
-            if (mutex.WaitOne(INTERVAL * 15))
+            try
             {
-                var command = this.commands.WeightScaleRequest(messageDto.Message);
-                var trailingCommand = this.commands.EndOfTransmit();
-                var validationMessages = this.kernel.Get<IValidationMessageCollection>();
-                try
+                using (stateGuard.Lock(TimeSpan.FromSeconds(15)))
                 {
-                    if (!com.IsOpen)
-                    {
-                        this.com.Open();
-                    }
-
-                    string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
-                    var comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
-                    this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
-                    if (messageDto.ValidationMessages.Count() > 0)
-                    {
-                        result = false;
-                    }
-                    else
-                    {
-                        result = true;
-                    }
-                }
-                catch (InvalidOperationException ex)
-                {
+                    var command = this.commands.WeightScaleRequest(messageDto.Message);
+                    var trailingCommand = this.commands.EndOfTransmit();
+                    var validationMessages = this.kernel.Get<IValidationMessageCollection>();
                     try
                     {
-                        command = this.commands.Acknowledge();
-                        this.SendCommand(command, 0, this.com);
-                        this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
-                        messageDto.ValidationMessages.AddError("PostMeasurement", ex.Message);
-                        messageDto.ValidationMessages.AddMany(validationMessages);
-                        this.loger.Error(ex.Message);
-                        foreach (var err in validationMessages)
+                        if (!com.IsOpen)
                         {
-                            this.loger.Error(err.Text);
+                            this.com.Open();
                         }
 
-                        result = false;
+                        string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
+                        var comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
+                        this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
+                        if (messageDto.ValidationMessages.Count() > 0)
+                        {
+                            result = false;
+                        }
+                        else
+                        {
+                            result = true;
+                        }
                     }
-                    catch (Exception internalEx)
+                    catch (InvalidOperationException ex)
                     {
-                        messageDto.ValidationMessages.AddError(internalEx.Message);
-                        this.loger.Error(internalEx.Message);
-                    }
-                }
-                finally
-                {
-                    // Must release the mutex in every case
-                    mutex.ReleaseMutex();
-                }
+                        try
+                        {
+                            command = this.commands.Acknowledge();
+                            this.SendCommand(command, 0, this.com);
+                            this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
+                            messageDto.ValidationMessages.AddError("PostMeasurement", ex.Message);
+                            messageDto.ValidationMessages.AddMany(validationMessages);
+                            this.loger.Error(ex.Message);
+                            foreach (var err in validationMessages)
+                            {
+                                this.loger.Error(err.Text);
+                            }
 
-                return result;
+                            result = false;
+                        }
+                        catch (Exception internalEx)
+                        {
+                            messageDto.ValidationMessages.AddError(internalEx.Message);
+                            this.loger.Error(internalEx.Message);
+                        }
+                    }
+                    //finally
+                    //{
+                    //    // Must release the mutex in every case
+                    //    mutex.ReleaseMutex();
+                    //}
+
+                    return result;
+                }
             }
-            else
+            catch (TimeoutException ex)
             {
                 throw new InvalidOperationException("Cannot get exclusive access to measurement service. ");
             }
@@ -153,73 +159,72 @@ namespace WeightScale.Application.Services
 
         public void Measure(IWeightScaleMessageDto messageDto)
         {
-            if (mutex.WaitOne(INTERVAL * 15))
+            try
             {
-                int blockLength = this.GetBlockLength(messageDto.Message);
-                const int PAILOAD_LEN = 5;
-
-                var comAnswer = new byte[1];
-
-                var command = this.commands.WeightScaleRequest(messageDto.Message);
-                var trailingCommand = this.commands.EndOfTransmit();
-                var validationMessages = this.kernel.Get<IValidationMessageCollection>();
-                try
+                using (stateGuard.Lock(TimeSpan.FromSeconds(15)))
                 {
-                    if (!com.IsOpen)
-                    {
-                        this.com.Open();
-                    }
+                    int blockLength = this.GetBlockLength(messageDto.Message);
+                    const int PAILOAD_LEN = 5;
 
-                    this.loger.Debug(string.Format("------------- Processing message Id: {0} -------------", messageDto.Id));
-                    string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
-                    comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
-                    this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
-                    
-                    // -------------Step1 completed successfully------------- 
-                    // -------------Step2------------- 
-                    
-                    command = this.commands.SendDataToWeightScale(messageDto.Message);
-                    comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Ack, "Cannot send data to weight scale", trailingCommand, validationMessages);
-                    this.loger.Debug(string.Format("Command: {0} Answer Step2: {1}", this.ByteArrayToString(command, blockLength), this.ByteArrayToString(comAnswer)));
+                    var comAnswer = new byte[1];
 
-                    // -------------Step2 completed successfully-------------
-                    // -------------Step3-------------
-                    command = this.commands.WeightScaleRequest(messageDto.Message);
-                    trailingCommand = this.commands.Acknowledge();
-                    Predicate<byte[]> checkMessage = x => this.commands.CheckMeasurementDataFromWeightScale(blockLength, messageDto.Message.Number, x);
-                    comAnswer = this.DoProtocolStep(command, blockLength + PAILOAD_LEN, checkMessage, "Invalid data in received block", trailingCommand, validationMessages);
-                    this.FormResult(blockLength, comAnswer, messageDto);
-                    this.loger.Debug(string.Format("Command: {0} Answer Step3: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer, blockLength, messageDto)));
-
-                    // -------------Step3 completed successfully-------------
-                }
-                catch (InvalidOperationException ex)
-                {
+                    var command = this.commands.WeightScaleRequest(messageDto.Message);
+                    var trailingCommand = this.commands.EndOfTransmit();
+                    var validationMessages = this.kernel.Get<IValidationMessageCollection>();
                     try
                     {
-                        command = this.commands.Acknowledge();
-                        this.SendCommand(command, 0, this.com);
-                        this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
-                        messageDto.ValidationMessages.AddError(ex.Message);
-                        messageDto.ValidationMessages.AddMany(validationMessages);
-                        this.loger.Error(ex.Message);
-                        foreach (var err in validationMessages)
+                        if (!com.IsOpen)
                         {
-                            this.loger.Error(err.Text);
+                            this.com.Open();
+                        }
+
+                        this.loger.Debug(string.Format("------------- Processing message Id: {0} -------------", messageDto.Id));
+                        string errMessage = "Cannot find WeightScale number" + messageDto.Message.Number;
+                        comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Eot, errMessage, trailingCommand, validationMessages);
+                        this.loger.Debug(string.Format("Command: {0} Answer Step1: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer)));
+
+                        // -------------Step1 completed successfully------------- 
+                        // -------------Step2------------- 
+
+                        command = this.commands.SendDataToWeightScale(messageDto.Message);
+                        comAnswer = this.DoProtocolStep(command, 1, x => x[0] == (byte)ComunicationConstants.Ack, "Cannot send data to weight scale", trailingCommand, validationMessages);
+                        this.loger.Debug(string.Format("Command: {0} Answer Step2: {1}", this.ByteArrayToString(command, blockLength), this.ByteArrayToString(comAnswer)));
+
+                        // -------------Step2 completed successfully-------------
+                        // -------------Step3-------------
+                        command = this.commands.WeightScaleRequest(messageDto.Message);
+                        trailingCommand = this.commands.Acknowledge();
+                        Predicate<byte[]> checkMessage = x => this.commands.CheckMeasurementDataFromWeightScale(blockLength, messageDto.Message.Number, x);
+                        comAnswer = this.DoProtocolStep(command, blockLength + PAILOAD_LEN, checkMessage, "Invalid data in received block", trailingCommand, validationMessages);
+                        this.FormResult(blockLength, comAnswer, messageDto);
+                        this.loger.Debug(string.Format("Command: {0} Answer Step3: {1}", this.ByteArrayToString(command), this.ByteArrayToString(comAnswer, blockLength, messageDto)));
+
+                        // -------------Step3 completed successfully-------------
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        try
+                        {
+                            command = this.commands.Acknowledge();
+                            this.SendCommand(command, 0, this.com);
+                            this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
+                            messageDto.ValidationMessages.AddError(ex.Message);
+                            messageDto.ValidationMessages.AddMany(validationMessages);
+                            this.loger.Error(ex.Message);
+                            foreach (var err in validationMessages)
+                            {
+                                this.loger.Error(err.Text);
+                            }
+                        }
+                        catch (Exception internalEx)
+                        {
+                            messageDto.ValidationMessages.AddError(internalEx.Message);
+                            this.loger.Error(internalEx.Message);
                         }
                     }
-                    catch (Exception internalEx)
-                    {
-                        messageDto.ValidationMessages.AddError(internalEx.Message);
-                        this.loger.Error(internalEx.Message);
-                    }
-                }
-                finally
-                {
-                    mutex.ReleaseMutex();
                 }
             }
-            else
+            catch (TimeoutException ex)
             {
                 throw new InvalidOperationException("Cannot get exclusive access to measurement service.");
             }
