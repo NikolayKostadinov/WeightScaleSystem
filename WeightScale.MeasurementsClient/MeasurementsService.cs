@@ -17,7 +17,6 @@
         {
             InitializeComponent();
             this.logger = loggerParam;
-
         }
 
         protected override void OnStart(string[] args)

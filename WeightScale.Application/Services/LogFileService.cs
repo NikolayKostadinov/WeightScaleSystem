@@ -1,4 +1,4 @@
-﻿namespace WeightScale.Application.Services.LogFileService
+﻿namespace WeightScale.LogFileService
 {
     using System;
     using System.Collections.Generic;
