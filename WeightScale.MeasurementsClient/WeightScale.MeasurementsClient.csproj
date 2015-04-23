@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -28,7 +29,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
@@ -78,11 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MeasurementClientMain.cs" />
-    <Compile Include="MeasurementsService.cs">
+    <Compile Include="MeasurementsWindowsService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MeasurementsService.Designer.cs">
-      <DependentUpon>MeasurementsService.cs</DependentUpon>
+    <Compile Include="MeasurementsWindowsService.Designer.cs">
+      <DependentUpon>MeasurementsWindowsService.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

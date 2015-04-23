@@ -1,6 +1,6 @@
 ﻿namespace WeightScale.MeasurementsClient
 {
-    partial class MeasurementsService
+    partial class MeasurementsWindowsService
     {
         /// <summary> 
         /// Required designer variable.

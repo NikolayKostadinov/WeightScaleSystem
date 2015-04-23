@@ -6,14 +6,14 @@
     using System.Threading;
     using log4net;
 
-    public partial class MeasurementsService : ServiceBase
+    public partial class MeasurementsWindowsService : ServiceBase
     {
         private readonly ILog logger;
 
         private Timer logFilesSynhTimer = null;
         private static readonly object lockObject = new object();
 
-        public MeasurementsService(ILog loggerParam)
+        public MeasurementsWindowsService(ILog loggerParam)
         {
             InitializeComponent();
             this.logger = loggerParam;
