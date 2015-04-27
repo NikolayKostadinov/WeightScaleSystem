@@ -186,9 +186,9 @@ namespace WeightScale.CacheApi.SoapProxy {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org")]
-    public partial class CWeigthScaleMessageOld : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged
+    public partial class CWeigthScaleMessageOld : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged 
     {
-        
+
         private long numberField;
         
         private long directionField;
@@ -202,7 +202,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         private long serialNumberField;
         
         private long transactionNumberField;
-        
+
         private long measurementNumberField;
         
         private long productCodeField;
@@ -221,7 +221,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private string vehicleField;
         
-        private long documentNumberField;
+        private long? documentNumberField;
         
         private long statusField;
         
@@ -419,7 +419,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=16)]
-        public long DocumentNumber {
+        public long? DocumentNumber {
             get {
                 return this.documentNumberField;
             }
@@ -457,11 +457,11 @@ namespace WeightScale.CacheApi.SoapProxy {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org")]
-    public partial class CWeigthScaleMessageNew : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged
+    public partial class CWeigthScaleMessageNew : CWeigthScaleMessageBase, System.ComponentModel.INotifyPropertyChanged 
     {
-        
-        private long numberField;
 
+        private long numberField;
+        
         private long directionField;
         
         private DateTime? timeOfFirstMeasureField;
@@ -492,7 +492,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private string vehicleField;
         
-        private string documentNumberField;
+        private long? documentNumberField;
         
         private long totalNetByProductInputField;
         
@@ -535,7 +535,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TimeOfFirstMeasure");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
         public DateTime? TimeOfSecondMeasure {
@@ -559,7 +559,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("MeasurementStatus");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
         public long SerialNumber {
@@ -571,7 +571,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("SerialNumber");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=6)]
         public long TransactionNumber {
@@ -583,7 +583,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TransactionNumber");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=7)]
         public long MeasurementNumber {
@@ -595,7 +595,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("MeasurementNumber");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=8)]
         public long ProductCode {
@@ -607,7 +607,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("ProductCode");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=9)]
         public string ExciseDocumentNumber {
@@ -631,7 +631,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TareWeight");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=11)]
         public long GrossWeight {
@@ -643,7 +643,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("GrossWeight");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=12)]
         public long NetWeight {
@@ -655,7 +655,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("NetWeight");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=13)]
         public long TotalNetOfInput {
@@ -667,7 +667,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TotalNetOfInput");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=14)]
         public long TotalNetOfOutput {
@@ -679,7 +679,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TotalNetOfOutput");
             }
         }
-          
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=15)]
         public string Vehicle {
@@ -694,7 +694,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=16)]
-        public string DocumentNumber {
+        public long? DocumentNumber {
             get {
                 return this.documentNumberField;
             }
@@ -727,7 +727,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("TotalNetByProductOutput");
             }
         }
-
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=19)]
         public long Status {
@@ -739,7 +739,7 @@ namespace WeightScale.CacheApi.SoapProxy {
                 this.RaisePropertyChanged("Status");
             }
         }
-
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {

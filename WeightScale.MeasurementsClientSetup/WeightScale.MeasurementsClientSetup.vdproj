@@ -468,7 +468,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.5.1"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -997,15 +997,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WeightScale.MeasurementsClient"
-        "ProductCode" = "8:{D2DF6800-3113-49EF-9F5B-DF324017CE62}"
-        "PackageCode" = "8:{6B477E50-23D6-40A3-A22C-9D3194647E46}"
+        "ProductCode" = "8:{A5144C97-9287-4461-8710-ED3B670850AC}"
+        "PackageCode" = "8:{5056842A-072C-4CBE-973B-A1899BE02A4F}"
         "UpgradeCode" = "8:{97DC4ADA-A044-4B1B-97BE-21E9DC56F0FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.4"
         "Manufacturer" = "8:Business Management Systems"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

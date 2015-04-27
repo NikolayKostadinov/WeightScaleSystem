@@ -72,7 +72,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Service References\SoapProxy\SWT1.wsdl" />
+    <None Include="Service References\SoapProxy\SWT.wsdl">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SoapProxy\WeightScale.CacheApi.SoapProxy.CValidationMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -81,6 +83,7 @@
     </None>
     <None Include="Service References\SoapProxy\WeightScale.CacheApi.SoapProxy.SoapMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

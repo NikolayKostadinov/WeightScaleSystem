@@ -68,7 +68,7 @@
           <s:element minOccurs="0" name="TotalNetOfInput" type="s:long" />
           <s:element minOccurs="0" name="TotalNetOfOutput" type="s:long" />
           <s:element minOccurs="0" name="Vehicle" type="s:string" />
-          <s:element minOccurs="0" name="DocumentNumber" type="s:string" />
+          <s:element minOccurs="0" name="DocumentNumber" type="s:long" />
           <s:element minOccurs="0" name="TotalNetByProductInput" type="s:long" />
           <s:element minOccurs="0" name="TotalNetByProductOutput" type="s:long" />
           <s:element minOccurs="0" name="Status" type="s:long" />

@@ -267,7 +267,8 @@ namespace WeightScale.Domain.Abstract
             }
 
             // Validate DocumentNumber
-            if (SER_NUM_MIN_VALUE < this.documentNumber || this.documentNumber > SER_NUM_MAX_VALUE)
+            //if (SER_NUM_MIN_VALUE < this.documentNumber || this.documentNumber > SER_NUM_MAX_VALUE)
+            if (this.documentNumber  < SER_NUM_MIN_VALUE || this.documentNumber > SER_NUM_MAX_VALUE)
             {
                 string message = "DocumentNumber {0} out of range. Document number must be between {1} and {2}";
                 validationResult.AddError(

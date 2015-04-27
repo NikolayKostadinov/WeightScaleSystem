@@ -28,7 +28,6 @@
     {
         private const string GetLogsWebApiController = @"api/Logs/GetLogs";
         private const string ClearLogsWebApiController = @"api/Logs/PostClearLogs";
-        //private const string IpAddressPattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b";
         private const string IpAddressPattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}";
         private const string ArchivedFilesDirectory = @"\logs\ws\";
 
@@ -68,7 +67,7 @@
         static void Main()
         {
             // make these
-            bool runAsWindowsService = true;
+            bool runAsWindowsService = false;
             if (runAsWindowsService)
             {
                 ServiceBase[] servicesToRun;
@@ -76,15 +75,11 @@
                 { 
                     new MeasurementsWindowsService(logger) 
                 };
-                ServiceBase.Run(servicesToRun); 
+                ServiceBase.Run(servicesToRun);
             }
             else
             {
-                do
-                {
-                    // ProcessMeasurements();
-                    // ProcessLogs();
-                } while (true);
+                ProcessMeasurements();
             }
         }
 
