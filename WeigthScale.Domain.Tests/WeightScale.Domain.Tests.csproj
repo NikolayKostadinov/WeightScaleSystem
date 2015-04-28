@@ -54,6 +54,7 @@
     <Compile Include="ComSerializableClassAttributeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ComSerializerTests.cs" />
+    <Compile Include="WeightScaleMessageNewTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WeightScale.Domain\WeightScale.Domain.csproj">

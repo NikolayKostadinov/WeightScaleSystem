@@ -260,15 +260,14 @@ namespace WeightScale.Domain.Abstract
             // Validate MeasurementStatus
             if (!Enum.IsDefined(typeof(MeasurementStatus), this.measurementStatus))
             {
-                string message = "The stastus {0} is out of range. Acceptable statuses are between 0 and 9.";
+                string message = "The Status {0} is out of range. Acceptable statuses are between 0 and 9.";
                 validationResult.AddError(
                     "MeasurementStatus",
-                    string.Format(message, this.measurementNumber));
+                    string.Format(message, this.MeasurementStatus));
             }
 
             // Validate DocumentNumber
-            //if (SER_NUM_MIN_VALUE < this.documentNumber || this.documentNumber > SER_NUM_MAX_VALUE)
-            if (this.documentNumber  < SER_NUM_MIN_VALUE || this.documentNumber > SER_NUM_MAX_VALUE)
+            if (SER_NUM_MIN_VALUE > this.documentNumber || this.documentNumber > SER_NUM_MAX_VALUE)
             {
                 string message = "DocumentNumber {0} out of range. Document number must be between {1} and {2}";
                 validationResult.AddError(
@@ -360,7 +359,7 @@ Actual values are GrossWeight: {0}; TareWaight: {1} ";
                 if (this.netWeight != (this.grossWeight - this.tareWeight))
                 {
                     var message = @"The NetWeight must be equal to GrossWeight - TareWeight. 
-Actual valuse is NetWeight: {0}; GrossWeight{1}; TareWaight: {2};. 
+Actual values is NetWeight: {0}; GrossWeight{1}; TareWaight: {2};. 
 So {0} is not equal to {3}";
 
                     validationResult.AddError(
@@ -373,15 +372,6 @@ So {0} is not equal to {3}";
             if (string.IsNullOrEmpty(this.vehicle) || string.IsNullOrWhiteSpace(this.vehicle))
             {
                 validationResult.AddError("Vehicle", "The Vehicle cannot be empty.");
-            }
-
-            // Validate DocumentNumber
-            if (this.documentNumber < 0)
-            {
-                string message = "DocumentNumber must be greater than or equal to 0. Actual Document number is {0}";
-                validationResult.AddError(
-                    "DocumentNumber",
-                    string.Format(message, this.documentNumber));
             }
 
             return validationResult;
