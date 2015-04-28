@@ -248,7 +248,7 @@
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("X-MessageType", messageType);
             logger.Debug(string.Format("------------- Processing message Id: {0} -------------", message.Id));
-            logger.Debug(string.Format("Sended request message: {0} - {1}", item.URL, JsonConvert.SerializeObject(message)));
+            logger.Debug(string.Format("Sent request message: {0} - {1}", item.URL, JsonConvert.SerializeObject(message)));
 
             HttpResponseMessage response = null;
             try
@@ -281,7 +281,7 @@
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("X-MessageType", messageType);
             logger.Debug(string.Format("------------- Processing message Id: {0} -------------", message.Id));
-            logger.Debug(string.Format("Sended request message: {0} - {1}", item.URL, JsonConvert.SerializeObject(message)));
+            logger.Debug(string.Format("Sent request message: {0} - {1}", item.URL, JsonConvert.SerializeObject(message)));
 
             Task<HttpResponseMessage> response = null;
             try

@@ -117,9 +117,9 @@ namespace WeightScale.Domain.Concrete
             // Validate ТotalNetOfOutput
             if (TOTAL_NET_OF_OUTPUT_MIN > this.totalNetOfOutput || this.totalNetOfOutput > TOTAL_NET_OF_OUTPUT_MAX)
             {
-                string message = "The value of TotalNetOutput must be between {0} and {1}. The actual value is {2}.";
+                string message = "The value of TotalNetOfOutput must be between {0} and {1}. The actual value is {2}.";
                 validationResult.AddError(
-                    "TotalNetOutput",
+                    "TotalNetOfOutput",
                     string.Format(message, TOTAL_NET_OF_OUTPUT_MIN, TOTAL_NET_OF_OUTPUT_MAX, this.totalNetOfOutput));
             }
 

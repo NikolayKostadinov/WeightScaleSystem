@@ -38,7 +38,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -52,7 +52,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_DateOfFirstIsGreatherThanDateOfSecondTime_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_DateOfFirstIsgreaterThanDateOfSecondTime_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -64,7 +64,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -91,7 +91,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 2;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -117,7 +117,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -125,7 +125,7 @@ namespace WeigthScale.Domain.Tests
 
             Assert.AreEqual(expectedFieldName, result[0].Field, "Field Names are not equal!");
 
-            string expectedText = "The stastus 10 is out of range. Acceptable statuses are between 0 and 9.";
+            string expectedText = "The Status 10 is out of range. Acceptable statuses are between 0 and 9.";
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
         }
@@ -143,7 +143,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -169,7 +169,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -195,7 +195,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -221,7 +221,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -247,7 +247,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -273,7 +273,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -299,7 +299,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -313,11 +313,11 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_Number_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_Number_greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.Number = 100; // Set number to the value greather than maximum acceptable.
+            message.Number = 100; // Set number to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -325,7 +325,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -339,11 +339,11 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_MeasurementNumber_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_MeasurementNumber_greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.MeasurementNumber = 4; // Set MeasurementNumber to the value greather than maximum acceptable.
+            message.MeasurementNumber = 4; // Set MeasurementNumber to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -351,7 +351,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -377,7 +377,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -392,11 +392,11 @@ namespace WeigthScale.Domain.Tests
 
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_totalNetOfInput_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_totalNetOfInput_greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.TotalNetOfInput = 1099999999; // Set TotalNetOfInput to the value greather than maximum acceptable.
+            message.TotalNetOfInput = 1099999999; // Set TotalNetOfInput to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -404,7 +404,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -430,7 +430,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -456,7 +456,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -464,7 +464,7 @@ namespace WeigthScale.Domain.Tests
 
             Assert.AreEqual(expectedFieldName, result[0].Field, "Field Names are not equal!");
 
-            string expectedText = string.Format("The NetWeight must be equal to GrossWeight - TareWeight. \r\nActual valuse is NetWeight: {0}; GrossWeight{1}; TareWaight: {2};. \r\nSo {0} is not equal to {3}",
+            string expectedText = string.Format("The NetWeight must be equal to GrossWeight - TareWeight. \r\nActual values is NetWeight: {0}; GrossWeight{1}; TareWaight: {2};. \r\nSo {0} is not equal to {3}",
                                         message.NetWeight,message.GrossWeight,message.TareWeight,message.GrossWeight - message.TareWeight);
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
@@ -483,26 +483,26 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
-            string expectedFieldName = "TotalNetOutput";
+            string expectedFieldName = "TotalNetOfOutput";
 
             Assert.AreEqual(expectedFieldName, result[0].Field, "Field Names are not equal!");
 
-            string expectedText = "The value of TotalNetOutput must be between 0 and 999999999. The actual value is -843.";
+            string expectedText = "The value of TotalNetOfOutput must be between 0 and 999999999. The actual value is -843.";
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
         }
 
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_totalNetOfOutput_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_totalNetOfOutput_greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.TotalNetOfOutput = 1099999998; // Set TotalNetOfOutput to the value greather than maximum acceptable.
+            message.TotalNetOfOutput = 1099999998; // Set TotalNetOfOutput to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -510,15 +510,15 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
-            string expectedFieldName = "TotalNetOutput";
+            string expectedFieldName = "TotalNetOfOutput";
 
             Assert.AreEqual(expectedFieldName, result[0].Field, "Field Names are not equal!");
 
-            string expectedText = "The value of TotalNetOutput must be between 0 and 999999999. The actual value is 1099999998.";
+            string expectedText = "The value of TotalNetOfOutput must be between 0 and 999999999. The actual value is 1099999998.";
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
         }
@@ -536,7 +536,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -550,11 +550,11 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_TotalNetByProductInput_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TotalNetByProductInput_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.TotalNetByProductInput = 1099999998; // Set TotalNetOfOutput to the value greather than maximum acceptable.
+            message.TotalNetByProductInput = 1099999998; // Set TotalNetOfOutput to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -562,7 +562,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -589,7 +589,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -603,11 +603,11 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_TotalNetByProductOutput_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TotalNetByProductOutput_greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.TotalNetByProductOutput = 1099249998; // Set TotalNetOfOutput to the value greather than maximum acceptable.
+            message.TotalNetByProductOutput = 1099249998; // Set TotalNetOfOutput to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -615,7 +615,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -640,9 +640,9 @@ namespace WeigthScale.Domain.Tests
             var result = message.Validate();
 
             // Assert
-            int expectedValidationMessagesCount = 2;
+            int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -656,11 +656,11 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_DocumentNumber_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_DocumentNumber_greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.DocumentNumber = 109924999; // Set DocumentNumber to the value greather than maximum acceptable.
+            message.DocumentNumber = 109924999; // Set DocumentNumber to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -668,7 +668,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -694,7 +694,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
@@ -708,11 +708,11 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_TransactionNumber_Greather_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TransactionNumber_greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.TransactionNumber = 109924; // Set TransactionNumber to the value greather than maximum acceptable.
+            message.TransactionNumber = 109924; // Set TransactionNumber to the value greater than maximum acceptable.
 
             // Act
             var result = message.Validate();
@@ -720,7 +720,7 @@ namespace WeigthScale.Domain.Tests
             // Assert
             int expectedValidationMessagesCount = 1;
             int actualValidationMessagesCount = result.Count;
-            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greather than expected!");
+            Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount, "The number of the validation messages is greater than expected!");
 
             Assert.AreEqual(result[0].Type, MessageType.Error, "The type of ValidationMessage is not Error.");
 
