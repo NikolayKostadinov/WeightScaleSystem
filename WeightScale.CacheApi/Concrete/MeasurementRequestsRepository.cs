@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     using WeightScale.CacheApi.Contract;
     using WeightScale.CacheApi.SoapProxy;
     using WeightScale.CacheApi.Utility;
@@ -17,6 +19,15 @@
         }
 
         /// <summary>
+        /// Gets all measurement requests.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<SoapMessage>> GetAllAsynk()
+        {
+            return await this.client.GetAllMeasurementRequestsAsync();
+        }
+
+        /// <summary>
         /// Gets all.
         /// </summary>
         /// <returns></returns>
@@ -26,12 +37,31 @@
         }
 
         /// <summary>
-        /// Gets the target urls.
+        /// Gets the target URLs asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<string>> GetTargetUrlsAsync()
+        {
+            return await Task.Factory.StartNew(() => GetTargetUrls()); 
+        }
+
+        /// <summary>
+        /// Gets the target URLs.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> GetTargetUrls()
         {
             return this.client.GetAllHostAndPort();//new List<string>{"http://10.94.23.80:8111/"};//
+        }
+
+        /// <summary>
+        /// Updates the record asynchronous.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<CValidationMessage>> UpdateAsync(SoapMessage message)
+        {
+            return await this.client.InsertMeasurementResultAsync(message);
         }
 
         /// <summary>

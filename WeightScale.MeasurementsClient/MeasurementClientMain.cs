@@ -14,6 +14,7 @@
     using System.ServiceModel;
     using System.ServiceProcess;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Ninject;
     using WeightScale.Application.AppStart;
@@ -43,13 +44,13 @@
 
         public static bool StopProcessMeasurementThread
         {
-            get 
+            get
             {
-                return stopProcessMeasurementThread; 
+                return stopProcessMeasurementThread;
             }
-            set 
+            set
             {
-                stopProcessMeasurementThread = value; 
+                stopProcessMeasurementThread = value;
             }
         }
 
@@ -67,7 +68,7 @@
         static void Main()
         {
             // make these
-            bool runAsWindowsService = false;
+            bool runAsWindowsService = true;
             if (runAsWindowsService)
             {
                 ServiceBase[] servicesToRun;
@@ -80,39 +81,18 @@
             else
             {
                 ProcessMeasurements();
+                while (true) ;
             }
         }
 
-        internal static void ProcessMeasurements()
+        internal async static void ProcessMeasurements()
         {
             do
             {
                 try
                 {
                     DateTime beginTotal = DateTime.Now;
-
-                    IEnumerable<SoapMessage> result = GetMeasurementsRequests();
-                    if (result != null)
-                    {
-                        foreach (var item in result)
-                        {
-                            var message = GetWeightScaleMessageDto(item);
-                            string messageType = message.Message.GetType().Name;
-
-                            HttpResponseMessage response = SendMeasurementRequest(messageType, message, item);
-                            if (response != null && response.IsSuccessStatusCode)
-                            {
-                                string jsonAnswer = response.Content.ReadAsStringAsync().Result;
-                                logger.Debug(string.Format("Received response message: {0}", jsonAnswer));
-                                UpdateMeasurementResult(jsonAnswer, message, item);
-                            }
-                            else
-                            {
-                                logger.Error(string.Format("Error Code: {0} : Message: {1}", response.StatusCode, response.ReasonPhrase));
-                            }
-                        }
-                        logger.Info(string.Format("Total estimated time for transaction: {0}", (DateTime.Now - beginTotal).ToString(@"ss\:fff")));
-                    }
+                    await repository.GetAllAsynk().ContinueWith(result => ProcessMeasurementRequestsAsync(result.Result, beginTotal));
                 }
                 catch (FaultException faultEx)
                 {
@@ -123,6 +103,35 @@
                     logger.Error(ex.ToMessageAndCompleteStacktrace());
                 }
             } while (!StopProcessMeasurementThread);
+        }
+
+        private async static void ProcessMeasurementRequestsAsync(IEnumerable<SoapMessage> result, DateTime beginTotal)
+        {
+            if (result != null)
+            {
+                foreach (var item in result)
+                {
+                    var message = GetWeightScaleMessageDto(item);
+                    string messageType = message.Message.GetType().Name;
+                    SendMeasurementRequestAsync(messageType, message, item).ContinueWith(response => SendMeasurementResultToCacheAsync(response.Result, message,item));
+                }
+
+                logger.Info(string.Format("Total estimated time for transaction: {0}", (DateTime.Now - beginTotal).ToString(@"ss\:fff")));
+            }
+        }
+
+        private async static void SendMeasurementResultToCacheAsync(HttpResponseMessage response, IWeightScaleMessageDto message, SoapMessage item)
+        {
+            {
+                if (response != null && response.IsSuccessStatusCode)
+                {
+                    await response.Content.ReadAsStringAsync().ContinueWith(jsonAnswer => UpdateMeasurementResultAsync(jsonAnswer.Result, message, item));                   
+                }
+                else
+                {
+                    logger.Error(string.Format("Error Code: {0} : Message: {1}", response.StatusCode, response.ReasonPhrase));
+                }
+            }
         }
 
         internal static void ProcessLogs()
@@ -178,8 +187,8 @@
                 {
                     foreach (var innerEx in (ex as AggregateException).InnerExceptions)
                     {
-                        logger.Error(innerEx.ToMessageAndCompleteStacktrace());    
-                    }    
+                        logger.Error(innerEx.ToMessageAndCompleteStacktrace());
+                    }
                 }
                 else
                 {
@@ -203,7 +212,27 @@
                 }
             }
         }
- 
+
+        private async static void UpdateMeasurementResultAsync(string jsonAnswer, IWeightScaleMessageDto message, SoapMessage item)
+        {
+            logger.Debug(string.Format("Received response message: {0}", jsonAnswer));
+
+            IWeightScaleMessageDto incommmingMeasurementResult = deserializer.GetResultFromJson(jsonAnswer, message) as IWeightScaleMessageDto;
+            SoapMessage currentSoap = item;
+
+            mapper.ToProxy(incommmingMeasurementResult, currentSoap);
+
+            var validationMessages = await repository.UpdateAsync(currentSoap);
+
+            if (validationMessages != null && validationMessages.Count() > 0)
+            {
+                foreach (var vm in validationMessages)
+                {
+                    logger.Error(string.Format("ValidationMessage: {0}", vm.ToString()));
+                }
+            }
+        }
+
         private static IWeightScaleMessageDto GetWeightScaleMessageDto(SoapMessage item)
         {
             var message = injector.Get<IWeightScaleMessageDto>();
@@ -212,7 +241,7 @@
             message.ValidationMessages = injector.Get<IValidationMessageCollection>();
             return message;
         }
- 
+
         private static HttpResponseMessage SendMeasurementRequest(string messageType, IWeightScaleMessageDto message, SoapMessage item)
         {
             HttpClient client = new HttpClient();
@@ -236,16 +265,48 @@
             }
             catch (AggregateException ae)
             {
-                foreach (var innerEx in  ae.InnerExceptions)
+                foreach (var innerEx in ae.InnerExceptions)
                 {
-                    logger.Error(innerEx.ToMessageAndCompleteStacktrace());    
+                    logger.Error(innerEx.ToMessageAndCompleteStacktrace());
                 }
-   
+
             }
 
             return response;
         }
- 
+
+        private static Task<HttpResponseMessage> SendMeasurementRequestAsync(string messageType, IWeightScaleMessageDto message, SoapMessage item)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("X-MessageType", messageType);
+            logger.Debug(string.Format("------------- Processing message Id: {0} -------------", message.Id));
+            logger.Debug(string.Format("Sended request message: {0} - {1}", item.URL, JsonConvert.SerializeObject(message)));
+
+            Task<HttpResponseMessage> response = null;
+            try
+            {
+                response = client.PostAsJsonAsync(item.URL, message);
+            }
+            catch (HttpRequestException ex)
+            {
+                logger.Error(ex.Message, ex);
+            }
+            catch (WebException wex)
+            {
+                logger.Error(wex.Message, wex);
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var innerEx in ae.InnerExceptions)
+                {
+                    logger.Error(innerEx.ToMessageAndCompleteStacktrace());
+                }
+            }
+
+            return response;
+        }
+
         private static IEnumerable<SoapMessage> GetMeasurementsRequests()
         {
             IEnumerable<SoapMessage> result = null;
@@ -260,7 +321,7 @@
 
             return result;
         }
- 
+
         private static long GetLogs(HttpContent content, string fileName)
         {
             var contentStreamLength = 0L;
@@ -274,20 +335,20 @@
                     {
                         contentStream.CopyTo(stream);
                     }
-                }  
+                }
             }
-            
+
             return contentStreamLength;
         }
- 
+
         private static string CreateArchivedFilePath(string url, int currentHour)
         {
             Regex ip = new Regex(IpAddressPattern);
             MatchCollection match = ip.Matches(url);
             var uri = match[0].Value.Replace(':', '-');
 
-            var folder = string.Format(@"{0}{1}{2}", 
-                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), 
+            var folder = string.Format(@"{0}{1}{2}",
+                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
                 ArchivedFilesDirectory,
                 uri);
 
@@ -301,13 +362,13 @@
             var fileName = string.Format("{0}/{1:yyyy-MM-dd-HH-mm}-{2}.zip", folder, DateTime.Now, uri);
             return fileName;
         }
- 
+
         private static void ClearLogs(string fileName, string url, HttpClient client)
         {
             try
             {
                 IList<string> removingFileList = new List<string>();
-                                        
+
                 using (ZipArchive archive = ZipFile.OpenRead(fileName))
                 {
                     foreach (ZipArchiveEntry entry in archive.Entries)
@@ -334,7 +395,7 @@
 
                     if (response != null && response.IsSuccessStatusCode)
                     {
-                        logger.Debug(string.Format("Removed logs files: {0} - {1}", url, fileName));  
+                        logger.Debug(string.Format("Removed logs files: {0} - {1}", url, fileName));
                     }
                 }
             }
@@ -353,11 +414,11 @@
                 dSecurity.AddAccessRule(
                     new FileSystemAccessRule(
                         new SecurityIdentifier(
-                            WellKnownSidType.WorldSid, 
-                            null), 
-                        FileSystemRights.FullControl, 
-                        InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, 
-                        PropagationFlags.NoPropagateInherit, 
+                            WellKnownSidType.WorldSid,
+                            null),
+                        FileSystemRights.FullControl,
+                        InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
+                        PropagationFlags.NoPropagateInherit,
                         AccessControlType.Allow));
                 dInfo.SetAccessControl(dSecurity);
                 return true;
