@@ -65,7 +65,7 @@
             logger = LogManager.GetLogger("WeightScale.MeasurementsClient");
             lastLogProcessingHour = DateTime.Now.AddHours(-1).Hour;
         }
-
+          
         static void Main()
         {
             // make these
