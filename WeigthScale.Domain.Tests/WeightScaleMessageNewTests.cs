@@ -72,7 +72,8 @@ namespace WeigthScale.Domain.Tests
 
             Assert.AreEqual(expectedFieldName, result[0].Field, "Field Names are not equal!");
 
-            string expectedText = string.Format("Invalid timing. The TimeOfFirstMeasure must be before TimeOfSecondMeasure. \r\nTheir actual values are TimeOfFirstMeasure: {0}, timeOfSecondMeasure:{1}",message.TimeOfFirstMeasure,message.TimeOfSecondMeasure);
+            string expectedText = string.Format(@"Invalid timing. The TimeOfFirstMeasure must be before TimeOfSecondMeasure. 
+Their actual values are TimeOfFirstMeasure: {0}, timeOfSecondMeasure:{1}",message.TimeOfFirstMeasure,message.TimeOfSecondMeasure);
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
         }
@@ -99,7 +100,8 @@ namespace WeigthScale.Domain.Tests
 
             Assert.AreEqual(expectedFieldName, result[0].Field, "Field Names are not equal!");
 
-            string expectedText = "The GrossWeight must be greater than TareWeight number or 0. \r\nActual values are GrossWeight: 5000; TareWaight: 10000 ";
+            string expectedText = @"The GrossWeight must be greater than TareWeight number or 0. 
+Actual values are GrossWeight: 5000; TareWaight: 10000 ";
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
         }
@@ -464,7 +466,7 @@ namespace WeigthScale.Domain.Tests
 
             Assert.AreEqual(expectedFieldName, result[0].Field, "Field Names are not equal!");
 
-            string expectedText = string.Format("The NetWeight must be equal to GrossWeight - TareWeight. \r\nActual values is NetWeight: {0}; GrossWeight{1}; TareWaight: {2};. \r\nSo {0} is not equal to {3}",
+            string expectedText = string.Format("The NetWeight must be equal to GrossWeight - TareWeight. \nActual values is NetWeight: {0}; GrossWeight{1}; TareWaight: {2};. \nSo {0} is not equal to {3}",
                                         message.NetWeight,message.GrossWeight,message.TareWeight,message.GrossWeight - message.TareWeight);
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
