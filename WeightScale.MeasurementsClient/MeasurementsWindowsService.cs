@@ -23,7 +23,7 @@
         {
             try
             {
-                Thread measurementThread = new Thread(new ThreadStart(MeasurementClientMain.ProcessMeasurements));
+                Thread measurementThread = new Thread(new ThreadStart(MeasurementClientMain.ProcessMeasurementsAsync));
                 measurementThread.Start();
 
                 logFilesSynhTimer = new Timer(LogFilesProcessingCallback, null, Properties.Settings.Default.TimerDueTime, Timeout.Infinite);

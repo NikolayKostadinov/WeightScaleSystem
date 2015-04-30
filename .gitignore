@@ -182,3 +182,7 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 /WeightScale.v12.suo
+<<<<<<< HEAD
+=======
+/WeightScale.v12.suo
+>>>>>>> 771d761043dce619aa5ed624aeaea756079f4838
