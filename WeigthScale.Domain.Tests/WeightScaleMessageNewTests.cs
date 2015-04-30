@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WeightScale.Domain.Abstract;
 using WeightScale.Domain.Common;
@@ -23,6 +24,20 @@ namespace WeigthScale.Domain.Tests
             int expectedValidationMessagesCount = 0;
             int actualValidationMessagesCount = result.Count;
             Assert.AreEqual(expectedValidationMessagesCount, actualValidationMessagesCount);
+        }
+
+        [TestMethod]
+        public void Check_ToString_WeightScaleMessageNew_IsValid()
+        {
+            // Arrange
+            WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
+
+            // Act
+            var result = message.ToString();
+
+            // Assert
+            string expected = string.Format(" 1 | In | {0} | {1} | OK |    12345 |   200 | 1 |          202 |   1234567890 |  10000 |  25000 |  15000 |   1238098 |     37000 |      A3325KX |        12345 | 123456789 |     27000 | ", message.TimeOfFirstMeasure, message.TimeOfSecondMeasure);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -52,12 +67,12 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_DateOfFirstIsgreaterThanDateOfSecondTime_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_DateOfFirstIsGreaterThanDateOfSecondTime_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.TimeOfFirstMeasure =DateTime.Now.AddSeconds(1) ;
-            message.TimeOfSecondMeasure = DateTime.Now;
+            message.TimeOfFirstMeasure = DateTime.Now.AddSeconds(1); // set TimeOfFirstMeasure and TimeOfSecondMeasure to invalid values 
+            message.TimeOfSecondMeasure = DateTime.Now; // set TimeOfSecondMeasure and TimeOfFirstMeasure to invalid values
             // Act
             var result = message.Validate();
 
@@ -82,8 +97,8 @@ namespace WeigthScale.Domain.Tests
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
-            message.GrossWeight = 5000;
-            message.TareWeight = 10000;
+            message.GrossWeight = 5000; // set GrossWeight and TareWeight to invalid values 
+            message.TareWeight = 10000; // set TareWeight and GrossWeight to invalid values 
             
             // Act
             var result = message.Validate();
@@ -313,7 +328,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_Number_greater_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_Number_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -339,7 +354,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_MeasurementNumber_greater_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_MeasurementNumber_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -365,7 +380,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_totalNetOfInput_Less_Than_Minimum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TotalNetOfInput_Less_Than_Minimum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -392,7 +407,7 @@ namespace WeigthScale.Domain.Tests
 
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_totalNetOfInput_greater_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TotalNetOfInput_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -418,7 +433,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_Invalid_exciseDocumentNumber_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_Invalid_ExciseDocumentNumber_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -444,7 +459,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_Invalid_GrossWeightAndTareWaightagainstNetWeight_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_Invalid_GrossWeightAndTareWaightAgainstNetWeight_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -471,7 +486,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_totalNetOfOutput_Less_Than_Minimum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TotalNetOfOutput_Less_Than_Minimum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -498,7 +513,7 @@ namespace WeigthScale.Domain.Tests
 
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_totalNetOfOutput_greater_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TotalNetOfOutput_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -603,7 +618,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_TotalNetByProductOutput_greater_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TotalNetByProductOutput_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -656,7 +671,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_DocumentNumber_greater_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_DocumentNumber_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -708,7 +723,7 @@ namespace WeigthScale.Domain.Tests
         }
 
         [TestMethod]
-        public void Check_If_WeightScaleMessageNew_With_TransactionNumber_greater_Than_Maximum_IsValid()
+        public void Check_If_WeightScaleMessageNew_With_TransactionNumber_Greater_Than_Maximum_IsValid()
         {
             // Arrange
             WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
@@ -731,6 +746,34 @@ namespace WeigthScale.Domain.Tests
             string expectedText = string.Format("Transaction number {0} is out of range. Transaction number must be between 1 and 99999.", message.TransactionNumber);
 
             Assert.AreEqual(expectedText, result[0].Text, "Texts are not equal!");
+        }
+
+        [TestMethod]
+        public void Check_ToBlock_WeightScaleMessageNew_IsValid()
+        {
+            // Arrange
+            WeightScaleMessageNew message = GetValidWeightScaleMessageNew();
+
+            // 28.4.2015 г. 16:21:51
+            message.TimeOfFirstMeasure = new DateTime(2015, 4, 28, 16, 21, 51);
+            message.TimeOfSecondMeasure = new DateTime(2015, 4, 28, 16, 21, 52);
+            IComSerializer serializer = new ComSerializer();
+            // Act
+            var result = message.ToBlock(serializer);
+
+            // Assert
+            byte[] expected = new byte[144]{48,49,49,49,53,48,52,50,56,49,54,50,49,53,49
+                                           ,49,53,48,52,50,56,49,54,50,49,53,50,48,32,32
+                                           ,32,49,50,51,52,53,32,32,50,48,48,49,32,32,32
+                                           ,32,32,32,32,32,32,50,48,50,32,32,49,50,51,52
+                                           ,53,54,55,56,57,48,32,49,48,48,48,48,32,50,53
+                                           ,48,48,48,32,49,53,48,48,48,32,32,49,50,51,56
+                                           ,48,57,56,32,32,32,32,51,55,48,48,48,32,32,32
+                                           ,32,32,65,51,51,50,53,75,88,32,32,32,32,32,32
+                                           ,32,49,50,51,52,53,49,50,51,52,53,54,55,56,57
+                                           ,32,32,32,32,50,55,48,48,48};
+            var res = result.SequenceEqual<byte>(expected);
+            Assert.IsTrue(res);
         }
 
         /// <summary>
