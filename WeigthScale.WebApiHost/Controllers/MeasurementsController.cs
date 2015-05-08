@@ -115,15 +115,15 @@
 
         private IWeightScaleMessage GenerateWeightBlockOld()
         {
-            var ser = new WeightScaleMessageNew();
-            //var ser = new WeightScaleMessageOld();
+            //var ser = new WeightScaleMessageNew();
+            var ser = new WeightScaleMessageOld();
             ser.Number = 3;
             ser.Direction = Direction.In;
             ser.SerialNumber = 12345678;
             ser.TransactionNumber = 12345;
             ser.MeasurementNumber = 2;
             ser.ProductCode = 100;
-            ser.ExciseDocumentNumber = "1400032512";
+            //ser.ExciseDocumentNumber = "1400032512";
             ser.Vehicle = "A3335KX";
             return ser;
         }
