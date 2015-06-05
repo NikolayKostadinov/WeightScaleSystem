@@ -65,7 +65,7 @@
             logger = LogManager.GetLogger("WeightScale.MeasurementsClient");
             lastLogProcessingHour = DateTime.Now.AddHours(-1).Hour;
         }
-          
+
         static void Main()
         {
             // make these
@@ -82,7 +82,7 @@
             else
             {
                 ProcessMeasurementsAsync();
-                while (true);
+                while (true) ;
             }
         }
 
@@ -117,17 +117,18 @@
                     try
                     {
                         SendMeasurementRequestAsync(messageType, message, item)
-                            .ContinueWith(response => SendMeasurementResultToCacheAsync(response.Result, message, item));
+                            .ContinueWith(response => SendMeasurementResultToCacheAsync(response.Result, message, item, beginTotal));
                     }
                     catch (Exception ex)
                     {
-                        logger.Error(string.Format("[Id: {0}] {1}", item.Id, ex.Message));
+                        logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, ex.Message));
                         SendErrorMessageToCache(item, message);
-                    }
-                    finally
-                    {
                         LogEstimatedTimeForTransaction(beginTotal, item.Id);
                     }
+                    //finally
+                    //{
+                    //    LogEstimatedTimeForTransaction(beginTotal, item.Id);
+                    //}
                 }
             }
         }
@@ -143,7 +144,7 @@
                 {
                     foreach (var vm in validationMessages)
                     {
-                        logger.Error(string.Format("[Id: {0}] ValidationMessage: {1}", item.Id, vm.ToString()));
+                        logger.Error(string.Format("[Id: \t{0}\t] ValidationMessage: {1}", item.Id, vm.ToString()));
                     }
                 }
             }
@@ -162,20 +163,34 @@
         /// <returns></returns>
         private async static void LogEstimatedTimeForTransaction(DateTime beginTotal, long id)
         {
-            logger.Info(string.Format("[Id: {0}] Total estimated time for transaction: {1}", id, (DateTime.Now - beginTotal).ToString(@"ss\:fff")));
+            //bool reset = false;
+
+            //var watchDogTimer = new System.Timers.Timer();
+            //watchDogTimer.Interval = 5000; //if service doesn't response for more than 5 sec reset
+            //watchDogTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e) { reset = true; };
+            //watchDogTimer.Start();
+
+            //if (t != null)
+            //{
+            //    while ((!t.IsCompleted) & (!reset)) { }
+            //}
+
+            logger.Info(string.Format("[Id: \t{0}\t] Total estimated time for transaction: {1}", id, (DateTime.Now - beginTotal).ToString(@"ss\:fff")));
         }
 
-        private async static void SendMeasurementResultToCacheAsync(HttpResponseMessage response, IWeightScaleMessageDto message, SoapMessage item)
+
+
+        private async static Task SendMeasurementResultToCacheAsync(HttpResponseMessage response, IWeightScaleMessageDto message, SoapMessage item, DateTime beginTotal)
         {
             {
                 if (response != null && response.IsSuccessStatusCode)
                 {
-                    await response.Content.ReadAsStringAsync().ContinueWith(jsonAnswer => UpdateMeasurementResultAsync(jsonAnswer.Result, message, item));
+                    await response.Content.ReadAsStringAsync().ContinueWith(jsonAnswer => UpdateMeasurementResultAsync(jsonAnswer.Result, message, item, beginTotal));
                 }
                 else
                 {
-                    logger.Error(string.Format("Error Code: {0} : Message: {1}", 
-                        (response != null) ? response.StatusCode.ToString() : "null", 
+                    logger.Error(string.Format("Error Code: {0} : Message: {1}",
+                        (response != null) ? response.StatusCode.ToString() : "null",
                         (response != null) ? response.ReasonPhrase : "The response is null"));
                     SendErrorMessageToCache(item, message);
                 }
@@ -256,14 +271,14 @@
             {
                 foreach (var vm in validationMessages)
                 {
-                    logger.Error(string.Format("[Id: {0}] ValidationMessage: {1}", item.Id, vm.ToString()));
+                    logger.Error(string.Format("[Id: \t{0}\t] ValidationMessage: {1}", item.Id, vm.ToString()));
                 }
             }
         }
 
-        private async static void UpdateMeasurementResultAsync(string jsonAnswer, IWeightScaleMessageDto message, SoapMessage item)
+        private async static Task UpdateMeasurementResultAsync(string jsonAnswer, IWeightScaleMessageDto message, SoapMessage item, DateTime beginTotal)
         {
-            logger.Debug(string.Format("[Id: {0}] Received response message: {1}", item.Id, jsonAnswer));
+            logger.Debug(string.Format("[Id: \t{0}\t] Received response message: {1}", item.Id, jsonAnswer));
 
             IWeightScaleMessageDto incommmingMeasurementResult = deserializer.GetResultFromJson(jsonAnswer, message) as IWeightScaleMessageDto;
             SoapMessage currentSoap = item;
@@ -276,9 +291,11 @@
             {
                 foreach (var vm in validationMessages)
                 {
-                    logger.Error(string.Format("[Id: {0}] ValidationMessage: {1}", item.Id, vm.ToString()));
+                    logger.Error(string.Format("[Id: \t{0}\t] ValidationMessage: {1}", item.Id, vm.ToString()));
                 }
             }
+
+            LogEstimatedTimeForTransaction(beginTotal, item.Id);
         }
 
         private static IWeightScaleMessageDto GetWeightScaleMessageDto(SoapMessage item)
@@ -295,8 +312,8 @@
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("X-MessageType", messageType);
-            logger.Debug(string.Format("[Id: {0}] ------------- Processing message Id: {0} -------------", message.Id));
-            logger.Debug(string.Format("[Id: {0}] Sent request message: {1} - {2}", item.Id, item.URL, JsonConvert.SerializeObject(message)));
+            logger.Debug(string.Format("[Id: \t{0}\t] ------------- Processing message Id: {0} -------------", message.Id));
+            logger.Debug(string.Format("[Id: \t{0}\t] Sent request message: {1} - {2}", item.Id, item.URL, JsonConvert.SerializeObject(message)));
 
             HttpResponseMessage response = null;
             try
@@ -331,9 +348,9 @@
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Add("X-MessageType", messageType);
-            logger.Debug(string.Format("[Id: {0}] ------------- Processing message Id: {0} -------------", message.Id));
-            logger.Debug(string.Format("[Id: {0}] Sent request message: {1} - {2}", item.Id, item.URL, JsonConvert.SerializeObject(message)));
-            
+            logger.Debug(string.Format("[Id: \t{0}\t] ------------- Processing message Id: {0} -------------", message.Id));
+            logger.Debug(string.Format("[Id: \t{0}\t] Sent request message: {1} - {2}", item.Id, item.URL, JsonConvert.SerializeObject(message)));
+
 
             HttpResponseMessage response = null;
             try
@@ -342,7 +359,7 @@
             }
             catch (HttpRequestException ex)
             {
-                string vMessage = string.Format("[Id: {0}] Requested URL {1} is unreachable. ", item.Id, item.URL);
+                string vMessage = string.Format("[Id: \t{0}\t] Requested URL {1} is unreachable. ", item.Id, item.URL);
                 logger.Error(vMessage);
                 vms.AddError("General Error", vMessage);
             }
@@ -361,27 +378,27 @@
             {
                 if (ecex.CancellationToken.IsCancellationRequested)
                 {
-                    logger.Error(string.Format("[Id: {0}] Measure operation with URL {1} was canceled due to timeout.", item.Id, item.URL));
+                    logger.Error(string.Format("[Id: \t{0}\t] Measure operation with URL {1} was canceled due to timeout.", item.Id, item.URL));
                 }
                 else
                 {
-                    logger.Error(string.Format("[Id: {0}] {1}", item.Id, "ecex " + ecex.Message + ecex.StackTrace));
+                    logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, "ecex " + ecex.Message + ecex.StackTrace));
                 }
             }
             catch (OperationCanceledException oce)
             {
                 if (oce.CancellationToken.IsCancellationRequested)
                 {
-                    logger.Error(string.Format("[Id: {0}] Measure operation with URL {1} was canceled due to timeout.", item.Id, item.URL));
+                    logger.Error(string.Format("[Id: \t{0}\t] Measure operation with URL {1} was canceled due to timeout.", item.Id, item.URL));
                 }
                 else
                 {
-                    logger.Error(string.Format("[Id: {0}] {1}", item.Id, "oce " + oce.Message + oce.StackTrace));
+                    logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, "oce " + oce.Message + oce.StackTrace));
                 }
             }
             catch (Exception exc)
             {
-                logger.Error(string.Format("[Id: {0}] {1}", item.Id, "exc " + exc.Message + exc.StackTrace));
+                logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, "exc " + exc.Message + exc.StackTrace));
             }
             finally
             {
