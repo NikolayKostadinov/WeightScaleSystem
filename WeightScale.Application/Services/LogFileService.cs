@@ -15,7 +15,7 @@
     {
         private readonly ILog logger;
         private readonly IKernel injector;
-        public LogFileService(ILog loggerParam, IKernel injectorParam) 
+        public LogFileService(ILog loggerParam, IKernel injectorParam)
         {
             this.logger = loggerParam;
             this.injector = injectorParam;
@@ -32,11 +32,11 @@
         {
             if (File.Exists(resultFileName))
             {
-                if (!FileInUse(resultFileName))
+                if (!ArchiveFileInUse(resultFileName))
                 {
                     File.Delete(resultFileName);
                 }
-                else 
+                else
                 {
                     throw new InvalidOperationException(
                         string.Format("The file \"{0}\" you are trying to modify is currently in use.", resultFileName));
@@ -53,7 +53,7 @@
                         foreach (var filePath in filesList)
                         {
                             archive.CreateEntryFromFile(filePath.FullName, filePath.Name);
-                        } 
+                        }
                     }
 
                     return filesList;
@@ -61,7 +61,7 @@
             }
         }
 
-        public IValidationMessageCollection ClearFiles(string targetPath, IEnumerable<string> files) 
+        public IValidationMessageCollection ClearFiles(string targetPath, IEnumerable<string> files)
         {
             var result = injector.Get<IValidationMessageCollection>();
             foreach (var fileName in files)
@@ -109,15 +109,38 @@
                 {
                     if (!this.FileInUse(fileName))
                     {
-                        files.Add(new FileInfo(fileName));   
+                        files.Add(new FileInfo(fileName));
                     }
                 }
 
                 return files;
             }
-            else 
+            else
             {
                 throw new DirectoryNotFoundException(string.Format("Directory \"{0}\" not found.", path));
+            }
+        }
+
+        private bool ArchiveFileInUse(string path)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    if (fs.CanWrite)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+
+            }
+            catch (IOException ex)
+            {
+                return true;
             }
         }
 
@@ -133,19 +156,19 @@
                         var targetTime = DateTime.Now;
                         var creationTime = file.CreationTime;
 
-                        if (creationTime.Date == targetTime.Date  && creationTime.Hour == targetTime.Hour) 
+                        if (creationTime.Date == targetTime.Date && creationTime.Hour == targetTime.Hour)
                         {
                             return true;
                         }
 
                         return false;
                     }
-                    else 
+                    else
                     {
                         return true;
                     }
                 }
-                
+
             }
             catch (IOException ex)
             {

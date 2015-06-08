@@ -32,8 +32,8 @@ namespace WeigthScale.WebApiHost.Controllers
         {
             try
             {
-                string archiveFileName = @"ArchivedLogs.zip";
                 string path = GetLogFilesLocation();
+                string archiveFileName =Path.Combine(path, "ArchivedLogs.zip");                
                 var archivedFiles = fileManager.ArchiveFilesInFolder(path, archiveFileName);
                 if (archivedFiles.Count() > 0)
                 {
