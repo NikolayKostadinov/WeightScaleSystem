@@ -113,6 +113,7 @@
                 foreach (var item in result)
                 {
                     var message = GetWeightScaleMessageDto(item);
+                    Task action;
                     string messageType = message.Message.GetType().Name;
                     try
                     {
@@ -147,9 +148,9 @@
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // do nothing
+                logger.Error(string.Format("[Id: {0}] Message cannot be sent due to: {1} ", item.Id, ex.Message));
             }
         }
 
