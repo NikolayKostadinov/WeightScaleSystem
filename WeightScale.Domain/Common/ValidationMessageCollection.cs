@@ -18,55 +18,49 @@ namespace WeightScale.Domain.Common
     /// </summary>
     public class ValidationMessageCollection : List<ValidationMessage>, IValidationMessageCollection
     {
-        public ValidationMessageCollection() 
+        public ValidationMessageCollection()
         {
             //Do nothing!!!
         }
 
         [JsonConstructor]
-        public ValidationMessageCollection(IEnumerable<ValidationMessage> inputMessages) 
+        public ValidationMessageCollection(IEnumerable<ValidationMessage> inputMessages)
         {
-            this.AddRange(inputMessages);
+            if (inputMessages != null)
+            {
+                this.AddRange(inputMessages);
+            }
         }
         /// <summary>
         /// Gets a list of messages with the status 'Info'.
         /// </summary>
-        public List<ValidationMessage> Infos
+        public IValidationMessageCollection Infos
         {
             get
             {
-                return (from validationMessage
-                        in this
-                        where validationMessage.Type == MessageType.Info
-                        select validationMessage).ToList();
+                return new ValidationMessageCollection(this.Where(x => x.Type == MessageType.Info));
             }
         }
 
         /// <summary>
         /// Gets a list of messages with the status 'Warning'.
         /// </summary>
-        public List<ValidationMessage> Errors
+        public IValidationMessageCollection Errors
         {
             get
             {
-                return (from validationMessage
-                        in this
-                        where validationMessage.Type == MessageType.Error
-                        select validationMessage).ToList();
+                return new ValidationMessageCollection(this.Where(x => x.Type == MessageType.Error));
             }
         }
 
         /// <summary>
         /// Gets a list of messages with the status 'Error'.
         /// </summary>
-        public List<ValidationMessage> Warnings
+        public IValidationMessageCollection Warnings
         {
             get
             {
-                return (from validationMessage
-                        in this
-                        where validationMessage.Type == MessageType.Warning
-                        select validationMessage).ToList();
+                return new ValidationMessageCollection(this.Where(x => x.Type == MessageType.Warning));
             }
         }
 
@@ -85,7 +79,7 @@ namespace WeightScale.Domain.Common
         /// <param name="validationResult">Collection of validation messages</param>
         public void AddMany(IValidationMessageCollection validationResult)
         {
-                this.AddRange(validationResult);
+            this.AddRange(validationResult);
         }
 
         /// <summary>

@@ -13,11 +13,11 @@ namespace WeightScale.Domain.Abstract
 
     public interface IValidationMessageCollection : IEnumerable<ValidationMessage>
     {
-        System.Collections.Generic.List<ValidationMessage> Errors { get; }
+        IValidationMessageCollection Errors { get; }
 
-        System.Collections.Generic.List<ValidationMessage> Infos { get; }
+        IValidationMessageCollection Infos { get; }
 
-        System.Collections.Generic.List<ValidationMessage> Warnings { get; }
+        IValidationMessageCollection Warnings { get; }
 
         /// <summary>
         /// Clears this instance.
