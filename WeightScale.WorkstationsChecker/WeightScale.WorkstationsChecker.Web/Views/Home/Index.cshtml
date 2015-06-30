@@ -1,0 +1,134 @@
+﻿@using WeightScale.WorkstationsChecker.Web.Models;
+
+@model IEnumerable<WeightScaleWorkStationViewModel>
+@{
+    ViewBag.Title = "Ping statistics";
+}
+<script>
+    var additionalData=[];
+    kendo.culture("@System.Threading.Thread.CurrentThread.CurrentCulture.Name");
+</script>
+<style>
+    .chart-wrapper, .chart-wrapper .k-chart {
+        height: 200px;
+    }
+
+    .chart-wrapper {
+        margin-top: 20px;
+    }
+</style>
+
+@{
+    var colors = new string[] { "lightblue", "lightgreen", "#fbec96", "lightpink" };
+    int i = 0;
+}
+
+@foreach (var scale in Model)
+{
+    <div class="row">
+        <div class="chart-wrapper">
+            @(Html.Kendo().Chart<PingStatisticsViewModel>()
+        .Name("Statistics" + scale.Id)
+        .Title("Statistics for ping " + scale.Address + " " + scale.Name)
+        //.Legend(legend => legend
+        //    .Position(ChartLegendPosition.Top)
+        //)
+        .Events(ev => ev.DataBound("dataBind"))
+        .HtmlAttributes(new { @class = "charts" })
+        .DataSource(ds => ds.Read(read => read.Action("GetStatistics", "Home").Data("additionalData[" + scale.Id + "]")))
+        .Series(series =>
+        {
+            series.Area(model => model.RoundtripTime).Name("RoundtripTime").Color(colors[(i++ % 4)]);
+        })
+        .CategoryAxis(axis => axis
+            .Categories(model => model.TimeStamp)
+            .Date()
+            .BaseUnit(ChartAxisBaseUnit.Minutes)
+            .Labels(labels => labels.Rotation(-90))
+            .Justify()
+            .Crosshair(c => c.Visible(true))
+
+        )
+        .ValueAxis(axis => axis.Numeric()
+            .Labels(labels => labels.Format("{0:N0}"))
+        //.MajorUnit(1000)
+        )
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Shared(true)
+            .Template("#= category # \n #= value #")
+        )
+            )
+        </div>
+    </div>
+
+    <script>
+        additionalData[@scale.Id] = function() {
+            return {
+                id:@scale.Id,
+                startPeriod: $("#startPeriod").data("kendoDateTimePicker").value(),
+                endPeriod: $("#endPeriod").data("kendoDateTimePicker").value()
+            };
+        }
+
+    </script>
+
+}
+
+@section scripts{
+    <script>
+        var myTimer;
+        function RefreshCharts()
+        {
+
+            var charts = $(".charts");
+            for (var i = 0; i < charts.length; i++) {
+                var currChart = $(charts[i]);
+                kendo.ui.progress(currChart,true);
+            }
+            var myVar = setTimeout(function(){
+                var timeSpan = $("#endPeriod").data("kendoDateTimePicker").value() - $("#startPeriod").data("kendoDateTimePicker").value();
+                for (var i = 0; i < charts.length; i++) {
+                    var currChart = $(charts[i]);
+                    if (timeSpan <= 10*60*1000) {
+                        currChart.data("kendoChart").options.categoryAxis.baseUnit= "seconds";
+                        currChart.data("kendoChart").options.categoryAxis.labels.step=10;
+                    }else{
+                        currChart.data("kendoChart").options.categoryAxis.baseUnit= "minutes";
+                        currChart.data("kendoChart").options.categoryAxis.labels.step=1;
+                    }
+                    currChart.data("kendoChart").dataSource.read();
+                    currChart.data("kendoChart").redraw();
+                    currChart.data("kendoChart").refresh();
+                }
+                clearTimeout(myVar);
+            }, 200);
+
+        }
+
+        function AutoRefresh(){
+            if ($("#autorefresh")) {
+                if ($("#autorefresh").is(':checked')) {
+                    myTimer = setInterval(AutorefreshCharts, 30000);
+                }else{
+                    clearInterval(myTimer);
+                }
+            }
+        }
+
+        function AutorefreshCharts()
+        {
+            $("#startPeriod").data("kendoDateTimePicker").value(new Date(new Date()-(1*1000*60*60)));//An hour before now
+            $("#endPeriod").data("kendoDateTimePicker").value(new Date());
+            RefreshCharts();
+        }
+
+        function dataBind(){
+            var charts = $(".charts");
+            for (var i = 0; i < charts.length; i++) {
+                var currChart = $(charts[i]);
+                kendo.ui.progress(currChart,false);
+            }
+        }
+    </script>
+}
