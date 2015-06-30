@@ -209,9 +209,9 @@ namespace WeightScale.Application.Services
                             this.SendCommand(command, 0, this.com);
                             this.loger.Info(string.Format("Command clear broken communication: {0}", this.ByteArrayToString(command)));
                             messageDto.ValidationMessages.AddError(ex.Message);
-                            messageDto.ValidationMessages.AddMany(validationMessages);
+                            messageDto.ValidationMessages.AddMany(validationMessages.Errors);
                             this.loger.Error(ex.Message);
-                            foreach (var err in validationMessages)
+                            foreach (var err in validationMessages.Errors)
                             {
                                 this.loger.Error(err.Text);
                             }
@@ -220,6 +220,16 @@ namespace WeightScale.Application.Services
                         {
                             messageDto.ValidationMessages.AddError(internalEx.Message);
                             this.loger.Error(internalEx.Message);
+                        }
+                    }
+                    finally
+                    {
+                        if ((validationMessages.Warnings != null) && (validationMessages.Warnings.Count() > 0))
+                        {
+                            foreach (var warning in validationMessages.Warnings)
+                            {
+                                loger.Debug(string.Format("{0}", warning.Text));
+                            }
                         }
                     }
                 }
@@ -271,14 +281,15 @@ namespace WeightScale.Application.Services
                 }
                 catch (InvalidOperationException ex)
                 {
-                    if (counter == this.iterations)
+                    validationMessages.AddWarning(string.Format("Iteration was finished unsuccessfully. Iteration number {0}.", counter + 1));
+                    if (counter + 1 >= this.iterations)
                     {
                         throw ex;
                     }
                 }
                 counter++;
             }
-            while (!(isOk(result) || (counter > this.iterations)));
+            while (!(isOk(result) || (counter >= this.iterations)));
 
             if (!isOk(result))
             {

@@ -13,6 +13,7 @@
     using WeightScale.Domain.Concrete;
     using WeigthScale.WebApiHost.Infrastructure;
     using log4net;
+    using Newtonsoft.Json;
 
     public class MeasurementsController : ApiController
     {
@@ -53,6 +54,8 @@
         [HttpPost]
         public HttpResponseMessage PostMeasurement([ModelBinder(typeof(CustomModelBinder))]IWeightScaleMessageDto value)
         {
+            var beginTime = DateTime.Now;
+            this.logger.Debug(string.Format("------------- Processing request Id: {0} -------------", value.Id));
             if (ModelState.IsValid && value != null)
             {
                 try
@@ -69,6 +72,9 @@
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentException("value", "Invalid input weigh scale message"));
             }
+
+            this.logger.Debug(string.Format("[Id: \t{0}\t] Sent response message: {1}", value.Id, JsonConvert.SerializeObject(value)));
+            this.logger.Debug(string.Format("[Id: \t{0}\t] Estimated time for transaction {1}", value.Id, DateTime.Now - beginTime));
             return Request.CreateResponse(HttpStatusCode.OK, value);
         }
 
