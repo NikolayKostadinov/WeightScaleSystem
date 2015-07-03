@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using WeightScale.WorkstationsChecker.Web.Infrastructure.IdentityInfrastructure;
 using WeightScale.WorkstationsChecker.Web.Models;
 
 namespace WeightScale.WorkstationsChecker.Web.Controllers
@@ -213,8 +214,9 @@ namespace WeightScale.WorkstationsChecker.Web.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
+        public ActionResult ChangePassword(string returnUrl)
         {
+            TempData["returnUrl"] = returnUrl??string.Empty;
             return View();
         }
 
@@ -236,7 +238,8 @@ namespace WeightScale.WorkstationsChecker.Web.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                string returnUrl = (TempData["returnUrl"]==null||((string)TempData["returnUrl"])==string.Empty)?Url.Action("Index"):(string)TempData["returnUrl"] + "?Message=" + ManageMessageId.ChangePasswordSuccess;
+                return Redirect(returnUrl);
             }
             AddErrors(result);
             return View(model);

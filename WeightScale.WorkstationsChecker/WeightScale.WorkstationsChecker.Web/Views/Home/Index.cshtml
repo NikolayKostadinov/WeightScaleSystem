@@ -5,97 +5,264 @@
     ViewBag.Title = "Ping statistics";
 }
 <script>
-    var additionalData=[];
+    var additionalData = [];
+
     kendo.culture("@System.Threading.Thread.CurrentThread.CurrentCulture.Name");
 </script>
 <style>
+    div#navcontainer {
+        margin-top: -15px;
+    }
+
+    div#navbar h3 {
+        margin-bottom: 5px;
+    }
+
     .chart-wrapper, .chart-wrapper .k-chart {
         height: 200px;
     }
 
     .chart-wrapper {
-        margin-top: 20px;
+        margin-top: 0px;
+    }
+
+    .panel-wrap {
+        display: table;
+        margin: 0 0 20px;
+        width: 900px;
+        background-color: #f5f5f5;
+        border: 1px solid #e5e5e5;
+    }
+
+    #sidebar {
+        display: table-cell;
+        margin: 0;
+        padding: 20px 0 20px 20px;
+        width: 220px;
+        vertical-align: top;
+    }
+
+    #main-content {
+        display: table-cell;
+        margin: 0;
+        padding: 20px;
+        width: 600px;
+        vertical-align: top;
+    }
+
+    .widget.placeholder {
+        opacity: 0.4;
+        border: 1px dashed #a6a6a6;
+    }
+
+    /* WIDGETS */
+    .widget {
+        margin: 0 0 20px;
+        padding: 0;
+        background-color: #ffffff;
+        border: 1px solid #e7e7e7;
+        border-radius: 3px;
+        cursor: move;
+    }
+
+        .widget:hover {
+            background-color: #fcfcfc;
+            border-color: #cccccc;
+        }
+
+        .widget div {
+            padding: 10px;
+            min-height: 50px;
+        }
+
+        .widget h3 {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 8px 10px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e7e7e7;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+            .widget h3 span {
+                float: right;
+            }
+
+                .widget h3 span.collapse, h3 span.collapse, #collapse-all {
+                    display: inline-block;
+                }
+
+        .widget .row, .widget .row .chart-wrapper {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .widget h3 span:hover, h3 span.collapse:hover {
+            cursor: pointer;
+            background-color: #e7e7e7;
+            border-radius: 20px;
+        }
+
+    .hint {
+        width: 250px;
+        height: 100px;
+        overflow: hidden;
+    }
+
+        .hint > h3 {
+            padding-left: 20px;
+        }
+
+    #body-content {
+        margin-top: 140px;
+    }
+
+    .navbar:after {
+        position: fixed;
+    }
+
+    div#collapse-all {
+        margin-right: 20px;
+    }
+
+    div#nav-wrapper {
+        z-index: 999;
+        position: fixed;
+        left: 250px;
+        right: 0;
+        top: 0;
+        margin: 0px 10px;
+        padding: 3px 20px;
     }
 </style>
 
 @{
-    var colors = new string[] { "lightblue", "lightgreen", "#fbec96", "lightpink" };
+    var colors = new string[]
+    {
+        "lightblue",
+        "lightgreen",
+        "#fbec96",
+        "lightpink"
+    };
     int i = 0;
 }
 
-@foreach (var scale in Model)
-{
-    <div class="row">
-        <div class="chart-wrapper">
-            @(Html.Kendo().Chart<PingStatisticsViewModel>()
-        .Name("Statistics" + scale.Id)
-        .Title("Statistics for ping " + scale.Address + " " + scale.Name)
-        //.Legend(legend => legend
-        //    .Position(ChartLegendPosition.Top)
-        //)
-        .Events(ev => ev.DataBound("dataBind"))
-        .HtmlAttributes(new { @class = "charts" })
-        .DataSource(ds => ds.Read(read => read.Action("GetStatistics", "Home").Data("additionalData[" + scale.Id + "]")))
-        .Series(series =>
-        {
-            series.Area(model => model.RoundtripTime).Name("RoundtripTime").Color(colors[(i++ % 4)]);
-        })
-        .CategoryAxis(axis => axis
-            .Categories(model => model.TimeStamp)
-            .Date()
-            .BaseUnit(ChartAxisBaseUnit.Minutes)
-            .Labels(labels => labels.Rotation(-90))
-            .Justify()
-            .Crosshair(c => c.Visible(true))
+<div id="nav-wrapper" class="well">
+    <div id="navcontainer">
+        <div id="navbar">
+            <h3>
+                Observed period <span id="collapse-navbar" class="collapse k-icon k-i-arrowhead-n pull-right"></span>
+            </h3>
+            <fieldset id="period">
+                <legend></legend>
+                <div class="col-lg-6">
+                    <div class="col-lg-4">
+                        <input type="checkbox" id="autorefresh" onchange="AutoRefresh()" />
+                        <label for="autorefresh">Enable autorefresh</label>
+                        <div id="colapse-all"><span id="collapse-all" class="collapse k-icon k-i-arrowhead-n"></span><label for="collapse-all">Collapse all</label></div>
+                    </div>
+                    <div class="pull-right">
+                        <label for="startPerion">Start time</label>
+                        @(Html.Kendo()
+                              .DateTimePicker()
+                              .Name("startPeriod")
+                              .Value(DateTime.Now.AddHours(-1))
+                              .Culture(System.Threading.Thread.CurrentThread.CurrentCulture.Name)
+                        )
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <label for="endPeriod">End time</label>
 
-        )
-        .ValueAxis(axis => axis.Numeric()
-            .Labels(labels => labels.Format("{0:N0}"))
-        //.MajorUnit(1000)
-        )
-        .Tooltip(tooltip => tooltip
-            .Visible(true)
-            .Shared(true)
-            .Template("#= category # \n #= value #")
-        )
-            )
+                    @(Html.Kendo()
+                          .DateTimePicker()
+                          .Name("endPeriod")
+                          .Value(DateTime.Now)
+                          .Culture(System.Threading.Thread.CurrentThread.CurrentCulture.Name)
+                    )
+                    <button class="btn btn-primary pull-right" onclick="RefreshCharts()">Apply Filter</button>
+                </div>
+            </fieldset>
         </div>
     </div>
+</div>
 
-    <script>
-        additionalData[@scale.Id] = function() {
-            return {
-                id:@scale.Id,
-                startPeriod: $("#startPeriod").data("kendoDateTimePicker").value(),
-                endPeriod: $("#endPeriod").data("kendoDateTimePicker").value()
-            };
-        }
+<div id="body-content" class="body-content">
 
-    </script>
+    @foreach (var scale in Model)
+    {
+        <div class="widget">
+            <h3>
+                @("Statistics for ping " + scale.Address + " " + scale.Name) <span class="collapse k-icon k-i-arrowhead-n"></span>
+            </h3>
+            @*<div class="row">*@
+                <div class="chart-wrapper">
+                    @(Html.Kendo()
+                              .Chart<PingStatisticsViewModel>()
+                              .Name("Statistics" + scale.Id)
+                              .Events(ev => ev.DataBound("dataBind"))
+                              .HtmlAttributes(new { @class = "charts" })
+                              .DataSource(ds => ds.Read(read => read.Action("GetStatistics", "Home").Data("additionalData[" + scale.Id + "]")))
+                              .Series(series =>
+                              {
+                                  series.Area(model => model.RoundtripTime).Name("RoundtripTime").Color(colors[(i++ % 4)]);
+                              })
+                              .CategoryAxis(axis => axis
+                                                        .Categories(model => model.TimeStamp)
+                                                        .Date()
+                                                        .BaseUnit(ChartAxisBaseUnit.Minutes)
+                                                        .Labels(labels => labels.Rotation(-90))
+                                                        .Justify()
+                                                        .Crosshair(c => c.Visible(true)))
+                              .ValueAxis(axis => axis.Numeric()
+                                                     .Labels(labels => labels.Format("{0:N0}")))
+                              .Tooltip(tooltip => tooltip
+                                                         .Visible(true)
+                                                         .Shared(true)
+                                                         .Template("#= category # \n #= value #"))
+                    )
 
-}
+                </div>
+            @*</div>*@
+        </div>
+
+        <script>
+            additionalData[@scale.Id] = function() {
+                return {
+                    id:@scale.Id,
+                    startPeriod: $("#startPeriod").data("kendoDateTimePicker").value(),
+                    endPeriod: $("#endPeriod").data("kendoDateTimePicker").value()
+                };
+            }
+
+        </script>
+
+    }
+
+</div>
 
 @section scripts{
     <script>
         var myTimer;
-        function RefreshCharts()
-        {
 
+        function RefreshCharts() {
             var charts = $(".charts");
             for (var i = 0; i < charts.length; i++) {
                 var currChart = $(charts[i]);
-                kendo.ui.progress(currChart,true);
+                kendo.ui.progress(currChart, true);
             }
-            var myVar = setTimeout(function(){
+            var myVar = setTimeout(function() {
                 var timeSpan = $("#endPeriod").data("kendoDateTimePicker").value() - $("#startPeriod").data("kendoDateTimePicker").value();
                 for (var i = 0; i < charts.length; i++) {
                     var currChart = $(charts[i]);
-                    if (timeSpan <= 10*60*1000) {
-                        currChart.data("kendoChart").options.categoryAxis.baseUnit= "seconds";
-                        currChart.data("kendoChart").options.categoryAxis.labels.step=10;
-                    }else{
-                        currChart.data("kendoChart").options.categoryAxis.baseUnit= "minutes";
-                        currChart.data("kendoChart").options.categoryAxis.labels.step=1;
+                    if (timeSpan <= 10 * 60 * 1000) {
+                        currChart.data("kendoChart").options.categoryAxis.baseUnit = "seconds";
+                        currChart.data("kendoChart").options.categoryAxis.labels.step = 10;
+                    }
+                    else {
+                        currChart.data("kendoChart").options.categoryAxis.baseUnit = "minutes";
+                        currChart.data("kendoChart").options.categoryAxis.labels.step = 1;
                     }
                     currChart.data("kendoChart").dataSource.read();
                     currChart.data("kendoChart").redraw();
@@ -103,32 +270,121 @@
                 }
                 clearTimeout(myVar);
             }, 200);
-
         }
 
-        function AutoRefresh(){
+        function AutoRefresh() {
             if ($("#autorefresh")) {
                 if ($("#autorefresh").is(':checked')) {
                     myTimer = setInterval(AutorefreshCharts, 30000);
-                }else{
+                }
+                else {
                     clearInterval(myTimer);
                 }
             }
         }
 
-        function AutorefreshCharts()
-        {
-            $("#startPeriod").data("kendoDateTimePicker").value(new Date(new Date()-(1*1000*60*60)));//An hour before now
+        function AutorefreshCharts() {
+            $("#startPeriod").data("kendoDateTimePicker").value(new Date(new Date() - (1 * 1000 * 60 * 60)));//An hour before now
             $("#endPeriod").data("kendoDateTimePicker").value(new Date());
             RefreshCharts();
         }
 
-        function dataBind(){
+        function dataBind() {
             var charts = $(".charts");
             for (var i = 0; i < charts.length; i++) {
                 var currChart = $(charts[i]);
-                kendo.ui.progress(currChart,false);
+                kendo.ui.progress(currChart, false);
             }
         }
+
+        $(document).ready(function() {
+            //exapand
+            $("div.body-content").on("click", "span.k-i-arrowhead-s", function(e) {
+                var contentElement = $(e.target).closest(".widget").find(">div");
+                $(e.target)
+                    .removeClass("k-i-arrowhead-s")
+                    .addClass("k-i-arrowhead-n");
+
+                kendo.fx(contentElement).expand("vertical").stop().play();
+            });
+
+            //collapse
+            $("div.body-content").on("click", "span.k-i-arrowhead-n", function(e) {
+                var contentElement = $(e.target).closest(".widget").find(">div");
+                $(e.target)
+                    .removeClass("k-i-arrowhead-n")
+                    .addClass("k-i-arrowhead-s");
+
+                kendo.fx(contentElement).expand("vertical").stop().reverse();
+            });
+
+            //exapand
+            $("div#navbar").on("click", "span.k-i-arrowhead-s", function(e) {
+                if ($(this).prop('id') === "collapse-navbar") {
+                    var contentElement = $("#period");
+                    $(e.target)
+                        .removeClass("k-i-arrowhead-s")
+                        .addClass("k-i-arrowhead-n");
+
+                    kendo.fx(contentElement).expand("vertical").stop().play();
+                    $("#body-content").css("margin-top", "140px");
+                }else if($(this).prop('id') === "collapse-all")
+                {
+                    $(this).next("Label").text("Collapse All");
+                    $(e.target)
+                        .removeClass("k-i-arrowhead-s")
+                        .addClass("k-i-arrowhead-n");
+                    $(".widget").find("span")
+                        .removeClass("k-i-arrowhead-s")
+                        .addClass("k-i-arrowhead-n");
+                    kendo.fx($(".widget").find(">div")).expand("vertical").stop().play();
+                }
+            });
+
+            //collapse
+            $("div#navbar").on("click", "span.k-i-arrowhead-n", function(e) {
+                if ($(this).prop('id') === "collapse-navbar") {
+                    var contentElement = $("#period");
+                    $(e.target)
+                        .removeClass("k-i-arrowhead-n")
+                        .addClass("k-i-arrowhead-s");
+                    kendo.fx(contentElement).expand("vertical").stop().reverse();
+                    $("#body-content").css("margin-top", "70px");
+                }else if($(this).prop('id') === "collapse-all")
+                {
+                    $(this).next("Label").text("Expand All");
+                    $(e.target)
+                        .removeClass("k-i-arrowhead-n")
+                        .addClass("k-i-arrowhead-s");
+                    $(".widget").find("span")
+                        .removeClass("k-i-arrowhead-n")
+                        .addClass("k-i-arrowhead-s");
+                    kendo.fx($(".widget").find(">div")).expand("vertical").stop().reverse();
+                }
+            });
+        });
+
+        function placeholder(element) {
+            return element.clone().addClass("placeholder");
+        }
+
+        function hint(element) {
+            return element.clone().addClass("hint")
+                .height(element.height())
+                .width(element.width());
+        }
+
+        $(document).ready(function() {
+            var charts = $("div.body-content");
+            $("#nav-wrapper").prev;
+            charts.kendoSortable({
+                filter: ">div.widget",
+                cursor: "move",
+                connectWith: "#navbar",
+                placeholder: placeholder,
+                hint: hint
+            });
+        })
     </script>
 }
+

@@ -14,21 +14,16 @@ namespace WeightScale.WorkstationsChecker.Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext context;
+        private readonly IUowData context;
 
-        public HomeController(ApplicationDbContext contextParam)
+        public HomeController(IUowData contextParam)
         {
             this.context = contextParam;
         }
 
-        public HomeController()
-        {
-            this.context = new ApplicationDbContext();
-        }
-
         public ActionResult Index()
         {
-            var scales = context.WeightScales.OrderBy(p=>p.ScreenPosition).ToList();
+            var scales = context.WeightScales.All().OrderBy(p=>p.ScreenPosition).Where(x=>x.IsStopped==false).ToList();
             var scalesView = Mapper.Map<IEnumerable<WeightScaleWorkStationViewModel>>(scales);
             return View((object)scalesView);
         }
@@ -52,7 +47,7 @@ namespace WeightScale.WorkstationsChecker.Web.Controllers
         {
             startPeriod = startPeriod ?? DateTime.Now.AddHours(-1);
             endPeriod = endPeriod ?? DateTime.Now;
-            var result = context.Pings.Where(p => p.WeightScaleWorkStationId == id && (p.TimeStamp > startPeriod && endPeriod > p.TimeStamp));
+            var result = context.Pings.All().Where(p => p.WeightScaleWorkStationId == id && (p.TimeStamp > startPeriod && endPeriod > p.TimeStamp));
             var model = Mapper.Map<IEnumerable<PingStatisticsViewModel>>(result.ToList());
             return Json(model);
         }

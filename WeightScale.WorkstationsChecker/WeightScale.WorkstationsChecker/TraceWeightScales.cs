@@ -42,7 +42,7 @@ namespace WeightScale.WorkstationsChecker
                     List<WeightScaleWorkStation> scales = new List<WeightScaleWorkStation>();
                     try
                     {
-                        scales = context.WeightScales.ToList();
+                        scales = context.WeightScales.Where(x=>x.IsStopped==false).ToList();
                     }
                     catch (Exception ex)
                     {

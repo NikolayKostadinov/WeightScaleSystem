@@ -5,6 +5,7 @@ namespace WeightScale.WorkstationsChecker.Model
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Text;
@@ -28,6 +29,9 @@ namespace WeightScale.WorkstationsChecker.Model
         public string Name { get; set; }
 
         public int ScreenPosition { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsStopped { get; set; }
 
 
         public virtual ICollection<PingPole> Pings

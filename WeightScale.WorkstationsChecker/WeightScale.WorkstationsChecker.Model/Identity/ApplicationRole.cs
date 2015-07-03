@@ -13,5 +13,13 @@ namespace WeightScale.WorkstationsChecker.Model.Identity
         {
             Name = name;
         }
+
+        public ApplicationRole(string name, bool isAvailableForAdministrators) 
+            :this(name)
+        {
+            this.IsAvailableForAdministrators = isAvailableForAdministrators;
+        }
+
+         public bool IsAvailableForAdministrators { get; set; }
     }
 }

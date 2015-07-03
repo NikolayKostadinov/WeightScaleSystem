@@ -12,8 +12,8 @@ namespace WeightScale.WorkstationsChecker.Web
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"//,
-                        //"~/Scripts/globalize.js",
-                        //"~/Scripts/globalize/*.js"
+                //"~/Scripts/globalize.js",
+                //"~/Scripts/globalize/*.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -30,17 +30,21 @@ namespace WeightScale.WorkstationsChecker.Web
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
             "~/Scripts/kendo/kendo.all.min.js",
-            // "~/Scripts/kendo/kendo.timezones.min.js", // uncomment if using the Scheduler
+                // "~/Scripts/kendo/kendo.timezones.min.js", // uncomment if using the Scheduler
             "~/Scripts/kendo/kendo.aspnetmvc.min.js",
-            "~/Scripts/kendo/cultures/kendo.culture." + System.Threading.Thread.CurrentThread.CurrentCulture.Name +".min.js"));
+            "~/Scripts/kendo/cultures/kendo.culture." + System.Threading.Thread.CurrentThread.CurrentCulture.Name + ".min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Custom").Include(
+            "~/Scripts/Custom/*.js"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
+                    "~/Content/kendo/kendo.common-bootstrap.min.css",
+                    "~/Content/kendo/kendo.bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/Site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
-            "~/Content/kendo/kendo.common-bootstrap.min.css",
-            "~/Content/kendo/kendo.bootstrap.min.css"));
+                      "~/Content/Site.css",
+                      "~/Content/sidebar.css"));
 
         }
     }

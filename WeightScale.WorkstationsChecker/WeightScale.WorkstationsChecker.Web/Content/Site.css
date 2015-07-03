@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    /*//padding-top: 50px;*/
     padding-bottom: 20px;
 }
 
@@ -24,8 +24,28 @@ textarea {
 }
 
 .navbar {
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
+
 .body-content {
-    margin-top:40px;
+    margin-top: 40px;
 }
+
+.k-edit-form-container, .k-edit-buttons {
+    max-width: 100%;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control .k-editor {
+    height: 25px;
+    padding: 2px 10px;
+}
+
+.control-label {
+    line-height: 25px;
+    padding-top:2px;
+    padding-bottom:2px;
+}
+

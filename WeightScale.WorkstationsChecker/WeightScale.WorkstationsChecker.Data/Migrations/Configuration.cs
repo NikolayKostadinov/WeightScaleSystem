@@ -31,11 +31,22 @@ namespace WeightScale.WorkstationsChecker.Data.Migrations
               new WeightScaleWorkStation { Address = "10.94.1.86", Name = "Cisco before LPG", ScreenPosition = 7, CreatedOn = DateTime.Now }
             );
 
-            if (context.Users.Where(x => x.UserName == "Administrator").FirstOrDefault() == null)
+            var role = context.Roles.FirstOrDefault(x => x.Name == "Administrator");
+
+            if (role == null)
             {
-                var user = new ApplicationUser() {Id=1, Email = "Administrator@bmsystems.local", UserName = "Administrator" };
+                role  = new ApplicationRole() {Id=1, Name="Administrator"};
+                var roleManager = new RoleManager<ApplicationRole, int>(new RoleStoreIntPk(ApplicationDbContext.Create()));
+                roleManager.Create(role);
+            }
+            
+
+            if (context.Users.Where(x=>x.UserName=="Administrator").FirstOrDefault() == null)
+            {
+                var user = new ApplicationUser() { Email = "Nikolay.Kostadinov@bmsys.eu", UserName = "Administrator" };
+                user.Roles.Add(new UserRoleIntPk() { UserId = 1, RoleId = 1 });
                 var manager = new UserManager<ApplicationUser, int>(new UserStoreIntPk(ApplicationDbContext.Create()));
-                manager.Create(user, "K@lvad0s");
+                manager.Create(user, "K@lvad0s");   
             }
 
         }

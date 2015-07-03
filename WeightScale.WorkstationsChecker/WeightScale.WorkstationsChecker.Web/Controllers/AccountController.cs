@@ -10,7 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WeightScale.WorkstationsChecker.Model;
 using WeightScale.WorkstationsChecker.Model.Identity;
+using WeightScale.WorkstationsChecker.Web.Infrastructure.IdentityInfrastructure;
 using WeightScale.WorkstationsChecker.Web.Models;
+using System.Collections.Generic;
 
 namespace WeightScale.WorkstationsChecker.Web.Controllers
 {
@@ -59,6 +61,14 @@ namespace WeightScale.WorkstationsChecker.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                var error = new Dictionary<string, string>();
+                error.Add("header", "Unaouthorized access");
+                error.Add("message line 1","You are not authorized for this action.");
+                error.Add("message line 2","Please try to connect to the Administrator and ask for appropriated privileges.");
+                return View("Unothorize", error);
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -250,7 +260,7 @@ namespace WeightScale.WorkstationsChecker.Web.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.UserName);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
