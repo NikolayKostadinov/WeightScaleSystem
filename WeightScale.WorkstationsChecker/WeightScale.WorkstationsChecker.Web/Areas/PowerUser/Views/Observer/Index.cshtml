@@ -1,0 +1,55 @@
+﻿@using WeightScale.WorkstationsChecker.Web.Models;
+
+@model IEnumerable<WorkstationViewModel>
+@{
+    ViewBag.Title = "Observed workstations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">@ViewBag.Title</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.LabelFor(m => m.First().Id)</th>
+                    <th>@Html.LabelFor(m => m.First().Address)</th>
+                    <th>@Html.LabelFor(m => m.First().Name)</th>
+                    <th>@Html.LabelFor(m => m.First().ScreenPosition)</th>
+                    <th>@Html.LabelFor(m => m.First().IsStopped)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+                {
+                    <tr><td colspan="4" class="text-center">There is no observed workstations</td></tr>
+                }
+                else
+                {
+                    foreach (var workstation in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => workstation.Id)</td>
+                            <td>@Html.DisplayFor(m => workstation.Address)</td>
+                            <td>@Html.DisplayFor(m => workstation.Name)</td>
+                            <td>@Html.DisplayFor(m => workstation.ScreenPosition)</td>
+                            <td>@Html.DisplayFor(m => workstation.IsStopped)</td>
+                            <td>
+                                @using (Html.BeginForm("Delete", "Observer", new { id = workstation.Id }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ActionLink("Edit", "Edit",
+                                        new { id = workstation.Id, area = "PowerUser" },
+                                        new { @class = "btn btn-primary btn-xs" })
+                                    <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+</div>

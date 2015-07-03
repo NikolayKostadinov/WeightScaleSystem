@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WeightScale.Application.AppStart.AutomapperConfig">
+    <Position X="3.25" Y="18.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\AutomapperConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeightScale.Application.AppStart.NinjectInjector">
+    <Position X="5.5" Y="20.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAEAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAIAAAI=</HashCode>
+      <FileName>App_Start\NinjectInjector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeightScale.Application.Helpers.LockExtensions">
+    <Position X="13.5" Y="18.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="WeightScale.Application.Helpers.LockExtensions.LockHelper" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helpers\LockExtensions.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\LockExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeightScale.Application.Services.MockedMeasurementService" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="20.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACAAAAACAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MockedServices\MockedMeasurementService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Application.Services.JsonDeserializeService" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAgAAAAAAAAEACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\JsonDeserializeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Application.Services.MappingService" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="18.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\MappingService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Application.Services.MeasurementService" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="18.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gEAAEAACICYIAQAAAgAAARMAADAIAAAACIAAAAACQAI=</HashCode>
+      <FileName>Services\MeasurementService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Application.Properties.Settings">
+    <Position X="8" Y="18.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gIAAAAAAAAAAQAAAAAAAIAAAAAARAAAAAAAEAAAUAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeightScale.LogFileService.LogFileService" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="18.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAIAAAAAAAACAAABAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Services\LogFileService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WeightScale.Application.WeightScaleMessageDto" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="20.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>WeightScaleMessageDto.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.Concrete.MeasurementRequestsRepository" BaseTypeListCollapsed="true">
+    <Position X="14" Y="7.25" Width="2.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.SoapMessage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.CWeigthScaleMessageBase" Collapsed="true">
+    <Position X="2" Y="7.25" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.CWeigthScaleMessageNew" Collapsed="true">
+    <Position X="0.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.CWeigthScaleMessageOld" Collapsed="true">
+    <Position X="3" Y="8.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.CValidationMessage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="8.25" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.GetAllHostAndPortRequest" Collapsed="true">
+    <Position X="10.25" Y="7.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.GetAllHostAndPortResponse" Collapsed="true">
+    <Position X="10.25" Y="8" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WeightScale.CacheApi.SoapProxy.WeightScaleServiceSoapClient" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="7.25" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.Utility.MessageBehavior" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="8.25" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.CacheApi.Utility.MessageInspector" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.ComunicationProtocol.ComManager" BaseTypeListCollapsed="true">
+    <Position X="6" Y="14" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.ComunicationProtocol.CommandFactory" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="14" Width="3" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.ComunicationProtocol.ComSettingsProvider" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="14" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.ComunicationProtocol.XorChecksumService" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="14" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Domain.Abstract.WeightScaleMessageBase" Collapsed="true">
+    <Position X="1.75" Y="1" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Domain.Common.ComNonSerializablePropertyAttribute" Collapsed="true">
+    <Position X="5.75" Y="0.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WeightScale.Domain.Common.ComSerializableClassAttribute" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WeightScale.Domain.Common.ComSerializablePropertyAttribute" Collapsed="true">
+    <Position X="5.75" Y="2.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WeightScale.Domain.Common.ComSerializer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Domain.Common.ValidationMessage" Collapsed="true">
+    <Position X="9" Y="0.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WeightScale.Domain.Common.ValidationMessageCollection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="0.75" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WeightScale.Domain.Concrete.WeightScaleMessageNew" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WeightScale.Domain.Concrete.WeightScaleMessageOld" Collapsed="true">
+    <Position X="3.25" Y="2.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="WeightScale.Application.Contracts.IFileService" Collapsed="true">
+    <Position X="0.5" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IFileService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WeightScale.Application.Contracts.IJsonDeserializeService" Collapsed="true">
+    <Position X="2.25" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IJsonDeserializeService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WeightScale.Application.Contracts.IMappingService" Collapsed="true">
+    <Position X="4" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IMappingService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WeightScale.Application.Contracts.IMeasurementService" Collapsed="true">
+    <Position X="5.75" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IMeasurementService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WeightScale.Application.Contracts.IWeightScaleMessageDto" Collapsed="true">
+    <Position X="0.5" Y="25.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Contracts\IWeightScaleMessageDto.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WeightScale.CacheApi.Contract.IRepository&lt;T, R&gt;" Collapsed="true">
+    <Position X="3.25" Y="10" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.CacheApi.SoapProxy.WeightScaleServiceSoap" Collapsed="true">
+    <Position X="0.5" Y="10" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.CacheApi.SoapProxy.WeightScaleServiceSoapChannel" Collapsed="true">
+    <Position X="0.5" Y="11.25" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.ComunicationProtocol.Contracts.IChecksumService" Collapsed="true">
+    <Position X="2.5" Y="17.5" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.ComunicationProtocol.Contracts.IComManager" Collapsed="true">
+    <Position X="4.5" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.ComunicationProtocol.Contracts.ICommandFactory" Collapsed="true">
+    <Position X="0.5" Y="17.5" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.ComunicationProtocol.Contracts.IComSettingsProvider" Collapsed="true">
+    <Position X="6.25" Y="17.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.Domain.Abstract.IBlock" Collapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.Domain.Abstract.IComSerializable" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.Domain.Abstract.IComSerializer" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.Domain.Abstract.IValidateable" Collapsed="true">
+    <Position X="2.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.Domain.Abstract.IValidationMessageCollection" Collapsed="true">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WeightScale.Domain.Abstract.IWeightScaleMessage" Collapsed="true">
+    <Position X="2.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="WeightScale.ComunicationProtocol.ComunicationConstants">
+    <Position X="10.5" Y="14" Width="2.25" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="WeightScale.Domain.Abstract.MeasurementStatus">
+    <Position X="16" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="WeightScale.Domain.Abstract.Direction">
+    <Position X="14.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="WeightScale.Domain.Common.BlockLen">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="WeightScale.Domain.Common.MessageType">
+    <Position X="14.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

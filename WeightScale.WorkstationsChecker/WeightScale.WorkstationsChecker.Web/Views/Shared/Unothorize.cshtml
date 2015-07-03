@@ -1,0 +1,22 @@
+﻿@model Dictionary<string,string>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container body-content">
+    @if (Model.ContainsKey("header"))
+    {
+        <h1 class="text-danger">@Model["header"]</h1>
+        <hr />
+    }
+
+    @{ var keys = Model.Keys.Where(x => x != "header");
+
+     foreach (var key in keys)
+     {
+        <h3 class="text-danger">@Model[key]</h3>
+     }
+
+    }
+</div>
+
+

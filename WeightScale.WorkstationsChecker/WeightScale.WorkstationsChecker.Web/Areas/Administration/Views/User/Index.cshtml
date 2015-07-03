@@ -1,0 +1,81 @@
+﻿@using WeightScale.WorkstationsChecker.Web.Models.Identity;
+
+@model IEnumerable<EditUserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        User Accounts
+    </div>
+    @Html.AntiForgeryToken()
+    @(Html.Kendo()
+          .Grid(Model)
+          .Name("users")
+          .Columns(
+               columns =>
+               {
+                   columns.Bound(c => c.Id);
+                   columns.Bound(c => c.UserName);
+                   columns.Bound(c => c.Email);
+                   columns.Command(c => { c.Edit(); c.Destroy(); });
+               })
+          .Editable(editable => editable.Mode(GridEditMode.PopUp).TemplateName("_EditAccount").Window(window => window.Width(650).Scrollable(false)))
+          .Pageable()
+          .Sortable()
+          .Scrollable(scr => scr.Height(430))
+          .Filterable()
+          .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(20)
+                .ServerOperation(false)
+                .Events(events => events.Error("error_handler"))
+                        .Model(model =>
+                        {
+                            model.Id(p => p.Id);
+                            model.Field(p => p.Id).Editable(false);
+                            model.Field(p => p.UserName);
+                            model.Field(p => p.Email);
+                        })
+                        .Update(update => update.Action("Edit", "User", new { area = "Administration" }).Data("sendAntiForgery"))
+                        .Destroy(update => update.Action("Delete", "User", new { area = "Administration" }).Data("sendAntiForgery")) 
+            )
+    )
+</div>
+@Html.ActionLink("Create", "Create", null, new { @class = "btn btn-primary" })
+
+@if (TempData["success"] != null)
+{
+    <div id="success-message" class="validation-summary-success">
+        <label>@TempData["success"]</label>
+    </div>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var successMessage = $('#success-message');
+            if (successMessage != null) {
+                successMessage.fadeOut(2000);
+            }
+        });
+
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+
+    </script>
+}
+
