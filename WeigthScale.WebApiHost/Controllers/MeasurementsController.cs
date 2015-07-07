@@ -36,6 +36,7 @@
             this.logger = logerParam;
         }
 
+        [Route("api/Measurements/GetTest")]
         public IWeightScaleMessageDto GetTest()
         {
             IWeightScaleMessage message = GenerateWeightBlock();

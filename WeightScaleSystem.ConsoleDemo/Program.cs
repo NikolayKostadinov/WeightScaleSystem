@@ -6,6 +6,9 @@
     using System.IO;
     using System.IO.Ports;
     using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -27,6 +30,7 @@
         static int errors = 0;
         static volatile bool stop = false;
         static int iterations = 0;
+        private const string ClearLogsWebApiController = @"api/Logs/PostClearLogs";
 
         static void Main(string[] args)
         {
@@ -37,6 +41,9 @@
             // end of configuration
 
             IKernel injector = NinjectInjector.GetInjector;
+
+            ClearLogs();
+
             //IWeightScaleMessage message = GenerateWeightBlock();
 
             //IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
@@ -46,78 +53,105 @@
             //stoper1.Start();
             //logger.Debug("Application begin at " + DateTime.Now + ".");
 
+            //try
+            //{
+            //    using (var mService = injector.Get<IMeasurementService>())
+            //    {
+            //        //var mt = new MutexTest(mService, new WeightScaleMessageDto() { Message = GenerateWeightBlock(), ValidationMessages = new ValidationMessageCollection() });
+
+            //        //Thread statusCheckerThread = new Thread(new ThreadStart(mt.CheckStatus));
+            //        //statusCheckerThread.Start();
+
+            //        while (!stop)
+            //        {
+            //            IWeightScaleMessage message = GenerateWeightBlock();
+            //            IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
+            //            try
+            //            {
+            //                Task t1 = Task.Run(() => mService.IsWeightScaleOk(messageDto));
+            //                Task t2 = Task.Run(() => mService.IsWeightScaleOk(messageDto));
+            //                Task.WaitAll(new Task[] { t1, t2 });
+            //            }
+            //            catch (AggregateException ex) 
+            //            {
+            //                foreach (var exc in ex.Flatten().InnerExceptions)
+            //                {
+            //                    Console.WriteLine(exc.Message);
+            //                }
+            //            }
+            //            catch (InvalidOperationException ex)
+            //            {
+            //                Console.WriteLine(ex.Message + ex.StackTrace);
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                Console.WriteLine(ex.Message);
+            //            }
+            //            //iterations++;
+
+            //            //var begin = DateTime.Now;
+            //            //mService.Measure(messageDto);
+            //            //var estimatedTime = DateTime.Now - begin;
+
+            //            //if (((WeightScaleMessageNew)messageDto.Message).MeasurementStatus == MeasurementStatus.OK)
+            //            //{
+            //            //    if (messageDto.ValidationMessages.Count() == 0)
+            //            //    {
+            //            //        measures++; 
+            //            //    }
+            //            //    else
+            //            //    {
+            //            //        errors++; 
+            //            //    }
+            //            //}
+            //            //else
+            //            //{
+            //            //    errors++;
+            //            //}
+
+            //            //logger.Debug(string.Format("Number of iteration: {0} Successful measurements: {1} Errors: {2}", iterations, measures, errors));
+            //            //logger.Debug(string.Format("Estimated time: {0}", estimatedTime));
+            //            //Console.CursorLeft = 0;
+            //            //Console.CursorTop = 0;
+            //            //Console.WriteLine(iterations);
+            //            //Thread.Sleep(5000);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.GetType().ToString());
+            //    Console.WriteLine(ex.Message);
+            //}
+            //logger.Debug("Application end at " + DateTime.Now + ".");
+            return;
+        }
+
+        /// <summary>
+        /// Clears the logs.
+        /// </summary>
+        private static void ClearLogs()
+        {
+            string url = @"http://10.94.23.142:8111";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = null;
             try
             {
-                using (var mService = injector.Get<IMeasurementService>())
-                {
-                    //var mt = new MutexTest(mService, new WeightScaleMessageDto() { Message = GenerateWeightBlock(), ValidationMessages = new ValidationMessageCollection() });
-
-                    //Thread statusCheckerThread = new Thread(new ThreadStart(mt.CheckStatus));
-                    //statusCheckerThread.Start();
-
-                    while (!stop)
-                    {
-                        IWeightScaleMessage message = GenerateWeightBlock();
-                        IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
-                        try
-                        {
-                            Task t1 = Task.Run(() => mService.IsWeightScaleOk(messageDto));
-                            Task t2 = Task.Run(() => mService.IsWeightScaleOk(messageDto));
-                            Task.WaitAll(new Task[] { t1, t2 });
-                        }
-                        catch (AggregateException ex) 
-                        {
-                            foreach (var exc in ex.Flatten().InnerExceptions)
-                            {
-                                Console.WriteLine(exc.Message);
-                            }
-                        }
-                        catch (InvalidOperationException ex)
-                        {
-                            Console.WriteLine(ex.Message + ex.StackTrace);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                        //iterations++;
-
-                        //var begin = DateTime.Now;
-                        //mService.Measure(messageDto);
-                        //var estimatedTime = DateTime.Now - begin;
-
-                        //if (((WeightScaleMessageNew)messageDto.Message).MeasurementStatus == MeasurementStatus.OK)
-                        //{
-                        //    if (messageDto.ValidationMessages.Count() == 0)
-                        //    {
-                        //        measures++; 
-                        //    }
-                        //    else
-                        //    {
-                        //        errors++; 
-                        //    }
-                        //}
-                        //else
-                        //{
-                        //    errors++;
-                        //}
-
-                        //logger.Debug(string.Format("Number of iteration: {0} Successful measurements: {1} Errors: {2}", iterations, measures, errors));
-                        //logger.Debug(string.Format("Estimated time: {0}", estimatedTime));
-                        //Console.CursorLeft = 0;
-                        //Console.CursorTop = 0;
-                        //Console.WriteLine(iterations);
-                        //Thread.Sleep(5000);
-                    }
-                }
+                var removingFileList = new List<string>() { "test.log", "test1.log" };
+                string wsDelete = string.Format(@"{0}/{1}", url, ClearLogsWebApiController);
+                //logger.Info(wsDelete);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                response = client.PostAsJsonAsync(wsDelete, removingFileList).Result;
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex)
             {
-                Console.WriteLine(ex.GetType().ToString());
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message, ex);
             }
-            logger.Debug("Application end at " + DateTime.Now + ".");
-            return;
+
+            if (response != null && response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(string.Format("Removed logs files: {0} - {1}", url, string.Empty));
+            }
         }
 
         /// <summary>

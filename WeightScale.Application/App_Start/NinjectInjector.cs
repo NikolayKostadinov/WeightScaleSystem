@@ -8,6 +8,8 @@ namespace WeightScale.Application.AppStart
 {
     using System;
     using System.Linq;
+    using System.Web.Http.Dispatcher;
+    using System.Web.Http.Tracing;
     using Ninject.Web.Common;
     using WeightScale.LogFileService;
     using WeightScale.CacheApi.Concrete;
@@ -71,13 +73,15 @@ namespace WeightScale.Application.AppStart
             kernel.Bind<IComManager>().To<ComManager>().InSingletonScope();
             kernel.Bind<IValidationMessageCollection>().To<ValidationMessageCollection>().InRequestScope();
             kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger(context.Request.Target.Member.ReflectedType)).InRequestScope();
-            // Todo: return to MeasurementService
-            kernel.Bind<IMeasurementService>().To<MeasurementService>().InRequestScope();
+            kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger("WebApiTrace")).WhenInjectedExactlyInto(typeof(CustomTraceWriter)).InRequestScope();
+            kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger("WebApiTrace")).WhenInjectedExactlyInto(typeof(LogRequestAndResponseHandler)).InRequestScope();
+            kernel.Bind<IMeasurementService>().To<MockedMeasurementService>().InRequestScope();
             kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>().InRequestScope();
             kernel.Bind<IRepository<SoapMessage, CValidationMessage>>().To<MeasurementRequestsRepository>();
             kernel.Bind<IJsonDeserializeService>().To<JsonDeserializeService>();
             kernel.Bind<IMappingService>().To<MappingService>();
             kernel.Bind<IFileService>().To<LogFileService>();
+            kernel.Bind<ITraceWriter>().To<CustomTraceWriter>();
         }
     }
 }

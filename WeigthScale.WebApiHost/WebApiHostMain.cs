@@ -5,9 +5,13 @@ namespace WeigthScale.WebApiHost
     using System;
     using System.ServiceProcess;
     using System.Web.Http;
+    using System.Web.Http.Dispatcher;
     using System.Web.Http.SelfHost;
+    using System.Web.Http.Tracing;
+    using Newtonsoft.Json.Serialization;
     using Ninject;
     using WeightScale.Application.AppStart;
+    using WeightScale.Application.Services;
     using WeigthScale.WebApiHost.Infrastructure;
     using log4net;
     using Ninject.Web.Common.SelfHost;
@@ -67,7 +71,9 @@ namespace WeigthScale.WebApiHost
                     defaults: new { id = RouteParameter.Optional }
                 );
                 config.Filters.Add(new HandleErrorAttribute(logger));
-                
+
+                config.MessageHandlers.Add(new LogRequestAndResponseHandler(LogManager.GetLogger("WebApiTrace")));
+
                 using (var selfHost = new NinjectSelfHostBootstrapper(CreateKernel, config))
                 {
                     selfHost.Start();

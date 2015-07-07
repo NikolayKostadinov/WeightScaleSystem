@@ -1,4 +1,4 @@
-﻿namespace WeigthScale.WebApiHost.Infrastructure
+﻿namespace WeightScale.Application.Infrastructure
 {
     using System.Collections.Generic;
     using System.Reflection;
