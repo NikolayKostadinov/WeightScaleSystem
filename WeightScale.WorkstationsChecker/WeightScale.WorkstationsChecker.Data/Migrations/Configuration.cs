@@ -49,6 +49,7 @@ namespace WeightScale.WorkstationsChecker.Data.Migrations
                 manager.Create(user, "K@lvad0s");   
             }
 
+            context.SaveChanges();
         }
     }
 }

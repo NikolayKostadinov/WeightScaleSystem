@@ -1,4 +1,6 @@
-﻿namespace WeightScale.WorkstationsChecker.Contracts
+﻿using System.Threading.Tasks;
+
+namespace WeightScale.WorkstationsChecker.Contracts
 {
     using System;
     using System.Linq;

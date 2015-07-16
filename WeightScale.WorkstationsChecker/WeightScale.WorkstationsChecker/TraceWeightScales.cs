@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using WeightScale.WorkstationsChecker.Data;
 using WeightScale.WorkstationsChecker.Model;
+using WeightScale.WorkstationsChecker.Contracts;
 using log4net;
 using log4net.Config;
 
@@ -35,14 +36,14 @@ namespace WeightScale.WorkstationsChecker
                .ForMember(p => p.Ttl, opt => opt.MapFrom(p => p.Options.Ttl))
                .ForMember(p => p.DontFragment, opt => opt.MapFrom(p => p.Options.DontFragment));
 
-            using (var context = new ApplicationDbContext())
+            using (var context =new UowData(new ApplicationDbContext()))
             {
                 while (Started)
                 {
                     List<WeightScaleWorkStation> scales = new List<WeightScaleWorkStation>();
                     try
                     {
-                        scales = context.WeightScales.Where(x=>x.IsStopped==false).ToList();
+                        scales = context.WeightScales.All().Where(x=>x.IsStopped==false).ToList();
                     }
                     catch (Exception ex)
                     {
