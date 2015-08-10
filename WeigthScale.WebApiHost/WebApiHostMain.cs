@@ -3,6 +3,8 @@
 namespace WeigthScale.WebApiHost
 {
     using System;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.ServiceProcess;
     using System.Web.Http;
     using System.Web.Http.Dispatcher;
@@ -77,6 +79,7 @@ namespace WeigthScale.WebApiHost
                 using (var selfHost = new NinjectSelfHostBootstrapper(CreateKernel, config))
                 {
                     selfHost.Start();
+                    StartRequest();
                     logger.Info("WebApi SelfHosted thread is started!");
                     while (!StopWebApiServer) { }
                     logger.Info("SelfHosted WebApi service is stopped!");
@@ -85,6 +88,35 @@ namespace WeigthScale.WebApiHost
             catch (Exception ex)
             {
                 logger.Error(ex.Message, ex);
+            }
+        }
+ 
+        /// <summary>
+        /// Starts the request.
+        /// </summary>
+        private static void StartRequest()
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            string url = string.Format("{0}:{1}/{2}",
+                    Properties.Settings.Default.SelfHostedWebApiHost,
+                    Properties.Settings.Default.SelfHostedWebApiPort,
+                    "api/Measurements/GetTest");
+            
+
+
+            HttpResponseMessage response = null;
+            try
+            {
+                response = client.GetAsync(url).Result;
+                if (response!=null && response.Content!=null)
+                {
+                    logger.Info("MeasurementsController was initialized successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(string.Format("{0}\n{1}", ex.Message, ex.StackTrace));
             }
         }
 
