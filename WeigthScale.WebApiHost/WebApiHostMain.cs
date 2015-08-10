@@ -4,7 +4,6 @@ namespace WeigthScale.WebApiHost
 {
     using System;
     using System.Net.Http;
-    using System.Net.Http.Headers;
     using System.ServiceProcess;
     using System.Web.Http;
     using System.Web.Http.Dispatcher;
@@ -17,6 +16,7 @@ namespace WeigthScale.WebApiHost
     using WeigthScale.WebApiHost.Infrastructure;
     using log4net;
     using Ninject.Web.Common.SelfHost;
+    using System.Net.Http.Headers;
 
     class WebApiHostMain
     {
@@ -90,10 +90,17 @@ namespace WeigthScale.WebApiHost
                 logger.Error(ex.Message, ex);
             }
         }
- 
+
         /// <summary>
-        /// Starts the request.
+        /// Creates the kernel.
         /// </summary>
+        /// <returns>the newly created kernel.</returns>
+        private static IKernel CreateKernel()
+        {
+            var kernel = NinjectInjector.GetInjector;
+            return kernel;
+        }
+
         private static void StartRequest()
         {
             HttpClient client = new HttpClient();
@@ -102,8 +109,6 @@ namespace WeigthScale.WebApiHost
                     Properties.Settings.Default.SelfHostedWebApiHost,
                     Properties.Settings.Default.SelfHostedWebApiPort,
                     "api/Measurements/GetTest");
-            
-
 
             HttpResponseMessage response = null;
             try
@@ -118,16 +123,6 @@ namespace WeigthScale.WebApiHost
             {
                 logger.Error(string.Format("{0}\n{1}", ex.Message, ex.StackTrace));
             }
-        }
-
-        /// <summary>
-        /// Creates the kernel.
-        /// </summary>
-        /// <returns>the newly created kernel.</returns>
-        private static IKernel CreateKernel()
-        {
-            var kernel = NinjectInjector.GetInjector;
-            return kernel;
         }
     }
 }
