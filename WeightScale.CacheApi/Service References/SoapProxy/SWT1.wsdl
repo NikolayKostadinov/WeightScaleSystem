@@ -74,6 +74,31 @@
           <s:element minOccurs="0" name="Status" type="s:long" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="CWeigthScaleMessageNewOverFlow">
+        <s:sequence>
+          <s:element minOccurs="0" name="Number" type="s:long" />
+          <s:element minOccurs="0" name="Direction" type="s:long" />
+          <s:element minOccurs="0" name="TimeOfFirstMeasure" type="s:dateTime" />
+          <s:element minOccurs="0" name="TimeOfSecondMeasure" type="s:dateTime" />
+          <s:element minOccurs="0" name="MeasurementStatus" type="s:long" />
+          <s:element minOccurs="0" name="SerialNumber" type="s:long" />
+          <s:element minOccurs="0" name="TransactionNumber" type="s:long" />
+          <s:element minOccurs="0" name="MeasurementNumber" type="s:long" />
+          <s:element minOccurs="0" name="ProductCode" type="s:long" />
+          <s:element minOccurs="0" name="ExciseDocumentNumber" type="s:string" />
+          <s:element minOccurs="0" name="TareWeight" type="s:long" />
+          <s:element minOccurs="0" name="GrossWeight" type="s:long" />
+          <s:element minOccurs="0" name="NetWeight" type="s:long" />
+          <s:element minOccurs="0" name="TotalNetOfInput" type="s:long" />
+          <s:element minOccurs="0" name="TotalNetOfOutput" type="s:long" />
+          <s:element minOccurs="0" name="Vehicle" type="s:string" />
+          <s:element minOccurs="0" name="DocumentNumber" type="s:long" />
+          <s:element minOccurs="0" name="TotalNetByProductInput" type="s:long" />
+          <s:element minOccurs="0" name="TotalNetByProductOutput" type="s:long" />
+          <s:element minOccurs="0" name="LoadCapacity" type="s:long" />
+          <s:element minOccurs="0" name="Status" type="s:long" />
+        </s:sequence>
+      </s:complexType>
       <s:complexType name="CWeigthScaleMessageOld">
         <s:sequence>
           <s:element minOccurs="0" name="Number" type="s:long" />
@@ -165,6 +190,18 @@
           <s:sequence />
         </s:complexType>
       </s:element>
+      <s:element name="Transport3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="input" type="s0:CWeigthScaleMessageNewOverFlow" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Transport3Response">
+        <s:complexType>
+          <s:sequence />
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAllHostAndPortSoapIn">
@@ -203,6 +240,12 @@
   <wsdl:message name="Transport2SoapOut">
     <wsdl:part name="parameters" element="s0:Transport2Response" />
   </wsdl:message>
+  <wsdl:message name="Transport3SoapIn">
+    <wsdl:part name="parameters" element="s0:Transport3" />
+  </wsdl:message>
+  <wsdl:message name="Transport3SoapOut">
+    <wsdl:part name="parameters" element="s0:Transport3Response" />
+  </wsdl:message>
   <wsdl:portType name="WeightScaleServiceSoap">
     <wsdl:operation name="GetAllHostAndPort">
       <wsdl:input message="s0:GetAllHostAndPortSoapIn" />
@@ -227,6 +270,10 @@
     <wsdl:operation name="Transport2">
       <wsdl:input message="s0:Transport2SoapIn" />
       <wsdl:output message="s0:Transport2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Transport3">
+      <wsdl:input message="s0:Transport3SoapIn" />
+      <wsdl:output message="s0:Transport3SoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WeightScaleServiceSoap" type="s0:WeightScaleServiceSoap">
@@ -278,6 +325,15 @@
     </wsdl:operation>
     <wsdl:operation name="Transport2">
       <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.Transport2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Transport3">
+      <soap:operation soapAction="http://tempuri.org/SWT.WeightScaleService.Transport3" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

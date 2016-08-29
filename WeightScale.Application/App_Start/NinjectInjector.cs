@@ -76,6 +76,7 @@ namespace WeightScale.Application.AppStart
             kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger("WebApiTrace")).WhenInjectedExactlyInto(typeof(CustomTraceWriter)).InRequestScope();
             kernel.Bind<ILog>().ToMethod(context => LogManager.GetLogger("WebApiTrace")).WhenInjectedExactlyInto(typeof(LogRequestAndResponseHandler)).InRequestScope();
             kernel.Bind<IMeasurementService>().To<MeasurementService>().InRequestScope();
+            // service for test kernel.Bind<IMeasurementService>().To<MockedMeasurementService>().InRequestScope();
             kernel.Bind<IWeightScaleMessageDto>().To<WeightScaleMessageDto>().InRequestScope();
             kernel.Bind<IRepository<SoapMessage, CValidationMessage>>().To<MeasurementRequestsRepository>();
             kernel.Bind<IJsonDeserializeService>().To<JsonDeserializeService>();

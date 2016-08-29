@@ -73,9 +73,9 @@
             if (runAsWindowsService)
             {
                 ServiceBase[] servicesToRun;
-                servicesToRun = new ServiceBase[] 
-                { 
-                    new MeasurementsWindowsService(logger) 
+                servicesToRun = new ServiceBase[]
+                {
+                    new MeasurementsWindowsService(logger)
                 };
                 ServiceBase.Run(servicesToRun);
             }

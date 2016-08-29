@@ -82,6 +82,7 @@
     <Compile Include="Abstract\WeightScaleMessageBase.cs" />
     <Compile Include="Abstract\IComSerializable.cs" />
     <Compile Include="Concrete\WeightScaleMessageNew.cs" />
+    <Compile Include="Concrete\WeightScaleMessageNewOverFlow.cs" />
     <Compile Include="Concrete\WeightScaleMessageOld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

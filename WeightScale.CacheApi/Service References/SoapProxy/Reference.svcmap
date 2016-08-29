@@ -22,7 +22,7 @@
     <MetadataSource Address="http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls?wsdl=1&amp;CacheUserName=_system&amp;CachePassword=SYS" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SWT.wsdl" MetadataType="Wsdl" ID="47b66781-e1f3-45b6-9f06-405e90883bc3" SourceId="1" SourceUrl="http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls?wsdl=1&amp;CSPCHD=0010000100004117tgVk000000RbcQ07VD0b8GI5ARU7sCOQ--" />
+    <MetadataFile FileName="SWT1.wsdl" MetadataType="Wsdl" ID="9f3a15af-59fd-4970-ac5b-ab82ad3b2d40" SourceId="1" SourceUrl="http://10.94.23.31:57772/csp/webservices/SWT.WeightScaleService.cls?wsdl=1&amp;CSPCHD=00100001000041qj6kjy000000lugaM2bTjGASkR4Kojma4g--" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -107,6 +107,10 @@
       <Project>{F2DCFBD3-3CA1-4B73-97D0-859FF3AC2148}</Project>
       <Name>WeightScale.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WeightScale.CacheApi\WeightScale.CacheApi.csproj">
+      <Project>{1d7b7d4d-4e2b-4ef8-aeaa-f19b7fdcc0a9}</Project>
+      <Name>WeightScale.CacheApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WeightScale.ComunicationProtocol\WeightScale.ComunicationProtocol.csproj">
       <Project>{3924DB7D-CCDD-42DB-92D7-712402696BD0}</Project>
       <Name>WeightScale.ComunicationProtocol</Name>

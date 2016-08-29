@@ -9,10 +9,10 @@
     using WeightScale.CacheApi.SoapProxy;
     using WeightScale.CacheApi.Utility;
 
-    public class MeasurementRequestsRepository:IRepository<SoapMessage,CValidationMessage>
+    public class MeasurementRequestsRepository : IRepository<SoapMessage, CValidationMessage>
     {
         private readonly WeightScaleServiceSoapClient client;
-        public MeasurementRequestsRepository() 
+        public MeasurementRequestsRepository()
         {
             this.client = new WeightScaleServiceSoapClient();
             this.client.Endpoint.EndpointBehaviors.Add(new MessageBehavior("_system", "ADMCACHE"));
@@ -42,7 +42,7 @@
         /// <returns></returns>
         public async Task<IEnumerable<string>> GetTargetUrlsAsync()
         {
-            return await Task.Factory.StartNew(() => GetTargetUrls()); 
+            return await Task.Factory.StartNew(() => GetTargetUrls());
         }
 
         /// <summary>
