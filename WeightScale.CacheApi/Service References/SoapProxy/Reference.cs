@@ -198,9 +198,9 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private int directionField;
         
-        private System.DateTime timeOfFirstMeasureField;
+        private System.DateTime? timeOfFirstMeasureField;
         
-        private System.DateTime timeOfSecondMeasureField;
+        private System.DateTime? timeOfSecondMeasureField;
         
         private int measurementStatusField;
         
@@ -226,7 +226,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private string vehicleField;
         
-        private long documentNumberField;
+        private long? documentNumberField;
         
         private long totalNetByProductInputField;
         
@@ -265,7 +265,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public System.DateTime TimeOfFirstMeasure {
+        public System.DateTime? TimeOfFirstMeasure {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -278,7 +278,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public System.DateTime TimeOfSecondMeasure {
+        public System.DateTime? TimeOfSecondMeasure {
             get {
                 return this.timeOfSecondMeasureField;
             }
@@ -444,7 +444,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=16)]
-        public long DocumentNumber {
+        public long? DocumentNumber {
             get {
                 return this.documentNumberField;
             }
@@ -527,9 +527,9 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private int directionField;
         
-        private System.DateTime timeOfFirstMeasureField;
+        private System.DateTime? timeOfFirstMeasureField;
         
-        private System.DateTime timeOfSecondMeasureField;
+        private System.DateTime? timeOfSecondMeasureField;
         
         private int measurementStatusField;
         
@@ -555,7 +555,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private string vehicleField;
         
-        private long documentNumberField;
+        private long? documentNumberField;
         
         private long statusField;
         
@@ -587,7 +587,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public System.DateTime TimeOfFirstMeasure {
+        public System.DateTime? TimeOfFirstMeasure {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -599,7 +599,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public System.DateTime TimeOfSecondMeasure {
+        public System.DateTime? TimeOfSecondMeasure {
             get {
                 return this.timeOfSecondMeasureField;
             }
@@ -755,7 +755,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=16)]
-        public long DocumentNumber {
+        public long? DocumentNumber {
             get {
                 return this.documentNumberField;
             }
@@ -799,9 +799,9 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private int directionField;
         
-        private System.DateTime timeOfFirstMeasureField;
+        private System.DateTime? timeOfFirstMeasureField;
         
-        private System.DateTime timeOfSecondMeasureField;
+        private System.DateTime? timeOfSecondMeasureField;
         
         private int measurementStatusField;
         
@@ -827,7 +827,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         private string vehicleField;
         
-        private long documentNumberField;
+        private long? documentNumberField;
         
         private long totalNetByProductInputField;
         
@@ -861,7 +861,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public System.DateTime TimeOfFirstMeasure {
+        public System.DateTime? TimeOfFirstMeasure {
             get {
                 return this.timeOfFirstMeasureField;
             }
@@ -873,7 +873,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public System.DateTime TimeOfSecondMeasure {
+        public System.DateTime? TimeOfSecondMeasure {
             get {
                 return this.timeOfSecondMeasureField;
             }
@@ -1029,7 +1029,7 @@ namespace WeightScale.CacheApi.SoapProxy {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=16)]
-        public long DocumentNumber {
+        public long? DocumentNumber {
             get {
                 return this.documentNumberField;
             }
