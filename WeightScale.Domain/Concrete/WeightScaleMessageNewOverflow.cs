@@ -15,7 +15,7 @@ namespace WeightScale.Domain.Concrete
     /// <summary>
     /// Class for transportation of messages from and to Weight Scales communicating over new protocol with overflow controll
     /// </summary>
-    [ComSerializableClass(BlockLen.NewProtocol)]
+    [ComSerializableClass(BlockLen.NewOverflowProtocol)]
     public class WeightScaleMessageNewOverFlow : WeightScaleMessageBase
     {
         private const int EXCISE_DOC_NUM_LENGTH = 10;
