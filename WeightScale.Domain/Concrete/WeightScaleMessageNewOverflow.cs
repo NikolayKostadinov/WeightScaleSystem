@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------
 // <copyright file="WeightScaleMessageNewOverflow.cs" company="Business Management Systems">
-//     Copyright (c) Business Management Systems. All rights reserved.
+//     Copyright 2017(c) Business Management Systems. All rights reserved.
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
