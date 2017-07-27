@@ -69,7 +69,7 @@ namespace WeightScale.Domain.Concrete
         }
 
         /// <summary>
-        /// Gets or sets the total net by product input.
+        /// Gets or sets the total net by product input. 
         /// </summary>
         /// <value>The total net by product input.</value>
         [ComSerializableProperty(length: 9, offset: 126, originalType: typeof(int), serializeFormat: "")]
