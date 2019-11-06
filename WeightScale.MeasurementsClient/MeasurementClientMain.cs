@@ -335,7 +335,6 @@
                 {
                     logger.Error(innerEx.ToMessageAndCompleteStacktrace());
                 }
-
             }
 
             return response;
@@ -344,7 +343,8 @@
         private async static Task<HttpResponseMessage> SendMeasurementRequestAsync(string messageType, IWeightScaleMessageDto message, SoapMessage item)
         {
             var vms = injector.Get<IValidationMessageCollection>();
-            var ctSource = new CancellationTokenSource(TimeSpan.FromSeconds(8));
+            var timeout = Properties.Settings.Default.Timeout;
+            var ctSource = new CancellationTokenSource(TimeSpan.FromSeconds(timeout));
             var cancelationToken = ctSource.Token;
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
