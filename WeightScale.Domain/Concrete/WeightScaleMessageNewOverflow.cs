@@ -1,6 +1,6 @@
 ﻿//---------------------------------------------------------------------------------
 // <copyright file="WeightScaleMessageNewOverflow.cs" company="Business Management Systems">
-//     Copyright (c) Business Management Systems. All rights reserved.
+//     Copyright 2017(c) Business Management Systems. All rights reserved.
 // </copyright>
 // <author>Nikolay Kostadinov</author>
 //--------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ namespace WeightScale.Domain.Concrete
         }
 
         /// <summary>
-        /// Gets or sets the total net by product input.
+        /// Gets or sets the total net by product input. 
         /// </summary>
         /// <value>The total net by product input.</value>
         [ComSerializableProperty(length: 9, offset: 126, originalType: typeof(int), serializeFormat: "")]

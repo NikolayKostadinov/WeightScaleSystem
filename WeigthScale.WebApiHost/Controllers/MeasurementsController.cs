@@ -83,6 +83,9 @@
         [HttpPost]
         public HttpResponseMessage PostIsOk([ModelBinder(typeof(CustomModelBinder))]IWeightScaleMessageDto value)
         {
+            // URL: http://10.94.21.10:8111/api/Measurements/PostIsOk
+            // X-MessageType: WeightScaleMessageNew
+            // Body: {"Id":0,"Message":{"ExciseDocumentNumber":"1400032512","TotalNetOfInput":null,"TotalNetOfOutput":null,"TotalNetByProductInput":null,"TotalNetByProductOutput":null,"Number":4,"Direction":1,"TimeOfFirstMeasure":null,"TimeOfSecondMeasure":null,"MeasurementStatus":0,"SerialNumber":12345678,"TransactionNumber":12345,"MeasurementNumber":1,"ProductCode":100,"TareWeight":null,"GrossWeight":null,"NetWeight":null,"Vehicle":"A3335KX","DocumentNumber":null},"ValidationMessages":[]}
             bool result = false;
 
             if (ModelState.IsValid && value != null)
