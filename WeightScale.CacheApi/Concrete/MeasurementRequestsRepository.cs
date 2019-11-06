@@ -15,7 +15,8 @@
         public MeasurementRequestsRepository()
         {
             this.client = new WeightScaleServiceSoapClient();
-            this.client.Endpoint.EndpointBehaviors.Add(new MessageBehavior("_system", "ADMCACHE"));
+            //this.client.Endpoint.EndpointBehaviors.Add(new MessageBehavior("_system", "ADMCACHE"));
+            this.client.Endpoint.EndpointBehaviors.Add(new MessageBehavior("_system", "SYS"));
         }
 
         /// <summary>
