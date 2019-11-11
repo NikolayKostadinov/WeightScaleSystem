@@ -46,16 +46,16 @@
             AutomapperConfig.AutoMapperConfig();
             var mapper = injector.Get<IMappingService>();
 
-            var service = new MeasurementRequestsRepository();
+            var service = new MeasurementRequestsRepository(new Context("_system", "SYS"));
             var message = GenerateWeightBlock();
-            var messageDto = new WeightScaleMessageDto() {Id = 2, Message = message, ValidationMessages = new ValidationMessageCollection(new List<ValidationMessage>() { new ValidationMessage(MessageType.Error, "Some test error!!!")}) };
-            var soapMessage = new SoapMessage() { Message = new CWeigthScaleMessageNew()};
-            mapper.ToProxy(messageDto,soapMessage);
+            var messageDto = new WeightScaleMessageDto() { Id = 2, Message = message, ValidationMessages = new ValidationMessageCollection(new List<ValidationMessage>() { new ValidationMessage(MessageType.Error, "Some test error!!!") }) };
+            var soapMessage = new SoapMessage() { Message = new CWeigthScaleMessageNew() };
+            mapper.ToProxy(messageDto, soapMessage);
             soapMessage.Id = messageDto.Id;
             soapMessage.URL = @"http://www.google.com";
             //soapMessage.ValidationMessages = new CValidationMessage[0];
-            var result  = service.Update(soapMessage);
-            Console.WriteLine("There was {0} errors!",(result??new List<CValidationMessage>()).Count());
+            var result = service.Update(soapMessage);
+            Console.WriteLine("There was {0} errors!", (result ?? new List<CValidationMessage>()).Count());
             //IWeightScaleMessage message = GenerateWeightBlock();
 
             //IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
@@ -341,4 +341,16 @@
         }
     }
 
+    class Context : IConnectionParameters
+    {
+        public Context(string userName, string password)
+        {
+            UserName = userName;
+            Password = password;
+        }
+
+        public string UserName { get; }
+
+        public string Password { get; }
+    }
 }

@@ -56,22 +56,20 @@ namespace WeigthScale.WebApiHost
         {
             try
             {
-                string uri = string.Format("{0}:{1}", 
-                    Properties.Settings.Default.SelfHostedWebApiHost, 
-                    Properties.Settings.Default.SelfHostedWebApiPort);
+                string uri = $"{Properties.Settings.Default.SelfHostedWebApiHost}:{Properties.Settings.Default.SelfHostedWebApiPort}";
                 Uri baseAddress = new Uri(uri);
                 var config = new HttpSelfHostConfiguration(baseAddress);
 
                 config.Routes.MapHttpRoute(
-                    name: "",
+                    name: string.Empty,
                     routeTemplate: "api/{controller}/{action}",
-                    defaults: new { action = "PostMeasurement" }
-                );
+                    defaults: new { action = "PostMeasurement" });
+
                 config.Routes.MapHttpRoute(
                     name: "DefaultApi",
                     routeTemplate: "api/{controller}/{action}/{id}",
-                    defaults: new { id = RouteParameter.Optional }
-                );
+                    defaults: new { id = RouteParameter.Optional });
+
                 config.Filters.Add(new HandleErrorAttribute(logger));
 
                 config.MessageHandlers.Add(new LogRequestAndResponseHandler(LogManager.GetLogger("WebApiTrace")));
@@ -81,7 +79,11 @@ namespace WeigthScale.WebApiHost
                     selfHost.Start();
                     StartRequest();
                     logger.Info("WebApi SelfHosted thread is started!");
-                    while (!StopWebApiServer) { }
+                    
+                    while (!StopWebApiServer)
+                    {
+                    }
+
                     logger.Info("SelfHosted WebApi service is stopped!");
                 }
             }

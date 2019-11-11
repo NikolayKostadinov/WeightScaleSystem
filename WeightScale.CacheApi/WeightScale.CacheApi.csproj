@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\MeasurementRequestsRepository.cs" />
+    <Compile Include="Contract\IConnectionParameters.cs" />
     <Compile Include="Contract\IRepository.cs" />
     <Compile Include="CWeigthScaleMessageBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
