@@ -39,6 +39,32 @@ namespace WeightScale.Application.Services
             var messageType = messageDto.Message.GetType();
             switch (messageType.Name)
             {
+                case "WeightScaleMessageNewOverFlow":
+
+                    if (((WeightScaleMessageNewOverFlow) messageDto.Message).MeasurementNumber == 1)
+                    {
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TimeOfFirstMeasure = DateTime.Now;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).MeasurementStatus = 0;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TransactionNumber = 200;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TareWeight = 10000;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TotalNetOfOutput = 22000;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TotalNetByProductOutput = 12000;
+                    }
+                    else
+                    {
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TimeOfFirstMeasure = DateTime.Now;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TimeOfSecondMeasure = DateTime.Now.AddSeconds(1);
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).MeasurementStatus = 0;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TransactionNumber = 200;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TareWeight = 10000;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).GrossWeight = 25000;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).NetWeight = 15000;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TotalNetOfOutput = 37000;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).TotalNetByProductOutput = 27000;
+                        ((WeightScaleMessageNewOverFlow) messageDto.Message).LoadCapacity = 80000;
+                    }
+                    break;
+
                 case "WeightScaleMessageNew":
 
                     if (((WeightScaleMessageNew)messageDto.Message).MeasurementNumber == 1)

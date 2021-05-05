@@ -45,7 +45,6 @@ namespace WeightScale.ComunicationProtocol
         public static ComSettingsProvider GetComSettingsProvider
         {
             // Singleton
-            // Todo: refactore to be a real singleton !!! 
             get
             {
                 if (settings == null)

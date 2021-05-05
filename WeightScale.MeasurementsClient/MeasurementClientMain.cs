@@ -1,5 +1,15 @@
-﻿namespace WeightScale.MeasurementsClient
+﻿//  ------------------------------------------------------------------------------------------------
+//   <copyright file="MeasurementClientMain.cs" company="Business Management System Ltd.">
+//       Copyright "2019" (c), Business Management System Ltd.
+//       All rights reserved.
+//   </copyright>
+//   <author>Nikolay.Kostadinov</author>
+//  ------------------------------------------------------------------------------------------------
+
+namespace WeightScale.MeasurementsClient
 {
+    #region Using
+
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -16,186 +26,64 @@
     using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using log4net;
+
     using Newtonsoft.Json;
+
     using Ninject;
+
     using WeightScale.Application.AppStart;
     using WeightScale.Application.Contracts;
     using WeightScale.CacheApi.Contract;
     using WeightScale.CacheApi.SoapProxy;
     using WeightScale.Domain.Abstract;
+    using WeightScale.MeasurementsClient.Properties;
     using WeightScale.Utility.Helpers;
-    using log4net;
 
-    class MeasurementClientMain
+    #endregion
+
+    internal class MeasurementClientMain
     {
-        private const string GetLogsWebApiController = @"api/Logs/GetLogs";
-        private const string ClearLogsWebApiController = @"api/Logs/PostClearLogs";
-        private const string IpAddressPattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}";
         private const string ArchivedFilesDirectory = @"\logs\ws\";
 
-        private static readonly IKernel injector;
-        private static readonly IRepository<SoapMessage, CValidationMessage> repository;
-        private static readonly IJsonDeserializeService deserializer;
-        private static readonly IMappingService mapper;
-        private static readonly ILog logger;
+        private const string ClearLogsWebApiController = @"api/Logs/PostClearLogs";
+
+        private const string GetLogsWebApiController = @"api/Logs/GetLogs";
+
+        private const string IpAddressPattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}";
+
+        private static readonly IJsonDeserializeService Deserializer;
+
+        private static readonly IKernel Injector;
+
+        private static readonly ILog Logger;
+
+        private static readonly IMappingService Mapper;
+
+        private static readonly IRepository<SoapMessage, CValidationMessage> Repository;
 
         private static volatile int lastLogProcessingHour;
 
         private static volatile bool stopProcessMeasurementThread;
 
-        public static bool StopProcessMeasurementThread
-        {
-            get
-            {
-                return stopProcessMeasurementThread;
-            }
-            set
-            {
-                stopProcessMeasurementThread = value;
-            }
-        }
-
         static MeasurementClientMain()
         {
             AutomapperConfig.AutoMapperConfig();
-            injector = NinjectInjector.GetInjector;
-            repository = injector.Get<IRepository<SoapMessage, CValidationMessage>>();
-            deserializer = injector.Get<IJsonDeserializeService>();
-            mapper = injector.Get<IMappingService>();
-            logger = LogManager.GetLogger("WeightScale.MeasurementsClient");
+            Injector = NinjectInjector.GetInjector;
+            Injector.Bind<IConnectionParameters>().To<ConnectionParameters>();
+            Repository = Injector.Get<IRepository<SoapMessage, CValidationMessage>>();
+            Deserializer = Injector.Get<IJsonDeserializeService>();
+            Mapper = Injector.Get<IMappingService>();
+            Logger = LogManager.GetLogger("WeightScale.MeasurementsClient");
             lastLogProcessingHour = DateTime.Now.AddHours(-1).Hour;
         }
 
-        static void Main()
+        public static bool StopProcessMeasurementThread
         {
-            // make these
-            bool runAsWindowsService = true;
-            if (runAsWindowsService)
-            {
-                ServiceBase[] servicesToRun;
-                servicesToRun = new ServiceBase[] 
-                { 
-                    new MeasurementsWindowsService(logger) 
-                };
-                ServiceBase.Run(servicesToRun);
-            }
-            else
-            {
-                ProcessMeasurementsAsync();
-                while (true) ;
-            }
-        }
+            get => stopProcessMeasurementThread;
 
-        internal async static void ProcessMeasurementsAsync()
-        {
-            do
-            {
-                try
-                {
-                    DateTime beginTotal = DateTime.Now;
-                    await repository.GetAllAsynk().ContinueWith(result => ProcessMeasurementRequestsAsync(result.Result, beginTotal));
-                }
-                catch (FaultException faultEx)
-                {
-                    logger.Error(faultEx.ToMessageAndCompleteStacktrace());
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("From ProcessMeasurements " + ex.ToMessageAndCompleteStacktrace());
-                }
-            } while (!StopProcessMeasurementThread);
-        }
-
-        private async static void ProcessMeasurementRequestsAsync(IEnumerable<SoapMessage> result, DateTime beginTotal)
-        {
-            if (result != null)
-            {
-                foreach (var item in result)
-                {
-                    var message = GetWeightScaleMessageDto(item);
-                    Task action;
-                    string messageType = message.Message.GetType().Name;
-                    try
-                    {
-                        SendMeasurementRequestAsync(messageType, message, item)
-                            .ContinueWith(response => SendMeasurementResultToCacheAsync(response.Result, message, item, beginTotal));
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, ex.Message));
-                        SendErrorMessageToCache(item, message);
-                        LogEstimatedTimeForTransaction(beginTotal, item.Id);
-                    }
-                    //finally
-                    //{
-                    //    LogEstimatedTimeForTransaction(beginTotal, item.Id);
-                    //}
-                }
-            }
-        }
-
-        private static void SendErrorMessageToCache(SoapMessage item, IWeightScaleMessageDto message)
-        {
-            try
-            {
-                message.ValidationMessages.AddError(string.Format("Cannot execute measurement on {0} ", item.URL));
-                mapper.ToProxy(message, item);
-                var validationMessages = repository.UpdateAsync(item).Result;
-                if (validationMessages != null && validationMessages.Count() > 0)
-                {
-                    foreach (var vm in validationMessages)
-                    {
-                        logger.Error(string.Format("[Id: \t{0}\t] ValidationMessage: {1}", item.Id, vm.ToString()));
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error(string.Format("[Id: {0}] Message cannot be sent due to: {1} ", item.Id, ex.Message));
-            }
-        }
-
-        /// <summary>
-        /// Logs the estimated time for transaction.
-        /// </summary>
-        /// <typeparam name="TResult">The type of the T result.</typeparam>
-        /// <param name="beginTotal">The begin total.</param>
-        /// <param name="id">The id.</param>
-        /// <returns></returns>
-        private async static void LogEstimatedTimeForTransaction(DateTime beginTotal, long id)
-        {
-            //bool reset = false;
-
-            //var watchDogTimer = new System.Timers.Timer();
-            //watchDogTimer.Interval = 5000; //if service doesn't response for more than 5 sec reset
-            //watchDogTimer.Elapsed += delegate(object sender, System.Timers.ElapsedEventArgs e) { reset = true; };
-            //watchDogTimer.Start();
-
-            //if (t != null)
-            //{
-            //    while ((!t.IsCompleted) & (!reset)) { }
-            //}
-
-            logger.Info(string.Format("[Id: \t{0}\t] Total estimated time for transaction: {1}", id, (DateTime.Now - beginTotal).ToString(@"ss\:fff")));
-        }
-
-
-
-        private async static Task SendMeasurementResultToCacheAsync(HttpResponseMessage response, IWeightScaleMessageDto message, SoapMessage item, DateTime beginTotal)
-        {
-            {
-                if (response != null && response.IsSuccessStatusCode)
-                {
-                    await response.Content.ReadAsStringAsync().ContinueWith(jsonAnswer => UpdateMeasurementResultAsync(jsonAnswer.Result, message, item, beginTotal));
-                }
-                else
-                {
-                    logger.Error(string.Format("Error Code: {0} : Message: {1}",
-                        (response != null) ? response.StatusCode.ToString() : "null",
-                        (response != null) ? response.ReasonPhrase : "The response is null"));
-                    SendErrorMessageToCache(item, message);
-                }
-            }
+            set => stopProcessMeasurementThread = value;
         }
 
         internal static void ProcessLogs()
@@ -204,9 +92,10 @@
             {
                 var currentHour = DateTime.Now.Hour;
 
-                if (currentHour != lastLogProcessingHour && DateTime.Now.Minute > Properties.Settings.Default.LogFilesCheckMinutesOffset)
+                if (currentHour != lastLogProcessingHour
+                    && DateTime.Now.Minute > Settings.Default.LogFilesCheckMinutesOffset)
                 {
-                    var urlsList = repository.GetTargetUrls();
+                    var urlsList = Repository.GetTargetUrls();
                     if (urlsList != null)
                     {
                         var client = new HttpClient();
@@ -214,10 +103,10 @@
                         {
                             try
                             {
-                                var wsUrl = string.Format("{0}/{1}", url, GetLogsWebApiController);
-                                using (var request = new HttpRequestMessage(HttpMethod.Get, wsUrl))
+                                var getLogsUrl = $"{url}/{GetLogsWebApiController}";
+                                using (var request = new HttpRequestMessage(HttpMethod.Get, getLogsUrl))
                                 {
-                                    logger.Debug(string.Format("------------- Processing Log files: {0} -------------", url));
+                                    Logger.Debug($"------------- Processing Log files: {url} -------------");
 
                                     var fileName = CreateArchivedFilePath(url, currentHour);
                                     var content = client.SendAsync(request).Result.Content;
@@ -233,7 +122,7 @@
                             }
                             catch (Exception exx)
                             {
-                                logger.Error(exx.ToMessageAndCompleteStacktrace());
+                                Logger.Error(exx.ToMessageAndCompleteStacktrace());
                             }
                         }
 
@@ -243,7 +132,7 @@
             }
             catch (FaultException faultEx)
             {
-                logger.Error(faultEx.ToMessageAndCompleteStacktrace());
+                Logger.Error(faultEx.ToMessageAndCompleteStacktrace());
             }
             catch (Exception ex)
             {
@@ -251,181 +140,98 @@
                 {
                     foreach (var innerEx in (ex as AggregateException).InnerExceptions)
                     {
-                        logger.Error(innerEx.ToMessageAndCompleteStacktrace());
+                        Logger.Error(innerEx.ToMessageAndCompleteStacktrace());
                     }
                 }
                 else
                 {
-                    logger.Error(ex.ToMessageAndCompleteStacktrace());
+                    Logger.Error(ex.ToMessageAndCompleteStacktrace());
                 }
             }
         }
 
-        private static void UpdateMeasurementResult(string jsonAnswer, IWeightScaleMessageDto message, SoapMessage item)
+        internal static async void ProcessMeasurementsAsync()
         {
-            IWeightScaleMessageDto incommmingMeasurementResult = deserializer.GetResultFromJson(jsonAnswer, message) as IWeightScaleMessageDto;
-            SoapMessage currentSoap = item;
-            mapper.ToProxy(incommmingMeasurementResult, currentSoap);
-            var validationMessages = repository.Update(currentSoap);
-
-            if (validationMessages != null && validationMessages.Count() > 0)
+            do
             {
-                foreach (var vm in validationMessages)
+                try
                 {
-                    logger.Error(string.Format("[Id: \t{0}\t] ValidationMessage: {1}", item.Id, vm.ToString()));
+                    var beginTotal = DateTime.Now;
+                    var requests = await Repository.GetAllAsync();
+                    ProcessMeasurementRequests(requests, beginTotal);
+                }
+                catch (FaultException faultEx)
+                {
+                    Logger.Error(faultEx.ToMessageAndCompleteStacktrace());
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error("From ProcessMeasurements " + ex.ToMessageAndCompleteStacktrace());
                 }
             }
+            while (!StopProcessMeasurementThread);
         }
 
-        private async static Task UpdateMeasurementResultAsync(string jsonAnswer, IWeightScaleMessageDto message, SoapMessage item, DateTime beginTotal)
+        private static void ClearLogs(string fileName, string url, HttpClient client)
         {
-            logger.Debug(string.Format("[Id: \t{0}\t] Received response message: {1}", item.Id, jsonAnswer));
-
-            IWeightScaleMessageDto incommmingMeasurementResult = deserializer.GetResultFromJson(jsonAnswer, message) as IWeightScaleMessageDto;
-            SoapMessage currentSoap = item;
-
-            mapper.ToProxy(incommmingMeasurementResult, currentSoap);
-
-            var validationMessages = await repository.UpdateAsync(currentSoap);
-
-            if (validationMessages != null && validationMessages.Count() > 0)
-            {
-                foreach (var vm in validationMessages)
-                {
-                    logger.Error(string.Format("[Id: \t{0}\t] ValidationMessage: {1}", item.Id, vm.ToString()));
-                }
-            }
-
-            LogEstimatedTimeForTransaction(beginTotal, item.Id);
-        }
-
-        private static IWeightScaleMessageDto GetWeightScaleMessageDto(SoapMessage item)
-        {
-            var message = injector.Get<IWeightScaleMessageDto>();
-            message.Id = item.Id;
-            message.Message = item.Message.ToDomainType();
-            message.ValidationMessages = injector.Get<IValidationMessageCollection>();
-            return message;
-        }
-
-        private static HttpResponseMessage SendMeasurementRequest(string messageType, IWeightScaleMessageDto message, SoapMessage item)
-        {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("X-MessageType", messageType);
-            logger.Debug(string.Format("[Id: \t{0}\t] ------------- Processing message Id: {0} -------------", message.Id));
-            logger.Debug(string.Format("[Id: \t{0}\t] Sent request message: {1} - {2}", item.Id, item.URL, JsonConvert.SerializeObject(message)));
-
-            HttpResponseMessage response = null;
             try
             {
-                response = client.PostAsJsonAsync(item.URL, message).Result;
-            }
-            catch (HttpRequestException ex)
-            {
-                logger.Error(ex.Message, ex);
-            }
-            catch (WebException wex)
-            {
-                logger.Error(wex.Message, wex);
-            }
-            catch (AggregateException ae)
-            {
-                foreach (var innerEx in ae.InnerExceptions)
+                IList<string> removingFileList = new List<string>();
+
+                using (var archive = ZipFile.OpenRead(fileName))
                 {
-                    logger.Error(innerEx.ToMessageAndCompleteStacktrace());
+                    foreach (var entry in archive.Entries)
+                    {
+                        removingFileList.Add(entry.Name);
+                        Logger.Info(entry.Name);
+                    }
                 }
 
-            }
-
-            return response;
-        }
-
-        private async static Task<HttpResponseMessage> SendMeasurementRequestAsync(string messageType, IWeightScaleMessageDto message, SoapMessage item)
-        {
-            var vms = injector.Get<IValidationMessageCollection>();
-            var ctSource = new CancellationTokenSource(TimeSpan.FromSeconds(8));
-            var cancelationToken = ctSource.Token;
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("X-MessageType", messageType);
-            logger.Debug(string.Format("[Id: \t{0}\t] ------------- Processing message Id: {0} -------------", message.Id));
-            logger.Debug(string.Format("[Id: \t{0}\t] Sent request message: {1} - {2}", item.Id, item.URL, JsonConvert.SerializeObject(message)));
-
-
-            HttpResponseMessage response = null;
-            try
-            {
-                response = await client.PostAsJsonAsync(item.URL, message, cancelationToken);
-            }
-            catch (HttpRequestException ex)
-            {
-                string vMessage = string.Format("[Id: \t{0}\t] Requested URL {1} is unreachable. ", item.Id, item.URL);
-                logger.Error(vMessage);
-                vms.AddError("General Error", vMessage);
-            }
-            catch (WebException wex)
-            {
-                logger.Error(wex.Message, wex);
-            }
-            catch (AggregateException ae)
-            {
-                foreach (var innerEx in ae.InnerExceptions)
+                if (removingFileList.Count > 0)
                 {
-                    logger.Error(innerEx.ToMessageAndCompleteStacktrace());
-                }
-            }
-            catch (TaskCanceledException ecex)
-            {
-                if (ecex.CancellationToken.IsCancellationRequested)
-                {
-                    logger.Error(string.Format("[Id: \t{0}\t] Measure operation with URL {1} was canceled due to timeout.", item.Id, item.URL));
-                }
-                else
-                {
-                    logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, "ecex " + ecex.Message + ecex.StackTrace));
-                }
-            }
-            catch (OperationCanceledException oce)
-            {
-                if (oce.CancellationToken.IsCancellationRequested)
-                {
-                    logger.Error(string.Format("[Id: \t{0}\t] Measure operation with URL {1} was canceled due to timeout.", item.Id, item.URL));
-                }
-                else
-                {
-                    logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, "oce " + oce.Message + oce.StackTrace));
-                }
-            }
-            catch (Exception exc)
-            {
-                logger.Error(string.Format("[Id: \t{0}\t] {1}", item.Id, "exc " + exc.Message + exc.StackTrace));
-            }
-            finally
-            {
-                ctSource.Dispose();
-            }
+                    HttpResponseMessage response = null;
+                    try
+                    {
+                        var deleteUri = $@"{url}/{ClearLogsWebApiController}";
+                        Logger.Info(deleteUri);
+                        client.DefaultRequestHeaders.Accept.Add(
+                            new MediaTypeWithQualityHeaderValue("application/json"));
+                        response = client.PostAsJsonAsync(deleteUri, removingFileList).Result;
+                    }
+                    catch (HttpRequestException ex)
+                    {
+                        Logger.Error(ex.Message, ex);
+                    }
 
-            if (response == null && vms.Count() > 0)
-            {
-                message.ValidationMessages.AddMany(vms);
-            }
-            return response;
-        }
-
-        private static IEnumerable<SoapMessage> GetMeasurementsRequests()
-        {
-            IEnumerable<SoapMessage> result = null;
-            try
-            {
-                result = repository.GetAll();
+                    if (response != null && response.IsSuccessStatusCode)
+                    {
+                        Logger.Debug($"Removed logs files: {url} {fileName}");
+                    }
+                }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                Logger.Error(ex.ToMessageAndCompleteStacktrace());
+            }
+        }
+
+        private static string CreateArchivedFilePath(string url, int currentHour)
+        {
+            var ip = new Regex(IpAddressPattern);
+            var match = ip.Matches(url);
+            var uri = match[0].Value.Replace(':', '-');
+
+            var folder = $@"{Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location)}{ArchivedFilesDirectory}{uri}";
+
+            var folderExists = Directory.Exists(folder);
+            if (!folderExists)
+            {
+                Directory.CreateDirectory(folder);
+                GrantDirectoryFullAccess(folder);
             }
 
-            return result;
+            var fileName = $"{folder}/{DateTime.Now:yyyy-MM-dd-HH-mm}-{uri}.zip";
+            return fileName;
         }
 
         private static long GetLogs(HttpContent content, string fileName)
@@ -434,7 +240,7 @@
 
             using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                using (Stream contentStream = content.ReadAsStreamAsync().Result)
+                using (var contentStream = content.ReadAsStreamAsync().Result)
                 {
                     contentStreamLength = contentStream.Length;
                     if (contentStreamLength > 0)
@@ -447,93 +253,307 @@
             return contentStreamLength;
         }
 
-        private static string CreateArchivedFilePath(string url, int currentHour)
+        private static IEnumerable<SoapMessage> GetMeasurementsRequests()
         {
-            Regex ip = new Regex(IpAddressPattern);
-            MatchCollection match = ip.Matches(url);
-            var uri = match[0].Value.Replace(':', '-');
-
-            var folder = string.Format(@"{0}{1}{2}",
-                Path.GetDirectoryName(Assembly.GetEntryAssembly().Location),
-                ArchivedFilesDirectory,
-                uri);
-
-            bool folderExists = Directory.Exists(folder);
-            if (!folderExists)
-            {
-                Directory.CreateDirectory(folder);
-                GrantDirectoryFullAccess(folder);
-            }
-
-            var fileName = string.Format("{0}/{1:yyyy-MM-dd-HH-mm}-{2}.zip", folder, DateTime.Now, uri);
-            return fileName;
-        }
-
-        private static void ClearLogs(string fileName, string url, HttpClient client)
-        {
+            IEnumerable<SoapMessage> result = null;
             try
             {
-                IList<string> removingFileList = new List<string>();
-
-                using (ZipArchive archive = ZipFile.OpenRead(fileName))
-                {
-                    foreach (ZipArchiveEntry entry in archive.Entries)
-                    {
-                        removingFileList.Add(entry.Name);
-                        logger.Info(entry.Name);
-                    }
-                }
-
-                if (removingFileList.Count > 0)
-                {
-                    HttpResponseMessage response = null;
-                    try
-                    {
-                        string wsDelete = string.Format(@"{0}/{1}", url, ClearLogsWebApiController);
-                        logger.Info(wsDelete);
-                        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                        response = client.PostAsJsonAsync(wsDelete, removingFileList).Result;
-                    }
-                    catch (HttpRequestException ex)
-                    {
-                        logger.Error(ex.Message, ex);
-                    }
-
-                    if (response != null && response.IsSuccessStatusCode)
-                    {
-                        logger.Debug(string.Format("Removed logs files: {0} - {1}", url, fileName));
-                    }
-                }
+                result = Repository.GetAll();
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToMessageAndCompleteStacktrace());
+                Logger.Error(ex.Message, ex);
             }
+
+            return result;
+        }
+
+        private static IWeightScaleMessageDto GetWeightScaleMessageDto(SoapMessage item)
+        {
+            var message = Injector.Get<IWeightScaleMessageDto>();
+            message.Id = item.Id;
+            message.Message = item.Message.ToDomainType();
+            message.ValidationMessages = Injector.Get<IValidationMessageCollection>();
+            return message;
         }
 
         private static bool GrantDirectoryFullAccess(string fullPath)
         {
             try
             {
-                DirectoryInfo dInfo = new DirectoryInfo(fullPath);
-                DirectorySecurity dSecurity = dInfo.GetAccessControl();
-                dSecurity.AddAccessRule(
+                var directoryInfo = new DirectoryInfo(fullPath);
+                var accessControl = directoryInfo.GetAccessControl();
+                accessControl.AddAccessRule(
                     new FileSystemAccessRule(
-                        new SecurityIdentifier(
-                            WellKnownSidType.WorldSid,
-                            null),
+                        new SecurityIdentifier(WellKnownSidType.WorldSid, null),
                         FileSystemRights.FullControl,
                         InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
                         PropagationFlags.NoPropagateInherit,
                         AccessControlType.Allow));
-                dInfo.SetAccessControl(dSecurity);
+                directoryInfo.SetAccessControl(accessControl);
                 return true;
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToMessageAndCompleteStacktrace());
+                Logger.Error(ex.ToMessageAndCompleteStacktrace());
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Logs the estimated time for transaction.
+        /// </summary>
+        /// <param name="beginTotal">
+        /// The begin total.
+        /// </param>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        private static void LogEstimatedTimeForTransaction(DateTime beginTotal, long id)
+        {
+            var estimatedTime = DateTime.Now - beginTotal;
+            Logger.Info($"[Id: \t{id}\t]    Total estimated time for transaction: {estimatedTime:ss\\:fff}");
+        }
+
+        private static void Main()
+        {
+            // make these
+            var runAsWindowsService = Properties.Settings.Default.RunAsWindowsService;
+            if (runAsWindowsService)
+            {
+                ServiceBase[] servicesToRun;
+                servicesToRun = new ServiceBase[] { new MeasurementsWindowsService(Logger) };
+                ServiceBase.Run(servicesToRun);
+            }
+            else
+            {
+                ProcessMeasurementsAsync();
+                while (true)
+                {
+                }
+            }
+        }
+
+
+        private static void ProcessMeasurementRequests(IEnumerable<SoapMessage> result, DateTime beginTotal)
+        {
+            if (result == null)
+            {
+                return;
+            }
+
+            var tasks = new List<Task>();
+            foreach (var item in result)
+            {
+                var message = GetWeightScaleMessageDto(item);
+                var messageType = message.Message.GetType().Name;
+                var task = Task.Factory.StartNew(async () =>
+                    {
+                        try
+                        {
+                            var response = await SendMeasurementRequestAsync(messageType, message, item);
+                            await SendMeasurementResultToCacheAsync(response, message, item, beginTotal);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Error($"[Id: \t{item.Id}\t] {ex.Message}");
+                            await SendErrorMessageToCache(item, message);
+                            LogEstimatedTimeForTransaction(beginTotal, item.Id);
+                        }
+                    });
+                tasks.Add(task);
+            }
+
+            Task.WaitAll(tasks.ToArray());
+        }
+
+        private static async Task SendErrorMessageToCache(SoapMessage item, IWeightScaleMessageDto message)
+        {
+            try
+            {
+                message.ValidationMessages.AddError($"Cannot execute measurement on {item.URL} ");
+                Mapper.ToProxy(message, item);
+                var validationMessages = (await Repository.UpdateAsync(item))?.ToList();
+                if (validationMessages != null && validationMessages.Count > 0)
+                {
+                    foreach (var vm in validationMessages)
+                    {
+                        Logger.Error($"[Id: \t{item.Id}\t] ValidationMessage: {vm}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"[Id: {item.Id}] Message cannot be sent due to: {ex.Message} ");
+            }
+        }
+
+        private static HttpResponseMessage SendMeasurementRequest(
+            string messageType,
+            IWeightScaleMessageDto message,
+            SoapMessage item)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("X-MessageType", messageType);
+            Logger.Debug($"[Id: \t{message.Id}\t] ------------- Processing message Id: {message.Id} -------------");
+            Logger.Debug($"[Id: \t{item.Id}\t] Sent request message: {item.URL} - {JsonConvert.SerializeObject(message)}");
+
+            HttpResponseMessage response = null;
+            try
+            {
+                response = client.PostAsJsonAsync(item.URL, message).Result;
+            }
+            catch (HttpRequestException ex)
+            {
+                Logger.Error(ex.Message, ex);
+            }
+            catch (WebException wex)
+            {
+                Logger.Error(wex.Message, wex);
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var innerEx in ae.InnerExceptions)
+                {
+                    Logger.Error(innerEx.ToMessageAndCompleteStacktrace());
+                }
+            }
+
+            return response;
+        }
+
+        private static async Task<HttpResponseMessage> SendMeasurementRequestAsync(
+            string messageType,
+            IWeightScaleMessageDto message,
+            SoapMessage item)
+        {
+            var vms = Injector.Get<IValidationMessageCollection>();
+            var timeout = Settings.Default.Timeout;
+            var cancellationTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(timeout));
+            var cancellationToken = cancellationTokenSource.Token;
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("X-MessageType", messageType);
+            Logger.Debug(string.Format("[Id: \t{0}\t] ------------- Processing message Id: {0} -------------", message.Id));
+            Logger.Debug($"[Id: \t{item.Id}\t] Sent request message: {item.URL} - {JsonConvert.SerializeObject(message)}");
+
+            HttpResponseMessage response = null;
+            try
+            {
+                response = await client.PostAsJsonAsync(item.URL, message, cancellationToken);
+            }
+            catch (HttpRequestException ex)
+            {
+                var validationMessage = $"[Id: \t{item.Id}\t] Requested URL {item.URL} is unreachable. ";
+                Logger.Error(validationMessage);
+                vms.AddError("General Error", validationMessage);
+            }
+            catch (WebException wex)
+            {
+                Logger.Error(wex.Message, wex);
+            }
+            catch (AggregateException ae)
+            {
+                foreach (var innerEx in ae.InnerExceptions)
+                {
+                    Logger.Error(innerEx.ToMessageAndCompleteStacktrace());
+                }
+            }
+            catch (TaskCanceledException ecex)
+            {
+                Logger.Error(
+                    ecex.CancellationToken.IsCancellationRequested
+                        ? $"[Id: \t{item.Id}\t] Measure operation with URL {item.URL} was canceled due to timeout."
+                        : $"[Id: \t{item.Id}\t] {"ecex " + ecex.Message + ecex.StackTrace}");
+            }
+            catch (OperationCanceledException oce)
+            {
+                Logger.Error(
+                    oce.CancellationToken.IsCancellationRequested
+                        ? $"[Id: \t{item.Id}\t] Measure operation with URL {item.URL} was canceled due to timeout."
+                        : $"[Id: \t{item.Id}\t] {"oce " + oce.Message + oce.StackTrace}");
+            }
+            catch (Exception exc)
+            {
+                Logger.Error($"[Id: \t{item.Id}\t] {"exc " + exc.Message + exc.StackTrace}");
+            }
+            finally
+            {
+                cancellationTokenSource.Dispose();
+            }
+
+            if (response == null && vms.Any())
+            {
+                message.ValidationMessages.AddMany(vms);
+            }
+
+            return response;
+        }
+
+        private static async Task SendMeasurementResultToCacheAsync(
+            HttpResponseMessage response,
+            IWeightScaleMessageDto message,
+            SoapMessage item,
+            DateTime beginTotal)
+        {
+            {
+                if (response != null && response.IsSuccessStatusCode)
+                {
+                    var jsonAnswer = await response.Content.ReadAsStringAsync();
+                    await UpdateMeasurementResultAsync(jsonAnswer, message, item, beginTotal);
+                }
+                else
+                {
+                    Logger.Error(
+                        $"Error Code: {(response != null ? response.StatusCode.ToString() : "null")} : Message: {(response != null ? response.ReasonPhrase : "The response is null")}");
+                    await SendErrorMessageToCache(item, message);
+                }
+            }
+        }
+
+        private static void UpdateMeasurementResult(string jsonAnswer, IWeightScaleMessageDto message, SoapMessage item)
+        {
+            var incomingMeasurementResult =
+                Deserializer.GetResultFromJson(jsonAnswer, message) as IWeightScaleMessageDto;
+            var currentSoap = item;
+            Mapper.ToProxy(incomingMeasurementResult, currentSoap);
+            var validationMessages = Repository.Update(currentSoap)?.ToList();
+
+            if (validationMessages != null && validationMessages.Count > 0)
+            {
+                foreach (var vm in validationMessages)
+                {
+                    Logger.Error($"[Id: \t{item.Id}\t] ValidationMessage: {vm}");
+                }
+            }
+        }
+
+        private static async Task UpdateMeasurementResultAsync(
+            string jsonAnswer,
+            IWeightScaleMessageDto message,
+            SoapMessage item,
+            DateTime beginTotal)
+        {
+            Logger.Debug($"[Id: \t{item.Id}\t] Received response message: {jsonAnswer}");
+
+            var incomingMeasurementResult =
+                Deserializer.GetResultFromJson(jsonAnswer, message) as IWeightScaleMessageDto;
+            var currentSoap = item;
+
+            Mapper.ToProxy(incomingMeasurementResult, currentSoap);
+
+            var validationMessages = (await Repository.UpdateAsync(currentSoap))?.ToList();
+
+            if (validationMessages != null && validationMessages.Count > 0)
+            {
+                foreach (var vm in validationMessages)
+                {
+                    Logger.Error($"[Id: \t{item.Id}\t] ValidationMessage: {vm}");
+                }
+            }
+
+            LogEstimatedTimeForTransaction(beginTotal, item.Id);
         }
     }
 }

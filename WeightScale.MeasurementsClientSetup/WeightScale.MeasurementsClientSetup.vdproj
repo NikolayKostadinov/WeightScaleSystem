@@ -22,7 +22,31 @@
         "Entry"
         {
         "MsmKey" = "8:_0BC7A7ACC9D4F898680D98C837C50B3E"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_144047BB6FE6E68E7BFABD5D6C04EBDC"
+        "OwnerKey" = "8:_84FFAF742F6B25D750220AE47E3640C5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_144047BB6FE6E68E7BFABD5D6C04EBDC"
+        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_144047BB6FE6E68E7BFABD5D6C04EBDC"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_144047BB6FE6E68E7BFABD5D6C04EBDC"
+        "OwnerKey" = "8:_542A81B90D8EC319F20F202BC4EBE1E3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -34,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_1CCFFC527622F2DBFF943A4062C6E096"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -51,30 +75,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_22C3E55A845F733CF07157C419F6BDEC"
-        "OwnerKey" = "8:_A668FE8CA26FE25FFD89DE3544DFC3C0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_22C3E55A845F733CF07157C419F6BDEC"
-        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_22C3E55A845F733CF07157C419F6BDEC"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_22C3E55A845F733CF07157C419F6BDEC"
-        "OwnerKey" = "8:_7EDE5DDAFF1B0037F9EACD998079B603"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_47346442E1884BF1B633DE8BE071567C"
         "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
         "MsmSig" = "8:_UNDEFINED"
@@ -82,7 +82,7 @@
         "Entry"
         {
         "MsmKey" = "8:_47346442E1884BF1B633DE8BE071567C"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -93,25 +93,43 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4E9F3D492E203097A3672071ED5D36FC"
-        "OwnerKey" = "8:_22C3E55A845F733CF07157C419F6BDEC"
+        "MsmKey" = "8:_542A81B90D8EC319F20F202BC4EBE1E3"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4E9F3D492E203097A3672071ED5D36FC"
+        "MsmKey" = "8:_542A81B90D8EC319F20F202BC4EBE1E3"
         "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7EDE5DDAFF1B0037F9EACD998079B603"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "MsmKey" = "8:_5D73F74A83D6B6ADA29DAD47C30DA3E2"
+        "OwnerKey" = "8:_144047BB6FE6E68E7BFABD5D6C04EBDC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7EDE5DDAFF1B0037F9EACD998079B603"
+        "MsmKey" = "8:_5D73F74A83D6B6ADA29DAD47C30DA3E2"
+        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
+        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_84FFAF742F6B25D750220AE47E3640C5"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_84FFAF742F6B25D750220AE47E3640C5"
         "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -124,13 +142,13 @@
         "Entry"
         {
         "MsmKey" = "8:_87E1864BC6A2FAD6ECF96DECDD8F0586"
-        "OwnerKey" = "8:_22C3E55A845F733CF07157C419F6BDEC"
+        "OwnerKey" = "8:_144047BB6FE6E68E7BFABD5D6C04EBDC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_87E1864BC6A2FAD6ECF96DECDD8F0586"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -160,7 +178,7 @@
         "Entry"
         {
         "MsmKey" = "8:_9513F647991513A4DD2EE0AFB9740B33"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -172,31 +190,19 @@
         "Entry"
         {
         "MsmKey" = "8:_95977840BA6B0E2052055412888E5BA3"
-        "OwnerKey" = "8:_7EDE5DDAFF1B0037F9EACD998079B603"
+        "OwnerKey" = "8:_542A81B90D8EC319F20F202BC4EBE1E3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_95977840BA6B0E2052055412888E5BA3"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_95977840BA6B0E2052055412888E5BA3"
         "OwnerKey" = "8:_8D46BE2F6D489D8A0B1AA46F54C27D75"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A668FE8CA26FE25FFD89DE3544DFC3C0"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A668FE8CA26FE25FFD89DE3544DFC3C0"
-        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -214,7 +220,7 @@
         "Entry"
         {
         "MsmKey" = "8:_BAB8078BD7D1F3FD08E1ED2A4F2D5A7C"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -238,7 +244,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D630B054A087F5580AC10F58A0E6794F"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -250,7 +256,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F08483F3428DD74C6709AFDEFCFAFD84"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -261,12 +267,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
-        "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_ABE8E677C6674163B3B3D2598E826D0D"
         "MsmSig" = "8:_UNDEFINED"
@@ -274,31 +274,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F42D00E821D003B7C3645CCA40E1297A"
+        "OwnerKey" = "8:_635A95BF10BBC1C86682F2C20262626C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7EDE5DDAFF1B0037F9EACD998079B603"
+        "OwnerKey" = "8:_542A81B90D8EC319F20F202BC4EBE1E3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A668FE8CA26FE25FFD89DE3544DFC3C0"
+        "OwnerKey" = "8:_84FFAF742F6B25D750220AE47E3640C5"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_22C3E55A845F733CF07157C419F6BDEC"
+        "OwnerKey" = "8:_144047BB6FE6E68E7BFABD5D6C04EBDC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4E9F3D492E203097A3672071ED5D36FC"
+        "OwnerKey" = "8:_5D73F74A83D6B6ADA29DAD47C30DA3E2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -549,20 +549,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1CCFFC527622F2DBFF943A4062C6E096"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_144047BB6FE6E68E7BFABD5D6C04EBDC"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+            "AssemblyAsmDisplayName" = "8:WeightScale.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1CCFFC527622F2DBFF943A4062C6E096"
+                    "_144047BB6FE6E68E7BFABD5D6C04EBDC"
                     {
-                    "Name" = "8:System.Net.Http.dll"
+                    "Name" = "8:WeightScale.Domain.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Net.Http.dll"
+            "SourcePath" = "8:WeightScale.Domain.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
@@ -580,20 +580,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_22C3E55A845F733CF07157C419F6BDEC"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1CCFFC527622F2DBFF943A4062C6E096"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WeightScale.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_22C3E55A845F733CF07157C419F6BDEC"
+                    "_1CCFFC527622F2DBFF943A4062C6E096"
                     {
-                    "Name" = "8:WeightScale.Domain.dll"
+                    "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:WeightScale.Domain.dll"
+            "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
@@ -642,14 +642,45 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4E9F3D492E203097A3672071ED5D36FC"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_542A81B90D8EC319F20F202BC4EBE1E3"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WeightScale.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
+            "AssemblyAsmDisplayName" = "8:WeightScale.CacheApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4E9F3D492E203097A3672071ED5D36FC"
+                    "_542A81B90D8EC319F20F202BC4EBE1E3"
+                    {
+                    "Name" = "8:WeightScale.CacheApi.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WeightScale.CacheApi.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5D73F74A83D6B6ADA29DAD47C30DA3E2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WeightScale.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5D73F74A83D6B6ADA29DAD47C30DA3E2"
                     {
                     "Name" = "8:WeightScale.Utility.dll"
                     "Attributes" = "3:512"
@@ -673,20 +704,51 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7EDE5DDAFF1B0037F9EACD998079B603"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_635A95BF10BBC1C86682F2C20262626C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WeightScale.CacheApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
+            "AssemblyAsmDisplayName" = "8:WeightScale.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7EDE5DDAFF1B0037F9EACD998079B603"
+                    "_635A95BF10BBC1C86682F2C20262626C"
                     {
-                    "Name" = "8:WeightScale.CacheApi.dll"
+                    "Name" = "8:WeightScale.Application.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:WeightScale.CacheApi.dll"
+            "SourcePath" = "8:WeightScale.Application.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_84FFAF742F6B25D750220AE47E3640C5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WeightScale.ComunicationProtocol, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_84FFAF742F6B25D750220AE47E3640C5"
+                    {
+                    "Name" = "8:WeightScale.ComunicationProtocol.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WeightScale.ComunicationProtocol.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
@@ -773,6 +835,11 @@
             "AssemblyAsmDisplayName" = "8:System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_9513F647991513A4DD2EE0AFB9740B33"
+                    {
+                    "Name" = "8:System.Web.Http.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:System.Web.Http.dll"
             "TargetName" = "8:"
@@ -806,37 +873,6 @@
                     }
                 }
             "SourcePath" = "8:AutoMapper.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A668FE8CA26FE25FFD89DE3544DFC3C0"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WeightScale.ComunicationProtocol, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_A668FE8CA26FE25FFD89DE3544DFC3C0"
-                    {
-                    "Name" = "8:WeightScale.ComunicationProtocol.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:WeightScale.ComunicationProtocol.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
@@ -923,6 +959,11 @@
             "AssemblyAsmDisplayName" = "8:Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_D630B054A087F5580AC10F58A0E6794F"
+                    {
+                    "Name" = "8:Ninject.Web.Common.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Ninject.Web.Common.dll"
             "TargetName" = "8:"
@@ -956,37 +997,6 @@
                     }
                 }
             "SourcePath" = "8:Ninject.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F42D00E821D003B7C3645CCA40E1297A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WeightScale.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_F42D00E821D003B7C3645CCA40E1297A"
-                    {
-                    "Name" = "8:WeightScale.Application.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:WeightScale.Application.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9E780BE8841148648B4D38B13A97B724"
@@ -1060,15 +1070,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WeightScale.MeasurementsClient"
-        "ProductCode" = "8:{D5E1D7CB-436D-49E4-8DC9-6361D29B2D05}"
-        "PackageCode" = "8:{CC63E0C4-C4D5-4BAB-B406-4E140E2A5DDC}"
+        "ProductCode" = "8:{779ABFCF-7A86-42BE-A836-A7A0D5210567}"
+        "PackageCode" = "8:{D0F338F3-678A-462A-9CA6-253FABC808B0}"
         "UpgradeCode" = "8:{97DC4ADA-A044-4B1B-97BE-21E9DC56F0FE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.6"
+        "ProductVersion" = "8:1.1.7"
         "Manufacturer" = "8:Business Management Systems"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1076,7 +1086,7 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:Business Management Systems"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:Version 1.2.0. Implemented asyncronous main cycle."
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"

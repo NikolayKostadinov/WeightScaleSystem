@@ -1,23 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//  ------------------------------------------------------------------------------------------------
+//   <copyright file="IRepository.cs" company="Business Management System Ltd.">
+//       Copyright "2019" (c), Business Management System Ltd.
+//       All rights reserved.
+//   </copyright>
+//   <author>Nikolay.Kostadinov</author>
+//  ------------------------------------------------------------------------------------------------
 
 namespace WeightScale.CacheApi.Contract
 {
-    public interface IRepository<T,R>
+    #region Using
+
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    #endregion
+
+    public interface IRepository<TEntity, TResult>
     {
-        Task<IEnumerable<T>> GetAllAsynk();
+        IEnumerable<TEntity> GetAll();
 
-        IEnumerable<T> GetAll();
-
-        Task<IEnumerable<string>> GetTargetUrlsAsync();
+        Task<IEnumerable<TEntity>> GetAllAsync();
 
         IEnumerable<string> GetTargetUrls();
 
-        Task<IEnumerable<R>> UpdateAsync(T message);
+        Task<IEnumerable<string>> GetTargetUrlsAsync();
 
-        IEnumerable<R> Update(T message);
+        IEnumerable<TResult> Update(TEntity message);
+
+        Task<IEnumerable<TResult>> UpdateAsync(TEntity message);
     }
 }

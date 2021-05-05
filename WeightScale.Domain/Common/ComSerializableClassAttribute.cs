@@ -19,6 +19,7 @@ namespace WeightScale.Domain.Common
     {
         OldProtocol = 126,
         NewProtocol = 144,
+        NewOverflowProtocol=149,
     }
 
     /// <summary>

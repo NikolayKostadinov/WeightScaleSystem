@@ -7,7 +7,7 @@ using WeightScale.Domain.Concrete;
 
 namespace WeightScale.CacheApi.SoapProxy
 {
-    public partial class SoapMessage 
+    public partial class SoapMessage
     {
 
         public override string ToString()
@@ -45,7 +45,21 @@ namespace WeightScale.CacheApi.SoapProxy
         public abstract WeightScaleMessageBase ToDomainType();
     }
 
-    public partial class CWeigthScaleMessageNew 
+    public partial class CWeigthScaleMessageNewOverFlow
+    {
+        /// <summary>
+        /// Converts proxy type to the type of the domain.
+        /// </summary>
+        /// <returns></returns>
+        public override WeightScaleMessageBase ToDomainType()
+        {
+            var domain = new WeightScaleMessageNewOverFlow();
+            Mapper.Map(this, domain);
+            return domain;
+        }
+    }
+
+    public partial class CWeigthScaleMessageNew
     {
         /// <summary>
         /// Toes the type of the domain.
@@ -59,7 +73,7 @@ namespace WeightScale.CacheApi.SoapProxy
         }
     }
 
-    public partial class CWeigthScaleMessageOld 
+    public partial class CWeigthScaleMessageOld
     {
         /// <summary>
         /// Toes the type of the domain.
@@ -73,7 +87,7 @@ namespace WeightScale.CacheApi.SoapProxy
         }
     }
 
-    public partial class CValidationMessage 
+    public partial class CValidationMessage
     {
         public override string ToString()
         {

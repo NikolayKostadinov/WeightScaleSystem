@@ -22,7 +22,9 @@
     using Ninject;
     using log4net;
     using log4net.Config;
-
+    using WeightScale.CacheApi.Contract;
+    using WeightScale.CacheApi.Concrete;
+    using WeightScale.CacheApi.SoapProxy;
 
     class Program
     {
@@ -41,9 +43,19 @@
             // end of configuration
 
             IKernel injector = NinjectInjector.GetInjector;
+            AutomapperConfig.AutoMapperConfig();
+            var mapper = injector.Get<IMappingService>();
 
-            ClearLogs();
-
+            var service = new MeasurementRequestsRepository(new Context("_system", "SYS"));
+            var message = GenerateWeightBlock();
+            var messageDto = new WeightScaleMessageDto() { Id = 2, Message = message, ValidationMessages = new ValidationMessageCollection(new List<ValidationMessage>() { new ValidationMessage(MessageType.Error, "Some test error!!!") }) };
+            var soapMessage = new SoapMessage() { Message = new CWeigthScaleMessageNew() };
+            mapper.ToProxy(messageDto, soapMessage);
+            soapMessage.Id = messageDto.Id;
+            soapMessage.URL = @"http://www.google.com";
+            //soapMessage.ValidationMessages = new CValidationMessage[0];
+            var result = service.Update(soapMessage);
+            Console.WriteLine("There was {0} errors!", (result ?? new List<CValidationMessage>()).Count());
             //IWeightScaleMessage message = GenerateWeightBlock();
 
             //IWeightScaleMessageDto messageDto = new WeightScaleMessageDto() { Message = message, ValidationMessages = new ValidationMessageCollection() };
@@ -72,7 +84,7 @@
             //                Task t2 = Task.Run(() => mService.IsWeightScaleOk(messageDto));
             //                Task.WaitAll(new Task[] { t1, t2 });
             //            }
-            //            catch (AggregateException ex) 
+            //            catch (AggregateException ex)
             //            {
             //                foreach (var exc in ex.Flatten().InnerExceptions)
             //                {
@@ -97,11 +109,11 @@
             //            //{
             //            //    if (messageDto.ValidationMessages.Count() == 0)
             //            //    {
-            //            //        measures++; 
+            //            //        measures++;
             //            //    }
             //            //    else
             //            //    {
-            //            //        errors++; 
+            //            //        errors++;
             //            //    }
             //            //}
             //            //else
@@ -196,6 +208,9 @@
             ser.ProductCode = 201;
             ser.ExciseDocumentNumber = "1400032512";
             ser.Vehicle = "A3335KX";
+            ser.TimeOfFirstMeasure = DateTime.Now;
+            ser.TimeOfSecondMeasure = DateTime.Now;
+            //ser.LoadCapacity = 80000;
             return ser;
         }
 
@@ -228,16 +243,16 @@
             string path = "properties.txt";
 
 
-            // This text is added only once to the file. 
+            // This text is added only once to the file.
             if (!File.Exists(path))
             {
-                // Create a file to write to. 
+                // Create a file to write to.
 
                 File.WriteAllLines(path, listOfProps, Encoding.UTF8);
             }
 
-            // This text is always added, making the file longer over time 
-            // if it is not deleted. 
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
             File.AppendAllLines(path, listOfProps, Encoding.UTF8);
         }
 
@@ -326,4 +341,16 @@
         }
     }
 
+    class Context : IConnectionParameters
+    {
+        public Context(string userName, string password)
+        {
+            UserName = userName;
+            Password = password;
+        }
+
+        public string UserName { get; }
+
+        public string Password { get; }
+    }
 }
